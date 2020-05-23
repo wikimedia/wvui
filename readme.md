@@ -18,6 +18,7 @@ Vue.js user interface component library prototype for MediaWiki's Vector skin.
 - [Development](#development)
   - [Quick start](#quick-start)
   - [NPM scripts](#npm-scripts)
+  - [Integrated development workflow](#integrated-development-workflow)
   - [Versioning](#versioning)
   - [Editor and IDE support](#editor-and-ide-support)
     - [Visual Studio Code](#visual-studio-code)
@@ -71,6 +72,39 @@ npm install
 # All dependencies are now available. Execute any project scripts as wanted.
 ```
 </details>
+
+### Integrated development workflow
+
+_Example: I want to see my local component library changes live in my app or MediaWiki skin._
+
+Package linking is the primary _integrated_ development workflow for use when isolated development
+is impractical. Tight coupling of the component library to a specific implementation is strongly
+discouraged. Nevertheless, it is often the case that changes tested live in the context of a
+particular use case are wanted prior to publishing. For example, perhaps a bug only manifests easily
+in one target.
+
+The steps are:
+
+1. Clone the component library repository if you haven't already.
+2. Enter the component library directory.
+3. Install the component library dependencies if you haven't already (see
+	[NPM scripts](#npm-scripts)).
+4. Note the component library's directory. For example, `libraryDir="$PWD"`.
+5. Enter your integration project's directory. For example, if you are integrating the library into
+	Vector, the command might be `cd ~/dev/mediawiki/skins/Vector`. This location should contain a
+	package.json with a `@wikimedia/mw-vue-components` dependency (either `dependency`,
+	`devDependency`, or `peerDependency`).
+6. Symbolically link the development library into the integration project via
+	`npm link "$libraryDir"` where `$libraryDir` is the location of the component library. This swaps
+	the published production library for a link to your local development copy.
+7. Verify the link is correct by seeing where that it resolves to component library's location. For
+	example, `readlink -m node_modules/@wikimedia/mw-vue-components` should match `$libraryDir`.
+8. Perform all development and iteration wanted in the component library and integration project.
+9. Unlink the development library via `npm unlink @wikimedia/mw-vue-components`. This deletes the
+	_symlink_ to your development copy of the component library.
+
+The above process seems a little clumsy because it is initially. However, it's quite practical and
+becomes easy with practice.
 
 ### Versioning
 
