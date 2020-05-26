@@ -36,14 +36,14 @@ npm i
 
 <details markdown>
 <summary>
-<a href="http://nvm.sh">NVM</a> is recommended to configure the Node.js version used whenever executing these scripts. For example…
+<a href="http://nvm.sh">NVM</a> is recommended to configure the Node.js version used whenever executing these scripts. Expand for example…
 </summary>
 
 ```bash
 # Install the project's recommended Node.js version. This is a one-time installation command and
 # does not need to be run again except when the project's .nvmrc is revised. `nvm use` will print an
 # error message if this command needs to be run again.
-nvm install $(<.nvmrc)
+nvm install "$(<.nvmrc)"
 
 # Configure the current shell's environment to use the recommended Node.js version. This command
 # should be run whenever opening a new shell to work on the project _prior_ to executing any of the
