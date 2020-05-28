@@ -13,5 +13,11 @@
   "homepage": "https://github.com/wikimedia/mw-vue-components",
   "repository": "github:wikimedia/mw-vue-components",
   "bugs": "https://phabricator.wikimedia.org/tag/vue.js",
-  "license": "GPL-2.0+"
+  "license": "GPL-2.0+",
+  "scripts": {
+    "preversion": "[ -z \"$(git status -z)\" ]",
+    "version": "npm t",
+    "postversion": "npm publish",
+    "prepublishOnly": "git push origin \"$(git rev-parse --abbrev-ref @)\" \"$(git tag --points-at @)\""
+  }
 }
