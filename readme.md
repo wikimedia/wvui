@@ -19,6 +19,9 @@ Vue.js user interface component library prototype for MediaWiki's Vector skin.
   - [Quick start](#quick-start)
   - [NPM scripts](#npm-scripts)
   - [Versioning](#versioning)
+  - [Editor and IDE support](#editor-and-ide-support)
+    - [Visual Studio Code](#visual-studio-code)
+      - [Recommended extensions](#recommended-extensions)
 - [Library design goals](#library-design-goals)
 
 <!-- /code_chunk_output -->
@@ -46,9 +49,8 @@ npm i
 Undocumented scripts are considered internal utilities and not expressly supported workflows.
 
 <details markdown>
-<summary>
-<a href="http://nvm.sh">NVM</a> is recommended to configure the Node.js version used whenever executing these scripts. Expand for example…
-</summary>
+<summary><a href="http://nvm.sh">NVM</a> is recommended to configure the Node.js version used
+whenever executing these scripts. Expand for example…</summary>
 
 ```bash
 # Install the project's recommended Node.js version. This is a one-time installation command and
@@ -101,10 +103,8 @@ npm version minor
 </details>
 
 <details markdown>
-<summary>
-The NPM scripts are configured to help ensure that only tested artifacts are published on Git and
-npmjs.com. Expand for details…
-</summary>
+<summary>The NPM scripts are configured to help ensure that only tested artifacts are published on
+Git and npmjs.com. Expand for details…</summary>
 
 By executing `npm version`, the following scripts are invoked in this order:
 1. `preversion`: test that the workspace contains no uncommitted changes.
@@ -145,6 +145,26 @@ See also:
 - [NPM version](https://docs.npmjs.com/cli/version)
 </details>
 
+### Editor and IDE support
+
+Great workflows often require great tooling and those tools need to be configured. This section
+describes how to optimize your editor or IDE for optimal usage.
+
+#### Visual Studio Code
+
+- Configure your line length to 100. For example, add common widths: `"editor.rulers": [ 80, 100 ]`.
+
+##### Recommended extensions
+
+- [Vetur](https://marketplace.visualstudio.com/items?itemName=octref.vetur)
+	- Enable `vetur.experimental.templateInterpolationService` for HTML template type checking in
+		single file components.
+- [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
+- [stylelint](https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint)
+- [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker)
+	- Lower the logging level to informational by setting `cSpell.logLevel` to `"Information"`.
+- [Markdown Preview Enhanced](https://marketplace.visualstudio.com/items?itemName=shd101wyy.markdown-preview-enhanced)
+
 ## Library design goals
 
 - Deploy search to all test wikis before August 31, 2020: frwiktionary, hewiki, ptwikiversity,
@@ -153,3 +173,5 @@ See also:
 - Delightful user experiences shareable as an NPM package and reusable everywhere with and without
 	MediaWiki.
 - [Semantically versioned](https://semver.org).
+- Thoroughly documented for development and usage; everything needed to be productive is in the
+	readme.
