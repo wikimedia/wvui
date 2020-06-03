@@ -1,5 +1,5 @@
 {
-  "name": "@wikimedia/mw-vue-components",
+  "name": "@wikimedia/wvui",
   "author": "Wikimedia",
   "description": "Vue.js user interface components for Wikipedia, MediaWiki, and beyond.",
   "version": "0.0.0",
@@ -10,8 +10,8 @@
     "MediaWiki",
     "Wikimedia"
   ],
-  "homepage": "https://github.com/wikimedia/mw-vue-components",
-  "repository": "github:wikimedia/mw-vue-components",
+  "homepage": "https://github.com/wikimedia/wvui",
+  "repository": "github:wikimedia/wvui",
   "bugs": "https://phabricator.wikimedia.org/tag/vue.js",
   "license": "GPL-2.0+",
   "scripts": {

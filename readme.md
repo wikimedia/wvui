@@ -1,4 +1,4 @@
-# 🧩 @wikimedia/mw-vue-components
+# 🧩 Wikimedia Vue UI
 
 Vue.js user interface component library prototype for MediaWiki's Vector skin.
 
@@ -92,15 +92,15 @@ The steps are:
 4. Note the component library's directory. For example, `libraryDir="$PWD"`.
 5. Enter your integration project's directory. For example, if you are integrating the library into
 	Vector, the command might be `cd ~/dev/mediawiki/skins/Vector`. This location should contain a
-	package.json with a `@wikimedia/mw-vue-components` dependency (either `dependency`,
+	package.json with a `@wikimedia/wvui` dependency (either `dependency`,
 	`devDependency`, or `peerDependency`).
 6. Symbolically link the development library into the integration project via
 	`npm link "$libraryDir"` where `$libraryDir` is the location of the component library. This swaps
 	the published production library for a link to your local development copy.
 7. Verify the link is correct by seeing where that it resolves to component library's location. For
-	example, `readlink -m node_modules/@wikimedia/mw-vue-components` should match `$libraryDir`.
+	example, `readlink -m node_modules/@wikimedia/wvui` should match `$libraryDir`.
 8. Perform all development and iteration wanted in the component library and integration project.
-9. Unlink the development library via `npm unlink @wikimedia/mw-vue-components`. This deletes the
+9. Unlink the development library via `npm unlink @wikimedia/wvui`. This deletes the
 	_symlink_ to your development copy of the component library.
 
 The above process seems a little clumsy because it is initially. However, it's quite practical and
