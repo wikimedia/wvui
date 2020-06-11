@@ -36,6 +36,5 @@
     "declaration": true
   },
 
-  // For Storybook.
-  "exclude": [ "node_modules", "dist", "docs" ]
+  "exclude": [ "node_modules", "dist", "docs", ".jest" ]
 }

@@ -46,8 +46,8 @@ npm i
 ### NPM scripts
 
 - `install` / `i`: install project dependencies. 
-- `version`: increment the version and publish a new release. See [versioning](#versioning).
 - `test`: run different types of tests including unit tests. See [testing](#testing).
+- `version`: increment the version and publish a new release. See [versioning](#versioning).
 
 Undocumented scripts are considered internal utilities and not expressly supported workflows.
 
@@ -78,11 +78,12 @@ npm install
 ### Testing
 
 #### Unit Tests
-- WVUI uses [Vue Test Utils](https://vue-test-utils.vuejs.org/), the official unit testing utility library for Vue.js.
+- WVUI uses [Vue Test Utils](https://vue-test-utils.vuejs.org/), 
+    the official unit testing utility library for Vue.js.
 - WVUI uses [Jest](https://jestjs.io) as a test runner. 
 - Tests for every component should be colocated with the component itself:
  
-```bash
+```
 |-- src
     |-- components
         |-- your-component
@@ -90,9 +91,10 @@ npm install
             |-- YourComponent.test.ts
 ```
 
-- WVUI uses [snapshot testing](https://jestjs.io/docs/en/snapshot-testing), snapshot files are colocated with components as well:
+- WVUI uses [snapshot testing](https://jestjs.io/docs/en/snapshot-testing), 
+    snapshot files are colocated with components as well:
  
-```bash
+```
 |-- src
     |-- components
         |-- your-component

@@ -7,30 +7,14 @@
 </template>
 
 <script lang="ts">
-import Vue, {PropType} from 'vue';
+import Vue from 'vue';
 
 export default Vue.extend( {
-    name: 'Button',
+    name: 'wvui-button',
     methods: {
         onClick( event: MouseEvent ) {
-            this.onBtnClick( event );
+            this.$emit('click', event);
         }
-    },
-    props: {
-        onBtnClick: {
-            type: Function as PropType<(event: MouseEvent)=>void>,
-        }
-    },
-    computed: {
-        classes() {
-            return {
-                'mw-ui-button': true
-            };
-        }
-    },
+    }
 } );
 </script>
-
-<style lang="less">
-
-</style>

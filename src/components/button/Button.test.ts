@@ -1,30 +1,23 @@
-import { shallowMount, mount } from '@vue/test-utils';
-import TestButton from './Button.vue';
+import { shallowMount } from '@vue/test-utils';
+import WVUIButton from './Button.vue';
 
 describe('TestButton', () => {
     it('matches the snapshot', () => {
-        const wrapper = shallowMount( TestButton );
+        const wrapper = shallowMount( WVUIButton );
 
         expect( wrapper.element ).toMatchSnapshot();
     });
 
-    it('renders button element with an appropriate class name', () => {
-        const wrapper = shallowMount( TestButton );
-        const buttonClass = 'mw-ui-button';
+    it('renders button element', () => {
+        const wrapper = shallowMount( WVUIButton );
 
         expect( wrapper.get( 'button' ) ).toBeTruthy();
-        expect( wrapper.classes( buttonClass ) ).toBeTruthy();
     });
 
     it('do something on click', () => {
-        const onBtnClick = jest.fn();
-        const wrapper = mount( TestButton, {
-            propsData: {
-                onBtnClick: onBtnClick
-            }
-        } );
+        const wrapper = shallowMount( WVUIButton );
 
         wrapper.find('button').trigger('click');
-        expect( onBtnClick ).toHaveBeenCalled();
+        expect(wrapper.emitted().click).toBeTruthy();
     });
 })
