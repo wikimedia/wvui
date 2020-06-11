@@ -4,6 +4,7 @@ Versions and bullets are arranged chronologically from latest to oldest.
 
 ## v0.0.1 (unreleased)
 
+- [dev][docs] Add Storybook development flow, and update readme
 - [docs] add initial Less naming conventions
 - [docs] add installation recommendations
 - [dev][docs] format markdown files
