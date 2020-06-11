@@ -19,6 +19,7 @@ Vue.js user interface component library prototype for MediaWiki's Vector skin.
   - [Quick start](#quick-start)
   - [NPM scripts](#npm-scripts)
   - [Integrated development workflow](#integrated-development-workflow)
+  - [Testing](#testing)
   - [Versioning](#versioning)
   - [Editor and IDE support](#editor-and-ide-support)
     - [Visual Studio Code](#visual-studio-code)
@@ -46,6 +47,7 @@ npm i
 
 - `install` / `i`: install project dependencies. 
 - `version`: increment the version and publish a new release. See [versioning](#versioning).
+- `test`: run different types of tests including unit tests. See [testing](#testing).
 
 Undocumented scripts are considered internal utilities and not expressly supported workflows.
 
@@ -73,6 +75,36 @@ npm install
 ```
 </details>
 
+### Testing
+
+#### Unit Tests
+- WVUI uses [Vue Test Utils](https://vue-test-utils.vuejs.org/), the official unit testing utility library for Vue.js.
+- WVUI uses [Jest](https://jestjs.io) as a test runner. 
+- Tests for every component should be colocated with the component itself:
+ 
+```bash
+|-- src
+    |-- components
+        |-- your-component
+            |-- YourComponent.vue
+            |-- YourComponent.test.ts
+```
+
+- WVUI uses [snapshot testing](https://jestjs.io/docs/en/snapshot-testing), snapshot files are colocated with components as well:
+ 
+```bash
+|-- src
+    |-- components
+        |-- your-component
+            |-- YourComponent.vue
+            |-- YourComponent.test.ts
+            |-- YourComponent.snap.ts
+```
+- Coverage report will be created automatically in `coverage` directory.
+
+To run tests, use `npm run test` command (see [NPM scripts](#npm-scripts)).
+
+    
 ### Integrated development workflow
 
 _Example: I want to see my local component library changes live in my app or MediaWiki skin._
