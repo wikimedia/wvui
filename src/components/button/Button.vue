@@ -1,6 +1,5 @@
 <template>
     <button
-        :class="classes"
         @click="onClick"
     >
     </button>
