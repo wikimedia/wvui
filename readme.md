@@ -18,12 +18,14 @@ Vue.js user interface component library prototype for MediaWiki's Vector skin.
 - [Development](#development)
   - [Quick start](#quick-start)
   - [NPM scripts](#npm-scripts)
-  - [Integrated development workflow](#integrated-development-workflow)
   - [Testing](#testing)
+    - [Unit Tests](#unit-tests)
+  - [Integrated development workflow](#integrated-development-workflow)
   - [Versioning](#versioning)
   - [Editor and IDE support](#editor-and-ide-support)
     - [Visual Studio Code](#visual-studio-code)
       - [Recommended extensions](#recommended-extensions)
+  - [Git strategy](#git-strategy)
 - [Library design goals](#library-design-goals)
 
 <!-- /code_chunk_output -->
@@ -232,6 +234,55 @@ describes how to optimize your editor or IDE for optimal usage.
 - [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker)
 	- Lower the logging level to informational by setting `cSpell.logLevel` to `"Information"`.
 - [Markdown Preview Enhanced](https://marketplace.visualstudio.com/items?itemName=shd101wyy.markdown-preview-enhanced)
+
+### Git strategy
+
+- Authors should revise the changelog each commit so this work is not postponed to release.
+- WVUI uses a "squash-and-merge" convention for changes.<sup>[0](#squash-and-merge)</sup>
+- Operating system and editor-specific files are not considered.<sup>[1](#git-ignore)</sup>
+
+<details markdown>
+<summary><sup><a name="squash-and-merge">0</a></sup>Expand for details on squash-and-merge…</summary>
+
+Development of a change worth merging is often messy. A merge-worthy change usually occurs over
+multiple patchsets in a Gerrit patch or commits in a GitHub pull request. These interim changes can
+often be quite noisy in themselves and not useful or even detrimental to preserve distinctly in the
+Git log. Example improvements during review often include whitespace changes, bug fixes, refactoring
+of introduced code, and renaming of new symbols.
+
+Therefor, distinct interim commits are collapsed into a single logical commit at merge time that
+often satisfies the intent of the original commit. The tradeoffs are that only a single polished
+commit representative of all of that back-and-forth discourse during code review is made at the
+expense that less noteworthy history is lost.
+</details>
+
+<details markdown>
+<summary><sup><a name="git-ignore">1</a></sup>Expand for details on OS and editor-specific files…</summary>
+
+Different programmers use different editors and IDEs. WVUI will attempt to facilitate different
+workflows, especially in the form of documentation, but will avoid making changes specific to them
+such as ignoring Vim swap files.
+
+OS-specific files such as [.DS_Store](https://wikipedia.org/wiki/.DS_Store) and
+[Thumbs.db](https://wikipedia.org/wiki/Windows_thumbnail_cache) should be excluded by the user's
+global Git configuration as they're unwanted in every repository and not specific to WVUI. See
+[gitignore documentation](https://git-scm.com/docs/gitignore) for details.
+
+_Example:_
+
+1. Add a global exclusions file by executing
+`git config --global core.excludesfile '~/.gitignore'` or updating your `~/.gitconfig` manually:
+
+```gitconfig
+excludesfile = ~/.gitignore
+```
+2. Always ignore `.DS_Store` files by executing `echo .DS_Store >> ~/.gitignore` or updating your
+`~/.gitignore` manually:
+
+```gitignore
+.DS_Store
+```
+</details>
 
 ## Library design goals
 
