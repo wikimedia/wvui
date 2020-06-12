@@ -2,4 +2,4 @@
 
 ## v0.0.1
 
-- Coming soon.
+- [dev][build] Test on Git precommit
