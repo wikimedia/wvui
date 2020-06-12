@@ -1,0 +1,17 @@
+{
+  "rootDir": "..",
+  "transform": {
+    ".+\\.ts$": "ts-jest",
+    ".+\\.vue$": "vue-jest",
+    ".+\\.(c|le)ss$": "<rootDir>/.jest/ignoreTransform.js"
+  },
+  "snapshotResolver": "<rootDir>/.jest/snapshotResolver.js",
+  "collectCoverage": true,
+  "collectCoverageFrom": [
+    "<rootDir>/src/**/*.(ts|vue)",
+    "!<rootDir>/src/**/*.(test|snap).ts",
+    "!<rootDir>/node_modules/**"
+
+  ],
+  "coverageDirectory": "<rootDir>/docs/coverage"
+}
