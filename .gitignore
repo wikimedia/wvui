@@ -1,2 +1,2 @@
-docs/coverage
-node_modules
+/docs/coverage/
+/node_modules/
