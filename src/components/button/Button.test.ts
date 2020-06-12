@@ -1,7 +1,7 @@
 import { shallowMount } from '@vue/test-utils';
 import WVUIButton from './Button.vue';
 
-describe('TestButton', () => {
+describe('wvui-button', () => {
     it('matches the snapshot', () => {
         const wrapper = shallowMount( WVUIButton );
 

@@ -13,12 +13,12 @@ Vue.js user interface component library prototype for MediaWiki's Vector skin.
 <!-- code_chunk_output -->
 
 - [Table of contents](#table-of-contents)
+- [Installation](#installation)
 - [Usage](#usage)
-- [Version history](#version-history)
 - [Development](#development)
   - [Quick start](#quick-start)
   - [NPM scripts](#npm-scripts)
-  - [Integrated development workflow](#integrated-development-workflow)
+  - [Conventions](#conventions)
   - [Testing](#testing)
   - [Versioning](#versioning)
   - [Editor and IDE support](#editor-and-ide-support)
@@ -74,6 +74,24 @@ npm install
 # All dependencies are now available. Execute any project scripts as wanted.
 ```
 </details>
+
+### Conventions
+
+#### Vue.js
+
+The [Vue.js Style Guide] is adhered to where possible.
+
+[Vue.js Style Guide]: https://vuejs.org/v2/style-guide
+
+#### TypeScript
+
+- All top-level file symbols should be fully typed. Seams should not have their types inferred
+	because they are most likely to have subtle flaws.
+- All named functions and methods should have inputs and output typed. When functions are fully
+	typed, their contents usually can be inferred.
+- Favor type inference for locals rather than explicit typing. Locals are unlikely to have incorrect
+	typing assumptions and the verbosity of typing is usually a hindrance.
+- Use TypeScript typing where available, JSDocs where not.
 
 ### Testing
 
@@ -240,6 +258,7 @@ describes how to optimize your editor or IDE for optimal usage.
 - Relevant, modern, efficient, iterative contributor workflows.
 - Delightful user experiences shareable as an NPM package and reusable everywhere with and without
 	MediaWiki.
+- Fully typed. Accurate typing improves comprehension for tooling and programmers.
 - [Semantically versioned](https://semver.org).
 - Thoroughly documented for development and usage; everything needed to be productive is in the
 	readme.

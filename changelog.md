@@ -2,4 +2,4 @@
 
 ## v0.0.1
 
-- Coming soon.
+- [dev][docs] Add missing types, docs, and update guidelines

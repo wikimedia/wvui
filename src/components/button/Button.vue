@@ -10,7 +10,7 @@ import Vue from 'vue';
 export default Vue.extend( {
     name: 'wvui-button',
     methods: {
-        onClick( event: MouseEvent ) {
+        onClick( event: MouseEvent ): void {
             this.$emit('click', event);
         }
     }

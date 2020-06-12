@@ -36,5 +36,5 @@
     "declaration": true
   },
 
-  "exclude": [ "node_modules", "dist", "docs", ".jest" ]
+  "exclude": [ "node_modules", "dist", "docs" ]
 }
