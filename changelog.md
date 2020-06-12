@@ -2,4 +2,4 @@
 
 ## v0.0.1
 
-- Coming soon.
+- [dev] move types under src/
