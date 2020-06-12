@@ -46,7 +46,7 @@ npm i
 ### NPM scripts
 
 - `install` / `i`: install project dependencies. 
-- `test`: run different types of tests including unit tests. See [testing](#testing).
+- `test` / `t`: run different types of tests including unit tests. See [testing](#testing).
 - `version`: increment the version and publish a new release. See [versioning](#versioning).
 
 Undocumented scripts are considered internal utilities and not expressly supported workflows.
@@ -104,7 +104,7 @@ npm install
 ```
 - Coverage report will be created automatically in `coverage` directory.
 
-To run tests, use `npm run test` command (see [NPM scripts](#npm-scripts)).
+To run tests, use `npm test` command (see [NPM scripts](#npm-scripts)).
 
     
 ### Integrated development workflow

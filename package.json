@@ -15,7 +15,7 @@
   "bugs": "https://phabricator.wikimedia.org/tag/vue.js",
   "license": "GPL-2.0+",
   "scripts": {
-    "test:unit": "jest -c .jest/jest.config.js",
+    "test:unit": "jest -c .jest/jest.config.json",
     "test": "npm -s run test:unit",
     "preversion": "[ -z \"$(git status -z)\" ]",
     "version": "npm t",
@@ -29,14 +29,13 @@
     "@types/jest": "26.0.0",
     "@types/vue": "^2.0.0",
     "@vue/test-utils": "1.0.3",
-    "babel-core": "6.26.3",
-    "babel-preset-vue": "2.0.2",
     "jest": "26.0.0",
     "ts-jest": "26.0.0",
     "typescript": "3.9.2",
     "vue": "2.6.11",
     "vue-jest": "3.0.5",
     "vue-loader": "15.9.2",
-    "vue-template-compiler": "2.6.11"
+    "vue-template-compiler": "2.6.11",
+    "babel-core": "6.26.3"
   }
 }
