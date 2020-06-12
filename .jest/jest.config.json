@@ -6,9 +6,6 @@
     ".+\\.(c|le)ss$": "<rootDir>/.jest/ignoreTransform.js"
   },
   "snapshotResolver": "<rootDir>/.jest/snapshotResolver.js",
-  "setupFiles": [
-     "<rootDir>/.jest/jest.setup.js"
-  ],
   "collectCoverage": true,
   "collectCoverageFrom": [
     "<rootDir>/src/**/*.(ts|vue)",
