@@ -29,13 +29,14 @@
     "@types/jest": "26.0.0",
     "@types/vue": "^2.0.0",
     "@vue/test-utils": "1.0.3",
+    "babel-core": "6.26.3",
     "jest": "26.0.0",
+    "pre-commit": "1.2.2",
     "ts-jest": "26.0.0",
     "typescript": "3.9.2",
     "vue": "2.6.11",
     "vue-jest": "3.0.5",
     "vue-loader": "15.9.2",
-    "vue-template-compiler": "2.6.11",
-    "babel-core": "6.26.3"
+    "vue-template-compiler": "2.6.11"
   }
 }
