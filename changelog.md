@@ -2,6 +2,9 @@
 
 Versions and bullets are arranged chronologically from latest to oldest.
 
+
+- [dev][build] Test on Git precommit
+
 ## v0.0.1 (unreleased)
 
 - [docs] Add notes on Git strategy
@@ -13,3 +16,4 @@ Versions and bullets are arranged chronologically from latest to oldest.
 - [docs] tweak NVM disclosure and quote example
 - [dev][build] Add NVM
 - [build][docs] Add package.json and readme
+
