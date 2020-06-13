@@ -16,4 +16,4 @@ Versions and bullets are arranged chronologically from latest to oldest.
 - [docs] tweak NVM disclosure and quote example
 - [dev][build] Add NVM
 - [build][docs] Add package.json and readme
-
+- [dev] move types under src/
