@@ -4,6 +4,7 @@ Versions and bullets are arranged chronologically from latest to oldest.
 
 ## v0.0.1 (unreleased)
 
+- [dev][docs] format markdown files
 - [dev][docs] Add missing types, docs, and update guidelines
 - [dev] move types under src/
 - [dev][build] Test on Git precommit
