@@ -13,8 +13,7 @@ Vue.js user interface component library prototype for MediaWiki's Vector skin.
 <!-- code_chunk_output -->
 
 - [Table of contents](#table-of-contents)
-- [Usage](#usage)
-- [Version history](#version-history)
+- [Installation](#installation)
 - [Development](#development)
   - [Quick start](#quick-start)
   - [NPM scripts](#npm-scripts)
@@ -29,16 +28,50 @@ Vue.js user interface component library prototype for MediaWiki's Vector skin.
     - [Visual Studio Code](#visual-studio-code)
       - [Recommended extensions](#recommended-extensions)
   - [Git strategy](#git-strategy)
+    - [Author guidelines](#author-guidelines)
+    - [Reviewer guidelines](#reviewer-guidelines)
 - [Library design goals](#library-design-goals)
 
 <!-- /code_chunk_output -->
 
-## Usage
+## Installation and version history
 
-## Version history
+Install the library and Vue.js v2:
 
-This library is [semantically versioned](https://semver.org). See the [changelog](changelog.md) for
-release notes.
+```bash
+npm i --save-prefix= vue@2 @wikimedia/wvui
+```
+
+WVUI is [semantically versioned](https://semver.org). See the [changelog](changelog.md) for release
+notes.
+
+We recommend pinning WVUI to an exact patch version. For example:
+
+```json
+  …,
+  "dependencies": {
+    …,
+    "@wikimedia/wvui": "1.2.3",
+    …
+  }
+  …,
+```
+
+<details>
+<summary>Expand for details…</summary>
+
+WVUI is semantically versioned but bugs occasionally slip through. They're easier for consumers to
+identify when upgrades are tracked deliberately via package.json. If
+[semver ranges](https://docs.npmjs.com/misc/semver) are used instead, like `"^1.2.3"`, only the
+verbose and noisy package-lock.json will change on an upgrade which may go unnoticed. Additionally,
+new features are easier to consider and socialize at upgrade time when minor / major version
+upgrades are intentional and reflected in package.json.
+
+The recommendation to use exact patch versions like `"1.2.3"` may seem pedantic but if a project
+specifies dependencies with looser versioning instead, that project will be at the mercy of its
+dependencies instead of in control of them.
+
+</details>
 
 ## Development
 
@@ -137,33 +170,31 @@ To run tests, use `npm test` command (see [NPM scripts](#npm-scripts)).
 
 ### Integrated development workflow
 
-_Example: I want to see my local component library changes live in my app or MediaWiki skin._
+_Example: I want to see my local WVUI library changes live in my app or MediaWiki skin._
 
 Package linking is the primary _integrated_ development workflow for use when isolated development
-is impractical. Tight coupling of the component library to a specific implementation is strongly
-discouraged. Nevertheless, it is often the case that changes tested live in the context of a
-particular use case are wanted prior to publishing. For example, perhaps a bug only manifests easily
-in one target.
+is impractical. Tight coupling of WVUI to a specific implementation is strongly discouraged.
+Nevertheless, it is often the case that changes tested live in the context of a particular use case
+are wanted prior to publishing. For example, perhaps a bug only manifests easily in one target.
 
 The steps are:
 
-1. Clone the component library repository if you haven't already.
-2. Enter the component library directory.
-3. Install the component library dependencies if you haven't already (see
-   [NPM scripts](#npm-scripts)).
-4. Note the component library's directory. For example, `libraryDir="$PWD"`.
-5. Enter your integration project's directory. For example, if you are integrating the library into
-   Vector, the command might be `cd ~/dev/mediawiki/skins/Vector`. This location should contain a
-   package.json with a `@wikimedia/wvui` dependency (either `dependency`,
-   `devDependency`, or `peerDependency`).
-6. Symbolically link the development library into the integration project via
-   `npm link "$libraryDir"` where `$libraryDir` is the location of the component library. This swaps
-   the published production library for a link to your local development copy.
-7. Verify the link is correct by seeing where that it resolves to component library's location. For
-   example, `readlink -m node_modules/@wikimedia/wvui` should match `$libraryDir`.
-8. Perform all development and iteration wanted in the component library and integration project.
-9. Unlink the development library via `npm unlink @wikimedia/wvui`. This deletes the
-   _symlink_ to your development copy of the component library.
+1. Clone the WVUI repository if you haven't already.
+2. Enter the WVUI directory.
+3. Install the WVUI dependencies if you haven't already (see [NPM scripts](#npm-scripts)).
+4. Note WVUI's directory. For example, `wvuiDir="$PWD"`.
+5. Enter your integration project's directory. For example, if you are integrating WVUI into Vector,
+   the command might be `cd ~/dev/mediawiki/skins/Vector`. This location should contain a
+   package.json with a `@wikimedia/wvui` dependency (either `dependency`, `devDependency`, or
+   `peerDependency`).
+6. Symbolically link the development WVUI into the integration project via `npm link "$wvuiDir"`
+   where `$wvuiDir` is the location of WVUI. This swaps the published production WVUI library for a
+   link to your local development copy.
+7. Verify the link is correct by seeing where that it resolves to WVUI's location. For example,
+   `readlink -m node_modules/@wikimedia/wvui` should match `$wvuiDir`.
+8. Perform all development and iteration wanted in WVUI and integration project.
+9. Unlink the development WVUI via `npm unlink @wikimedia/wvui`. This deletes the _symlink_ to your
+   development copy of WVUI.
 
 The above process seems a little clumsy because it is initially. However, it's quite practical and
 becomes easy with practice.
@@ -268,6 +299,8 @@ describes how to optimize your editor or IDE for optimal usage.
 - Authors should revise the changelog each commit so this work is not postponed to release.
 - WVUI uses a "squash-and-merge" convention for changes.<sup>[0](#squash-and-merge)</sup>
 - Operating system and editor-specific files are not considered.<sup>[1](#git-ignore)</sup>
+- The Git configuration should be precise and accurate like any other part of the codebase. The
+  .gitignore file, for instance, should not become cluttered or vague.
 
 <details markdown>
 <summary><sup><a name="squash-and-merge">0</a></sup>Expand for details on squash-and-merge…</summary>
@@ -315,6 +348,25 @@ excludesfile = ~/.gitignore
 
 </details>
 
+#### Author guidelines
+
+The expectations for submitting a patch are:
+
+- Write your best work.
+- Functional changes compile, run, and pass tests.
+- Established patterns at least within the WVUI repository are considered.
+- Any submitted change is an overall improvement. The rationale is that if a patch is an overall
+  improvement, it's obvious to merge. If it's not, why should should it be merged?
+- Smaller patches get better reviews.
+
+#### Reviewer guidelines
+
+- The goal of code review is to help write great code, not only prevent bad code from being written.
+  The distinction is that the former is helping to achieve whereas the latter is focused on
+  prevention. Nourishing good ideas is better than extinguishing formative ideas.
+- If you as a reviewer are making requests of the author, attempt to match their level of effort and
+  timeliness. Everyone is busy and doing their best but differently abled.
+
 ## Library design goals
 
 - Deploy search to all test wikis before August 31, 2020: frwiktionary, hewiki, ptwikiversity,
@@ -326,3 +378,4 @@ excludesfile = ~/.gitignore
 - [Semantically versioned](https://semver.org).
 - Thoroughly documented for development and usage; everything needed to be productive is in the
   readme.
+- Well tested and robust.
