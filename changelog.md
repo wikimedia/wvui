@@ -2,11 +2,11 @@
 
 Versions and bullets are arranged chronologically from latest to oldest.
 
-
-- [dev][build] Test on Git precommit
-
 ## v0.0.1 (unreleased)
 
+- [dev][docs] Add missing types, docs, and update guidelines
+- [dev] move types under src/
+- [dev][build] Test on Git precommit
 - [docs] Add notes on Git strategy
 - [dev][build] Add Jest configuration
 - [build] rename to Wikimedia Vue UI
@@ -16,4 +16,3 @@ Versions and bullets are arranged chronologically from latest to oldest.
 - [docs] tweak NVM disclosure and quote example
 - [dev][build] Add NVM
 - [build][docs] Add package.json and readme
-- [dev] move types under src/
