@@ -364,8 +364,13 @@ The expectations for submitting a patch are:
 - The goal of code review is to help write great code, not only prevent bad code from being written.
   The distinction is that the former is helping to achieve whereas the latter is focused on
   prevention. Nourishing good ideas is better than extinguishing formative ideas.
+- Be specific when providing constructive feedback. Vague concerns, such as "there are many reasons"
+  or "it's more nuanced than that," prevent further discussion and create invisible barriers to
+  participation that cannot be overcome. Make your point and allow the author to address it.
 - If you as a reviewer are making requests of the author, attempt to match their level of effort and
   timeliness. Everyone is busy and doing their best but differently abled.
+- Be open-minded. New ideas, especially standard ideas that are only new to you, are not inherently
+  bad. You are responsible in part for creating the culture you want.
 
 ## Library design goals
 
