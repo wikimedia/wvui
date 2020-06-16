@@ -5,9 +5,9 @@ Vue.js user interface component library prototype for MediaWiki's Vector skin.
 ## Table of contents
 
 <!--
-	Markdown Preview Enhanced is used to automatically generate the table of contents. You don't
-	have to use it but please leave these directives for those who choose to. It helps keeps the
-	table of contents in sync.
+  Markdown Preview Enhanced is used to automatically generate the table of contents. You don't
+  have to use it but please leave these directives for those who choose to. It helps keeps the
+  table of contents in sync.
 -->
 <!-- @import "[TOC]" {cmd="toc" depthFrom=2 depthTo=6 orderedList=false} -->
 <!-- code_chunk_output -->
@@ -50,9 +50,12 @@ npm i
 
 ### NPM scripts
 
-- `install` / `i`: install project dependencies. 
+- `install` / `i`: install project dependencies.
 - `test` / `t`: run different types of tests including unit tests. See [testing](#testing).
+- `run format`: apply lint fixes automatically where available.
 - `version`: increment the version and publish a new release. See [versioning](#versioning).
+
+💡 Tip: add `-s` to omit verbose command echoing. E.g., `npm -s i` or `npm -s run format`.
 
 Undocumented scripts are considered internal utilities and not expressly supported workflows.
 
@@ -78,6 +81,7 @@ npm install
 
 # All dependencies are now available. Execute any project scripts as wanted.
 ```
+
 </details>
 
 ### Conventions
@@ -86,26 +90,27 @@ npm install
 
 The [Vue.js Style Guide] is adhered to where possible.
 
-[Vue.js Style Guide]: https://vuejs.org/v2/style-guide
+[vue.js style guide]: https://vuejs.org/v2/style-guide
 
 #### TypeScript
 
 - All top-level file symbols should be fully typed. Seams should not have their types inferred
-	because they are most likely to have subtle flaws.
+  because they are most likely to have subtle flaws.
 - All named functions and methods should have inputs and output typed. When functions are fully
-	typed, their contents usually can be inferred.
+  typed, their contents usually can be inferred.
 - Favor type inference for locals rather than explicit typing. Locals are unlikely to have incorrect
-	typing assumptions and the verbosity of typing is usually a hindrance.
+  typing assumptions and the verbosity of typing is usually a hindrance.
 - Use TypeScript typing where available, JSDocs where not.
 
 ### Testing
 
 #### Unit Tests
-- WVUI uses [Vue Test Utils](https://vue-test-utils.vuejs.org/), 
-    the official unit testing utility library for Vue.js.
-- WVUI uses [Jest](https://jestjs.io) as a test runner. 
+
+- WVUI uses [Vue Test Utils](https://vue-test-utils.vuejs.org/),
+  the official unit testing utility library for Vue.js.
+- WVUI uses [Jest](https://jestjs.io) as a test runner.
 - Tests for every component should be colocated with the component itself:
- 
+
 ```
 |-- src
     |-- components
@@ -114,9 +119,9 @@ The [Vue.js Style Guide] is adhered to where possible.
             |-- YourComponent.test.ts
 ```
 
-- WVUI uses [snapshot testing](https://jestjs.io/docs/en/snapshot-testing), 
-    snapshot files are colocated with components as well:
- 
+- WVUI uses [snapshot testing](https://jestjs.io/docs/en/snapshot-testing),
+  snapshot files are colocated with components as well:
+
 ```
 |-- src
     |-- components
@@ -125,11 +130,11 @@ The [Vue.js Style Guide] is adhered to where possible.
             |-- YourComponent.test.ts
             |-- YourComponent.snap.ts
 ```
+
 - Coverage report will be created automatically in `coverage` directory.
 
 To run tests, use `npm test` command (see [NPM scripts](#npm-scripts)).
 
-    
 ### Integrated development workflow
 
 _Example: I want to see my local component library changes live in my app or MediaWiki skin._
@@ -145,20 +150,20 @@ The steps are:
 1. Clone the component library repository if you haven't already.
 2. Enter the component library directory.
 3. Install the component library dependencies if you haven't already (see
-	[NPM scripts](#npm-scripts)).
+   [NPM scripts](#npm-scripts)).
 4. Note the component library's directory. For example, `libraryDir="$PWD"`.
 5. Enter your integration project's directory. For example, if you are integrating the library into
-	Vector, the command might be `cd ~/dev/mediawiki/skins/Vector`. This location should contain a
-	package.json with a `@wikimedia/wvui` dependency (either `dependency`,
-	`devDependency`, or `peerDependency`).
+   Vector, the command might be `cd ~/dev/mediawiki/skins/Vector`. This location should contain a
+   package.json with a `@wikimedia/wvui` dependency (either `dependency`,
+   `devDependency`, or `peerDependency`).
 6. Symbolically link the development library into the integration project via
-	`npm link "$libraryDir"` where `$libraryDir` is the location of the component library. This swaps
-	the published production library for a link to your local development copy.
+   `npm link "$libraryDir"` where `$libraryDir` is the location of the component library. This swaps
+   the published production library for a link to your local development copy.
 7. Verify the link is correct by seeing where that it resolves to component library's location. For
-	example, `readlink -m node_modules/@wikimedia/wvui` should match `$libraryDir`.
+   example, `readlink -m node_modules/@wikimedia/wvui` should match `$libraryDir`.
 8. Perform all development and iteration wanted in the component library and integration project.
 9. Unlink the development library via `npm unlink @wikimedia/wvui`. This deletes the
-	_symlink_ to your development copy of the component library.
+   _symlink_ to your development copy of the component library.
 
 The above process seems a little clumsy because it is initially. However, it's quite practical and
 becomes easy with practice.
@@ -191,6 +196,7 @@ git commit -m '[docs][changelog] prepare release notes'
 # Attempt a complete release.
 npm version minor
 ```
+
 </details>
 
 <details markdown>
@@ -198,16 +204,17 @@ npm version minor
 Git and npmjs.com. Expand for details…</summary>
 
 By executing `npm version`, the following scripts are invoked in this order:
+
 1. `preversion`: test that the workspace contains no uncommitted changes.
 2. **`version`**: increment the version, clean, build, and test the candidate, commit, and tag the
-	change.
+   change.
 3. `postversion`: call `publish`.
 4. `prepublishOnly`: push the Git tag to the remote.
 5. **`publish`**: push the artifacts to npmjs.com as per usual.
 
 In detail, `version` is a built-in NPM script that increases the package.json's `version` property
 (`patch`, `minor`, or `major`) as specified, commits the result to version control, and adds a Git
-tag. Prior to committing the version bump, clean, build, and test the candidate artifact.  See
+tag. Prior to committing the version bump, clean, build, and test the candidate artifact. See
 `npm help version` for further details.
 
 The `preversion` NPM script, which runs prior to `version`, is defined to test that Git's version
@@ -226,12 +233,14 @@ Finally, the `publish` script is executed which releases the raw files built int
 [npm registry](https://www.npmjs.com). See `npm help publish` for further details.
 
 The intended result is:
+
 - Uncommitted changes (both modifications and untracked files) are forbidden.
 - Only clean and tested packages are published.
 - Git tags are available for all releases.
 - Git tags pushed and NPM artifacts publishes are always in sync.
 
 See also:
+
 - [NPM scripts](https://docs.npmjs.com/misc/scripts)
 - [NPM version](https://docs.npmjs.com/cli/version)
 </details>
@@ -247,13 +256,11 @@ describes how to optimize your editor or IDE for optimal usage.
 
 ##### Recommended extensions
 
-- [Vetur](https://marketplace.visualstudio.com/items?itemName=octref.vetur)
-	- Enable `vetur.experimental.templateInterpolationService` for HTML template type checking in
-		single file components.
+- [Vetur](https://marketplace.visualstudio.com/items?itemName=octref.vetur) - Enable `vetur.experimental.templateInterpolationService` for HTML template type checking in
+  single file components.
 - [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
 - [stylelint](https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint)
-- [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker)
-	- Lower the logging level to informational by setting `cSpell.logLevel` to `"Information"`.
+- [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker) - Lower the logging level to informational by setting `cSpell.logLevel` to `"Information"`.
 - [Markdown Preview Enhanced](https://marketplace.visualstudio.com/items?itemName=shd101wyy.markdown-preview-enhanced)
 
 ### Git strategy
@@ -275,6 +282,7 @@ Therefor, distinct interim commits are collapsed into a single logical commit at
 often satisfies the intent of the original commit. The tradeoffs are that only a single polished
 commit representative of all of that back-and-forth discourse during code review is made at the
 expense that less noteworthy history is lost.
+
 </details>
 
 <details markdown>
@@ -292,27 +300,29 @@ global Git configuration as they're unwanted in every repository and not specifi
 _Example:_
 
 1. Add a global exclusions file by executing
-`git config --global core.excludesfile '~/.gitignore'` or updating your `~/.gitconfig` manually:
+   `git config --global core.excludesfile '~/.gitignore'` or updating your `~/.gitconfig` manually:
 
 ```gitconfig
 excludesfile = ~/.gitignore
 ```
+
 2. Always ignore `.DS_Store` files by executing `echo .DS_Store >> ~/.gitignore` or updating your
-`~/.gitignore` manually:
+   `~/.gitignore` manually:
 
 ```gitignore
 .DS_Store
 ```
+
 </details>
 
 ## Library design goals
 
 - Deploy search to all test wikis before August 31, 2020: frwiktionary, hewiki, ptwikiversity,
-	frwiki, euwiki, fawiki.
+  frwiki, euwiki, fawiki.
 - Relevant, modern, efficient, iterative contributor workflows.
 - Delightful user experiences shareable as an NPM package and reusable everywhere with and without
-	MediaWiki.
+  MediaWiki.
 - Fully typed. Accurate typing improves comprehension for tooling and programmers.
 - [Semantically versioned](https://semver.org).
 - Thoroughly documented for development and usage; everything needed to be productive is in the
-	readme.
+  readme.
