@@ -13,12 +13,13 @@ Vue.js user interface component library prototype for MediaWiki's Vector skin.
 <!-- code_chunk_output -->
 
 - [Table of contents](#table-of-contents)
-- [Installation](#installation)
+- [Installation and version history](#installation-and-version-history)
 - [Development](#development)
   - [Quick start](#quick-start)
   - [NPM scripts](#npm-scripts)
   - [Conventions](#conventions)
     - [Vue.js](#vuejs)
+    - [Less](#less)
     - [TypeScript](#typescript)
   - [Testing](#testing)
     - [Unit Tests](#unit-tests)
@@ -121,9 +122,11 @@ npm install
 
 #### Vue.js
 
-The [Vue.js Style Guide] is adhered to where possible.
+The [Vue.js Style Guide](https://vuejs.org/v2/style-guide) is adhered to where possible.
 
-[vue.js style guide]: https://vuejs.org/v2/style-guide
+#### Less
+
+[BEM](http://getbem.com) naming conventions are adhered to where possible.
 
 #### TypeScript
 
