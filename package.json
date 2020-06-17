@@ -17,7 +17,7 @@
   "scripts": {
     "start": "start-storybook --quiet -p 3003",
     "test:unit": "jest -c .jest/jest.config.json",
-    "test": "npm -s run test:unit && npm -s run test:lint",
+    "test": "npm -s run test:unit && npm -s run test:lint && npm -s run docs",
     "docs": "npm -s run docs:ui",
     "docs:ui": "build-storybook --quiet --loglevel warn -o docs/ui",
     "version": "npm t",
@@ -44,6 +44,7 @@
     "@storybook/addon-viewport": "6.0.0-beta.27",
     "@storybook/vue": "6.0.0-beta.27",
     "@types/jest": "26.0.0",
+    "@types/mini-css-extract-plugin": "0.9.1",
     "@types/vue": "2.0.0",
     "@vue/test-utils": "1.0.3",
     "babel-core": "6.26.3",
@@ -52,16 +53,17 @@
     "css-loader": "3.5.3",
     "fork-ts-checker-webpack-plugin": "4.1.6",
     "jest": "26.0.0",
-    "pre-commit": "1.2.2",
-    "prettier": "2.0.5",
     "less-loader": "6.1.0",
     "mini-css-extract-plugin": "0.9.0",
+    "pre-commit": "1.2.2",
+    "prettier": "2.0.5",
     "ts-jest": "26.0.0",
     "ts-loader": "7.0.4",
     "typescript": "3.9.2",
     "vue": "2.6.11",
     "vue-jest": "3.0.5",
     "vue-loader": "15.9.2",
-    "vue-template-compiler": "2.6.11"
+    "vue-template-compiler": "2.6.11",
+    "webpack": "4.43.0"
   }
 }

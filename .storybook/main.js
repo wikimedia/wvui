@@ -1,5 +1,4 @@
-const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
-const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
+const {commonConfig} = require('../webpack.config');
 
 module.exports = {
 	stories: [ '../src/**/*.stories.ts' ],
@@ -13,41 +12,15 @@ module.exports = {
 		'@storybook/addon-links'
 	],
 	/**
-	 * @arg {import('webpack').Configuration} config
+	 * @param {import('webpack').Configuration} config
 	 * @return {import('webpack').Configuration}
 	 */
 	webpackFinal: (config) => {
 		config.stats = 'errors-warnings';
-		config.resolve.extensions.push('.js', '.ts')
-
-		config.module.rules = config.module.rules.concat([
-			{
-				test: /\.ts$/,
-				exclude: /node_modules/,
-				use: [
-					{
-						loader: 'ts-loader',
-						options: {
-							appendTsSuffixTo: [/\.vue$/],
-							transpileOnly: true
-						},
-					}
-				],
-			},
-			{
-				test: /\.(c|le)ss$/,
-				use: [
-					{ loader: MiniCssExtractPlugin.loader, options: { hmr: config.mode === 'development' } },
-					'css-loader',
-					{ loader: 'less-loader', options: { sourceMap: config.mode === 'production' } }
-				]
-			}
-		]);
-
-		config.plugins = config.plugins.concat([
-			new ForkTsCheckerWebpackPlugin({vue: true}),
-			new MiniCssExtractPlugin()
-		]);
+		Object.assign( config.resolve.extensions, commonConfig.resolve.extensions );
+		Object.assign( config.resolve.alias, commonConfig.resolve.alias );
+		config.module.rules.push( ...commonConfig.rules( config.mode ) );
+		config.plugins.push( ...commonConfig.plugins() );
 
 		return config;
 	},

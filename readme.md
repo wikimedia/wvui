@@ -87,7 +87,7 @@ npm start
 ### NPM scripts
 
 - `install` / `i`: install project dependencies.
-- `start` / `i`: run Storybook [development](#development) flow.
+- `start`: run Storybook [development](#development) flow.
 - `test` / `t`: run different types of tests including unit tests. See [testing](#testing).
 - `run format`: apply lint fixes automatically where available.
 - `version`: increment the version and publish a new release. See [versioning](#versioning).
@@ -141,7 +141,7 @@ The [Vue.js Style Guide](https://vuejs.org/v2/style-guide) is adhered to where p
   typing assumptions and the verbosity of typing is usually a hindrance.
 - Use TypeScript typing where available, JSDocs where not.
 
-### Storybook Flow
+### Storybook flow
 
 As the primary development flow WVUI uses [Storybook](https://storybook.js.org/docs/guides/guide-vue/)
 which allows developing UI components in isolation without worrying about  
