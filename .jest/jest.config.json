@@ -9,7 +9,7 @@
   "collectCoverage": true,
   "collectCoverageFrom": [
     "<rootDir>/src/**/*.(ts|vue)",
-    "!<rootDir>/src/**/*.(test|snap).ts",
+    "!<rootDir>/src/**/*.(test|snap|stories).ts",
     "!<rootDir>/node_modules/**"
 
   ],

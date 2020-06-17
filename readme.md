@@ -21,6 +21,7 @@ Vue.js user interface component library prototype for MediaWiki's Vector skin.
     - [Vue.js](#vuejs)
     - [Less](#less)
     - [TypeScript](#typescript)
+  - [Storybook flow](#storybook-flow)
   - [Testing](#testing)
     - [Unit Tests](#unit-tests)
   - [Integrated development workflow](#integrated-development-workflow)
@@ -80,11 +81,13 @@ dependencies instead of in control of them.
 
 ```bash
 npm i
+npm start
 ```
 
 ### NPM scripts
 
 - `install` / `i`: install project dependencies.
+- `start`: run Storybook [development](#development) flow.
 - `test` / `t`: run different types of tests including unit tests. See [testing](#testing).
 - `run format`: apply lint fixes automatically where available.
 - `version`: increment the version and publish a new release. See [versioning](#versioning).
@@ -137,6 +140,45 @@ The [Vue.js Style Guide](https://vuejs.org/v2/style-guide) is adhered to where p
 - Favor type inference for locals rather than explicit typing. Locals are unlikely to have incorrect
   typing assumptions and the verbosity of typing is usually a hindrance.
 - Use TypeScript typing where available, JSDocs where not.
+
+### Storybook flow
+
+As the primary development flow WVUI uses [Storybook](https://storybook.js.org/docs/guides/guide-vue/)
+which allows developing UI components in isolation without worrying about  
+specific dependencies and requirements. Storybook uses so called
+[stories](https://storybook.js.org/docs/basics/writing-stories/).
+For each SFC (single file component) its story should be placed in the same directory:
+
+```
+|-- src
+    |-- components
+        |-- your-component
+            |-- YourComponent.vue
+            |-- YourComponent.stories.ts
+```
+
+Each story represents a single visual state of a component.
+
+WVUI uses different Storybook [addons](https://storybook.js.org/addons/), namely:
+
+- [Knobs](https://github.com/storybookjs/storybook/tree/master/addons/knobs) that allows you
+  to edit component props dynamically.
+- [Actions](https://github.com/storybookjs/storybook/tree/master/addons/actions) to retrieve data
+  from event handlers.
+- [a11y](https://github.com/storybookjs/storybook/tree/master/addons/a11y) to analyze accessibility
+  issues.
+- [links](https://github.com/storybookjs/storybook/tree/master/addons/links) which allows a
+  developer to create
+  links that navigate between different stories.
+- [backgrounds](https://github.com/storybookjs/storybook/tree/master/addons/backgrounds)
+  to change background colors inside the preview
+- [viewport](https://github.com/storybookjs/storybook/tree/master/addons/viewport)
+  to display UI components in different sizes and layouts
+- [storysource](https://github.com/storybookjs/storybook/tree/master/addons/storysource)
+  to show story source in Storybook.
+
+To start developing with Storybook, simply run `npm start` command (see [NPM scripts](#npm-scripts)).
+This command will open Storybook in your browser.
 
 ### Testing
 
