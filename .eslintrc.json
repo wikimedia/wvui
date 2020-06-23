@@ -1,8 +1,5 @@
 {
   "root": true,
-  "plugins": [
-    "jquery"
-  ],
   "extends": [
     "wikimedia/client",
     "wikimedia/language/es6",
