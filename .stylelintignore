@@ -1,0 +1,10 @@
+/*.json
+
+/docs/ui/
+/docs/coverage/
+
+# Ignore Jest snapshots.
+*.snap.ts
+
+# Ignore non-styles files
+LICENSE
