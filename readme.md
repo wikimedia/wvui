@@ -51,13 +51,13 @@ notes.
 We recommend pinning WVUI to an exact patch version. For example:
 
 ```json
-  // …,
+  …,
   "dependencies": {
-    // …,
+    ...,
     "@wikimedia/wvui": "1.2.3",
-    // …
+    ...
   }
-  // …,
+  …,
 ```
 
 <details>
