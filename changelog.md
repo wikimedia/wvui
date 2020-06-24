@@ -4,6 +4,7 @@ Versions and bullets are arranged chronologically from latest to oldest.
 
 ## v0.0.1 (unreleased)
 
+- [dev] Improve Jest configuration
 - [dev] Suppress Vue.js Storybook build type reminder
 - [dev] Add bundlesize test configuration
 - [dev][docs] Add Storybook development flow, and update readme

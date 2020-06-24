@@ -9,9 +9,14 @@
   "collectCoverage": true,
   "collectCoverageFrom": [
     "<rootDir>/src/**/*.(ts|vue)",
-    "!<rootDir>/src/**/*.(test|snap|stories).ts",
+    "!<rootDir>/src/**/*.(d|test|snap|stories).ts",
     "!<rootDir>/node_modules/**"
 
   ],
-  "coverageDirectory": "<rootDir>/docs/coverage"
+  "coverageDirectory": "<rootDir>/docs/coverage",
+    "globals": {
+      "vue-jest": {
+        "babelConfig": false
+      }
+  }
 }
