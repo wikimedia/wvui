@@ -149,7 +149,7 @@ The [Vue.js Style Guide](https://vuejs.org/v2/style-guide) is adhered to where p
 ### Storybook flow
 
 As the primary development flow WVUI uses [Storybook](https://storybook.js.org/docs/guides/guide-vue/)
-which allows developing UI components in isolation without worrying about  
+which allows developing UI components in isolation without worrying about
 specific dependencies and requirements. Storybook uses so called
 [stories](https://storybook.js.org/docs/basics/writing-stories/).
 For each SFC (single file component) its story should be placed in the same directory:
@@ -355,6 +355,15 @@ See also:
 
 Great workflows often require great tooling and those tools need to be configured. This section
 describes how to optimize your editor or IDE for optimal usage.
+
+#### EditorConfig
+
+- Many editors and IDEs nowadays support [.editorconfig](https://editorconfig.org/) file,
+  which is basically a tool to keep a consistent coding styles
+  for multiple developers working on the same project. This repository includes `.editorconfig`
+  file that contains basic indentations and code formatting rules. This configuration is
+  optional and can be overridden with editor/IDE settings. Also, it affects code only
+  at time of writing and any tools or formatters will be executed using this configuration.
 
 #### Visual Studio Code
 

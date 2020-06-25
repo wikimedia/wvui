@@ -4,6 +4,7 @@ Versions and bullets are arranged chronologically from latest to oldest.
 
 ## v0.0.1 (unreleased)
 
+- [dev] Add .editorconfig file
 - [dev] Format JSON files
 - [build][dev] Upgrade Fork TS Checker Webpack Plugin
 - [dev] Add ESLint and stylelint configs and scripts
