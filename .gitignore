@@ -2,3 +2,6 @@
 /docs/ui/
 /docs/minGzipBundleSize.txt
 /node_modules/
+
+/.eslintcache
+/.stylelintcache

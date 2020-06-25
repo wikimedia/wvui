@@ -1,0 +1,16 @@
+# These JSON files must be manually linted to allow comments which are more valuable than
+# presentation. eslint-plugin-json errors on overrides and file disables are unsupported:
+# https://github.com/azeemba/eslint-plugin-json/issues/17.
+/.eslintrc.json
+/tsconfig.json
+
+# Lint hidden files and folders.
+!/.jest/
+!/.storybook/
+!/.stylelintrc.json
+
+# Ignore generated documentation.
+/docs/
+
+# Ignore Jest snapshots.
+*.snap.ts
