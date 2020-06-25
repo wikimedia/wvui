@@ -14,7 +14,7 @@
 
     // Map @/ to src/. These should match webpack.config.js.
     "baseUrl": ".",
-    "paths": { "@/*": [ "src/*" ] },
+    "paths": { "@/*": ["src/*"] },
 
     // Maximize type checking.
     "checkJs": true,
@@ -36,5 +36,5 @@
     "declaration": true
   },
 
-  "exclude": [ "node_modules", "dist", "docs" ]
+  "exclude": ["node_modules", "dist", "docs"]
 }
