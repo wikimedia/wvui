@@ -23,7 +23,8 @@ Vue.js user interface component library prototype for MediaWiki's Vector skin.
     - [TypeScript](#typescript)
   - [Storybook flow](#storybook-flow)
   - [Testing](#testing)
-    - [Unit Tests](#unit-tests)
+    - [Unit tests](#unit-tests)
+      - [Coverage](#coverage)
   - [Integrated development workflow](#integrated-development-workflow)
   - [Changing dependencies](#changing-dependencies)
   - [Versioning](#versioning)
@@ -33,6 +34,9 @@ Vue.js user interface component library prototype for MediaWiki's Vector skin.
   - [Git strategy](#git-strategy)
     - [Author guidelines](#author-guidelines)
     - [Reviewer guidelines](#reviewer-guidelines)
+- [Performance](#performance)
+  - [Bundle size](#bundle-size)
+    - [bundlesize configuration](#bundlesize-configuration)
 - [Library design goals](#library-design-goals)
 
 <!-- /code_chunk_output -->
@@ -183,7 +187,9 @@ This command will open Storybook in your browser.
 
 ### Testing
 
-#### Unit Tests
+To run tests, use `npm test` command (see [NPM scripts](#npm-scripts)).
+
+#### Unit tests
 
 - WVUI uses [Vue Test Utils](https://vue-test-utils.vuejs.org/),
   the official unit testing utility library for Vue.js.
@@ -205,14 +211,24 @@ This command will open Storybook in your browser.
 |-- src
     |-- components
         |-- your-component
-            |-- YourComponent.vue
-            |-- YourComponent.test.ts
-            |-- YourComponent.snap.ts
+            |-- YourComponent.vue      <-- Functional code and test subject
+            |-- YourComponent.test.ts  <-- Unit tests
+            |-- YourComponent.snap.ts  <-- Jest snapshot rendered component HTML
 ```
 
-- Coverage report will be created automatically in `coverage` directory.
+##### Coverage
 
-To run tests, use `npm test` command (see [NPM scripts](#npm-scripts)).
+Coverage reports are generated automatically in the [docs/coverage] directory whenever unit tests
+are executed.
+
+Coverage thresholds are configured under [.jest/jest.config.json]. These are lower limits for the
+entire repo and, as a convention, the number is rounded down to the nearest 10%. For example, if the
+actual repository coverage is 89%, the threshold is configured to 80%. See [Jest documentation] for
+details.
+
+[docs/coverage]: docs/coverage
+[.jest/jest.config.json]: .jest/jest.config.json
+[jest documentation]: https://jestjs.io/docs/en/configuration.html#coveragethreshold-object
 
 ### Integrated development workflow
 
@@ -432,6 +448,75 @@ The expectations for submitting a patch are:
   timeliness. Everyone is busy and doing their best but differently abled.
 - Be open-minded. New ideas, especially standard ideas that are only new to you, are not inherently
   bad. You are responsible in part for creating the culture you want.
+
+## Performance
+
+### Bundle size
+
+WVUI uses Webpack for bundling different library entry points into distinct build products or
+"bundles". All JavaScript and CSS build product bandwidth performances are tracked and tested with
+[bundlesize] and versioned in [bundlesize.config.json]. Reports are generated under
+[docs/minGzipBundleSize.txt].
+
+The rule of thumb is: identical data generally compresses well. It is recommended to evaluate
+performance using the minified gzipped outputs. For example, some CSS selectors are distant but have
+identical rules. This creates a large uncompressed CSS bundle when compiled. However, the compressed
+size may be negligible. Use the bundlesize tests to evaluate gzipped sizes before making
+optimizations that impede readability.
+
+<details markdown>
+<summary>Expand for manual evaluation details…</summary>
+
+If a second opinion is wanted, consider using the gzip CLI:
+
+```bash
+# Individual chunk sizes (min / min+gz).
+ls -1 dist/*.{js,css}|
+sort|
+while IFS= read filename; do
+	printf \
+		'%s: %sB / %sB\n' \
+		"$filename" \
+		"$(wc -c < "$filename"|numfmt --to=iec-i)" \
+		"$(gzip -c "$filename"|wc -c|numfmt --to=iec-i)"
+done
+
+# All chunks concatenated (allows maximum possible compression). This makes sense if a request to
+# ResourceLoader will depend on multiple chunks.
+printf \
+	'%s: %sB / %sB\n' \
+	"Total" \
+	"$(cat dist/*.{js,css}|wc -c|numfmt --to=iec-i)" \
+	"$(cat dist/*.{js,css}|gzip -c|wc -c|numfmt --to=iec-i)"
+```
+
+</details>
+
+[docs/mingzipbundlesize.txt]: docs/minGzipBundleSize.txt
+[bundlesize]: https://github.com/siddharthkp/bundlesize
+[bundlesize.config.json]: bundlesize.config.json
+
+#### bundlesize configuration
+
+When changing the [bundlesize configuration](bundlesize.config.json):
+
+- The values in the configuration are upper limits. As a convention, the number is rounded up to
+  the nearest tenth of a kibibyte. For example, a new file added of size `4.15 KB` would have its
+  initial limit set at `4.2 KB`. Whenever intentional changes causes its limit to increase or
+  decrease beyond a tenth of a kibibyte boundary, the size should be revised.
+- bundlesize internally uses Bytes utility which [only supports base-2 units]. Case-insensitive
+  decimal [JEDEC notation] is used in the config. This means 1.5 KB or 1.5 kb is 1536 bytes,
+  _not_ 1500 bytes.
+- ⚠️ Warning: values that cannot be parsed are _silently ignored_! When making changes, verify
+  that a comparison of two values is printed like `2.54KB < maxSize 2.6KB (gzip)`. If only one
+  number is shown (e.g., `2.54KB (gzip)`), the number has been entered incorrectly.
+- ⚠️ Warning: values entered must have a leading units position specified. Sub-one sizes like
+  `.5 KB` must be written with a leading zero like `0.5 KB` or they will not be pared.
+- The bundlesize thresholds specify minified gzipped maximums. Outputs are minified as part of
+  the build process and gzip is the most common HTTP compression.
+
+[jedec notation]: https://en.wikipedia.org/wiki/Template:Quantities_of_bytes
+[only supports base-2 units]: https://github.com/visionmedia/bytes.js#bytesparsestringnumber-value-numbernull
 
 ## Library design goals
 

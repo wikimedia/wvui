@@ -5,3 +5,6 @@
 /docs/coverage/
 /docs/ui/
 /docs/minGzipBundleSize.txt
+
+/.eslintcache
+/.stylelintcache
