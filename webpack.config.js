@@ -22,7 +22,7 @@ function rules( mode ) {
 		{
 			test: /\.[jt]s$/,
 			// Do not process node_modules at all. This means no transpilation of dependencies.
-			include: path.resolve( __dirname, '/src' ),
+			include: path.resolve( __dirname, 'src' ),
 			use: {
 				// Type checking is performed by ForkTsCheckerWebpackPlugin.
 				loader: 'ts-loader',
