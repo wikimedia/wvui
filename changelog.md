@@ -6,8 +6,9 @@ Versions and bullets are arranged chronologically from latest to oldest.
 
 - [dev] Add Eslint and Stylelint configs and scripts
 - [dev] Suppress Webpack performance hints for the Storybook build
-- [dev] Suppress Vue.js Storybook build type reminder
+- [dev] enable test coverage thresholds
 - [dev] Improve Jest configuration
+- [dev] Suppress Vue.js Storybook build type reminder
 - [dev] Add bundlesize test configuration
 - [dev][docs] Add Storybook development flow, and update readme
 - [docs] add initial Less naming conventions
