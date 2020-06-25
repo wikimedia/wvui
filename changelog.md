@@ -4,7 +4,10 @@ Versions and bullets are arranged chronologically from latest to oldest.
 
 ## v0.0.1 (unreleased)
 
-- [dev] format JSON files
+- [dev] Format JSON files
+- [dev] Add ESLint and stylelint configs and scripts
+- [dev] Suppress Webpack performance hints for the Storybook build
+- [dev] Enable test coverage thresholds
 - [dev] Improve Jest configuration
 - [dev] Suppress Vue.js Storybook build type reminder
 - [dev] Add bundlesize test configuration
