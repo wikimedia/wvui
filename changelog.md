@@ -4,6 +4,7 @@ Versions and bullets are arranged chronologically from latest to oldest.
 
 ## v0.0.1 (unreleased)
 
+- [dev] enable test coverage thresholds
 - [dev] Improve Jest configuration
 - [dev] Suppress Vue.js Storybook build type reminder
 - [dev] Add bundlesize test configuration
