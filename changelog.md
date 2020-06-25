@@ -4,6 +4,8 @@ Versions and bullets are arranged chronologically from latest to oldest.
 
 ## v0.0.1 (unreleased)
 
+- [dev] Add Eslint and Stylelint configs and scripts
+- [dev] Suppress Webpack performance hints for the Storybook build
 - [dev] enable test coverage thresholds
 - [dev] Improve Jest configuration
 - [dev] Suppress Vue.js Storybook build type reminder

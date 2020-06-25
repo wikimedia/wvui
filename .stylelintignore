@@ -1,0 +1,9 @@
+*.json
+
+/docs/
+
+# Ignore Jest snapshots.
+*.snap.ts
+
+# Ignore non-styles files
+/LICENSE
