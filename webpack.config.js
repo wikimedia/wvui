@@ -1,4 +1,3 @@
-/* eslint-env node */
 const ForkTsCheckerWebpackPlugin = require( 'fork-ts-checker-webpack-plugin' );
 const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
 const webpack = require( 'webpack' );
@@ -22,15 +21,13 @@ function rules( mode ) {
 		// any JavaScript so that is transpiled to ES5.
 		{
 			test: /\.[jt]s$/,
-			exclude( filename ) {
-				// Don't transpile package JavaScript files in development. It's slow.
-				return mode === 'development' && /.*\.js$/.test( filename );
-			},
+			// Do not process node_modules at all. This means no transpilation of dependencies.
+			include: path.resolve( __dirname, 'src' ),
 			use: {
 				// Type checking is performed by ForkTsCheckerWebpackPlugin.
-				loader: 'ts-loader', options: {
-					transpileOnly: true,
-					appendTsSuffixTo: [ /\.vue$/ ]
+				loader: 'ts-loader',
+				options: {
+					transpileOnly: true
 				}
 			}
 		},
@@ -55,15 +52,7 @@ function rules( mode ) {
  * */
 function plugins() {
 	return [
-		new ForkTsCheckerWebpackPlugin( {
-			vue: true,
-			logger: {
-				error: console.error, // eslint-disable-line no-console
-				warn: console.warn, // eslint-disable-line no-console
-				info: () => {
-					// Suppress informational messages.
-				} }
-		} ),
+		new ForkTsCheckerWebpackPlugin(),
 		new MiniCssExtractPlugin()
 	];
 }

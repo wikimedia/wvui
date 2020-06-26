@@ -4,6 +4,7 @@ Versions and bullets are arranged chronologically from latest to oldest.
 
 ## v0.0.1 (unreleased)
 
+- [build][dev] Upgrade Fork TS Checker Webpack Plugin
 - [dev] Add Eslint and Stylelint configs and scripts
 - [dev] Suppress Webpack performance hints for the Storybook build
 - [dev] enable test coverage thresholds

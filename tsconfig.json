@@ -33,7 +33,11 @@
     // Emit type definitions (.d.ts) for consumers to test their integration typing. Broken in
     // current configuration:
     // https://github.com/TypeStrong/fork-ts-checker-webpack-plugin/issues/49.
-    "declaration": true
+    "declaration": true,
+
+    // Workaround Fork TS Checker Webpack Plugin issue.
+    // https://github.com/TypeStrong/fork-ts-checker-webpack-plugin/blob/5b59691/README.md#type-only-modules-watching
+    "importsNotUsedAsValues": "preserve"
   },
 
   "exclude": [ "node_modules", "dist", "docs" ]
