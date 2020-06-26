@@ -1,6 +1,8 @@
-*.json
+/dist/
 
 /docs/
+
+*.json
 
 # Ignore Jest snapshots.
 *.snap.ts

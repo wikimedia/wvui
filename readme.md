@@ -26,6 +26,7 @@ Vue.js user interface component library prototype for MediaWiki's Vector skin.
     - [Unit tests](#unit-tests)
       - [Coverage](#coverage)
   - [Integrated development workflow](#integrated-development-workflow)
+  - [Changing dependencies](#changing-dependencies)
   - [Versioning](#versioning)
   - [Editor and IDE support](#editor-and-ide-support)
     - [Visual Studio Code](#visual-studio-code)
@@ -56,9 +57,9 @@ We recommend pinning WVUI to an exact patch version. For example:
 ```json
   …,
   "dependencies": {
-    …,
+    "…": "…",
     "@wikimedia/wvui": "1.2.3",
-    …
+    "…": "…"
   }
   …,
 ```
@@ -260,6 +261,19 @@ The steps are:
 The above process seems a little clumsy because it is initially. However, it's quite practical and
 becomes easy with practice.
 
+### Changing dependencies
+
+- Always configure your environment with NVM _prior_ to un/installing dependencies as these
+  operations modify the NPM lockfile. See [NPM scripts](#npm-scripts) for example usage.
+- Obviously, carefully consider any proposed new dependencies. Runtime dependencies that increase
+  the bandwidth consumption should be given especial care and implicit dependencies should be
+  avoided.
+- When adding or revising NPM dependencies, pin `dependencies` and `devDependencies` to exact patch
+  versions for the same reasons pinning WVUI itself to patch version is recommended. See
+  [Installation and version history](#installation-and-version-history) for details.
+- Dependencies are not transpiled and must be ES5. Additionally, dependencies must only use
+  supported browser APIs.
+
 ### Versioning
 
 To publish a new release:
@@ -427,7 +441,9 @@ The expectations for submitting a patch are:
   prevention. Nourishing good ideas is better than extinguishing formative ideas.
 - Be specific when providing constructive feedback. Vague concerns, such as "there are many reasons"
   or "it's more nuanced than that," prevent further discussion and create invisible barriers to
-  participation that cannot be overcome. Make your point and allow the author to address it.
+  participation that cannot be overcome. Make your point and allow the author to address it. When
+  possible, suggest an approach or reference with your request. The more clearly you express the
+  changes you want, the easier it will be for the author to provide.
 - If you as a reviewer are making requests of the author, attempt to match their level of effort and
   timeliness. Everyone is busy and doing their best but differently abled.
 - Be open-minded. New ideas, especially standard ideas that are only new to you, are not inherently
