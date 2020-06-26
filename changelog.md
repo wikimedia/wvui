@@ -4,6 +4,7 @@ Versions and bullets are arranged chronologically from latest to oldest.
 
 ## v0.0.1 (unreleased)
 
+- [build][dev] upgrade dependencies
 - [build][less][dev] add wikimedia-ui-base
 - [dev] Format JSON files
 - [build][dev] Upgrade Fork TS Checker Webpack Plugin
