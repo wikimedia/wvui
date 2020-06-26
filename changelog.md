@@ -4,6 +4,7 @@ Versions and bullets are arranged chronologically from latest to oldest.
 
 ## v0.0.1 (unreleased)
 
+- [dev][build] remove deprecated Vue.js types
 - [build][dev] upgrade dependencies
 - [build][less][dev] add wikimedia-ui-base
 - [dev] Format JSON files
