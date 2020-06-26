@@ -1,5 +1,5 @@
 <template>
-	<button @click="onClick">
+	<button class="wvui-button" @click="onClick">
 		<slot />
 	</button>
 </template>
@@ -16,3 +16,11 @@ export default Vue.extend( {
 	}
 } );
 </script>
+
+<style lang="less">
+@import ( reference ) '~wikimedia-ui-base/wikimedia-ui-base.less';
+
+.wvui-button {
+	background: @wmui-color-accent50;
+}
+</style>
