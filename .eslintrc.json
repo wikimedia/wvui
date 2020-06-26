@@ -1,89 +1,74 @@
 {
-	"root": true,
-	"extends": [
-		"wikimedia/client",
-		"wikimedia/language/es6",
-		"plugin:@typescript-eslint/recommended",
-		"plugin:no-jquery/all"
-	],
-	"plugins": [
-		"no-jquery"
-	],
-	"parser": "@typescript-eslint/parser",
-	"parserOptions": {
-		"ecmaVersion": 2015,
-		"sourceType": "module"
-	},
-	"rules": {
-		// Deprecated and interferes with JSDoc typing.
-		"valid-jsdoc": "off",
-		// Covered by TypeScript.
-		"no-undef": "off",
-		// Adequately covered by tsconfig.json which allows unused variables with a leading underscore.
-		"no-unused-vars": "off",
-		// Programs read from top to bottom without var.
-		"@typescript-eslint/no-use-before-define": "off",
-		// Adequately covered by tsconfig.json which allows unused variables with a leading underscore.
-		"@typescript-eslint/no-unused-vars": "off",
-		"@typescript-eslint/explicit-function-return-type": [
-			"warn",
-			{
-				"allowExpressions": true
-			}
-		],
-		"max-len": [
-			"warn",
-			{
-				"code": 100,
-				"tabWidth": 4,
-				"ignoreUrls": true,
-				// Exclude all eslint- directives except for max-len itself since
-				// `// eslint-disable-line max-len` would cause this line to be ignored AND this rule
-				// to be disabled which would trigger --report-unused-disable-directives. By excluding
-				// max-len, the  effect is to consider the line but disable this rule.
-				"ignorePattern": "// (?!eslint-.+max-len)eslint-.+"
-			}
-		]
-	},
-	"overrides": [
-		{
-			"files": [
-				"*.js"
-			],
-			"rules": {
-				// Imports are unsupported.
-				"@typescript-eslint/no-var-requires": "off",
-				// This seems to be giving false positives.
-				"@typescript-eslint/explicit-function-return-type": "off"
-			}
-		},
-		{
-			"files": [
-				"*.vue"
-			],
-			"extends": [
-				"plugin:vue/recommended"
-			],
-			"parserOptions": {
-				"parser": "@typescript-eslint/parser"
-			},
-			"rules": {
-				// Use tabs.
-				"vue/html-indent": [
-					"warn",
-					"tab"
-				],
-				// Treat attributes like object properties.
-				"vue/max-attributes-per-line": "off"
-			}
-		},
-		{
-			"files": [
-				"*.test.ts"
-			],
-			"extends": [
-				"plugin:jest/recommended"
-			]
-		}
-	]
+  "root": true,
+  "extends": [
+    "wikimedia/client",
+    "wikimedia/language/es6",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:no-jquery/all"
+  ],
+  "plugins": ["no-jquery"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 2015,
+    "sourceType": "module"
+  },
+  "rules": {
+    // Deprecated and interferes with JSDoc typing.
+    "valid-jsdoc": "off",
+    // Covered by TypeScript.
+    "no-undef": "off",
+    // Adequately covered by tsconfig.json which allows unused variables with a leading underscore.
+    "no-unused-vars": "off",
+    // Programs read from top to bottom without var.
+    "@typescript-eslint/no-use-before-define": "off",
+    // Adequately covered by tsconfig.json which allows unused variables with a leading underscore.
+    "@typescript-eslint/no-unused-vars": "off",
+    "@typescript-eslint/explicit-function-return-type": [
+      "warn",
+      {
+        "allowExpressions": true
+      }
+    ],
+    "max-len": [
+      "warn",
+      {
+        "code": 100,
+        "tabWidth": 4,
+        "ignoreUrls": true,
+        // Exclude all eslint- directives except for max-len itself since
+        // `// eslint-disable-line max-len` would cause this line to be ignored AND this rule
+        // to be disabled which would trigger --report-unused-disable-directives. By excluding
+        // max-len, the  effect is to consider the line but disable this rule.
+        "ignorePattern": "// (?!eslint-.+max-len)eslint-.+"
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": ["*.js"],
+      "rules": {
+        // Imports are unsupported.
+        "@typescript-eslint/no-var-requires": "off",
+        // This seems to be giving false positives.
+        "@typescript-eslint/explicit-function-return-type": "off"
+      }
+    },
+    {
+      "files": ["*.vue"],
+      "extends": ["plugin:vue/recommended"],
+      "parserOptions": {
+        "parser": "@typescript-eslint/parser"
+      },
+      "rules": {
+        // Use tabs.
+        "vue/html-indent": ["warn", "tab"],
+        // Treat attributes like object properties.
+        "vue/max-attributes-per-line": "off"
+      }
+    },
+    {
+      "files": ["*.test.ts"],
+      "extends": ["plugin:jest/recommended"]
+    }
+  ]
 }

@@ -19,12 +19,11 @@
     "<rootDir>/src/**/*.(ts|vue)",
     "!<rootDir>/src/**/*.(d|test|snap|stories).ts",
     "!<rootDir>/node_modules/**"
-
   ],
   "coverageDirectory": "<rootDir>/docs/coverage",
-    "globals": {
-      "vue-jest": {
-        "babelConfig": false
-      }
+  "globals": {
+    "vue-jest": {
+      "babelConfig": false
+    }
   }
 }
