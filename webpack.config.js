@@ -4,9 +4,9 @@ const webpack = require( 'webpack' );
 const path = require( 'path' );
 
 const resolve = {
-    extensions: [ '.js', '.ts' ],
-    // Map @/ to src/. These should match tsconfig.json.
-    alias: { '@': path.resolve( __dirname, './src' ) }
+	extensions: [ '.js', '.ts' ],
+	// Map @/ to src/. These should match tsconfig.json.
+	alias: { '@': path.resolve( __dirname, './src' ) }
 };
 
 /**
@@ -16,34 +16,32 @@ const resolve = {
  * @return {webpack.RuleSetRule[]}
  */
 function rules( mode ) {
-    return [
-        // Transpile TypeScript to JavaScript (embedded in SFCs or distinct files). Also, grab
-        // any JavaScript so that is transpiled to ES5.
-        {
-            test: /\.[jt]s$/,
-            exclude( filename ) {
-                // Don't transpile package JavaScript files in development. It's slow.
-                return mode === 'development' && /.*\.js$/.test( filename );
-            },
-            use: {
-                // Type checking is performed by ForkTsCheckerWebpackPlugin.
-                loader: 'ts-loader', options: {
-                    transpileOnly: true,
-                    appendTsSuffixTo: [/\.vue$/]
-                }
-            }
-        },
+	return [
+		// Transpile TypeScript to JavaScript (embedded in SFCs or distinct files). Also, grab
+		// any JavaScript so that is transpiled to ES5.
+		{
+			test: /\.[jt]s$/,
+			// Do not process node_modules at all. This means no transpilation of dependencies.
+			include: path.resolve( __dirname, 'src' ),
+			use: {
+				// Type checking is performed by ForkTsCheckerWebpackPlugin.
+				loader: 'ts-loader',
+				options: {
+					transpileOnly: true
+				}
+			}
+		},
 
-        // Concatenate and compile Less and CSS (embedded in SFCs or distinct files) to chunks.
-        {
-            test: /\.(c|le)ss$/,
-            use: [
-                { loader: MiniCssExtractPlugin.loader, options: { hmr: mode === 'development' } },
-                'css-loader',
-                { loader: 'less-loader', options: { sourceMap: mode === 'production' } }
-            ]
-        }
-    ];
+		// Concatenate and compile Less and CSS (embedded in SFCs or distinct files) to chunks.
+		{
+			test: /\.(c|le)ss$/,
+			use: [
+				{ loader: MiniCssExtractPlugin.loader, options: { hmr: mode === 'development' } },
+				'css-loader',
+				{ loader: 'less-loader', options: { sourceMap: mode === 'production' } }
+			]
+		}
+	];
 }
 
 /**
@@ -53,18 +51,10 @@ function rules( mode ) {
  * @return {webpack.Plugin[]}
  * */
 function plugins() {
-    return [
-        new ForkTsCheckerWebpackPlugin( {
-            vue: true,
-            logger: {
-                error: console.error,
-                warn: console.warn,
-                info: () => {
-                    // Suppress informational messages.
-                } }
-        } ),
-        new MiniCssExtractPlugin(),
-    ];
+	return [
+		new ForkTsCheckerWebpackPlugin(),
+		new MiniCssExtractPlugin()
+	];
 }
 
 module.exports.commonConfig = { resolve, rules, plugins };

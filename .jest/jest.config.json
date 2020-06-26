@@ -22,8 +22,8 @@
   "coverageDirectory": "<rootDir>/docs/coverage",
   "errorOnDeprecated": true,
   "globals": {
-      "vue-jest": {
-        "babelConfig": false
-      }
+    "vue-jest": {
+      "babelConfig": false
+    }
   }
 }

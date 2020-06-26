@@ -1,4 +1,10 @@
+/node_modules/
+
+/dist/
+
 /docs/coverage/
 /docs/ui/
 /docs/minGzipBundleSize.txt
-/node_modules/
+
+/.eslintcache
+/.stylelintcache
