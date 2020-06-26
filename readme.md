@@ -94,12 +94,20 @@ npm start
 - `install` / `i`: install project dependencies.
 - `start`: run Storybook [development](#development) flow.
 - `test` / `t`: run different types of tests including unit tests. See [testing](#testing).
+- `run test:unit`: run the unit tests.
 - `run format`: apply lint fixes automatically where available.
 - `version`: increment the version and publish a new release. See [versioning](#versioning).
 
-💡 Tip: add `-s` to omit verbose command echoing. E.g., `npm -s i` or `npm -s run format`.
+Scripts containing `:` delimiters in their names are sub-scripts. They are invoked by the outermost
+delimited name (and possibly other scripts). For example, `test:unit` is executed by `test`.
 
 Undocumented scripts are considered internal utilities and not expressly supported workflows.
+
+💡 Tips:
+
+- Add `--` to pass arguments to the script. For example, `npm run test:unit -- -u` to update
+  all Jest snapshots.
+- Add `-s` to omit verbose command echoing. For example, `npm -s i` or `npm -s run format`.
 
 <details markdown>
 <summary><a href="http://nvm.sh">NVM</a> is recommended to configure the Node.js version used

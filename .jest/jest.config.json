@@ -2,9 +2,9 @@
   "rootDir": "..",
   "transform": {
     ".+\\.ts$": "ts-jest",
-    ".+\\.vue$": "vue-jest"
+    ".+\\.vue$": "vue-jest",
+    ".+\\.(c|le)ss$": "<rootDir>/.jest/ignoreTransform.js"
   },
-  "transformIgnorePatterns": [".+\\.(c|le)ss$"],
   "snapshotResolver": "<rootDir>/.jest/snapshotResolver.js",
   "collectCoverage": true,
   "//": "See readme before updating thresholds.",
