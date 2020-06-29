@@ -17,10 +17,10 @@
   },
   "collectCoverageFrom": [
     "<rootDir>/src/**/*.(ts|vue)",
-    "!<rootDir>/src/**/*.(d|test|snap|stories).ts",
-    "!<rootDir>/node_modules/**"
+    "!<rootDir>/src/**/*.(d|test|snap|stories).ts"
   ],
   "coverageDirectory": "<rootDir>/docs/coverage",
+  "errorOnDeprecated": true,
   "globals": {
     "vue-jest": {
       "babelConfig": false
