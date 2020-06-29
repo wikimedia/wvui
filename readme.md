@@ -94,7 +94,7 @@ npm start
 - `install` / `i`: install project dependencies.
 - `start`: run Storybook [development](#development) flow.
 - `test` / `t`: run different types of tests including unit tests. See [testing](#testing).
-- `run test:unit`: run the unit tests.
+- `run test:unit`: run the unit tests. Pass `-u` to update all Jest snapshots.
 - `run format`: apply lint fixes automatically where available.
 - `version`: increment the version and publish a new release. See [versioning](#versioning).
 
@@ -105,8 +105,7 @@ Undocumented scripts are considered internal utilities and not expressly support
 
 💡 Tips:
 
-- Add `--` to pass arguments to the script. For example, `npm run test:unit -- -u` to update
-  all Jest snapshots.
+- Add `--` to pass arguments to the script command. For example, `npm run test:unit -- -u`.
 - Add `-s` to omit verbose command echoing. For example, `npm -s i` or `npm -s run format`.
 
 <details markdown>
@@ -152,9 +151,10 @@ The [Vue.js Style Guide](https://vuejs.org/v2/style-guide) is adhered to where p
   typed, their contents usually can be inferred.
 - Favor type inference for locals rather than explicit typing. Locals are unlikely to have incorrect
   typing assumptions and the verbosity of typing is usually a hindrance.
-- Use TypeScript typing where available, JSDocs where not.
+- Use TypeScript typing where available, JSDoc typing where not. Avoid typing both as this is
+  verbose and the docs may be incorrect.
 
-### Storybook flow
+### Storybook workflow
 
 As the primary development flow WVUI uses [Storybook](https://storybook.js.org/docs/guides/guide-vue/)
 which allows developing UI components in isolation without worrying about  
@@ -455,7 +455,21 @@ The expectations for submitting a patch are:
 - If you as a reviewer are making requests of the author, attempt to match their level of effort and
   timeliness. Everyone is busy and doing their best but differently abled.
 - Be open-minded. New ideas, especially standard ideas that are only new to you, are not inherently
-  bad. You are responsible in part for creating the culture you want.
+  bad. It's ok to downvote to request improved documentation or clarification but not for an
+  education in industry standard practice. You are responsible in part for creating the culture you
+  want.
+
+### Known issues
+
+- `Vue.extend()` is used for the type inference of components. This is anticipated to be replaced by
+  `defineComponent()` in the Vue _v3_ Composition API.
+- [Storybook is incompatible with Vue Devtools]. Tap "Open canvas in a new tab" as a workaround.
+- "Download the React DevTools…" is printed to the browser console
+  [when running Storybook](https://github.com/storybookjs/storybook/issues/4853).
+- If Storybook encounters an error when booting, it does not launch even after the error is
+  resolved.
+
+[storybook is incompatible with vue devtools]: https://github.com/storybookjs/storybook/issues/1708#issuecomment-630262553
 
 ## Performance
 
