@@ -17,3 +17,5 @@
 
 # Ignore Jest snapshots.
 *.snap.ts
+
+/dist/
