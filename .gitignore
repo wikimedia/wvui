@@ -2,9 +2,7 @@
 
 /dist/
 
-/docs/coverage/
-/docs/ui/
-/docs/minGzipBundleSize.txt
+/docs/
 
 /.eslintcache
 /.stylelintcache
