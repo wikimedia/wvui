@@ -1,29 +1,29 @@
 {
-  "rootDir": "..",
-  "transform": {
-    ".+\\.ts$": "ts-jest",
-    ".+\\.vue$": "vue-jest",
-    ".+\\.(c|le)ss$": "<rootDir>/.jest/ignoreTransform.js"
-  },
-  "snapshotResolver": "<rootDir>/.jest/snapshotResolver.js",
-  "collectCoverage": true,
-  "//": "See readme before updating thresholds.",
-  "coverageThreshold": {
-    "global": {
-      "branches": 90,
-      "functions": 90,
-      "lines": 90
-    }
-  },
-  "collectCoverageFrom": [
-    "<rootDir>/src/**/*.(ts|vue)",
-    "!<rootDir>/src/**/*.(d|test|snap|stories).ts"
-  ],
-  "coverageDirectory": "<rootDir>/docs/coverage",
-  "errorOnDeprecated": true,
-  "globals": {
-    "vue-jest": {
-      "babelConfig": false
-    }
-  }
+	"rootDir": "..",
+	"transform": {
+		".+\\.ts$": "ts-jest",
+		".+\\.vue$": "vue-jest",
+		".+\\.(c|le)ss$": "<rootDir>/.jest/ignoreTransform.js"
+	},
+	"snapshotResolver": "<rootDir>/.jest/snapshotResolver.js",
+	"collectCoverage": true,
+	"//": "See readme before updating thresholds.",
+	"coverageThreshold": {
+		"global": {
+			"branches": 90,
+			"functions": 90,
+			"lines": 90
+		}
+	},
+	"collectCoverageFrom": [
+		"<rootDir>/src/**/*.(ts|vue)",
+		"!<rootDir>/src/**/*.(d|test|snap|stories).ts"
+	],
+	"coverageDirectory": "<rootDir>/docs/coverage",
+	"errorOnDeprecated": true,
+	"globals": {
+		"vue-jest": {
+			"babelConfig": false
+		}
+	}
 }
