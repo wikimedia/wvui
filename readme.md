@@ -34,6 +34,7 @@ Vue.js user interface component library prototype for MediaWiki's Vector skin.
   - [Git strategy](#git-strategy)
     - [Author guidelines](#author-guidelines)
     - [Reviewer guidelines](#reviewer-guidelines)
+  - [Compatibility](#compatibility)
 - [Performance](#performance)
   - [Bundle size](#bundle-size)
     - [bundlesize configuration](#bundlesize-configuration)
@@ -456,6 +457,15 @@ The expectations for submitting a patch are:
   timeliness. Everyone is busy and doing their best but differently abled.
 - Be open-minded. New ideas, especially standard ideas that are only new to you, are not inherently
   bad. You are responsible in part for creating the culture you want.
+
+### Compatibility
+
+WVUI uses [Browserslist] to help support and enforce browser compatibility. Supported targets are
+configured in [.browserslistsrc](.browserslistsrc) according to [MediaWiki grade A compatibility].
+To see the current list, execute `npx browserslist`.
+
+[browserslist]: https://github.com/browserslist/browserslist
+[mediawiki grade a compatibility]: https://www.mediawiki.org/wiki/Compatibility#Browser_support_matrix
 
 ## Performance
 

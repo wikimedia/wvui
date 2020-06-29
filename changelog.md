@@ -5,6 +5,7 @@ Versions and bullets are arranged chronologically from latest to oldest.
 ## v0.0.1 (unreleased)
 
 - [dev] Improve Jest configuration
+- [dev][build] lint styles against browser support matrix
 - [dev][build] remove deprecated Vue.js types
 - [build][dev] upgrade dependencies
 - [build][less][dev] add wikimedia-ui-base
