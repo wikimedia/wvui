@@ -4,6 +4,7 @@ Versions and bullets are arranged chronologically from latest to oldest.
 
 ## v0.0.1 (unreleased)
 
+- [dev] Lint the dist directory
 - [dev] Add Storybook viewports
 - [dev] Improve Jest configuration
 - [dev][build] lint styles against browser support matrix

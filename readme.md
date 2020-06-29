@@ -478,6 +478,9 @@ WVUI uses [Browserslist] to help support and enforce browser compatibility. Supp
 configured in [.browserslistsrc](.browserslistsrc) according to [MediaWiki grade A compatibility].
 To see the current list, execute `npx browserslist`.
 
+Less inputs are linted for Browserslist compatibility. JavaScript build products are also linted for
+ES5 compatibility.
+
 [browserslist]: https://github.com/browserslist/browserslist
 [mediawiki grade a compatibility]: https://www.mediawiki.org/wiki/Compatibility#Browser_support_matrix
 
