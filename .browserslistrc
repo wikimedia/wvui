@@ -1,0 +1,14 @@
+# Please see the compatibility section of the readme before revising.
+
+# Rolling versions. These are expected to only ever become less restrictive as time goes on and not
+# break the build.
+last 2 chrome versions
+last 2 firefox versions
+last 2 opera versions
+last 2 edge versions
+
+# Pinned versions.
+ie >= 11
+safari >= 5.1
+ios >= 6.1
+android >= 4.1
