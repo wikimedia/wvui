@@ -5,10 +5,11 @@ Vue.js user interface component library prototype for MediaWiki's Vector skin.
 ## Table of contents
 
 <!--
-  Markdown Preview Enhanced is used to automatically generate the table of contents. You don't
-  have to use it but please leave these directives for those who choose to. It helps keeps the
-  table of contents in sync.
+    Markdown Preview Enhanced is used to automatically generate the table of contents. You don't
+    have to use it but please leave these directives for those who choose to. It helps keeps the
+    table of contents in sync.
 -->
+<!-- prettier-ignore-start -->
 <!-- @import "[TOC]" {cmd="toc" depthFrom=2 depthTo=6 orderedList=false} -->
 <!-- code_chunk_output -->
 
@@ -21,7 +22,7 @@ Vue.js user interface component library prototype for MediaWiki's Vector skin.
     - [Vue.js](#vuejs)
     - [Less](#less)
     - [TypeScript](#typescript)
-  - [Storybook flow](#storybook-flow)
+  - [Storybook workflow](#storybook-workflow)
   - [Testing](#testing)
     - [Unit tests](#unit-tests)
       - [Coverage](#coverage)
@@ -34,6 +35,7 @@ Vue.js user interface component library prototype for MediaWiki's Vector skin.
   - [Git strategy](#git-strategy)
     - [Author guidelines](#author-guidelines)
     - [Reviewer guidelines](#reviewer-guidelines)
+  - [Known issues](#known-issues)
   - [Compatibility](#compatibility)
 - [Performance](#performance)
   - [Bundle size](#bundle-size)
@@ -41,6 +43,7 @@ Vue.js user interface component library prototype for MediaWiki's Vector skin.
 - [Library design goals](#library-design-goals)
 
 <!-- /code_chunk_output -->
+<!-- prettier-ignore-end -->
 
 ## Installation and version history
 
@@ -92,12 +95,12 @@ npm start
 
 ### NPM scripts
 
-- `install` / `i`: install project dependencies.
-- `start`: run Storybook [development](#development) flow.
-- `test` / `t`: run different types of tests including unit tests. See [testing](#testing).
-- `run test:unit`: run the unit tests. Pass `-u` to update all Jest snapshots.
-- `run format`: apply lint fixes automatically where available.
-- `version`: increment the version and publish a new release. See [versioning](#versioning).
+-   `install` / `i`: install project dependencies.
+-   `start`: run Storybook [development](#development) flow.
+-   `test` / `t`: run different types of tests including unit tests. See [testing](#testing).
+-   `run test:unit`: run the unit tests. Pass `-u` to update all Jest snapshots.
+-   `run format`: apply lint fixes automatically where available.
+-   `version`: increment the version and publish a new release. See [versioning](#versioning).
 
 Scripts containing `:` delimiters in their names are sub-scripts. They are invoked by the outermost
 delimited name (and possibly other scripts). For example, `test:unit` is executed by `test`.
@@ -106,8 +109,8 @@ Undocumented scripts are considered internal utilities and not expressly support
 
 💡 Tips:
 
-- Add `--` to pass arguments to the script command. For example, `npm run test:unit -- -u`.
-- Add `-s` to omit verbose command echoing. For example, `npm -s i` or `npm -s run format`.
+-   Add `--` to pass arguments to the script command. For example, `npm run test:unit -- -u`.
+-   Add `-s` to omit verbose command echoing. For example, `npm -s i` or `npm -s run format`.
 
 <details markdown>
 <summary><a href="http://nvm.sh">NVM</a> is recommended to configure the Node.js version used
@@ -146,22 +149,23 @@ The [Vue.js Style Guide](https://vuejs.org/v2/style-guide) is adhered to where p
 
 #### TypeScript
 
-- All top-level file symbols should be fully typed. Seams should not have their types inferred
-  because they are most likely to have subtle flaws.
-- All named functions and methods should have inputs and output typed. When functions are fully
-  typed, their contents usually can be inferred.
-- Favor type inference for locals rather than explicit typing. Locals are unlikely to have incorrect
-  typing assumptions and the verbosity of typing is usually a hindrance.
-- Use TypeScript typing where available, JSDoc typing where not. Avoid typing both as this is
-  verbose and the docs may be incorrect.
+-   All top-level file symbols should be fully typed. Seams should not have their types inferred
+    because they are most likely to have subtle flaws.
+-   All named functions and methods should have inputs and output typed. When functions are fully
+    typed, their contents usually can be inferred.
+-   Favor type inference for locals rather than explicit typing. Locals are unlikely to have
+    incorrect typing assumptions and the verbosity of typing is usually a hindrance.
+-   Use TypeScript typing where available, JSDoc typing where not. Avoid typing both as this is
+    verbose and the docs may be incorrect.
 
 ### Storybook workflow
 
-As the primary development flow WVUI uses [Storybook](https://storybook.js.org/docs/guides/guide-vue/)
-which allows developing UI components in isolation without worrying about  
+As the primary development flow WVUI uses
+[Storybook](https://storybook.js.org/docs/guides/guide-vue/) which allows developing UI components
+in isolation without worrying about  
 specific dependencies and requirements. Storybook uses so called
-[stories](https://storybook.js.org/docs/basics/writing-stories/).
-For each SFC (single file component) its story should be placed in the same directory:
+[stories](https://storybook.js.org/docs/basics/writing-stories/). For each SFC (single file
+component) its story should be placed in the same directory:
 
 ```
 |-- src
@@ -175,24 +179,23 @@ Each story represents a single visual state of a component.
 
 WVUI uses different Storybook [addons](https://storybook.js.org/addons/), namely:
 
-- [Knobs](https://github.com/storybookjs/storybook/tree/master/addons/knobs) that allows you
-  to edit component props dynamically.
-- [Actions](https://github.com/storybookjs/storybook/tree/master/addons/actions) to retrieve data
-  from event handlers.
-- [a11y](https://github.com/storybookjs/storybook/tree/master/addons/a11y) to analyze accessibility
-  issues.
-- [links](https://github.com/storybookjs/storybook/tree/master/addons/links) which allows a
-  developer to create
-  links that navigate between different stories.
-- [backgrounds](https://github.com/storybookjs/storybook/tree/master/addons/backgrounds)
-  to change background colors inside the preview
-- [viewport](https://github.com/storybookjs/storybook/tree/master/addons/viewport)
-  to display UI components in different sizes and layouts
-- [storysource](https://github.com/storybookjs/storybook/tree/master/addons/storysource)
-  to show story source in Storybook.
+-   [Knobs](https://github.com/storybookjs/storybook/tree/master/addons/knobs) that allows you to
+    edit component props dynamically.
+-   [Actions](https://github.com/storybookjs/storybook/tree/master/addons/actions) to retrieve data
+    from event handlers.
+-   [a11y](https://github.com/storybookjs/storybook/tree/master/addons/a11y) to analyze
+    accessibility issues.
+-   [links](https://github.com/storybookjs/storybook/tree/master/addons/links) which allows a
+    developer to create links that navigate between different stories.
+-   [backgrounds](https://github.com/storybookjs/storybook/tree/master/addons/backgrounds) to change
+    background colors inside the preview
+-   [viewport](https://github.com/storybookjs/storybook/tree/master/addons/viewport) to display UI
+    components in different sizes and layouts
+-   [storysource](https://github.com/storybookjs/storybook/tree/master/addons/storysource) to show
+    story source in Storybook.
 
-To start developing with Storybook, simply run `npm start` command (see [NPM scripts](#npm-scripts)).
-This command will open Storybook in your browser.
+To start developing with Storybook, simply run `npm start` command (see
+[NPM scripts](#npm-scripts)). This command will open Storybook in your browser.
 
 ### Testing
 
@@ -200,10 +203,10 @@ To run tests, use `npm test` command (see [NPM scripts](#npm-scripts)).
 
 #### Unit tests
 
-- WVUI uses [Vue Test Utils](https://vue-test-utils.vuejs.org/),
-  the official unit testing utility library for Vue.js.
-- WVUI uses [Jest](https://jestjs.io) as a test runner.
-- Tests for every component should be colocated with the component itself:
+-   WVUI uses [Vue Test Utils](https://vue-test-utils.vuejs.org/), the official unit testing utility
+    library for Vue.js.
+-   WVUI uses [Jest](https://jestjs.io) as a test runner.
+-   Tests for every component should be colocated with the component itself:
 
 ```
 |-- src
@@ -213,8 +216,8 @@ To run tests, use `npm test` command (see [NPM scripts](#npm-scripts)).
             |-- YourComponent.test.ts
 ```
 
-- WVUI uses [snapshot testing](https://jestjs.io/docs/en/snapshot-testing),
-  snapshot files are colocated with components as well:
+-   WVUI uses [snapshot testing](https://jestjs.io/docs/en/snapshot-testing), snapshot files are
+    colocated with components as well:
 
 ```
 |-- src
@@ -272,16 +275,16 @@ becomes easy with practice.
 
 ### Changing dependencies
 
-- Always configure your environment with NVM _prior_ to un/installing dependencies as these
-  operations modify the NPM lockfile. See [NPM scripts](#npm-scripts) for example usage.
-- Obviously, carefully consider any proposed new dependencies. Runtime dependencies that increase
-  the bandwidth consumption should be given especial care and implicit dependencies should be
-  avoided.
-- When adding or revising NPM dependencies, pin `dependencies` and `devDependencies` to exact patch
-  versions for the same reasons pinning WVUI itself to patch version is recommended. See
-  [Installation and version history](#installation-and-version-history) for details.
-- Dependencies are not transpiled and must be ES5. Additionally, dependencies must only use
-  supported browser APIs.
+-   Always configure your environment with NVM _prior_ to un/installing dependencies as these
+    operations modify the NPM lockfile. See [NPM scripts](#npm-scripts) for example usage.
+-   Obviously, carefully consider any proposed new dependencies. Runtime dependencies that increase
+    the bandwidth consumption should be given especial care and implicit dependencies should be
+    avoided.
+-   When adding or revising NPM dependencies, pin `dependencies` and `devDependencies` to exact
+    patch versions for the same reasons pinning WVUI itself to patch version is recommended. See
+    [Installation and version history](#installation-and-version-history) for details.
+-   Dependencies are not transpiled and must be ES5. Additionally, dependencies must only use
+    supported browser APIs.
 
 ### Versioning
 
@@ -349,15 +352,15 @@ Finally, the `publish` script is executed which releases the raw files built int
 
 The intended result is:
 
-- Uncommitted changes (both modifications and untracked files) are forbidden.
-- Only clean and tested packages are published.
-- Git tags are available for all releases.
-- Git tags pushed and NPM artifacts publishes are always in sync.
+-   Uncommitted changes (both modifications and untracked files) are forbidden.
+-   Only clean and tested packages are published.
+-   Git tags are available for all releases.
+-   Git tags pushed and NPM artifacts publishes are always in sync.
 
 See also:
 
-- [NPM scripts](https://docs.npmjs.com/misc/scripts)
-- [NPM version](https://docs.npmjs.com/cli/version)
+-   [NPM scripts](https://docs.npmjs.com/misc/scripts)
+-   [NPM version](https://docs.npmjs.com/cli/version)
 </details>
 
 ### Editor and IDE support
@@ -367,24 +370,27 @@ describes how to optimize your editor or IDE for optimal usage.
 
 #### Visual Studio Code
 
-- Configure your line length to 100. For example, add common widths: `"editor.rulers": [ 80, 100 ]`.
+-   Configure your line length to 100. For example, add common widths:
+    `"editor.rulers": [ 80, 100 ]`.
 
 ##### Recommended extensions
 
-- [Vetur](https://marketplace.visualstudio.com/items?itemName=octref.vetur) - Enable `vetur.experimental.templateInterpolationService` for HTML template type checking in
-  single file components.
-- [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
-- [stylelint](https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint)
-- [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker) - Lower the logging level to informational by setting `cSpell.logLevel` to `"Information"`.
-- [Markdown Preview Enhanced](https://marketplace.visualstudio.com/items?itemName=shd101wyy.markdown-preview-enhanced)
+-   [Vetur](https://marketplace.visualstudio.com/items?itemName=octref.vetur) - Enable
+    `vetur.experimental.templateInterpolationService` for HTML template type checking in single file
+    components.
+-   [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
+-   [stylelint](https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint)
+-   [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker) -
+    Lower the logging level to informational by setting `cSpell.logLevel` to `"Information"`.
+-   [Markdown Preview Enhanced](https://marketplace.visualstudio.com/items?itemName=shd101wyy.markdown-preview-enhanced)
 
 ### Git strategy
 
-- Authors should revise the changelog each commit so this work is not postponed to release.
-- WVUI uses a "squash-and-merge" convention for changes.<sup>[0](#squash-and-merge)</sup>
-- Operating system and editor-specific files are not considered.<sup>[1](#git-ignore)</sup>
-- The Git configuration should be precise and accurate like any other part of the codebase. The
-  .gitignore file, for instance, should not become cluttered or vague.
+-   Authors should revise the changelog each commit so this work is not postponed to release.
+-   WVUI uses a "squash-and-merge" convention for changes.<sup>[0](#squash-and-merge)</sup>
+-   Operating system and editor-specific files are not considered.<sup>[1](#git-ignore)</sup>
+-   The Git configuration should be precise and accurate like any other part of the codebase. The
+    .gitignore file, for instance, should not become cluttered or vague.
 
 <details markdown>
 <summary><sup><a name="squash-and-merge">0</a></sup>Expand for details on squash-and-merge…</summary>
@@ -416,8 +422,8 @@ global Git configuration as they're unwanted in every repository and not specifi
 
 _Example:_
 
-1. Add a global exclusions file by executing
-   `git config --global core.excludesfile '~/.gitignore'` or updating your `~/.gitconfig` manually:
+1. Add a global exclusions file by executing `git config --global core.excludesfile '~/.gitignore'`
+   or updating your `~/.gitconfig` manually:
 
 ```gitconfig
 excludesfile = ~/.gitignore
@@ -436,41 +442,42 @@ excludesfile = ~/.gitignore
 
 The expectations for submitting a patch are:
 
-- Write your best work.
-- Functional changes compile, run, and pass tests.
-- Established patterns at least within the WVUI repository are considered.
-- Any submitted change is an overall improvement. The rationale is that if a patch is an overall
-  improvement, it's obvious to merge. If it's not, why should should it be merged?
-- Smaller patches get better reviews.
+-   Write your best work.
+-   Functional changes compile, run, and pass tests.
+-   Established patterns at least within the WVUI repository are considered.
+-   Any submitted change is an overall improvement. The rationale is that if a patch is an overall
+    improvement, it's obvious to merge. If it's not, why should should it be merged?
+-   Smaller patches get better reviews.
 
 #### Reviewer guidelines
 
-- The goal of code review is to help write great code, not only prevent bad code from being written.
-  The distinction is that the former is helping to achieve whereas the latter is focused on
-  prevention. Nourishing good ideas is better than extinguishing formative ideas.
-- Be specific when providing constructive feedback. Vague concerns, such as "there are many reasons"
-  or "it's more nuanced than that," prevent further discussion and create invisible barriers to
-  participation that cannot be overcome. Make your point and allow the author to address it. When
-  possible, suggest an approach or reference with your request. The more clearly you express the
-  changes you want, the easier it will be for the author to provide.
-- If you as a reviewer are making requests of the author, attempt to match their level of effort and
-  timeliness. Everyone is busy and doing their best but differently abled.
-- Be open-minded. New ideas, especially standard ideas that are only new to you, are not inherently
-  bad. It's ok to downvote to request improved documentation or clarification but not for an
-  education in industry standard practice. You are responsible in part for creating the culture you
-  want.
+-   The goal of code review is to help write great code, not only prevent bad code from being
+    written. The distinction is that the former is helping to achieve whereas the latter is focused
+    on prevention. Nourishing good ideas is better than extinguishing formative ideas.
+-   Be specific when providing constructive feedback. Vague concerns, such as "there are many
+    reasons" or "it's more nuanced than that," prevent further discussion and create invisible
+    barriers to participation that cannot be overcome. Make your point and allow the author to
+    address it. When possible, suggest an approach or reference with your request. The more clearly
+    you express the changes you want, the easier it will be for the author to provide.
+-   If you as a reviewer are making requests of the author, attempt to match their level of effort
+    and timeliness. Everyone is busy and doing their best but differently abled.
+-   Be open-minded. New ideas, especially standard ideas that are only new to you, are not
+    inherently bad. It's ok to downvote to request improved documentation or clarification but not
+    for an education in industry standard practice. You are responsible in part for creating the
+    culture you want.
 
 ### Known issues
 
-- `Vue.extend()` is used for the type inference of components. This is anticipated to be replaced by
-  `defineComponent()` in the Vue _v3_ Composition API.
-- [Storybook is incompatible with Vue Devtools]. Tap "Open canvas in a new tab" as a workaround.
-- "Download the React DevTools…" is printed to the browser console
-  [when running Storybook](https://github.com/storybookjs/storybook/issues/4853).
-- If Storybook encounters an error when booting, it does not launch even after the error is
-  resolved.
+-   `Vue.extend()` is used for the type inference of components. This is anticipated to be replaced
+    by `defineComponent()` in the Vue _v3_ Composition API.
+-   [Storybook is incompatible with Vue Devtools]. Tap "Open canvas in a new tab" as a workaround.
+-   "Download the React DevTools…" is printed to the browser console
+    [when running Storybook](https://github.com/storybookjs/storybook/issues/4853).
+-   If Storybook encounters an error when booting, it does not launch even after the error is
+    resolved.
 
-[storybook is incompatible with vue devtools]: https://github.com/storybookjs/storybook/issues/1708#issuecomment-630262553
+[storybook is incompatible with vue devtools]:
+	https://github.com/storybookjs/storybook/issues/1708#issuecomment-630262553
 
 ### Compatibility
 
@@ -482,7 +489,8 @@ Less inputs are linted for Browserslist compatibility. JavaScript build products
 ES5 compatibility.
 
 [browserslist]: https://github.com/browserslist/browserslist
-[mediawiki grade a compatibility]: https://www.mediawiki.org/wiki/Compatibility#Browser_support_matrix
+[mediawiki grade a compatibility]:
+	https://www.mediawiki.org/wiki/Compatibility#Browser_support_matrix
 
 ## Performance
 
@@ -535,33 +543,34 @@ printf \
 
 When changing the [bundlesize configuration](bundlesize.config.json):
 
-- The values in the configuration are upper limits. As a convention, the number is rounded up to
-  the nearest tenth of a kibibyte. For example, a new file added of size `4.15 KB` would have its
-  initial limit set at `4.2 KB`. Whenever intentional changes causes its limit to increase or
-  decrease beyond a tenth of a kibibyte boundary, the size should be revised.
-- bundlesize internally uses Bytes utility which [only supports base-2 units]. Case-insensitive
-  decimal [JEDEC notation] is used in the config. This means 1.5 KB or 1.5 kb is 1536 bytes,
-  _not_ 1500 bytes.
-- ⚠️ Warning: values that cannot be parsed are _silently ignored_! When making changes, verify
-  that a comparison of two values is printed like `2.54KB < maxSize 2.6KB (gzip)`. If only one
-  number is shown (e.g., `2.54KB (gzip)`), the number has been entered incorrectly.
-- ⚠️ Warning: values entered must have a leading units position specified. Sub-one sizes like
-  `.5 KB` must be written with a leading zero like `0.5 KB` or they will not be pared.
-- The bundlesize thresholds specify minified gzipped maximums. Outputs are minified as part of
-  the build process and gzip is the most common HTTP compression.
+-   The values in the configuration are upper limits. As a convention, the number is rounded up to
+    the nearest tenth of a kibibyte. For example, a new file added of size `4.15 KB` would have its
+    initial limit set at `4.2 KB`. Whenever intentional changes causes its limit to increase or
+    decrease beyond a tenth of a kibibyte boundary, the size should be revised.
+-   bundlesize internally uses Bytes utility which [only supports base-2 units]. Case-insensitive
+    decimal [JEDEC notation] is used in the config. This means 1.5 KB or 1.5 kb is 1536 bytes, _not_
+    1500 bytes.
+-   ⚠️ Warning: values that cannot be parsed are _silently ignored_! When making changes, verify
+    that a comparison of two values is printed like `2.54KB < maxSize 2.6KB (gzip)`. If only one
+    number is shown (e.g., `2.54KB (gzip)`), the number has been entered incorrectly.
+-   ⚠️ Warning: values entered must have a leading units position specified. Sub-one sizes like
+    `.5 KB` must be written with a leading zero like `0.5 KB` or they will not be pared.
+-   The bundlesize thresholds specify minified gzipped maximums. Outputs are minified as part of the
+    build process and gzip is the most common HTTP compression.
 
 [jedec notation]: https://en.wikipedia.org/wiki/Template:Quantities_of_bytes
-[only supports base-2 units]: https://github.com/visionmedia/bytes.js#bytesparsestringnumber-value-numbernull
+[only supports base-2 units]:
+	https://github.com/visionmedia/bytes.js#bytesparsestringnumber-value-numbernull
 
 ## Library design goals
 
-- Deploy search to all test wikis before August 31, 2020: frwiktionary, hewiki, ptwikiversity,
-  frwiki, euwiki, fawiki.
-- Relevant, modern, efficient, iterative contributor workflows.
-- Delightful user experiences shareable as an NPM package and reusable everywhere with and without
-  MediaWiki.
-- Fully typed. Accurate typing improves comprehension for tooling and programmers.
-- [Semantically versioned](https://semver.org).
-- Thoroughly documented for development and usage; everything needed to be productive is in the
-  readme.
-- Well tested and robust.
+-   Deploy search to all test wikis before August 31, 2020: frwiktionary, hewiki, ptwikiversity,
+    frwiki, euwiki, fawiki.
+-   Relevant, modern, efficient, iterative contributor workflows.
+-   Delightful user experiences shareable as an NPM package and reusable everywhere with and without
+    MediaWiki.
+-   Fully typed. Accurate typing improves comprehension for tooling and programmers.
+-   [Semantically versioned](https://semver.org).
+-   Thoroughly documented for development and usage; everything needed to be productive is in the
+    readme.
+-   Well tested and robust.

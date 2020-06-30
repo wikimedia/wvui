@@ -1,3 +1,6 @@
+/package.json
+/package-lock.json
+
 # Omit build products but version the ES5 linter configuration.
 /dist/*
 !/dist/.eslintrc.json
