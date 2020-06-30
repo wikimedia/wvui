@@ -1,7 +1,7 @@
 {
-  "extends": "stylelint-config-wikimedia",
-  "plugins": ["stylelint-no-unsupported-browser-features"],
-  "rules": {
-    "plugin/no-unsupported-browser-features": "error"
-  }
+	"extends": "stylelint-config-wikimedia",
+	"plugins": ["stylelint-no-unsupported-browser-features"],
+	"rules": {
+		"plugin/no-unsupported-browser-features": "error"
+	}
 }

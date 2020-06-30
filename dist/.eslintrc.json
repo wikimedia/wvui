@@ -1,5 +1,5 @@
 {
-  "root": true,
-  "extends": "wikimedia/language/es5",
-  "parser": "@typescript-eslint/parser"
+	"root": true,
+	"extends": "wikimedia/language/es5",
+	"parser": "@typescript-eslint/parser"
 }

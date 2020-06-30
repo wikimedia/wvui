@@ -1,44 +1,44 @@
 {
-  "compilerOptions": {
-    // Allow JSON and JavaScript files.
-    "resolveJsonModule": true,
-    "allowJs": true,
+	"compilerOptions": {
+		// Allow JSON and JavaScript files.
+		"resolveJsonModule": true,
+		"allowJs": true,
 
-    // Recommended Vue configuration to enable tree shaking. See
-    // https://vuejs.org/v2/guide/typescript.html.
-    "module": "es2015",
-    "moduleResolution": "node",
+		// Recommended Vue configuration to enable tree shaking. See
+		// https://vuejs.org/v2/guide/typescript.html.
+		"module": "es2015",
+		"moduleResolution": "node",
 
-    // Enable wildcard imports.
-    "allowSyntheticDefaultImports": true,
+		// Enable wildcard imports.
+		"allowSyntheticDefaultImports": true,
 
-    // Map @/ to src/. These should match webpack.config.js.
-    "baseUrl": ".",
-    "paths": { "@/*": ["src/*"] },
+		// Map @/ to src/. These should match webpack.config.js.
+		"baseUrl": ".",
+		"paths": { "@/*": ["src/*"] },
 
-    // Maximize type checking.
-    "checkJs": true,
-    "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noImplicitReturns": true,
-    "forceConsistentCasingInFileNames": true,
+		// Maximize type checking.
+		"checkJs": true,
+		"strict": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"noImplicitReturns": true,
+		"forceConsistentCasingInFileNames": true,
 
-    "pretty": true,
-    "incremental": true,
-    "target": "es5",
-    "sourceMap": true,
-    "outDir": "dist",
+		"pretty": true,
+		"incremental": true,
+		"target": "es5",
+		"sourceMap": true,
+		"outDir": "dist",
 
-    // Emit type definitions (.d.ts) for consumers to test their integration typing. Broken in
-    // current configuration:
-    // https://github.com/TypeStrong/fork-ts-checker-webpack-plugin/issues/49.
-    "declaration": true,
+		// Emit type definitions (.d.ts) for consumers to test their integration typing. Broken in
+		// current configuration:
+		// https://github.com/TypeStrong/fork-ts-checker-webpack-plugin/issues/49.
+		"declaration": true,
 
-    // Workaround Fork TS Checker Webpack Plugin issue.
-    // https://github.com/TypeStrong/fork-ts-checker-webpack-plugin/blob/5b59691/README.md#type-only-modules-watching
-    "importsNotUsedAsValues": "preserve"
-  },
+		// Workaround Fork TS Checker Webpack Plugin issue.
+		// https://github.com/TypeStrong/fork-ts-checker-webpack-plugin/blob/5b59691/README.md#type-only-modules-watching
+		"importsNotUsedAsValues": "preserve"
+	},
 
-  "exclude": ["node_modules", "dist", "docs"]
+	"exclude": ["node_modules", "dist", "docs"]
 }
