@@ -21,6 +21,7 @@ export default Vue.extend( {
 @import ( reference ) '~wikimedia-ui-base/wikimedia-ui-base.less';
 
 .wvui-button {
-	background: @wmui-color-accent50;
+	background: @wmui-color-base20;
+	color: #fff;
 }
 </style>

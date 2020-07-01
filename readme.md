@@ -238,6 +238,8 @@ entire repo and, as a convention, the number is rounded down to the nearest 10%.
 actual repository coverage is 89%, the threshold is configured to 80%. See [Jest documentation] for
 details.
 
+⚠️ `./src/entries/*.ts` is excluded from the coverage report and expected to be side-effect free.
+
 [docs/coverage]: docs/coverage
 [.jest/jest.config.json]: .jest/jest.config.json
 [jest documentation]: https://jestjs.io/docs/en/configuration.html#coveragethreshold-object
