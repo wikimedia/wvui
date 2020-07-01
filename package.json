@@ -17,7 +17,7 @@
   "scripts": {
     "start": "start-storybook --quiet -p 3003",
     "build": "webpack -p",
-    "test": "npm -s run test:unit && npm -s run test:lint && npm -s run test:size && npm -s run docs",
+    "test": "npm -s run test:unit && npm -s run test:lint && npm -s run build && npm -s run test:size && npm -s run docs",
     "test:unit": "jest -c .jest/jest.config.json",
     "test:lint": "npm -s run test:lint:etc && npm run -s test:lint:styles && npm run -s test:lint:js",
     "test:lint:styles": "npm -s run linter:styles -- .",

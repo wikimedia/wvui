@@ -69,12 +69,8 @@ function plugins() {
 	];
 }
 
-/**
- * @param {string} _env
- * @param {webpack.CliConfigOptions} argv
- * @return {webpack.Configuration}
- */
-module.exports = ( _env, argv ) => ( {
+/** @type {import('webpack').ConfigurationFactory} */
+const config = ( _env, argv ) => ( {
 	stats: {
 		all: false,
 		// Output a timestamp when a build completes. Useful when watching files.
@@ -105,14 +101,6 @@ module.exports = ( _env, argv ) => ( {
 	devtool: argv.mode === 'production' ? 'source-map' : 'cheap-module-eval-source-map',
 
 	optimization: {
-		runtimeChunk: {
-			/**
-			 * @return {string}
-			 * */
-			name() {
-				return Chunk.Wvui;
-			}
-		},
 		// Enable CSS minification. Unfortunately, this overrides the default JavaScript
 		// minification so it must be re-enabled with the TerserJSPlugin. The default processor is
 		// cssnano which uses postcss.
@@ -153,11 +141,13 @@ module.exports = ( _env, argv ) => ( {
 	plugins: [
 		new CleanWebpackPlugin( {
 			// Don't delete the ES5 linter config.
-			cleanOnceBeforeBuildPatterns: [ '**/*', '!.eslintrc.js' ]
+			cleanOnceBeforeBuildPatterns: [ '**/*', '!.eslintrc.json' ]
 		} ),
 		...plugins(),
 		new VueLoaderPlugin()
 	]
 } );
+
+module.exports = config;
 
 module.exports.commonConfig = { resolve, rules, plugins };
