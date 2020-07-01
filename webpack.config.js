@@ -69,7 +69,7 @@ function plugins() {
 	];
 }
 
-/** @type {import('webpack').ConfigurationFactory} */
+/** @type {webpack.ConfigurationFactory} */
 const config = ( _env, argv ) => ( {
 	stats: {
 		all: false,
