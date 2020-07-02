@@ -1,6 +1,7 @@
 # 🧩 Wikimedia Vue UI
 
-Vue.js user interface component library prototype for MediaWiki's Vector skin.
+Wikimedia Vue UI components. Wikimedia Foundation's Vue.js shared user-interface components for
+Wikipedia, MediaWiki, and beyond.
 
 ## Table of contents
 

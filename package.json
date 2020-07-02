@@ -1,14 +1,15 @@
 {
   "name": "@wikimedia/wvui",
   "author": "Wikimedia",
-  "description": "Vue.js user interface components for Wikipedia, MediaWiki, and beyond.",
+  "description": "🧩 Wikimedia Vue UI components. Wikimedia Foundation's Vue.js shared user-interface components for Wikipedia, MediaWiki, and beyond.",
   "version": "0.0.0",
   "keywords": [
     "Vue.js",
     "components",
     "Wikipedia",
     "MediaWiki",
-    "Wikimedia"
+    "Wikimedia",
+    "TypeScript"
   ],
   "homepage": "https://github.com/wikimedia/wvui",
   "repository": "github:wikimedia/wvui",
@@ -32,7 +33,7 @@
     "format:etc": "npm -s run linter:etc -- --write",
     "format:js": "npm -s run linter:js -- --fix .",
     "format:styles": "npm -s run linter:styles -- --fix .",
-    "linter:etc": "prettier './**/*.{json,md}'",
+    "linter:etc": "prettier .",
     "linter:js": "eslint --cache --max-warnings 0 --report-unused-disable-directives --ext .js,.json,.ts,.vue",
     "linter:styles": "stylelint --cache --rd --mw 0",
     "preversion": "[ -z \"$(git status -z)\" ]",
