@@ -4,6 +4,7 @@ Versions and bullets are arranged chronologically from latest to oldest.
 
 ## v0.0.1 (unreleased)
 
+-   [dev] Split ESLint extends and rules
 -   [dev] Improve ESLint TypeScript config and fix JS config typing
 -   [docs] Update readme
 -   [dev][build] Add basic webpack configuration

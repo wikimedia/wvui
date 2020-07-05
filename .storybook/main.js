@@ -18,8 +18,8 @@ module.exports = {
 	 */
 	webpackFinal: ( config ) => {
 		config.stats = 'errors-warnings';
-		Object.assign( config.resolve.extensions, commonConfig.resolve.extensions ); // eslint-disable-line es/no-object-assign
-		Object.assign( config.resolve.alias, commonConfig.resolve.alias ); // eslint-disable-line es/no-object-assign
+		Object.assign( config.resolve.extensions, commonConfig.resolve.extensions );
+		Object.assign( config.resolve.alias, commonConfig.resolve.alias );
 		config.module.rules.push( ...commonConfig.rules( config.mode ) );
 		config.plugins.push( ...commonConfig.plugins() );
 		config.performance = {
