@@ -47,8 +47,184 @@ export default Vue.extend( {
 
 <style lang="less">
 @import ( reference ) '~wikimedia-ui-base/wikimedia-ui-base.less';
+@import ( reference ) '@/themes/wikimedia.less';
 
 .wvui-button {
-	background: @wmui-color-base20;
+	box-sizing: border-box; // All components use border-box box-sizing.
+	// Interactive elements have a minimum and maximum touch area.
+	min-width: @min-size-widget-base;
+	min-height: @min-size-widget-base;
+	max-width: @max-width-button;
+	//
+	border-radius: @border-radius-base;
+	padding-left: @padding-horizontal-base;
+	padding-right: @padding-horizontal-base;
+	font-family: inherit; // Initial value depends on user-agent.
+	font-size: inherit; // Initial value is none.
+	font-weight: bold;
+	white-space: nowrap; // Contents are single line.
+	transition:
+		border-color @transition-base,
+		background-color @transition-base,
+		color @transition-base,
+		box-shadow @transition-base
+	;
+
+	&::-moz-focus-inner {
+		// [Firefox] hide the focus ring in all variations.
+		border: 0;
+	}
+
+	&:focus {
+		// Hide the standard focus outline.
+		outline: 0; // stylelint-disable-line plugin/no-unsupported-browser-features
+	}
+
+	&[ disabled ] {
+		// Hide the border but keep the sizing.
+		border: @border-width-base @border-style-base #0000;
+		background-color: @background-color-filled--disabled;
+		// Show the default pointer cursor icongraphy to visually indicate the button is
+		// unresponsive.
+		cursor: @cursor-base--disabled;
+
+		&.wvui-button--framed {
+			color: @color-filled--disabled;
+		}
+
+		&.wvui-button--quiet {
+			background-color: @color-filled--disabled;
+		}
+	}
+
+	&:not( [ disabled ] ) {
+		// Use hand cursor icongraphy. This is nonstandard for a button but allows for a visible
+		// interactivity distinction from the disabled state.
+		cursor: pointer;
+
+		&.wvui-button--framed {
+			border: @border-base;
+		}
+
+		&.wvui-button--quiet {
+			// Hide the border but keep the sizing.
+			border: @border-width-base @border-style-base #0000;
+
+			&:active {
+				&:focus {
+					border-color: #0000;
+					box-shadow: none;
+				}
+			}
+		}
+
+		&.wvui-button--default {
+			color: @color-base--emphasized;
+
+			&.wvui-button--framed {
+				background-color: @background-color-framed;
+			}
+
+			&.wvui-button--quiet {
+				background-color: @background-color-quiet;
+			}
+
+			&:hover {
+				&.wvui-button--framed {
+					background-color: @background-color-framed--hover;
+					color: @color-base--hover;
+				}
+
+				&.wvui-button--quiet {
+					background-color: @background-color-quiet--hover;
+				}
+			}
+
+			&:focus {
+				box-shadow: @box-shadow-base--focus;
+				border-color: @color-primary--focus;
+			}
+
+			&:active {
+				&.wvui-button--framed {
+					border-color: @border-color-base--active;
+				}
+
+				&:focus {
+					box-shadow: none;
+					background-color: @background-color-framed--active;
+					color: @color-base--emphasized;
+				}
+			}
+		}
+
+		&.wvui-button--progressive {
+			background-color: @color-primary;
+			color: @color-base--inverted;
+
+			&.wvui-button--framed {
+				border-color: @wmui-color-accent30;
+			}
+
+			&:hover {
+				background-color: @color-primary--hover;
+				color: @color-base--inverted;
+
+				&.wvui-button--framed {
+					border-color: @wmui-color-accent30;
+				}
+			}
+
+			&:focus {
+				box-shadow: @box-shadow-primary--focus;
+				color: @color-base--inverted;
+			}
+
+			&:active {
+				&.wvui-button--framed {
+					border-color: @wmui-color-accent30;
+				}
+
+				&:focus {
+					box-shadow: none;
+					background-color: @wmui-color-accent30;
+				}
+			}
+		}
+
+		&.wvui-button--destructive {
+			background-color: @color-destructive;
+			color: @color-base--inverted;
+
+			&.wvui-button--framed {
+				border-color: @wmui-color-red30;
+			}
+
+			&:hover {
+				background-color: @color-destructive--hover;
+				color: @color-base--inverted;
+
+				&.wvui-button--framed {
+					border-color: @wmui-color-red30;
+				}
+			}
+
+			&:focus {
+				box-shadow: @box-shadow-inset--inverted;
+				color: @color-base--inverted;
+			}
+
+			&:active {
+				&.wvui-button--framed {
+					border-color: @border-color-destructive--active;
+				}
+
+				&:focus {
+					box-shadow: none;
+					background-color: @wmui-color-red30;
+				}
+			}
+		}
+	}
 }
 </style>

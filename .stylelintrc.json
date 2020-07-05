@@ -2,6 +2,13 @@
 	"extends": "stylelint-config-wikimedia",
 	"plugins": ["stylelint-no-unsupported-browser-features"],
 	"rules": {
-		"plugin/no-unsupported-browser-features": "error"
+		"plugin/no-unsupported-browser-features": "error",
+		"declaration-colon-space-after": null,
+		"declaration-block-semicolon-newline-before": null,
+		"declaration-block-semicolon-space-before": null,
+		"value-list-comma-newline-after": null,
+		"function-parentheses-space-inside": null,
+		"function-comma-newline-after": null,
+		"function-parentheses-newline-inside": null
 	}
 }

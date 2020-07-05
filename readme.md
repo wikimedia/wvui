@@ -145,7 +145,9 @@ The [Vue.js Style Guide](https://vuejs.org/v2/style-guide) is adhered to where p
 
 #### Less
 
-[BEM](http://getbem.com) naming conventions are adhered to where possible.
+-   [BEM](http://getbem.com) naming conventions are adhered to where possible.
+-   All components use a `box-sizing` of `border-box`.
+-   When only symbols, mixins, etc are necessary use a reference import.
 
 #### TypeScript
 

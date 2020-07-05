@@ -4,6 +4,7 @@ Versions and bullets are arranged chronologically from latest to oldest.
 
 ## v0.0.1 (unreleased)
 
+-   [update] Add initial Button styles
 -   [update] Flesh out Button props
 -   [docs] Update readme
 -   [dev][build] Add basic webpack configuration
