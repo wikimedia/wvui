@@ -8,6 +8,7 @@ const TerserJSPlugin = require( 'terser-webpack-plugin' );
 const { VueLoaderPlugin } = require( 'vue-loader' );
 const webpack = require( 'webpack' );
 const path = require( 'path' );
+const { BundleAnalyzerPlugin } = require( 'webpack-bundle-analyzer' );
 
 const resolve = {
 	extensions: [ '.js', '.ts' ],
@@ -144,7 +145,16 @@ const config = ( _env, argv ) => ( {
 			cleanOnceBeforeBuildPatterns: [ '**/*', '!.eslintrc.json' ]
 		} ),
 		...plugins(),
-		new VueLoaderPlugin()
+		new VueLoaderPlugin(),
+		new BundleAnalyzerPlugin( {
+			analyzerMode: argv.mode === 'development' ? 'disabled' : 'static',
+			reportFilename: path.resolve( __dirname, 'docs/sourceMaps/analysis.html' ),
+			defaultSizes: 'gzip',
+			openAnalyzer: false,
+			generateStatsFile: argv.mode !== 'development',
+			statsFilename: path.resolve( __dirname, 'docs/sourceMaps/analysis.json' ),
+			logLevel: 'warn'
+		} )
 	]
 } );
 
