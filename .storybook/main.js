@@ -15,7 +15,7 @@ module.exports = {
 	],
 
 	/**
-	 * @param {import('webpack').Configuration} config
+	 * @param {Required<import('webpack').Configuration>} config
 	 * @return {import('webpack').Configuration}
 	 */
 	webpackFinal: ( config ) => {
