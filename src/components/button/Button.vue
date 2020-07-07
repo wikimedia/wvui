@@ -23,5 +23,6 @@ export default Vue.extend( {
 .wvui-button {
 	background: @wmui-color-base20;
 	color: #fff;
+	transition: all 1s;
 }
 </style>

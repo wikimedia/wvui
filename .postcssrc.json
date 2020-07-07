@@ -1,0 +1,6 @@
+{
+	"plugins": {
+		"autoprefixer": true,
+		"cssnano": true
+	}
+}
