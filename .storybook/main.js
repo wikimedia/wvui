@@ -25,6 +25,8 @@ module.exports = {
 		config.module.rules.push( ...commonConfig.rules( config.mode ) );
 		config.plugins.push( ...commonConfig.plugins() );
 		config.performance = {
+			// Disable Webpack bundle size warnings. These apply to the docs only and are not a
+			// priority to fix.
 			hints: false
 		};
 
