@@ -4,6 +4,7 @@ Versions and bullets are arranged chronologically from latest to oldest.
 
 ## v0.0.1 (unreleased)
 
+-   [docs][dev] Document source maps
 -   [dev] Suppress superfluous Jest style warning
 -   [dev] Improve ESLint TypeScript config and fix JS config typing
 -   [dev] Add Storybook preview styles
