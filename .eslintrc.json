@@ -15,6 +15,10 @@
 	"rules": {
 		// Deprecated and interferes with JSDoc typing.
 		"valid-jsdoc": "off",
+		// Covered by TypeScript. Doesn't understand many types like `Required`. These rules should be
+		// mostly disabled by setting `mode` to TypeScript but it doesn't seem to be working.
+		"jsdoc/no-undefined-types": "off",
+		"jsdoc/valid-types": "off",
 		// Covered by TypeScript.
 		"no-undef": "off",
 		// Adequately covered by tsconfig.json which allows unused variables with a leading underscore.
@@ -70,5 +74,10 @@
 			"files": ["*.test.ts"],
 			"extends": ["plugin:jest/recommended"]
 		}
-	]
+	],
+	"settings": {
+		"jsdoc": {
+			"mode": "typescript"
+		}
+	}
 }

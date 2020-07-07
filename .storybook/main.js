@@ -3,6 +3,7 @@ const { commonConfig } = require( '../webpack.config' );
 
 module.exports = {
 	stories: [ '../src/**/*.stories.ts' ],
+
 	addons: [
 		'@storybook/addon-knobs',
 		'@storybook/addon-actions',
@@ -12,8 +13,9 @@ module.exports = {
 		'@storybook/addon-backgrounds',
 		'@storybook/addon-links'
 	],
+
 	/**
-	 * @param {import('webpack').Configuration} config
+	 * @param {Required<import('webpack').Configuration>} config
 	 * @return {import('webpack').Configuration}
 	 */
 	webpackFinal: ( config ) => {
@@ -28,5 +30,7 @@ module.exports = {
 
 		return config;
 	},
+
+	// Only report warnings and errors in the browser console.
 	logLevel: 'warn'
 };

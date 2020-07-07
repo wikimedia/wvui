@@ -6,3 +6,10 @@
 !/dist/.eslintrc.json
 
 /docs/
+
+# Some tooling assumes that if a Prettier configuration file is present, all
+# files should be prettier. This is not intended. Only Markdown and JSON should
+# be pretty.
+*.js
+*.ts
+*.vue

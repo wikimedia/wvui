@@ -1,6 +1,7 @@
 # 🧩 Wikimedia Vue UI
 
-Vue.js user interface component library prototype for MediaWiki's Vector skin.
+Wikimedia Vue UI components. Wikimedia Foundation's Vue.js shared user-interface components for
+Wikipedia, MediaWiki, and beyond.
 
 ## Table of contents
 
@@ -477,6 +478,9 @@ The expectations for submitting a patch are:
     [when running Storybook](https://github.com/storybookjs/storybook/issues/4853).
 -   If Storybook encounters an error when booting, it does not launch even after the error is
     resolved.
+-   JavaScript configuration files are not type checked when building the library. This seems to be
+    because Webpack shakes out dead code. All types can be tested manually via
+    `npx tsc --noEmit --incremental false`.
 
 [storybook is incompatible with vue devtools]:
 	https://github.com/storybookjs/storybook/issues/1708#issuecomment-630262553
