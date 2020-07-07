@@ -1,6 +1,7 @@
 # 🧩 Wikimedia Vue UI
 
-Vue.js user interface component library prototype for MediaWiki's Vector skin.
+Wikimedia Vue UI components. Wikimedia Foundation's Vue.js shared user-interface components for
+Wikipedia, MediaWiki, and beyond. See **[quick start](#quick-start)** to contribute.
 
 ## Table of contents
 
@@ -83,6 +84,21 @@ specifies dependencies with looser versioning instead, that project will be at t
 dependencies instead of in control of them.
 
 </details>
+
+### Different builds
+
+There is currently one bundle available:
+
+-   **Combined**: the complete library. This bundle is the simplest to use because it contains all
+    code but is not performant if only part is used or if different parts should be loaded at
+    different times. ⚠️ This chunk is standalone and should not be loaded with split chunks.
+
+        	- **wvui**.js/css: the complete library and default export. No other chunks required.
+
+Each chunk is side-effect free. All chunks are fully compiled ES5 / CSS and require a Vue.js
+runtime. See [peerDependencies](package.json).
+
+See the [performance section](#performance) for related topics.
 
 ## Development
 
@@ -477,6 +493,9 @@ The expectations for submitting a patch are:
     [when running Storybook](https://github.com/storybookjs/storybook/issues/4853).
 -   If Storybook encounters an error when booting, it does not launch even after the error is
     resolved.
+-   JavaScript configuration files are not type checked when building the library. This seems to be
+    because Webpack shakes out dead code. All types can be tested manually via
+    `npx tsc --noEmit --incremental false`.
 
 [storybook is incompatible with vue devtools]:
 	https://github.com/storybookjs/storybook/issues/1708#issuecomment-630262553
@@ -495,6 +514,16 @@ ES5 compatibility.
 	https://www.mediawiki.org/wiki/Compatibility#Browser_support_matrix
 
 ## Performance
+
+### Bundle composition and source maps
+
+The contents of each bundle generated can be evaluated through its source map. [source-map-explorer]
+and [Webpack Bundle Analyzer] are used to generate reports for minified and minified + gzipped
+bundle breakdowns. The reports are similar but crosschecking may be useful.
+
+[source-map-explorer]: https://github.com/danvk/source-map-explorer
+[webpack bundle analyzer]: https://github.com/webpack-contrib/webpack-bundle-analyzer
+[docs/sourcemaps]: docs/sourceMaps
 
 ### Bundle size
 
