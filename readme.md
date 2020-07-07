@@ -518,14 +518,11 @@ JavaScript build products are linted for ES5 compatibility.
 
 #### Less
 
-Less inputs are linted for Browserslist compatibility but the linter isn't perfect. For example,
-`#rgba` color syntax, like `#0000` for `transparent`, is unsupported by IE 11 but undetected by the
-linter.
-
-Less is also automatically prefixed for browser vendors according to the Browserslist config via the
-[PostCSS][autoprefixer] plugin. The current configuration only adds vendor prefixes like
-`-webkit-transition:all 1s; transition:all 1s`, _not_ polyfills. You can see the prefixes used by
-executing `npx autoprefixer --info`.
+Less inputs are linted for compatibility and automatically prefixed for browser vendors according to
+the Browserslist config via the [PostCSS][autoprefixer] plugin. The current configuration only adds
+vendor prefixes like `-webkit-transition:all 1s; transition:all 1s`, _not_ polyfills. `#rgba` color
+syntax, like `#0000` for `transparent`, are also replaced as needed. You can see the prefixes used
+by executing `npx autoprefixer --info`.
 
 [postcss]: https://github.com/postcss/postcss
 [autoprefixer]: https://github.com/postcss/autoprefixer
