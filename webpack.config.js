@@ -6,6 +6,7 @@ const { CleanWebpackPlugin } = require( 'clean-webpack-plugin' );
 const { VueLoaderPlugin } = require( 'vue-loader' );
 const webpack = require( 'webpack' );
 const path = require( 'path' );
+const { BundleAnalyzerPlugin } = require( 'webpack-bundle-analyzer' );
 
 const resolve = {
 	extensions: [ '.js', '.ts' ],
@@ -77,8 +78,12 @@ function plugins() {
 	];
 }
 
-/** @type {webpack.ConfigurationFactory} */
-const config = ( _env, argv ) => ( {
+/**
+ * @param {Parameters<webpack.ConfigurationFactory>[0]} _env
+ * @param {Parameters<webpack.ConfigurationFactory>[1]} argv
+ * @return {ReturnType<webpack.ConfigurationFactory>}
+ */
+module.exports = ( _env, argv ) => ( {
 	stats: {
 		all: false,
 		// Output a timestamp when a build completes. Useful when watching files.
@@ -133,10 +138,17 @@ const config = ( _env, argv ) => ( {
 			cleanOnceBeforeBuildPatterns: [ '**/*', '!.eslintrc.json' ]
 		} ),
 		...plugins(),
-		new VueLoaderPlugin()
+		new VueLoaderPlugin(),
+		new BundleAnalyzerPlugin( {
+			analyzerMode: argv.mode === 'development' ? 'disabled' : 'static',
+			reportFilename: path.resolve( __dirname, 'docs/sourceMaps/analysis.html' ),
+			defaultSizes: 'gzip',
+			openAnalyzer: false,
+			generateStatsFile: argv.mode !== 'development',
+			statsFilename: path.resolve( __dirname, 'docs/sourceMaps/analysis.json' ),
+			logLevel: 'warn'
+		} )
 	]
 } );
-
-module.exports = config;
 
 module.exports.commonConfig = { resolve, rules, plugins };
