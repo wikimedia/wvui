@@ -3,6 +3,7 @@ const { commonConfig } = require( '../webpack.config' );
 
 module.exports = {
 	stories: [ '../src/**/*.stories.ts' ],
+
 	addons: [
 		'@storybook/addon-knobs',
 		'@storybook/addon-actions',
@@ -12,6 +13,7 @@ module.exports = {
 		'@storybook/addon-backgrounds',
 		'@storybook/addon-links'
 	],
+
 	/**
 	 * @param {Required<import('webpack').Configuration>} config
 	 * @return {import('webpack').Configuration}
@@ -23,10 +25,14 @@ module.exports = {
 		config.module.rules.push( ...commonConfig.rules( config.mode ) );
 		config.plugins.push( ...commonConfig.plugins() );
 		config.performance = {
+			// Disable Webpack bundle size warnings. These apply to the docs only and are not a
+			// priority to fix.
 			hints: false
 		};
 
 		return config;
 	},
+
+	// Only report warnings and errors in the browser console.
 	logLevel: 'warn'
 };

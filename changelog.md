@@ -5,7 +5,11 @@ Versions and bullets are arranged chronologically from latest to oldest.
 ## v0.0.1 (unreleased)
 
 -   [dev] Split ESLint extends and rules
+-   [docs][dev] Document source maps
+-   [dev] Suppress superfluous Jest style warning
 -   [dev] Improve ESLint TypeScript config and fix JS config typing
+-   [dev] Add Storybook preview styles
+-   [dev] Disable Prettier for everything except JSON and Markdown files
 -   [docs] Update readme
 -   [dev][build] Add basic webpack configuration
 -   [dev] Format JSON and Markdown better

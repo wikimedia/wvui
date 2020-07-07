@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import { addParameters } from '@storybook/vue';
+import './preview.less';
 
 // Disable informational message in the browser console log:
 //

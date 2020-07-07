@@ -24,7 +24,9 @@
 	"errorOnDeprecated": true,
 	"globals": {
 		"vue-jest": {
-			"babelConfig": false
+			"babelConfig": false,
+			"//": "Suppress `[vue-jest]: Less and PostCSS are not currently compiled by vue-jest`.",
+			"hideStyleWarn": true
 		}
 	}
 }
