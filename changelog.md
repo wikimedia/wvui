@@ -6,6 +6,11 @@ Versions and bullets are arranged chronologically from latest to oldest.
 
 -   [update] Add initial Button styles
 -   [update] Flesh out Button props
+-   [docs][dev] Document source maps
+-   [dev] Suppress superfluous Jest style warning
+-   [dev] Improve ESLint TypeScript config and fix JS config typing
+-   [dev] Add Storybook preview styles
+-   [dev] Disable Prettier for everything except JSON and Markdown files
 -   [docs] Update readme
 -   [dev][build] Add basic webpack configuration
 -   [dev] Format JSON and Markdown better
