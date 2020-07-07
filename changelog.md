@@ -4,6 +4,7 @@ Versions and bullets are arranged chronologically from latest to oldest.
 
 ## v0.0.1 (unreleased)
 
+-   [dev] Improve ESLint TypeScript config and fix JS config typing
 -   [dev] Add Storybook preview styles
 -   [dev] Disable Prettier for everything except JSON and Markdown files
 -   [docs] Update readme

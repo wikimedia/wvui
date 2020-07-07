@@ -69,8 +69,12 @@ function plugins() {
 	];
 }
 
-/** @type {webpack.ConfigurationFactory} */
-const config = ( _env, argv ) => ( {
+/**
+ * @param {Parameters<webpack.ConfigurationFactory>[0]} _env
+ * @param {Parameters<webpack.ConfigurationFactory>[1]} argv
+ * @return {ReturnType<webpack.ConfigurationFactory>}
+ */
+module.exports = ( _env, argv ) => ( {
 	stats: {
 		all: false,
 		// Output a timestamp when a build completes. Useful when watching files.
@@ -147,7 +151,5 @@ const config = ( _env, argv ) => ( {
 		new VueLoaderPlugin()
 	]
 } );
-
-module.exports = config;
 
 module.exports.commonConfig = { resolve, rules, plugins };

@@ -40,5 +40,10 @@
 		"importsNotUsedAsValues": "preserve"
 	},
 
+	// Add hidden files and folders so configuration typing can be tested.
+	"include": ["./**/*", ".*/**/*"],
+
+	// Ignore generated folders. node_modules is ignored by default when `exclude` is unset but needs
+	// to be specified since `exclude` is overridden.
 	"exclude": ["node_modules", "dist", "docs"]
 }
