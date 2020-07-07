@@ -5,6 +5,7 @@ Versions and bullets are arranged chronologically from latest to oldest.
 ## v0.0.1 (unreleased)
 
 -   [dev] Add Storybook preview styles
+-   [dev] Disable Prettier for everything except JSON and Markdown files
 -   [docs] Update readme
 -   [dev][build] Add basic webpack configuration
 -   [dev] Format JSON and Markdown better
