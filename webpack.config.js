@@ -3,6 +3,8 @@
 const ForkTsCheckerWebpackPlugin = require( 'fork-ts-checker-webpack-plugin' );
 const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
 const { CleanWebpackPlugin } = require( 'clean-webpack-plugin' );
+const OptimizeCSSAssetsPlugin = require( 'optimize-css-assets-webpack-plugin' );
+const TerserJSPlugin = require( 'terser-webpack-plugin' );
 const { VueLoaderPlugin } = require( 'vue-loader' );
 const webpack = require( 'webpack' );
 const path = require( 'path' );
@@ -51,15 +53,15 @@ function rules( mode ) {
 				{
 					loader: 'css-loader',
 					options: {
-						// This is the recommended postcss-loader configuration. `1` means
-						// postcss-loader.
+						// The number of loaders applied before CSS loader. This is the recommended
+						// postcss-loader configuration.
 						// https://github.com/webpack-contrib/css-loader#importloaders
 						// https://github.com/postcss/postcss-loader#config-cascade
-						importLoaders: 1
+						importLoaders: 2
 					}
 				},
 				'postcss-loader',
-				{ loader: 'less-loader', options: { sourceMap: mode === 'production' } }
+				'less-loader'
 			]
 		}
 	];
@@ -112,6 +114,30 @@ module.exports = ( _env, argv ) => ( {
 	// exposed to users via sourceMapFilename for prod debugging. This goes against convention as
 	// this source code is publicly distributed.
 	devtool: argv.mode === 'production' ? 'source-map' : 'cheap-module-eval-source-map',
+
+	optimization: {
+		// Enable CSS minification.
+		// - Unfortunately, this overrides the default JavaScript minification so it must be
+		//   re-enabled with the TerserJSPlugin.
+		// - The default processor is cssnano which uses postcss. It does not appear to be possible
+		//   to enable this step during the loading stage and preserve source maps correctly.
+		// - cssnano can itself be configured to use autoprefixer but 1) this requires the advanced
+		//   preset dependency and is unavailable in the default preset 2) autoprefixer must then be
+		//   configured to _add_ prefixes as a minifier is only concerned with eliminating code.
+		// https://github.com/webpack-contrib/mini-css-extract-plugin#minimizing-for-production
+		// https://github.com/NMFR/optimize-css-assets-webpack-plugin
+		// https://cssnano.co
+		minimizer: argv.mode === 'production' ? [
+			new TerserJSPlugin(),
+			new OptimizeCSSAssetsPlugin( {
+				cssProcessorOptions: {
+					// Keep sourceMappingURL comments in the output CSS.
+					// https://github.com/postcss/postcss/blob/master/docs/source-maps.md
+					map: { annotation: true }
+				}
+			} )
+		] : []
+	},
 
 	output: {
 		sourceMapFilename: `[file]${jsSourceMapExtention}`,
