@@ -46,11 +46,11 @@ export default Vue.extend( {
 </script>
 
 <style lang="less">
-@import ( reference ) '~wikimedia-ui-base/wikimedia-ui-base.less';
-@import ( reference ) '@/themes/wikimedia.less';
+@import ( reference ) '@/themes/wikimedia-ui.less';
 
 .wvui-button {
-	box-sizing: border-box; // All components use border-box box-sizing.
+	// All components use border-box box-sizing.
+	box-sizing: border-box;
 	// Interactive elements have a minimum and maximum touch area.
 	min-width: @min-size-widget-base;
 	min-height: @min-size-widget-base;
@@ -59,10 +59,13 @@ export default Vue.extend( {
 	border-radius: @border-radius-base;
 	padding-left: @padding-horizontal-base;
 	padding-right: @padding-horizontal-base;
-	font-family: inherit; // Initial value depends on user-agent.
-	font-size: inherit; // Initial value is none.
+	// Initial value depends on user-agent.
+	font-family: inherit;
+	// Initial value is none.
+	font-size: inherit;
 	font-weight: bold;
-	white-space: nowrap; // Contents are single line.
+	// Contents are single line.
+	white-space: nowrap;
 	transition:
 		border-color @transition-base,
 		background-color @transition-base,
@@ -76,7 +79,7 @@ export default Vue.extend( {
 	}
 
 	&:focus {
-		// Hide the standard focus outline.
+		// Hide the standard focus outline. A border and box-shadow representation is added below.
 		outline: 0; // stylelint-disable-line plugin/no-unsupported-browser-features
 	}
 

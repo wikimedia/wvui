@@ -12,4 +12,5 @@
 # be pretty.
 *.js
 *.ts
+*.less
 *.vue

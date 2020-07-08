@@ -4,8 +4,8 @@ Versions and bullets are arranged chronologically from latest to oldest.
 
 ## v0.0.1 (unreleased)
 
--   [update] Add initial Button styles
--   [update] Flesh out Button props
+-   [update][button] Add initial styles
+-   [update][button] Flesh out props
 -   [docs][dev] Document source maps
 -   [dev] Suppress superfluous Jest style warning
 -   [dev] Improve ESLint TypeScript config and fix JS config typing
