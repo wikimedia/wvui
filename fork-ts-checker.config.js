@@ -1,3 +1,4 @@
+/* eslint-env node */
 function Logger() {
 	// Fork TS Checker Webpack Plugin validates that a function is passed.
 }

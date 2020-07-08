@@ -1,3 +1,4 @@
+/* eslint-env node */
 // See https://jestjs.io/docs/en/configuration.html#snapshotresolver-string.
 module.exports = {
 	/**

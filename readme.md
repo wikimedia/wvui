@@ -29,6 +29,7 @@ Wikipedia, MediaWiki, and beyond. See **[quick start](#quick-start)** to contrib
       - [Coverage](#coverage)
   - [Integrated development workflow](#integrated-development-workflow)
   - [Changing dependencies](#changing-dependencies)
+  - [Linting and formatting](#linting-and-formatting)
   - [Versioning](#versioning)
   - [Editor and IDE support](#editor-and-ide-support)
     - [Visual Studio Code](#visual-studio-code)
@@ -304,6 +305,33 @@ becomes easy with practice.
 -   Dependencies are not transpiled and must be ES5. Additionally, dependencies must only use
     supported browser APIs.
 
+### Linting and formatting
+
+WVUI uses several linters and _formatters_. The former identify functional issues and the latter
+identify nonfunctional presentational inconsistencies such as incorrect indentation. Both support
+some measure of fixing or "formatting" problems automatically by executing `npm run format`.
+
+-   [Prettier]: Markdown and JSON files are _formatted_ by Prettier. When it comes to generating
+    beautiful and extremely consistently styled code, Prettier's ability to accept utter garbage
+    code in and automatically apply formatting changes is exceptional, far superior to ESLint, and
+    may even change the way you write code. For example, the indentation of braceless loops is never
+    misleading once prettified. However, Prettier can never replace ESLint as it doesn't support any
+    functional linting, only nonfunctional formatting. ESLint integration and additional languages
+    such as TypeScript and JavaScript are supported but currently unused in WVUI. See
+    [.prettierrc.json](.prettierrc.json) and [.prettierignore](.prettierignore) for configuration.
+-   [ESLint]: ESLint is used for linting _and_ formatting JavaScript, TypeScript, and Vue.js files.
+    A hierarchy of overrides is used so that extends and rules can be separated. See
+    [.eslintrc.json](.eslintrc.json) and [.eslintignore](.eslintignore) for details and
+    configuration. An additional configuration is present in
+    [dist/.eslintrc.json](dist/.eslintrc.json) for validating that only ES5 is shipped.
+-   [Stylelint]: Stylelint is used for linting _and_ formatting Less and Vue.js files. See
+    [.stylelintrc.json](.stylelintrc.json) and [.stylelintignore](.stylelintignore) for
+    configuration.
+
+[prettier]: https://prettier.io/playground/
+[eslint]: https://eslint.org/demo
+[stylelint]: https://stylelint.io/
+
 ### Versioning
 
 To publish a new release:
@@ -396,6 +424,7 @@ describes how to optimize your editor or IDE for optimal usage.
 -   [Vetur](https://marketplace.visualstudio.com/items?itemName=octref.vetur) - Enable
     `vetur.experimental.templateInterpolationService` for HTML template type checking in single file
     components.
+-   [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
 -   [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
 -   [stylelint](https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint)
 -   [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker) -
