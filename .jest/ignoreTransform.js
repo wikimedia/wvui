@@ -1,3 +1,4 @@
+/* eslint-env node */
 // See https://jestjs.io/docs/en/tutorial-react#custom-transformers.
 module.exports = {
 	/**
