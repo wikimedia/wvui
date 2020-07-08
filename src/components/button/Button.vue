@@ -49,7 +49,6 @@ export default Vue.extend( {
 @import ( reference ) '@/themes/wikimedia-ui.less';
 
 .wvui-button {
-	// All components use border-box box-sizing.
 	box-sizing: border-box;
 	// Interactive elements have a minimum and maximum touch area.
 	min-width: @min-size-widget-base;
