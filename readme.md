@@ -31,6 +31,9 @@ Wikipedia, MediaWiki, and beyond. See **[quick start](#quick-start)** to contrib
   - [Changing dependencies](#changing-dependencies)
   - [Linting and formatting](#linting-and-formatting)
   - [Versioning](#versioning)
+    - [Production release](#production-release)
+    - [Pre-release (alpha, beta, or release candidate)](#pre-release-alpha-beta-or-release-candidate)
+    - [Rolling development release](#rolling-development-release)
   - [Editor and IDE support](#editor-and-ide-support)
     - [Visual Studio Code](#visual-studio-code)
       - [Recommended extensions](#recommended-extensions)
@@ -43,6 +46,7 @@ Wikipedia, MediaWiki, and beyond. See **[quick start](#quick-start)** to contrib
   - [Bundle size](#bundle-size)
     - [bundlesize configuration](#bundlesize-configuration)
 - [Library design goals](#library-design-goals)
+- [License (GPL-2.0+)](#license-gpl-20)
 
 <!-- /code_chunk_output -->
 <!-- prettier-ignore-end -->
@@ -117,7 +121,8 @@ npm start
 -   `test` / `t`: run different types of tests including unit tests. See [testing](#testing).
 -   `run test:unit`: run the unit tests. Pass `-u` to update all Jest snapshots.
 -   `run format`: apply lint fixes automatically where available.
--   `version`: increment the version and publish a new release. See [versioning](#versioning).
+-   `version`: increment the version. See [versioning](#versioning).
+-   `publish`: publish the version to NPM. See [versioning](#versioning).
 
 Scripts containing `:` delimiters in their names are sub-scripts. They are invoked by the outermost
 delimited name (and possibly other scripts). For example, `test:unit` is executed by `test`.
@@ -334,11 +339,15 @@ some measure of fixing or "formatting" problems automatically by executing `npm 
 
 ### Versioning
 
+#### Production release
+
 To publish a new release:
 
 1. Update the [changelog](changelog.md) with release notes.
 2. Commit the changelog.
 3. Execute `npm version <patch|minor|major>`.
+4. Execute `npm publish`.
+5. Perform a [rolling development release](#rolling-development-release).
 
 <details markdown>
 <summary>Expand for example…</summary>
@@ -357,8 +366,11 @@ git add changelog.md
 # Commit the changelog.
 git commit -m '[docs][changelog] prepare release notes'
 
-# Attempt a complete release.
+# Version, build, and test a release.
 npm version minor
+
+# Publish the release
+npm publish
 ```
 
 </details>
@@ -372,9 +384,6 @@ By executing `npm version`, the following scripts are invoked in this order:
 1. `preversion`: test that the workspace contains no uncommitted changes.
 2. **`version`**: increment the version, clean, build, and test the candidate, commit, and tag the
    change.
-3. `postversion`: call `publish`.
-4. `prepublishOnly`: push the Git tag to the remote.
-5. **`publish`**: push the artifacts to npmjs.com as per usual.
 
 In detail, `version` is a built-in NPM script that increases the package.json's `version` property
 (`patch`, `minor`, or `major`) as specified, commits the result to version control, and adds a Git
@@ -386,8 +395,10 @@ control state is clean before that happens. No uncommitted changes are allowed! 
 if a superfluous file containing a password was unintentionally in the workspace and published to
 npmjs.com.
 
-The `postversion` NPM script, which runs after `version`, simply enforces that the `publish` NPM
-script is called.
+By executing `npm publish`, the following scripts are invoked in this order:
+
+1. `prepublishOnly`: push the Git tag to the remote.
+2. **`publish`**: push the artifacts to npmjs.com as per usual.
 
 Before `publish` is executed, `prepublishOnly` pushes the current commit and tag to the Git remote.
 If the push or publish fail due to connectivity, you should probably call `npm publish` directly
@@ -402,12 +413,56 @@ The intended result is:
 -   Only clean and tested packages are published.
 -   Git tags are available for all releases.
 -   Git tags pushed and NPM artifacts publishes are always in sync.
+-   NPM's `@latest` tag points to the current stable release and `@next` points to the latest
+    commit.
 
 See also:
 
 -   [NPM scripts](https://docs.npmjs.com/misc/scripts)
 -   [NPM version](https://docs.npmjs.com/cli/version)
 </details>
+
+#### Pre-release (alpha, beta, or release candidate)
+
+To publish a new alpha, beta, or release candidate:
+
+1. Execute `npm version <prerelease|prepatch|preminor|premajor> --preid=<alpha|beta|rc>`. This will
+   create a new version commit on the current branch.
+2. Execute `npm publish`.
+
+<details markdown>
+<summary>Expand for details on which version to use…</summary>
+
+`prerelease` is the safest choice. It always bumps the metadata number and _only_ bumps the patch
+number if a stable version exists. For example, given the current version is a stable v1.2.3,
+`npm version prerelease --preid=alpha` will create `v1.2.4-alpha.0`. Note that both the patch is
+bumped and metadata is added. If executed _again_, note that only the metadata number is bumped and
+the patch number stays the same: `v1.2.4-alpha.1`.
+
+`prerelease` can be slightly incorrect if the next release is known to be a minor or major release.
+In those cases, the correct initial alpha release would be `npm version preminor --preid=alpha` (or
+`premajor`) which would create `v1.3.0-alpha.0`. The subsequent alpha release would then be
+`npm version prerelease --preid=alpha` (note the command changes to `prerelease`) which creates
+`v1.3.0-alpha.1`.
+
+</details>
+
+#### Rolling development release
+
+To publish the current `master` `HEAD`:
+
+1. Execute `git checkout origin/master`.
+2. Execute `npm version prerelease --preid="next.$(TZ=utc date +%F-%H-%M)"`. This will create a new
+   version commit on the detached `HEAD` like `v1.2.4-next.2020-07-09-20-40.0`.
+3. Execute `npm publish --tag next`. This will push the commit
+
+The above steps create a dated version and tag. A timestamp is used to avoid conflicts as only one
+tag or version can ever exist. Additionally, the special NPM tags, `@latest` and `@next`, cannot
+point to the same version.
+
+Development releases can be installed by consumers via `npm install @wikimedia/wvui@next`. These
+releases are useful for integration testing and development as well as for early adopters who don't
+wish to build the WVUI library themselves.
 
 ### Editor and IDE support
 
@@ -524,7 +579,7 @@ The expectations for submitting a patch are:
     resolved.
 -   JavaScript configuration files are not type checked when building the library. This seems to be
     because Webpack shakes out dead code. All types can be tested manually via
-    `npx tsc --noEmit --incremental false`.
+    `npx --no-install tsc --noEmit --incremental false`.
 
 [storybook is incompatible with vue devtools]:
 	https://github.com/storybookjs/storybook/issues/1708#issuecomment-630262553
@@ -533,7 +588,7 @@ The expectations for submitting a patch are:
 
 WVUI uses [Browserslist] to help support and enforce browser compatibility. Supported targets are
 configured in [.browserslistsrc](.browserslistsrc) according to [MediaWiki grade A compatibility].
-To see the current list, execute `npx browserslist`.
+To see the current list, execute `npx --no-install browserslist`.
 
 Less inputs are linted for Browserslist compatibility. JavaScript build products are also linted for
 ES5 compatibility.
@@ -634,3 +689,7 @@ When changing the [bundlesize configuration](bundlesize.config.json):
 -   Thoroughly documented for development and usage; everything needed to be productive is in the
     readme.
 -   Well tested and robust.
+
+## License (GPL-2.0+)
+
+See [LICENSE](LICENSE).
