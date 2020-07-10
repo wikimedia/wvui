@@ -2,10 +2,17 @@
 
 @font-size-browser: 16; // assumed browser default of `16px`
 @font-size-base: 0.875 / 1em; // equals `14px` at browser default of `16px`
-@padding-horizontal-base: 12px;
+@wvui-unit: em;
 
 @size-base: 32 / @font-size-browser / @font-size-base; // equals `2.5em`≈`32px`
 @min-size-widget-base: @size-base;
 
 @background-color-quiet: @wmui-color-base90;
 @background-color-quiet--hover: @wmui-color-base80;
+
+@padding-horizontal-base: 12px;
+@padding-vertical-base: 6px;
+
+@border-radius-base: 3px;
+
+@line-height-base: unit(18 / @font-size-browser / @font-size-base, @wvui-unit);

@@ -6,6 +6,10 @@ Versions and bullets are arranged chronologically from latest to oldest.
 
 -   [update][button] Add initial styles
 -   [update][button] Flesh out props
+-   [dev] Add wikimedia-ui theme
+-   [dev] Prevent prettier from checking less files
+-   [build][dev] Enable CSS automatic vendor prefixing
+-   [dev] Add package.json files
 -   [dev] Split ESLint extends and rules
 -   [docs][dev] Document source maps
 -   [dev] Suppress superfluous Jest style warning

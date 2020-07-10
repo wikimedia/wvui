@@ -44,6 +44,8 @@ Wikipedia, MediaWiki, and beyond. See **[quick start](#quick-start)** to contrib
     - [Reviewer guidelines](#reviewer-guidelines)
   - [Known issues](#known-issues)
   - [Compatibility](#compatibility)
+    - [JavaScript](#javascript)
+    - [Less](#less-1)
 - [Performance](#performance)
   - [Bundle composition and source maps](#bundle-composition-and-source-maps)
   - [Bundle size](#bundle-size)
@@ -583,7 +585,7 @@ The expectations for submitting a patch are:
     resolved.
 -   JavaScript configuration files are not type checked when building the library. This seems to be
     because Webpack shakes out dead code. All types can be tested manually via
-    `npx tsc --noEmit --incremental false`.
+    `npx --no-install tsc --noEmit --incremental false`.
 
 [storybook is incompatible with vue devtools]:
 	https://github.com/storybookjs/storybook/issues/1708#issuecomment-630262553
@@ -592,14 +594,27 @@ The expectations for submitting a patch are:
 
 WVUI uses [Browserslist] to help support and enforce browser compatibility. Supported targets are
 configured in [.browserslistsrc](.browserslistsrc) according to [MediaWiki grade A compatibility].
-To see the current list, execute `npx browserslist`.
-
-Less inputs are linted for Browserslist compatibility. JavaScript build products are also linted for
-ES5 compatibility.
+To see the current list, execute `npx --no-install browserslist`.
 
 [browserslist]: https://github.com/browserslist/browserslist
 [mediawiki grade a compatibility]:
 	https://www.mediawiki.org/wiki/Compatibility#Browser_support_matrix
+
+#### JavaScript
+
+JavaScript build products are linted for ES5 compatibility.
+
+#### Less
+
+Less inputs are linted for compatibility and automatically prefixed for browser vendors according to
+the Browserslist config via the [PostCSS][autoprefixer] plugin. The current configuration only adds
+vendor prefixes like `-webkit-transition:all 1s; transition:all 1s`, _not_ polyfills. `#rgba` color
+syntax, like `#0000` for `transparent`, are also replaced as needed by cssnano. The prefixes used
+can be seen by executing `npx --no-install autoprefixer --info`.
+
+[postcss]: https://github.com/postcss/postcss
+[autoprefixer]: https://github.com/postcss/autoprefixer
+[cssnano]: https://cssnano.co
 
 ## Performance
 
