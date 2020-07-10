@@ -4,6 +4,7 @@ Versions and bullets are arranged chronologically from latest to oldest.
 
 ## v0.0.1 (unreleased)
 
+-   [update][icon] Add new component and styles
 -   [update][button] Add initial styles
 -   [update][button] Flesh out props
 -   [build][dev] Enable development releases
