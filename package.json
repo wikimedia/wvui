@@ -15,6 +15,11 @@
   "repository": "github:wikimedia/wvui",
   "bugs": "https://phabricator.wikimedia.org/tag/vue.js",
   "license": "GPL-2.0+",
+  "main": "dist/wvui.js",
+  "directories": {
+    "lib": "dist/lib",
+    "doc": "docs"
+  },
   "scripts": {
     "start": "start-storybook --quiet -p 3003",
     "build": "webpack -p",
