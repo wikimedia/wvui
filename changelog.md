@@ -4,6 +4,7 @@ Versions and bullets are arranged chronologically from latest to oldest.
 
 ## v0.0.1 (unreleased)
 
+-   [build][dev] Enable CSS automatic vendor prefixing
 -   [dev] Add package.json files
 -   [dev] Split ESLint extends and rules
 -   [docs][dev] Document source maps
