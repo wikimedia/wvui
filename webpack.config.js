@@ -50,8 +50,18 @@ function rules( mode ) {
 			test: /\.(c|le)ss$/,
 			use: [
 				{ loader: MiniCssExtractPlugin.loader, options: { hmr: mode === 'development' } },
-				'css-loader',
-				{ loader: 'less-loader', options: { sourceMap: mode === 'production' } }
+				{
+					loader: 'css-loader',
+					options: {
+						// The number of loaders applied before CSS loader. This is the recommended
+						// postcss-loader configuration.
+						// https://github.com/webpack-contrib/css-loader#importloaders
+						// https://github.com/postcss/postcss-loader#config-cascade
+						importLoaders: 2
+					}
+				},
+				'postcss-loader',
+				'less-loader'
 			]
 		}
 	];
@@ -106,9 +116,14 @@ module.exports = ( _env, argv ) => ( {
 	devtool: argv.mode === 'production' ? 'source-map' : 'cheap-module-eval-source-map',
 
 	optimization: {
-		// Enable CSS minification. Unfortunately, this overrides the default JavaScript
-		// minification so it must be re-enabled with the TerserJSPlugin. The default processor is
-		// cssnano which uses postcss.
+		// Enable CSS minification.
+		// - Unfortunately, this overrides the default JavaScript minification so it must be
+		//   re-enabled with the TerserJSPlugin.
+		// - The default processor is cssnano which uses postcss. It does not appear to be possible
+		//   to enable this step during the loading stage and preserve source maps correctly.
+		// - cssnano can itself be configured to use autoprefixer but 1) this requires the advanced
+		//   preset dependency and is unavailable in the default preset 2) autoprefixer must then be
+		//   configured to _add_ prefixes as a minifier is only concerned with eliminating code.
 		// https://github.com/webpack-contrib/mini-css-extract-plugin#minimizing-for-production
 		// https://github.com/NMFR/optimize-css-assets-webpack-plugin
 		// https://cssnano.co
