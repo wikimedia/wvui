@@ -73,7 +73,7 @@ export default Vue.extend( {
 		margin: 0;
 		border: @border-width-base @border-style-base @border-color-base;
 		border-radius: @border-radius-base;
-		padding: @padding-vertical-base @padding-horizontal-input-text;
+		padding: @padding-input-text;
 		font-size: inherit;
 		font-family: inherit;
 		line-height: @line-height-base;
