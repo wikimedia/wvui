@@ -42,6 +42,8 @@ Wikipedia, MediaWiki, and beyond. See **[quick start](#quick-start)** to contrib
     - [Reviewer guidelines](#reviewer-guidelines)
   - [Known issues](#known-issues)
   - [Compatibility](#compatibility)
+    - [JavaScript](#javascript)
+    - [Less](#less-1)
 - [Performance](#performance)
   - [Bundle size](#bundle-size)
     - [bundlesize configuration](#bundlesize-configuration)
@@ -590,12 +592,25 @@ WVUI uses [Browserslist] to help support and enforce browser compatibility. Supp
 configured in [.browserslistsrc](.browserslistsrc) according to [MediaWiki grade A compatibility].
 To see the current list, execute `npx --no-install browserslist`.
 
-Less inputs are linted for Browserslist compatibility. JavaScript build products are also linted for
-ES5 compatibility.
-
 [browserslist]: https://github.com/browserslist/browserslist
 [mediawiki grade a compatibility]:
 	https://www.mediawiki.org/wiki/Compatibility#Browser_support_matrix
+
+#### JavaScript
+
+JavaScript build products are linted for ES5 compatibility.
+
+#### Less
+
+Less inputs are linted for compatibility and automatically prefixed for browser vendors according to
+the Browserslist config via the [PostCSS][autoprefixer] plugin. The current configuration only adds
+vendor prefixes like `-webkit-transition:all 1s; transition:all 1s`, _not_ polyfills. `#rgba` color
+syntax, like `#0000` for `transparent`, are also replaced as needed by cssnano. The prefixes used
+can be seen by executing `npx --no-install autoprefixer --info`.
+
+[postcss]: https://github.com/postcss/postcss
+[autoprefixer]: https://github.com/postcss/autoprefixer
+[cssnano]: https://cssnano.co
 
 ## Performance
 

@@ -5,6 +5,7 @@ Versions and bullets are arranged chronologically from latest to oldest.
 ## v0.0.1 (unreleased)
 
 -   [build][dev] Enable development releases
+-   [build][dev] Enable CSS automatic vendor prefixing
 -   [dev] Split ESLint extends and rules
 -   [docs][dev] Document source maps
 -   [dev] Suppress superfluous Jest style warning
