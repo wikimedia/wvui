@@ -66,14 +66,6 @@ export default Vue.extend( {
 	vertical-align: middle;
 	box-sizing: border-box;
 
-	[ type='search' ] {
-		// Support: Safari, Chrome (Blink).
-		&::-webkit-search-decoration,
-		&::-webkit-search-cancel-button {
-			display: none;
-		}
-	}
-
 	.wvui-text-input-field {
 		background-color: @background-color-base;
 		box-shadow: @box-shadow-widget;
@@ -81,7 +73,7 @@ export default Vue.extend( {
 		margin: 0;
 		border: @border-width-base @border-style-base @border-color-base;
 		border-radius: @border-radius-base;
-		padding: 6px 8px;
+		padding: @padding-vertical-base @padding-horizontal-input-text;
 		font-size: inherit;
 		font-family: inherit;
 		line-height: @line-height-base;
@@ -89,16 +81,6 @@ export default Vue.extend( {
 		width: 100%;
 		box-sizing: border-box;
 		height: @size-base;
-
-		&::-ms-clear {
-			display: none;
-		}
-
-		&:focus {
-			outline: 0;
-			border-color: @wmui-color-accent50;
-			box-shadow: @box-shadow-base--focus;
-		}
 
 		&--enabled {
 			transition:
@@ -119,6 +101,24 @@ export default Vue.extend( {
 			color: @color-placeholder;
 			opacity: 1;
 		});
+
+		&::-ms-clear {
+			display: none;
+		}
+
+		&:focus {
+			outline: 0;
+			border-color: @wmui-color-accent50;
+			box-shadow: @box-shadow-base--focus;
+		}
+
+		[ type='search' ] {
+			// Support: Safari, Chrome (Blink).
+			&::-webkit-search-decoration,
+			&::-webkit-search-cancel-button {
+				display: none;
+			}
+		}
 	}
 
 	&:hover {
