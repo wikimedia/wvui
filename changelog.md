@@ -4,6 +4,7 @@ Versions and bullets are arranged chronologically from latest to oldest.
 
 ## v0.0.1 (unreleased)
 
+-   [dev] Prevent prettier from checking less files
 -   [build][dev] Enable CSS automatic vendor prefixing
 -   [dev] Add package.json files
 -   [dev] Split ESLint extends and rules
