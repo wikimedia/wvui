@@ -16,6 +16,7 @@ Wikipedia, MediaWiki, and beyond. See **[quick start](#quick-start)** to contrib
 
 - [Table of contents](#table-of-contents)
 - [Installation and version history](#installation-and-version-history)
+  - [Different builds](#different-builds)
 - [Development](#development)
   - [Quick start](#quick-start)
   - [NPM scripts](#npm-scripts)
@@ -45,6 +46,7 @@ Wikipedia, MediaWiki, and beyond. See **[quick start](#quick-start)** to contrib
     - [JavaScript](#javascript)
     - [Less](#less-1)
 - [Performance](#performance)
+  - [Bundle composition and source maps](#bundle-composition-and-source-maps)
   - [Bundle size](#bundle-size)
     - [bundlesize configuration](#bundlesize-configuration)
 - [Library design goals](#library-design-goals)
@@ -348,7 +350,7 @@ To publish a new release:
 1. Update the [changelog](changelog.md) with release notes.
 2. Commit the changelog.
 3. Execute `npm version <patch|minor|major>`.
-4. Execute `npm publish`.
+4. Execute `npm publish --access public`.
 5. Perform a [rolling development release](#rolling-development-release).
 
 <details markdown>
@@ -372,7 +374,7 @@ git commit -m '[docs][changelog] prepare release notes'
 npm version minor
 
 # Publish the release
-npm publish
+npm publish --access public
 ```
 
 </details>
@@ -430,7 +432,7 @@ To publish a new alpha, beta, or release candidate:
 
 1. Execute `npm version <prerelease|prepatch|preminor|premajor> --preid=<alpha|beta|rc>`. This will
    create a new version commit on the current branch.
-2. Execute `npm publish`.
+2. Execute `npm publish --access public`.
 
 <details markdown>
 <summary>Expand for details on which version to use…</summary>
@@ -456,7 +458,7 @@ To publish the current `master` `HEAD`:
 1. Execute `git checkout origin/master`.
 2. Execute `npm version prerelease --preid="next.$(TZ=utc date +%F-%H-%M)"`. This will create a new
    version commit on the detached `HEAD` like `v1.2.4-next.2020-07-09-20-40.0`.
-3. Execute `npm publish --tag next`. This will push the commit
+3. Execute `npm publish --access public --tag next`. This will push the commit
 
 The above steps create a dated version and tag. A timestamp is used to avoid conflicts as only one
 tag or version can ever exist. Additionally, the special NPM tags, `@latest` and `@next`, cannot
