@@ -1,6 +1,6 @@
 <template>
 	<span class="wvui-icon" :class="classes">
-		{{ label }}
+		<span class="wvui-icon__content"><slot /></span>
 	</span>
 </template>
 
@@ -9,6 +9,8 @@ import Vue from 'vue';
 
 /**
  * Span with icon background image.
+ *
+ * Slot may contain text for screen readers and will be visually hidden.
  *
  * Disclaimer: This only works if existing OOUI icon styles are accessible.
  */
@@ -21,11 +23,6 @@ export default Vue.extend( {
 		},
 		invert: {
 			type: Boolean
-		},
-		label: {
-			// String or message object.
-			type: [ String, Object ],
-			default: null
 		}
 	},
 	computed: {
@@ -60,5 +57,9 @@ export default Vue.extend( {
 	vertical-align: middle;
 	width: @size-icon / @font-size-browser / @font-size-base;
 	user-select: none;
+
+	&__content {
+		.wvui-visually-hidden();
+	}
 }
 </style>

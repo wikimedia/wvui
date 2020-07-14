@@ -16,3 +16,16 @@
 @border-radius-base: 3px;
 
 @line-height-base: unit(18 / @font-size-browser / @font-size-base, @wvui-unit);
+
+// Screen reader helper.
+.wvui-visually-hidden() {
+	display: block;
+	position: absolute;
+	clip: rect( 1px, 1px, 1px, 1px );
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+	border: 0;
+	padding: 0;
+	overflow: hidden;
+}
