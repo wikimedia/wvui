@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts">
-import { PrimaryAction, isPrimaryAction } from './PrimaryAction';
+import { PrimaryAction, isPrimaryAction } from '../../actions/PrimaryAction';
 import Vue, { PropType } from 'vue';
 
 /**
