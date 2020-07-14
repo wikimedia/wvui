@@ -16,10 +16,13 @@ export const configurable = (): Vue.Component =>
 		props: {
 			disabled: { type: Boolean, default: boolean( 'Disabled', false ) },
 			type: {
-				type: String as PropType<InputType>,
-				default: select( 'Input Type', Object.keys( InputType ), 'search' )
+				type: String as PropType<keyof typeof InputType>,
+				default: select( 'Input Type', Object.keys( InputType ), 'Search' )
 			},
 			placeholder: { type: String, default: text( 'Placeholder', 'Search...' ) }
+		},
+		data() {
+			return { InputType };
 		},
 		methods: {
 			input: action( 'input' ),
@@ -30,7 +33,7 @@ export const configurable = (): Vue.Component =>
 		template: `
 		<wvui-input
 			:placeholder="placeholder"
-			:type="type"
+			:type="InputType[ type ]"
 			:disabled="disabled"
 			@input="input"
 			@change="change"

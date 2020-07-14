@@ -24,11 +24,11 @@ export default Vue.extend( {
 	props: {
 		type: {
 			type: String as PropType<InputType>,
-			default: InputType.search,
+			default: InputType.Text,
 			validator: isInputType
 		},
 		disabled: {
-			type: Boolean as PropType<boolean>,
+			type: Boolean,
 			default: false
 		}
 	},

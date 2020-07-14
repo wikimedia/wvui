@@ -1,9 +1,9 @@
 /*
 * Defines types for text inputs
-* */
+*/
 export enum InputType {
-	text = 'text',
-	search = 'search'
+	Text = 'text',
+	Search = 'search'
 }
 
 /**
