@@ -221,6 +221,16 @@ The [Vue.js Style Guide](https://vuejs.org/v2/style-guide) is adhered to where p
     kebab-cased HTML in templates.
 -   Avoid making primitive base components complex. Make new components instead.
 
+### Templates
+
+#### Conventions
+
+-   Static CSS class names should be included directly in the template while dynamic class names
+    should come from a computed property that returns an object (not an array). This computed
+    property should be named `rootClasses` for the outermost element.
+-   If an element has both static and dynamic class names, the static classes should be listed
+    first, then the dynamic classes should be included via `v-bind` on the next line.
+
 ### TypeScript
 
 #### Conventions

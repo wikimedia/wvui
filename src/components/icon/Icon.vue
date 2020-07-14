@@ -17,10 +17,12 @@ import Vue from 'vue';
 export default Vue.extend( {
 	name: 'WvuiIcon',
 	props: {
+		/** TODO: document valid icon names and where to find them. */
 		icon: {
 			type: String,
 			required: true
 		},
+		/** True if icon is on a dark background, e.g. a primary button. */
 		invert: {
 			type: Boolean
 		}
@@ -44,16 +46,15 @@ export default Vue.extend( {
 	background-size: contain; // stylelint-disable-line plugin/no-unsupported-browser-features
 	background-position: center center;
 	background-repeat: no-repeat;
+	box-sizing: border-box;
 	display: inline-block;
 	height: @size-icon / @font-size-browser / @font-size-base;
-	line-height: 2.5;
-	margin: 0;
+	// Support: IE11, Edge 12+ (T94494), Firefox 31.5 (T93636)
 	min-height: @size-icon;
+	// Support: IE11, Edge 12+ (T94494), Firefox 31.5 (T93636)
 	min-width: @size-icon;
 	overflow: hidden;
-	padding: 0;
-	position: static;
-	text-indent: -9999px;
+	// For inline, inline-block, and table layouts.
 	vertical-align: middle;
 	width: @size-icon / @font-size-browser / @font-size-base;
 	user-select: none;
