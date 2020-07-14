@@ -64,12 +64,7 @@ export default Vue.extend( {
 	font-weight: bold;
 	// Contents are single line.
 	white-space: nowrap;
-	transition:
-		border-color @transition-base,
-		background-color @transition-base,
-		color @transition-base,
-		box-shadow @transition-base
-	;
+	transition: border-color @transition-base, background-color @transition-base, color @transition-base, box-shadow @transition-base;
 
 	&::-moz-focus-inner {
 		// [Firefox] hide the focus ring in all variations.

@@ -64,7 +64,11 @@
 						// `// eslint-disable-line max-len` would cause this line to be ignored AND this rule
 						// to be disabled which would trigger --report-unused-disable-directives. By excluding
 						// max-len, the  effect is to consider the line but disable this rule.
-						"ignorePattern": "// (?!eslint-.+max-len)eslint-.+"
+						//
+						// ESLint also runs on Single File Component Less styles. Since transitions are usually
+						// lengthy, and breaking them across multiple lines would require disabling other
+						// stylelint rules, allow transitions only to be of any length.
+						"ignorePattern": "// (?!eslint-.+max-len)eslint-.+|^\\s*transition: "
 					}
 				],
 
