@@ -1,11 +1,11 @@
-import { TextInputType, isTextInputType } from './TextInputType';
+import { InputType, isInputType } from './InputType';
 
 describe( 'isTextInputType()', () => {
 	// [description, input, expected]
 	type Case = [string, string, boolean];
 
 	const cases: Case[] = [
-		...Object.values( TextInputType ).map(
+		...Object.values( InputType ).map(
 			( type ) => [ type, type, true ]
 		) as Case[],
 		[ 'invalid', 'invalid', false ]
@@ -14,6 +14,6 @@ describe( 'isTextInputType()', () => {
 	test.each( cases )(
 		'Case %# %s: (%p) => %p',
 		( _, action, expected ) =>
-			expect( isTextInputType( action ) ).toStrictEqual( expected )
+			expect( isInputType( action ) ).toStrictEqual( expected )
 	);
 } );
