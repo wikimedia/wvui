@@ -23,7 +23,7 @@ export enum PrimaryAction {
 
 /**
  * @param val
- * @return whether an input is a ButtonAction.
+ * @return whether an input is a PrimaryAction.
  */
 export function isPrimaryAction( val: unknown ): val is PrimaryAction {
 	return Object.keys( PrimaryAction ).some(
