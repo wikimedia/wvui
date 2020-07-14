@@ -5,7 +5,6 @@ exports[`matches the snapshot Case 0 Input Type: text : ({"type": "text"}) => HT
   class="wvui-input"
 >
   <input
-    aria-autocomplete="list"
     class="wvui-input__input"
     dir="auto"
     type="text"
@@ -18,7 +17,6 @@ exports[`matches the snapshot Case 1 Input Type: search : ({"type": "search"}) =
   class="wvui-input"
 >
   <input
-    aria-autocomplete="list"
     class="wvui-input__input"
     dir="auto"
     type="search"

@@ -1,6 +1,6 @@
 import { InputType, isInputType } from './InputType';
 
-describe( 'isTextInputType()', () => {
+describe( 'isInputType()', () => {
 	// [description, input, expected]
 	type Case = [string, string, boolean];
 

@@ -1,7 +1,6 @@
 <template>
 	<div class="wvui-input">
 		<input
-			aria-autocomplete="list"
 			dir="auto"
 			class="wvui-input__input"
 			v-bind="$attrs"
@@ -94,8 +93,10 @@ export default Vue.extend( {
 			opacity: 1;
 		}
 
+		// Non standard pseudo-element
+		// Support: Internet Explorer 10, Internet Explorer 11, and Microsoft Edge.
+		// For details see https://developer.mozilla.org/en-US/docs/Web/CSS/::-ms-clear
 		&::-ms-clear {
-			// Support: Internet Explorer 10, Internet Explorer 11, and Microsoft Edge.
 			display: none;
 		}
 
@@ -115,7 +116,7 @@ export default Vue.extend( {
 	}
 
 	&:hover {
-		& &__input {
+		&__input {
 			border-color: @border-color-input--hover;
 		}
 	}

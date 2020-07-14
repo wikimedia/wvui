@@ -8,7 +8,7 @@ export enum InputType {
 
 /**
  * @param val
- * @return whether an input is a TextInputType.
+ * @return whether an input is a InputType.
  */
 export function isInputType( val: unknown ): val is InputType {
 	return Object.keys( InputType ).some(
