@@ -23,7 +23,7 @@ module.exports = {
 		Object.assign( config.resolve.extensions, commonConfig.resolve.extensions );
 		Object.assign( config.resolve.alias, commonConfig.resolve.alias );
 		config.module.rules.push( ...commonConfig.rules( config.mode ) );
-		config.plugins.push( ...commonConfig.plugins() );
+		config.plugins.push( ...commonConfig.plugins( config.mode ) );
 		config.performance = {
 			// Disable Webpack bundle size warnings. These apply to the docs only and are not a
 			// priority to fix.

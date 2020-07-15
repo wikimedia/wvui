@@ -16,6 +16,7 @@
   "bugs": "https://phabricator.wikimedia.org/tag/vue.js",
   "license": "GPL-2.0+",
   "main": "dist/wvui.js",
+  "types": "dist/src/entries/wvui.d.ts",
   "directories": {
     "lib": "dist/lib",
     "doc": "docs"
