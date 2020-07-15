@@ -1,7 +1,7 @@
 # 🧩 Wikimedia Vue UI
 
-Wikimedia Vue UI components. Wikimedia Foundation's Vue.js shared user-interface components for
-Wikipedia, MediaWiki, and beyond. See **[quick start](#quick-start)** to contribute.
+Wikimedia Vue UI (WVUI) components – [Wikimedia Foundation's](https://wikimediafoundation.org/) Vue.js shared user-interface components for
+Wikipedia, MediaWiki, and beyond. See **[quick start to contribute](#quick-start)**.
 
 ## Table of contents
 
