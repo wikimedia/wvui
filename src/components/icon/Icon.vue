@@ -48,6 +48,7 @@ export default Vue.extend( {
 	background-repeat: no-repeat;
 	box-sizing: border-box;
 	display: inline-block;
+	// Equivalent to @size-icon in ems relative to our base 0.875em font size.
 	height: @size-icon / @font-size-browser / @font-size-base;
 	// Support: IE11, Edge 12+ (T94494), Firefox 31.5 (T93636)
 	min-height: @size-icon;
@@ -56,6 +57,7 @@ export default Vue.extend( {
 	overflow: hidden;
 	// For inline, inline-block, and table layouts.
 	vertical-align: middle;
+	// Equivalent to @size-icon in ems relative to our base 0.875em font size.
 	width: @size-icon / @font-size-browser / @font-size-base;
 	user-select: none;
 
