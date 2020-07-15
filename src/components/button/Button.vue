@@ -1,5 +1,5 @@
 <template>
-	<button :class="classes" @click="onClick">
+	<button class="wvui-button" :class="rootClasses" @click="onClick">
 		<slot />
 	</button>
 </template>
@@ -26,9 +26,8 @@ export default Vue.extend( {
 		quiet: Boolean
 	},
 	computed: {
-		classes(): Record<string, boolean> {
+		rootClasses(): Record<string, boolean> {
 			return {
-				'wvui-button': true,
 				'wvui-button--default': this.action === PrimaryAction.Default,
 				'wvui-button--progressive': this.action === PrimaryAction.Progressive,
 				'wvui-button--destructive': this.action === PrimaryAction.Destructive,
