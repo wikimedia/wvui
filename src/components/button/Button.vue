@@ -72,7 +72,7 @@ export default Vue.extend( {
 
 	&:focus {
 		// Hide the standard focus outline. A border and box-shadow representation is added below.
-		outline: 0; // stylelint-disable-line plugin/no-unsupported-browser-features
+		outline: 0;
 	}
 
 	&[ disabled ] {
