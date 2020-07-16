@@ -454,16 +454,7 @@ In those cases, the correct initial alpha release would be `npm version preminor
 
 #### Rolling development release
 
-To publish the current `master` `HEAD`:
-
-1. Execute `git checkout origin/master`.
-2. Execute `npm version prerelease --preid="next.$(TZ=utc date +%F-%H-%M)"`. This will create a new
-   version commit on the detached `HEAD` like `v1.2.4-next.2020-07-09-20-40.0`.
-3. Execute `npm publish --access public --tag next`. This will push the commit
-
-The above steps create a dated version and tag. A timestamp is used to avoid conflicts as only one
-tag or version can ever exist. Additionally, the special NPM tags, `@latest` and `@next`, cannot
-point to the same version.
+To publish the current `master` `HEAD`, execute `bin/release-dev`.
 
 Development releases can be installed by consumers via `npm install @wikimedia/wvui@next`. These
 releases are useful for integration testing and development as well as for early adopters who don't
