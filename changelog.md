@@ -5,6 +5,7 @@ Versions and bullets are arranged chronologically from latest to oldest.
 ## v0.0.1 (unreleased)
 
 -   [update] Flesh out Button props
+-   [update] Add initial TextInput styles and props
 -   [build][dev] Enable development releases
 -   [dev] Add wikimedia-ui theme
 -   [dev] Prevent prettier from checking less files
