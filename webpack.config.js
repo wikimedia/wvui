@@ -37,10 +37,14 @@ function rules( mode ) {
 			// Do not process node_modules at all. This means no transpilation of dependencies.
 			include: path.resolve( __dirname, 'src' ),
 			use: {
-				// Type checking is performed by ForkTsCheckerWebpackPlugin.
 				loader: 'ts-loader',
 				options: {
-					transpileOnly: true
+					// Type checking is performed by ForkTsCheckerWebpackPlugin which does not emit
+					// TypeScript definitions. See
+					// https://github.com/TypeStrong/fork-ts-checker-webpack-plugin/issues/49
+					transpileOnly: mode === 'development',
+					// Needed when transpiling.
+					appendTsSuffixTo: [ /\.vue$/ ]
 				}
 			}
 		},
@@ -71,11 +75,12 @@ function rules( mode ) {
  * List of webpack plugins to be used
  * in common configuration
  *
+ * @param {'development' | 'production' | 'none'} [mode]
  * @return {webpack.Plugin[]}
  * */
-function plugins() {
+function plugins( mode ) {
 	return [
-		new ForkTsCheckerWebpackPlugin(),
+		...( mode === 'development' ? [ new ForkTsCheckerWebpackPlugin() ] : [] ),
 		new MiniCssExtractPlugin()
 	];
 }
@@ -163,7 +168,7 @@ module.exports = ( _env, argv ) => ( {
 			// Don't delete the ES5 linter config.
 			cleanOnceBeforeBuildPatterns: [ '**/*', '!.eslintrc.json' ]
 		} ),
-		...plugins(),
+		...plugins( argv.mode ),
 		new VueLoaderPlugin(),
 		new BundleAnalyzerPlugin( {
 			analyzerMode: argv.mode === 'development' ? 'disabled' : 'static',
