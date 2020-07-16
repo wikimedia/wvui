@@ -4,6 +4,7 @@ Versions and bullets are arranged chronologically from latest to oldest.
 
 ## v0.0.1 (unreleased)
 
+-   [update] Flesh out Button props
 -   [dev] Upgrade dependencies
 -   [build][fix] Export TypeScript definitions
 -   [update] Add initial TextInput styles and props

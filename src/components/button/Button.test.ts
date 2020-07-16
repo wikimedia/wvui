@@ -1,22 +1,30 @@
+import { PrimaryAction } from '../../actions/PrimaryAction';
 import { shallowMount } from '@vue/test-utils';
 import WvuiButton from './Button.vue';
 
-describe( 'wvui-button', () => {
-	it( 'matches the snapshot', () => {
-		const wrapper = shallowMount( WvuiButton );
+describe( 'matches the snapshot', () => {
+	// [description, props, slot]
+	type Case = [string, Record<keyof unknown, unknown>, string];
+
+	const cases: Case[] = [
+		[ 'No props and no slot', {}, '' ],
+		...( Object.values( PrimaryAction ).map( ( action ) => [
+			`${action} action`,
+			{ action },
+			''
+		] ) as Case[] ),
+		[ 'Quiet', { quiet: true }, '' ],
+		[ 'Slotted', {}, '<span>Label</span>' ]
+	];
+
+	test.each( cases )( 'Case %# %s: (%p) => HTML', ( _, props, slot ) => {
+		const wrapper = shallowMount( WvuiButton, { propsData: props, slots: { default: slot } } );
 		expect( wrapper.element ).toMatchSnapshot();
 	} );
+} );
 
-	it( 'renders button element', () => {
-		const wrapper = shallowMount( WvuiButton );
-
-		expect( wrapper.get( 'button' ) ).toBeTruthy();
-	} );
-
-	it( 'do something on click', () => {
-		const wrapper = shallowMount( WvuiButton );
-
-		wrapper.find( 'button' ).trigger( 'click' );
-		expect( wrapper.emitted().click ).toBeTruthy();
-	} );
+it( 'emits click events', () => {
+	const wrapper = shallowMount( WvuiButton );
+	wrapper.get( 'button' ).trigger( 'click' );
+	expect( wrapper.emitted().click ).toBeTruthy();
 } );
