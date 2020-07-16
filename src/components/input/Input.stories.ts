@@ -5,7 +5,7 @@ import WvuiInput from './Input.vue';
 import { InputType } from './InputType';
 
 export default {
-	title: 'Components/wvui-input',
+	title: 'Components/Input',
 	component: WvuiInput,
 	parameters: { layout: 'centered' }
 };

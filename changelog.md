@@ -6,6 +6,8 @@ Versions and bullets are arranged chronologically from latest to oldest.
 
 -   [update][button] Add initial styles
 -   [update][button] Flesh out props
+-   [dev] Upgrade dependencies
+-   [build][fix] Export TypeScript definitions
 -   [update] Add initial TextInput styles and props
 -   [build][dev] Enable development releases
 -   [dev] Add wikimedia-ui theme

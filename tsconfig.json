@@ -30,9 +30,7 @@
 		"sourceMap": true,
 		"outDir": "dist",
 
-		// Emit type definitions (.d.ts) for consumers to test their integration typing. Broken in
-		// current configuration:
-		// https://github.com/TypeStrong/fork-ts-checker-webpack-plugin/issues/49.
+		// Emit type definitions (.d.ts) for consumers to test their integration typing.
 		"declaration": true,
 
 		// Workaround Fork TS Checker Webpack Plugin issue.
