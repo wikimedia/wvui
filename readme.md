@@ -212,6 +212,9 @@ To start developing with Storybook, simply run `npm start` command (see
 
 ### Vue.js
 
+Vue.js Single File Components are used for all runtime components. The [Vue.js template explorer] is
+useful for debugging.
+
 #### Conventions
 
 The [Vue.js Style Guide](https://vuejs.org/v2/style-guide) is adhered to where possible.
@@ -222,7 +225,11 @@ The [Vue.js Style Guide](https://vuejs.org/v2/style-guide) is adhered to where p
     kebab-cased HTML in templates.
 -   Avoid making primitive base components complex. Make new components instead.
 
+[vue.js template explorer]: https://template-explorer.vuejs.org
+
 ### TypeScript
+
+TypeScript is used for all runtime sources. The [TypeScript playground] is useful for debugging.
 
 #### Conventions
 
@@ -247,7 +254,11 @@ The [Vue.js Style Guide](https://vuejs.org/v2/style-guide) is adhered to where p
 -   Vue imports terminate in `.vue`. TypeScript imports are extensionless. A compilation error will
     occur otherwise.
 
+[typescript playground]: https://www.typescriptlang.org/play/
+
 ### Less
+
+Less is used for all runtime styles. The [Less playground] is useful for debugging.
 
 #### Conventions
 
@@ -278,6 +289,7 @@ Import paths are resolved using [less-loader]:
 -   Prepend a single `~` for NPM dependency files. For example,
     `@import ( reference ) '~wikimedia-ui-base/wikimedia-ui-base.less';`.
 
+[less playground]: http://lesscss.org/less-preview/
 [import options]: http://lesscss.org/features/#import-atrules-feature-import-options
 [less-loader]: https://github.com/webpack-contrib/less-loader#imports
 
