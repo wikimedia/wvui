@@ -4,6 +4,7 @@ Versions and bullets are arranged chronologically from latest to oldest.
 
 ## v0.0.1 (unreleased)
 
+-   [component][input] Add button control for input
 -   [component][input] Add icon implementation for input
 -   [component][button] Add initial styles
 -   [dev] Upgrade dependencies

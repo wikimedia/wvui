@@ -1,5 +1,5 @@
 <template>
-	<div class="wvui-input">
+	<div class="wvui-input" :class="rootClasses">
 		<input
 			ref="input"
 			dir="auto"
@@ -34,6 +34,13 @@
 					</g>
 				</svg>
 			</span>
+		</span>
+		<span
+			v-if="hasControlSlot"
+			ref="control"
+			class="wvui-input__control"
+		>
+			<slot />
 		</span>
 	</div>
 </template>
@@ -74,6 +81,19 @@ export default Vue.extend( {
 			searchIcon: mwIconSearch
 		};
 
+	},
+	computed: {
+		/*
+		* Checks if slot component is provided
+		* */
+		hasControlSlot: function (): boolean {
+			return !!this.$scopedSlots.default;
+		},
+		rootClasses: function () {
+			return {
+				'wvui-input--has-control': !!this.$scopedSlots.default
+			};
+		}
 	},
 	mounted() {
 		this.$nextTick( () => {
@@ -212,6 +232,29 @@ export default Vue.extend( {
 	&:hover {
 		&__input {
 			border-color: @border-color-input--hover;
+		}
+	}
+
+	&__control {
+		height: @size-base;
+
+		& button {
+			height: 100%;
+			border-top-left-radius: 0;
+			border-bottom-left-radius: 0;
+			border-left-width: 0;
+		}
+	}
+
+	&--has-control {
+		// stylelint-disable-next-line plugin/no-unsupported-browser-features
+		display: flex;
+		flex-direction: row;
+
+		& > .wvui-input__input {
+			flex: 1;
+			border-top-right-radius: 0;
+			border-bottom-right-radius: 0;
 		}
 	}
 }

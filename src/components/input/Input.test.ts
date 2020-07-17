@@ -1,5 +1,6 @@
 import { mount, shallowMount } from '@vue/test-utils';
 import WvuiInput from './Input.vue';
+import WvuiButton from '../button/Button.vue';
 import { InputType } from './InputType';
 
 describe( 'matches the snapshot', () => {
@@ -21,6 +22,25 @@ it( 'should render an icon', () => {
 	const wrapper = shallowMount( WvuiInput, { propsData: { icon: 'search' } } );
 	expect( wrapper.element ).toMatchSnapshot();
 	expect( wrapper.find( '.wvui-input__icon' ) ).toBeTruthy();
+} );
+
+it( 'should render a button in a slot', () => {
+	const wrapper = shallowMount(
+		WvuiInput,
+		{
+			propsData: { icon: 'search' },
+			stubs: {
+				'wvui-button': WvuiButton
+			},
+			slots: {
+				default: '<wvui-button>Search</wvui-button>'
+			}
+		}
+	);
+	expect( wrapper.element ).toMatchSnapshot();
+	expect( wrapper.classes() ).toContain( 'wvui-input--has-control' );
+	expect( wrapper.find( '.wvui-input__control' ) ).toBeTruthy();
+	expect( wrapper.find( '.wvui-button' ) ).toBeTruthy();
 } );
 
 it( 'emits input events', async () => {
