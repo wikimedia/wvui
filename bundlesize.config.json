@@ -1,6 +1,6 @@
 {
 	"files": [
-		{ "path": "./dist/wvui.js", "maxSize": "1.5 KB" },
+		{ "path": "./dist/wvui.js", "maxSize": "1.6 KB" },
 		{ "path": "./dist/wvui.css", "maxSize": "0.9 KB" }
 	]
 }

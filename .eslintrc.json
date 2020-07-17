@@ -101,6 +101,7 @@
 			"files": ["*.ts", "*.vue"],
 			"rules": {
 				// Covered by TypeScript.
+				"no-undef": "off",
 				"jsdoc/require-param-type": "off",
 				"jsdoc/require-returns-type": "off",
 				"@typescript-eslint/explicit-function-return-type": [

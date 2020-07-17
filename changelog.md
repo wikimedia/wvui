@@ -5,6 +5,8 @@ Versions and bullets are arranged chronologically from latest to oldest.
 ## v0.0.1 (unreleased)
 
 -   [update][button] Add initial styles
+-   [build][fix] Publish bundled CSS and types
+-   [build][dev] Include WVUI version in release
 -   [build][dev] Move docs to development release script
 -   [update][button] Flesh out props
 -   [dev] Upgrade dependencies
