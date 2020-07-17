@@ -9,6 +9,7 @@ const { VueLoaderPlugin } = require( 'vue-loader' );
 const webpack = require( 'webpack' );
 const path = require( 'path' );
 const { BundleAnalyzerPlugin } = require( 'webpack-bundle-analyzer' );
+const { version } = require( './package.json' );
 
 const resolve = {
 	extensions: [ '.js', '.ts' ],
@@ -16,8 +17,13 @@ const resolve = {
 	alias: { '@': path.resolve( __dirname, './src' ) }
 };
 
-const jsSourceMapExtention = '.map.json';
+// The extension used for source map files. Per T173491, files with a .map extension cannot be
+// served from prod. It doesn't seem to be practical to rename the CSS source maps.
+const jsSourceMapExtension = '.map.json';
 
+// Enumeration of chunk names. The key is a symbol and the value is the chunk name and file stem.
+// # See readme.md#different-builds for details. Some of these chunks have specific entry points
+// under src/entries and others are generated automatically.
 const Chunk = {
 	Wvui: 'wvui'
 };
@@ -81,7 +87,11 @@ function rules( mode ) {
 function plugins( mode ) {
 	return [
 		...( mode === 'development' ? [ new ForkTsCheckerWebpackPlugin() ] : [] ),
-		new MiniCssExtractPlugin()
+		new MiniCssExtractPlugin(),
+		// The DefinePlugins entries should be kept in sync with Environment.d.ts.
+		new webpack.DefinePlugin( {
+			VERSION: JSON.stringify( version )
+		} )
 	];
 }
 
@@ -112,7 +122,7 @@ module.exports = ( _env, argv ) => ( {
 
 	performance: {
 		// The default filter excludes map files but we rename ours. See T173491.
-		assetFilter: ( filename ) => !filename.endsWith( jsSourceMapExtention )
+		assetFilter: ( filename ) => !filename.endsWith( jsSourceMapExtension )
 	},
 
 	// Accurate source maps come at the expense of build time. The source map is intentionally
@@ -145,7 +155,7 @@ module.exports = ( _env, argv ) => ( {
 	},
 
 	output: {
-		sourceMapFilename: `[file]${jsSourceMapExtention}`,
+		sourceMapFilename: `[file]${jsSourceMapExtension}`,
 		// Set the name to avoid possible Webpack runtime collisions of globals with other Webpack
 		// runtimes. See https://webpack.js.org/configuration/output/#outputuniquename.
 		library: 'wvui',
