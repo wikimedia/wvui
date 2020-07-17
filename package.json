@@ -17,6 +17,10 @@
   "license": "GPL-2.0+",
   "main": "dist/wvui.js",
   "types": "dist/src/entries/wvui.d.ts",
+  "files": [
+    "dist",
+    "!dist/.eslintrc.json"
+  ],
   "directories": {
     "lib": "dist/lib",
     "doc": "docs"
