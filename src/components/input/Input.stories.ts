@@ -22,7 +22,9 @@ export const configurable = (): Vue.Component =>
 			placeholder: { type: String, default: text( 'Placeholder', 'Search...' ) }
 		},
 		data() {
-			return { InputType };
+			return {
+				InputType
+			};
 		},
 		methods: {
 			input: action( 'input' ),
@@ -31,14 +33,41 @@ export const configurable = (): Vue.Component =>
 			blur: action( 'blur' )
 		},
 		template: `
-		<wvui-input
-			:placeholder="placeholder"
-			:type="InputType[ type ]"
-			:disabled="disabled"
-			@input="input"
-			@change="change"
-			@focus="focus"
-			@blur="blur"
-		></wvui-input>
+		<div style="width: 100%; min-width: 400px">
+				<wvui-input
+						:placeholder="placeholder"
+            :type="InputType[ type ]"
+						:disabled="disabled"
+						@input="input"
+						@change="change"
+						@focus="focus"
+						@blur="blur"
+				/>
+		</div>
 		`
+	} );
+
+export const withIcon = (): Vue.Component =>
+	Vue.extend( {
+		components: { WvuiInput },
+		props: {
+			disabled: { type: Boolean, default: boolean( 'Disabled', false ) }
+		},
+		data() {
+			return {
+				InputType
+			};
+		},
+
+		template: `
+		<div class="sb-input-preview">
+				<wvui-input
+						placeholder="Search..."
+            :type="InputType.Search"
+						icon="search"
+						:disabled="disabled"
+					
+				/>
+		</div>
+	`
 	} );

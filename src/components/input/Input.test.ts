@@ -17,10 +17,16 @@ describe( 'matches the snapshot', () => {
 	} );
 } );
 
-it( 'emits input events', () => {
+it( 'should render an icon', () => {
+	const wrapper = shallowMount( WvuiInput, { propsData: { icon: 'search' } } );
+	expect( wrapper.element ).toMatchSnapshot();
+	expect( wrapper.find( '.wvui-input__icon' ) ).toBeTruthy();
+} );
+
+it( 'emits input events', async () => {
 	const wrapper = shallowMount( WvuiInput );
 
-	wrapper.get( 'input' ).trigger( 'input' );
+	await wrapper.get( 'input' ).trigger( 'input' );
 	expect( wrapper.emitted().input ).toBeTruthy();
 } );
 
@@ -43,4 +49,29 @@ it( 'emits blur events', () => {
 
 	wrapper.get( 'input' ).trigger( 'blur' );
 	expect( wrapper.emitted().blur ).toBeTruthy();
+} );
+
+it( 'should emit focus on icon click', async () => {
+	const wrapper = mount( WvuiInput, { propsData: { icon: 'search' } } );
+	const iconElement = wrapper.find( '.wvui-input__icon' );
+	const input: HTMLElement = wrapper.find( 'input' ).element;
+	const focusSpy = jest.spyOn( input, 'focus' );
+
+	await iconElement.trigger( 'click' );
+
+	expect( focusSpy ).toHaveBeenCalled();
+
+} );
+
+it( 'should set correct offset', async () => {
+	const expectedStyles = { marginLeft: '5px', marginRight: '5px' };
+	const wrapper = mount( WvuiInput, { propsData: { icon: 'search', iconOffset: 5 } } );
+
+	expect( wrapper.vm.$data.iconStyles ).toEqual( expectedStyles );
+
+	const icon: HTMLElement = wrapper.find( '.wvui-input__icon' ).element;
+
+	expect( icon.style.marginLeft ).toEqual( expectedStyles.marginLeft );
+	expect( icon.style.marginRight ).toEqual( expectedStyles.marginRight );
+
 } );
