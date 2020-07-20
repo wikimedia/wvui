@@ -1,5 +1,17 @@
 <template>
 	<span class="wvui-icon" :class="classes">
+		<svg
+			xmlns="http://www.w3.org/2000/svg"
+			:width="size"
+			:height="size"
+			viewBox="0 0 20 20"
+			aria-hidden="true"
+			role="presentation"
+		>
+			<g :fill="iconColor">
+				<path :d="iconPath" />
+			</g>
+		</svg>
 		<span class="wvui-icon__content"><slot /></span>
 	</span>
 </template>
@@ -8,32 +20,76 @@
 import Vue from 'vue';
 
 /**
- * Span with icon background image.
+ * SVG icon.
+ *
+ * See src/themes/icons.ts for a list of all icons and src/themes/iconGroups.ts
+ * for icons grouped by category. To use an icon, import it or the iconGroup
+ * it's in, assign it to a name in your component's data option, then use v-bind
+ * to set the icon attribute of the <wvui-icon> element to that name.
+ *
+ * Alternately, custom or third-party icons could be used as long as the icon
+ * prop provided to this component is either a string containing the icon path
+ * or an object with a `path` property.
+ *
+ * Some icons should be flipped in RTL languages and some icons differ per
+ * language. This component relies on the dir and lang attributes of the <html>
+ * element, respectively, to handle those instances. See src/themes/icons.ts
+ * for data structure (e.g. wvuiIconBold).
  *
  * Slot may contain text for screen readers and will be visually hidden.
- *
- * Disclaimer: This only works if existing OOUI icon styles are accessible.
  */
 export default Vue.extend( {
 	name: 'WvuiIcon',
 	props: {
-		/** TODO: document valid icon names and where to find them. */
+		/** The svg path or an object containing that path plus other data. */
 		icon: {
-			type: String,
+			type: [ String, Object ],
 			required: true
 		},
-		/** True if icon is on a dark background, e.g. a primary button. */
-		invert: {
-			type: Boolean
+		/** Numerical color value (e.g. hex code, rgba) or keyword. */
+		iconColor: {
+			type: String,
+			default: 'currentColor'
+		},
+		/** The default height and width of the icon, in pixels. */
+		size: {
+			type: [ Number, String ],
+			default: 20
 		}
+	},
+	data(): Record<string, string> {
+		return {
+			langCode: document.documentElement.lang,
+			dir: document.documentElement.dir || 'ltr'
+		};
 	},
 	computed: {
 		classes(): Record<string, boolean> {
-			// Use the existing OOUI classes for icon images for now.
 			return {
-				[ 'oo-ui-icon-' + this.icon ]: true,
-				'oo-ui-image-invert': this.invert
+				'wvui-icon--flippable': this.icon?.flippable
 			};
+		},
+		iconPath(): string {
+			// Icon with a single path.
+			if ( !this.icon.paths ) {
+				return this.icon?.path || this.icon;
+			}
+
+			// Icon that differs per language.
+			if ( this.icon.languageMap ) {
+				// If there's a path specified for this language, user it.
+				const iconKey = this.icon.languageMap?.[ this.langCode ];
+				if ( iconKey && this.icon.paths?.[ iconKey ] ) {
+					return this.icon.paths?.[ iconKey ];
+				}
+
+				// Use the default path if there is one.
+				return this.icon.paths?.[ this.icon.default ] || '';
+			}
+
+			// Icon that differs between LTR and RTL languages, but can't just
+			// be flipped horizontally.
+			return this.icon.paths?.[ this.dir ] || '';
 		}
 	}
 } );
@@ -43,26 +99,23 @@ export default Vue.extend( {
 @import ( reference ) '@/themes/wikimedia-ui.less';
 
 .wvui-icon {
-	background-size: contain; // stylelint-disable-line plugin/no-unsupported-browser-features
-	background-position: center center;
-	background-repeat: no-repeat;
-	box-sizing: border-box;
-	display: inline-block;
-	// Equivalent to @size-icon in ems relative to our base 0.875em font size.
-	height: @size-icon / @font-size-browser / @font-size-base;
-	// Support: IE11, Edge 12+ (T94494), Firefox 31.5 (T93636)
-	min-height: @size-icon;
-	// Support: IE11, Edge 12+ (T94494), Firefox 31.5 (T93636)
-	min-width: @size-icon;
-	overflow: hidden;
+	align-items: center;
+	// Maintain an inline outer element while using flexbox to center the SVG
+	// and avoid extra space around the image.
+	display: inline-flex; // stylelint-disable-line plugin/no-unsupported-browser-features
+	justify-content: center;
 	// For inline, inline-block, and table layouts.
 	vertical-align: middle;
-	// Equivalent to @size-icon in ems relative to our base 0.875em font size.
-	width: @size-icon / @font-size-browser / @font-size-base;
 	user-select: none;
 
+	// Text content is only for screen readers.
 	&__content {
 		.wvui-visually-hidden();
 	}
+}
+
+// Horizontally flip icons that should be flipped for RTL languages.
+[ dir='rtl' ] .wvui-icon--flippable svg {
+	transform: scaleX( -1 );
 }
 </style>

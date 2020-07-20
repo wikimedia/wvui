@@ -1,23 +1,83 @@
-import { boolean, text } from '@storybook/addon-knobs';
+import { color, number } from '@storybook/addon-knobs';
 import Vue from 'vue';
 import WvuiIcon from './Icon.vue';
+import * as iconGroups from './../../themes/iconGroups';
 
 export default {
 	title: 'Components/Icon',
 	parameters: { layout: 'centered' }
 };
 
-export const configurable = (): Vue.Component =>
+export const iconsLTR = (): Vue.Component =>
 	Vue.extend( {
 		components: { WvuiIcon },
 		props: {
-			icon: { type: String, default: text( 'Icon', 'tag' ) },
-			invert: { type: Boolean, default: boolean( 'Invert', false ) },
-			slotProp: { type: String, default: text( 'Slot', 'Tag this image' ) }
+			iconColor: { type: String, default: color( 'Icon color', 'rgba(32,33,34,1)' ) },
+			size: { type: Number, default: number( 'Icon size', 20 ) }
+		},
+		data() {
+			return {
+				iconGroups,
+				icon: null
+			};
+		},
+		beforeMount() {
+			window.document.documentElement.setAttribute( 'dir', 'ltr' );
 		},
 		template: `
-			<wvui-icon :icon="icon" :invert="invert">
-				{{slotProp}}
-			</wvui-icon>
+		<div>
+			<div v-for="iconGroup in Object.keys( iconGroups )" :key="iconGroup">
+				<h2>{{ iconGroup.replace( 'wvuiIconGroup', '' ) }}</h2>
+				<div v-for="icon in Object.keys( iconGroups[ iconGroup ] )" :key="icon">
+					<p>
+						<wvui-icon
+							:icon="iconGroups[ iconGroup ][ icon ]"
+							:iconColor="iconColor"
+							:size="size"
+						>
+							{{ icon }}
+						</wvui-icon>
+						{{ icon }}
+					</p>
+				</div>
+			</div>
+		</div>
+		`
+	} );
+
+export const iconsRTL = (): Vue.Component =>
+	Vue.extend( {
+		components: { WvuiIcon },
+		props: {
+			iconColor: { type: String, default: color( 'Icon color', 'rgba(32,33,34,1)' ) },
+			size: { type: Number, default: number( 'Icon size', 20 ) }
+		},
+		data() {
+			return {
+				iconGroups,
+				icon: null
+			};
+		},
+		beforeMount() {
+			window.document.documentElement.setAttribute( 'dir', 'rtl' );
+		},
+		template: `
+		<div>
+			<div v-for="iconGroup in Object.keys( iconGroups )" :key="iconGroup">
+				<h2>{{ iconGroup.replace( 'wvuiIconGroup', '' ) }}</h2>
+				<div v-for="icon in Object.keys( iconGroups[ iconGroup ] )" :key="icon">
+					<p>
+						<wvui-icon
+							:icon="iconGroups[ iconGroup ][ icon ]"
+							:iconColor="iconColor"
+							:size="size"
+						>
+							{{ icon }}
+						</wvui-icon>
+						{{ icon }}
+					</p>
+				</div>
+			</div>
+		</div>
 		`
 	} );

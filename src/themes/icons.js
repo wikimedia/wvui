@@ -6,7 +6,10 @@
  *  - A path string
  *  - An object containing a path property
  *  - An object containing a paths property that contains different paths per
- *    language or text direction
+ *    language (e.g. wvuiIconBold) or text direction (e.g. wvuiIconEditUndo).
+ *
+ * The flippable property will allow an icon to be flipped horizontally if text
+ * direction is set to rtl.
  *
  * If tree-shaking cannot be relied upon, consider creating an entry point that
  * defines the icons that are needed instead of including them all.
