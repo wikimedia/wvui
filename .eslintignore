@@ -7,8 +7,10 @@
 /.eslintrc.json
 /tsconfig.json
 
-# Lint the compiled outputs to validate ES5 but not the generated source maps.
+# Lint the compiled outputs to validate ES5 but not the generated source maps or TypeScript
+# definitions.
 /dist/*.map.json
+/dist/src/
 
 # Lint hidden files and folders.
 !/.jest/

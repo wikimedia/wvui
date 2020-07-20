@@ -1,7 +1,8 @@
 # 🧩 Wikimedia Vue UI
 
-Wikimedia Vue UI components. Wikimedia Foundation's Vue.js shared user-interface components for
-Wikipedia, MediaWiki, and beyond. See **[quick start](#quick-start)** to contribute.
+Wikimedia Vue UI (WVUI) components – [Wikimedia Foundation's](https://wikimediafoundation.org/)
+Vue.js shared user-interface components for Wikipedia, MediaWiki, and beyond. See
+**[quick start to contribute](#quick-start)**.
 
 ## Table of contents
 
@@ -211,6 +212,9 @@ To start developing with Storybook, simply run `npm start` command (see
 
 ### Vue.js
 
+Vue.js Single File Components are used for all runtime components. The [Vue.js template explorer] is
+useful for debugging.
+
 #### Conventions
 
 The [Vue.js Style Guide](https://vuejs.org/v2/style-guide) is adhered to where possible.
@@ -220,6 +224,8 @@ The [Vue.js Style Guide](https://vuejs.org/v2/style-guide) is adhered to where p
     `MwFoo` with a lowercase "w". - ✗ Do _not_ use `MWFoo` with a capital "W". This breaks
     kebab-cased HTML in templates.
 -   Avoid making primitive base components complex. Make new components instead.
+
+[vue.js template explorer]: https://template-explorer.vuejs.org
 
 ### Templates
 
@@ -232,6 +238,8 @@ The [Vue.js Style Guide](https://vuejs.org/v2/style-guide) is adhered to where p
     first, then the dynamic classes should be included via `v-bind` on the next line.
 
 ### TypeScript
+
+TypeScript is used for all runtime sources. The [TypeScript playground] is useful for debugging.
 
 #### Conventions
 
@@ -256,7 +264,11 @@ The [Vue.js Style Guide](https://vuejs.org/v2/style-guide) is adhered to where p
 -   Vue imports terminate in `.vue`. TypeScript imports are extensionless. A compilation error will
     occur otherwise.
 
+[typescript playground]: https://www.typescriptlang.org/play/
+
 ### Less
+
+Less is used for all runtime styles. The [Less playground] is useful for debugging.
 
 #### Conventions
 
@@ -287,6 +299,7 @@ Import paths are resolved using [less-loader]:
 -   Prepend a single `~` for NPM dependency files. For example,
     `@import ( reference ) '~wikimedia-ui-base/wikimedia-ui-base.less';`.
 
+[less playground]: http://lesscss.org/less-preview/
 [import options]: http://lesscss.org/features/#import-atrules-feature-import-options
 [less-loader]: https://github.com/webpack-contrib/less-loader#imports
 
@@ -520,16 +533,7 @@ In those cases, the correct initial alpha release would be `npm version preminor
 
 #### Rolling development release
 
-To publish the current `master` `HEAD`:
-
-1. Execute `git checkout origin/master`.
-2. Execute `npm version prerelease --preid="next.$(TZ=utc date +%F-%H-%M)"`. This will create a new
-   version commit on the detached `HEAD` like `v1.2.4-next.2020-07-09-20-40.0`.
-3. Execute `npm publish --access public --tag next`. This will push the commit
-
-The above steps create a dated version and tag. A timestamp is used to avoid conflicts as only one
-tag or version can ever exist. Additionally, the special NPM tags, `@latest` and `@next`, cannot
-point to the same version.
+To publish the current `master` `HEAD`, execute `bin/release-dev`.
 
 Development releases can be installed by consumers via `npm install @wikimedia/wvui@next`. These
 releases are useful for integration testing and development as well as for early adopters who don't
@@ -651,6 +655,7 @@ The expectations for submitting a patch are:
 -   JavaScript configuration files are not type checked when building the library. This seems to be
     because Webpack shakes out dead code. All types can be tested manually via
     `npx --no-install tsc --noEmit --incremental false`.
+-   The linter doesn't enforce tabs in in TypeScript enumerations or module declarations.
 
 [storybook is incompatible with vue devtools]:
 	https://github.com/storybookjs/storybook/issues/1708#issuecomment-630262553

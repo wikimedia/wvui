@@ -1,4 +1,4 @@
-import { PrimaryAction } from './PrimaryAction';
+import { PrimaryAction } from '../../actions/PrimaryAction';
 import { shallowMount } from '@vue/test-utils';
 import WvuiButton from './Button.vue';
 

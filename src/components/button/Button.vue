@@ -1,11 +1,11 @@
 <template>
-	<button :class="classes" @click="onClick">
+	<button class="wvui-button" :class="rootClasses" @click="onClick">
 		<slot />
 	</button>
 </template>
 
 <script lang="ts">
-import { PrimaryAction, isPrimaryAction } from './PrimaryAction';
+import { PrimaryAction, isPrimaryAction } from '../../actions/PrimaryAction';
 import Vue, { PropType } from 'vue';
 
 /**
@@ -26,9 +26,8 @@ export default Vue.extend( {
 		quiet: Boolean
 	},
 	computed: {
-		classes(): Record<string, boolean> {
+		rootClasses(): Record<string, boolean> {
 			return {
-				'wvui-button': true,
 				'wvui-button--default': this.action === PrimaryAction.Default,
 				'wvui-button--progressive': this.action === PrimaryAction.Progressive,
 				'wvui-button--destructive': this.action === PrimaryAction.Destructive,
@@ -64,12 +63,7 @@ export default Vue.extend( {
 	font-weight: bold;
 	// Contents are single line.
 	white-space: nowrap;
-	transition:
-		border-color @transition-base,
-		background-color @transition-base,
-		color @transition-base,
-		box-shadow @transition-base
-	;
+	transition: border-color @transition-base, background-color @transition-base, color @transition-base, box-shadow @transition-base;
 
 	&::-moz-focus-inner {
 		// [Firefox] hide the focus ring in all variations.
@@ -78,7 +72,7 @@ export default Vue.extend( {
 
 	&:focus {
 		// Hide the standard focus outline. A border and box-shadow representation is added below.
-		outline: 0; // stylelint-disable-line plugin/no-unsupported-browser-features
+		outline: 0;
 	}
 
 	&[ disabled ] {
