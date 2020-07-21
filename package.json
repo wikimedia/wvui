@@ -49,7 +49,7 @@
     "linter:js": "eslint --cache --max-warnings 0 --report-unused-disable-directives --ext .js,.json,.ts,.vue",
     "linter:styles": "stylelint --cache --rd --mw 0",
     "preversion": "[ -z \"$(git status -z)\" ]",
-    "prepublishOnly": "git push origin $(git branch --show-current) \"$(git tag --points-at @)\""
+    "prepublishOnly": "! git symbolic-ref -q HEAD || git push --follow-tags origin \"$(git branch --show-current)\""
   },
   "peerDependencies": {
     "vue": "^2.6.11"
