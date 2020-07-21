@@ -85,3 +85,15 @@ it( 'handles language-specific icon', () => {
 
 	expect( ( wrapper.vm as any ).iconPath ).toMatch( iconVariesPerLang.paths.b );
 } );
+
+it( 'handles language-specific icon with explicit langCode prop', () => {
+	document.documentElement.setAttribute( 'lang', 'en' );
+	const wrapper = shallowMount( WvuiIcon, {
+		propsData: {
+			icon: iconVariesPerLang,
+			langCode: 'de'
+		}
+	} );
+
+	expect( ( wrapper.vm as any ).iconPath ).toMatch( iconVariesPerLang.paths.b );
+} );

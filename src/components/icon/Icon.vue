@@ -55,11 +55,15 @@ export default Vue.extend( {
 		size: {
 			type: [ Number, String ],
 			default: 20
+		},
+		/** Explicitly set the language or default to document lang. */
+		langCode: {
+			type: String,
+			default: (): string => document.documentElement.lang
 		}
 	},
 	data(): Record<string, string> {
 		return {
-			langCode: document.documentElement.lang,
 			dir: document.documentElement.dir || 'ltr'
 		};
 	},

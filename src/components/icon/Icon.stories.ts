@@ -1,4 +1,4 @@
-import { color, number } from '@storybook/addon-knobs';
+import { color, number, text } from '@storybook/addon-knobs';
 import Vue from 'vue';
 import WvuiIcon from './Icon.vue';
 import * as iconGroups from './../../themes/iconGroups';
@@ -13,7 +13,11 @@ export const iconsLTR = (): Vue.Component =>
 		components: { WvuiIcon },
 		props: {
 			iconColor: { type: String, default: color( 'Icon color', 'rgba(32,33,34,1)' ) },
-			size: { type: Number, default: number( 'Icon size', 20 ) }
+			size: { type: Number, default: number( 'Icon size', 20 ) },
+			langCode: {
+				type: String,
+				default: text( 'Language code', window.document.documentElement.lang )
+			}
 		},
 		data() {
 			return {
@@ -34,6 +38,7 @@ export const iconsLTR = (): Vue.Component =>
 							:icon="iconGroups[ iconGroup ][ icon ]"
 							:iconColor="iconColor"
 							:size="size"
+							:langCode="langCode"
 						>
 							{{ icon }}
 						</wvui-icon>
@@ -50,7 +55,11 @@ export const iconsRTL = (): Vue.Component =>
 		components: { WvuiIcon },
 		props: {
 			iconColor: { type: String, default: color( 'Icon color', 'rgba(32,33,34,1)' ) },
-			size: { type: Number, default: number( 'Icon size', 20 ) }
+			size: { type: Number, default: number( 'Icon size', 20 ) },
+			langCode: {
+				type: String,
+				default: text( 'Language code', window.document.documentElement.lang )
+			}
 		},
 		data() {
 			return {
@@ -71,6 +80,7 @@ export const iconsRTL = (): Vue.Component =>
 							:icon="iconGroups[ iconGroup ][ icon ]"
 							:iconColor="iconColor"
 							:size="size"
+							:langCode="langCode"
 						>
 							{{ icon }}
 						</wvui-icon>
