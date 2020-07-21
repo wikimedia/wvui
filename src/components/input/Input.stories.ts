@@ -33,16 +33,16 @@ export const configurable = (): Vue.Component =>
 			blur: action( 'blur' )
 		},
 		template: `
-		<div style="width: 100%; min-width: 400px">
-				<wvui-input
-						:placeholder="placeholder"
-            :type="InputType[ type ]"
-						:disabled="disabled"
-						@input="input"
-						@change="change"
-						@focus="focus"
-						@blur="blur"
-				/>
+		<div class="sb-input-preview">
+			<wvui-input
+				:placeholder="placeholder"
+				:type="InputType[ type ]"
+				:disabled="disabled"
+				@input="input"
+				@change="change"
+				@focus="focus" 
+				@blur="blur"
+			/>
 		</div>
 		`
 	} );
@@ -61,13 +61,12 @@ export const withIcon = (): Vue.Component =>
 
 		template: `
 		<div class="sb-input-preview">
-				<wvui-input
-						placeholder="Search..."
-            :type="InputType.Search"
-						icon="search"
-						:disabled="disabled"
-					
-				/>
+			<wvui-input
+				placeholder="Search..."
+				:type="InputType.Search"
+				icon="search"
+				:disabled="disabled"
+			/>
 		</div>
 	`
 	} );

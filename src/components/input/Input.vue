@@ -155,7 +155,6 @@ export default Vue.extend( {
 		top: 50%;
 		transform: translateY(-50%);
 		line-height: 1;
-		text-align: center;
 	}
 
 	&__input {
