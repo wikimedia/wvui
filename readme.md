@@ -21,11 +21,15 @@ Vue.js shared user-interface components for Wikipedia, MediaWiki, and beyond. Se
 - [Development](#development)
   - [Quick start](#quick-start)
   - [NPM scripts](#npm-scripts)
-  - [Conventions](#conventions)
-    - [Vue.js](#vuejs)
-    - [Less](#less)
-    - [TypeScript](#typescript)
   - [Storybook workflow](#storybook-workflow)
+  - [Vue.js](#vuejs)
+    - [Conventions](#conventions)
+  - [TypeScript](#typescript)
+    - [Conventions](#conventions-1)
+    - [Imports](#imports)
+  - [Less](#less)
+    - [Conventions](#conventions-2)
+    - [Imports](#imports-1)
   - [Testing](#testing)
     - [Unit tests](#unit-tests)
       - [Coverage](#coverage)
@@ -103,7 +107,7 @@ There is currently one bundle available:
     code but is not performant if only part is used or if different parts should be loaded at
     different times. ⚠️ This chunk is standalone and should not be loaded with split chunks.
 
-        	- **wvui**.js/css: the complete library and default export. No other chunks required.
+    -   **wvui**.js/css: the complete library and default export. No other chunks required.
 
 Each chunk is side-effect free. All chunks are fully compiled ES5 / CSS and require a Vue.js
 runtime. See [peerDependencies](package.json).
@@ -115,17 +119,20 @@ See the [performance section](#performance) for related topics.
 ### Quick start
 
 ```bash
-npm i
+npm install
 npm start
 ```
 
 ### NPM scripts
 
 -   `install` / `i`: install project dependencies.
--   `start`: run Storybook [development](#development) flow.
--   `test` / `t`: run different types of tests including unit tests. See [testing](#testing).
+-   `start`: run [Storybook development workflow](#storybook-workflow).
+-   `test` / `t`: build the project and execute all tests. Anything that can be validated
+    automatically before publishing runs through this command. See [testing](#testing).
 -   `run test:unit`: run the unit tests. Pass `-u` to update all Jest snapshots.
 -   `run format`: apply lint fixes automatically where available.
+-   `run build`: compile source inputs to bundle outputs under `dist/`.
+-   `run docs`: generate all documentation under `docs/`.
 -   `version`: increment the version. See [versioning](#versioning).
 -   `publish`: publish the version to NPM. See [versioning](#versioning).
 
@@ -163,27 +170,6 @@ npm install
 ```
 
 </details>
-
-### Conventions
-
-#### Vue.js
-
-The [Vue.js Style Guide](https://vuejs.org/v2/style-guide) is adhered to where possible.
-
-#### Less
-
-[BEM](http://getbem.com) naming conventions are adhered to where possible.
-
-#### TypeScript
-
--   All top-level file symbols should be fully typed. Seams should not have their types inferred
-    because they are most likely to have subtle flaws.
--   All named functions and methods should have inputs and output typed. When functions are fully
-    typed, their contents usually can be inferred.
--   Favor type inference for locals rather than explicit typing. Locals are unlikely to have
-    incorrect typing assumptions and the verbosity of typing is usually a hindrance.
--   Use TypeScript typing where available, JSDoc typing where not. Avoid typing both as this is
-    verbose and the docs may be incorrect.
 
 ### Storybook workflow
 
@@ -223,6 +209,89 @@ WVUI uses different Storybook [addons](https://storybook.js.org/addons/), namely
 
 To start developing with Storybook, simply run `npm start` command (see
 [NPM scripts](#npm-scripts)). This command will open Storybook in your browser.
+
+### Vue.js
+
+Vue.js Single File Components are used for all runtime components. The [Vue.js template explorer] is
+useful for debugging.
+
+#### Conventions
+
+The [Vue.js Style Guide](https://vuejs.org/v2/style-guide) is adhered to where possible.
+
+-   PascalCase multi-word component names are used per the Vue.js Style Guide. Since every component
+    is prefixed with `Mw`, all components are multi-word just by keeping that pattern. E.g.: - ✓ Use
+    `MwFoo` with a lowercase "w". - ✗ Do _not_ use `MWFoo` with a capital "W". This breaks
+    kebab-cased HTML in templates.
+-   Avoid making primitive base components complex. Make new components instead.
+
+[vue.js template explorer]: https://template-explorer.vuejs.org
+
+### TypeScript
+
+TypeScript is used for all runtime sources. The [TypeScript playground] is useful for debugging.
+
+#### Conventions
+
+-   All top-level file symbols should be fully typed. Seams should not have their types inferred
+    because they are most likely to have subtle flaws.
+-   All named functions and methods should have inputs and output typed. When functions are fully
+    typed, their contents usually can be inferred.
+-   Favor type inference for locals rather than explicit typing. Locals are unlikely to have
+    incorrect typing assumptions and the verbosity of typing is usually a hindrance.
+-   Use TypeScript typing where available, JSDoc typing where not. Avoid typing both as this is
+    verbose and the docs may be incorrect.
+
+#### Imports
+
+-   TypeScript supports `import`. For example, `import Vue from 'vue';`.
+-   Destructuring is supported. For example, `import { PropType } from 'vue';`. Destructuring can be
+    combined with default imports. For example, `import Vue, { PropType } from 'vue';`.
+-   According to the TypeScript `paths` and Webpack `alias` configurations, `@` references paths
+    relative the source root (`src`) directory. For example,
+    `import WvuiButton from '../../src/components/button/Button.vue` may be equivalent to
+    `import WvuiButton from '@/components/button/Button.vue`.
+-   Vue imports terminate in `.vue`. TypeScript imports are extensionless. A compilation error will
+    occur otherwise.
+
+[typescript playground]: https://www.typescriptlang.org/play/
+
+### Less
+
+Less is used for all runtime styles. The [Less playground] is useful for debugging.
+
+#### Conventions
+
+-   [BEM](http://getbem.com) naming conventions are adhered to where possible.
+-   All components use a [box-sizing] of `border-box`.
+-   Each component should be entirely independent and usable in any context. Parents can specify the
+    presentation of their children (for example, `display: flex`) but no component should expect to
+    only exist in a given container.
+
+[box-sizing]: https://developer.mozilla.org/docs/Web/CSS/box-sizing
+
+#### Imports
+
+Several [import options] are available. The two most relevant are:
+
+-   `once`: the default. If no option is specified, the `once` option is implied. Use with care as
+    this bundles one full copy of the specified file into the bundle. References are always
+    preferred. For example, `@import "foo.less";`.
+-   `reference`: When only symbols or mixins are necessary for Less to CSS compilation, use a
+    `reference` import. Only the compiled output ships, not the definitions themselves or dead code.
+    For example, `@import (reference) "foo.less";`.
+
+Import paths are resolved using [less-loader]:
+
+-   Relative paths are used for project files. For example, `@import ( reference ) './Foo.less';`.
+-   Prepend `@/` for paths relative the source root (`src`) directory. For example,
+    `@import ( reference ) '@/themes/wikimedia-ui.less';`.
+-   Prepend a single `~` for NPM dependency files. For example,
+    `@import ( reference ) '~wikimedia-ui-base/wikimedia-ui-base.less';`.
+
+[less playground]: http://lesscss.org/less-preview/
+[import options]: http://lesscss.org/features/#import-atrules-feature-import-options
+[less-loader]: https://github.com/webpack-contrib/less-loader#imports
 
 ### Testing
 
@@ -576,6 +645,7 @@ The expectations for submitting a patch are:
 -   JavaScript configuration files are not type checked when building the library. This seems to be
     because Webpack shakes out dead code. All types can be tested manually via
     `npx --no-install tsc --noEmit --incremental false`.
+-   The linter doesn't enforce tabs in in TypeScript enumerations or module declarations.
 
 [storybook is incompatible with vue devtools]:
 	https://github.com/storybookjs/storybook/issues/1708#issuecomment-630262553
