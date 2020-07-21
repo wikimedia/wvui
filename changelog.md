@@ -5,6 +5,9 @@ Versions and bullets are arranged chronologically from latest to oldest.
 ## v0.0.1 (unreleased)
 
 -   [update] Add icon implementation for input
+-   [build][fix] Publish bundled CSS and types
+-   [build][dev] Include WVUI version in release
+-   [build][dev] Move docs to development release script
 -   [update] Flesh out Button props
 -   [dev] Upgrade dependencies
 -   [build][fix] Export TypeScript definitions
