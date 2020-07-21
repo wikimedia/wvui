@@ -4,6 +4,7 @@ Versions and bullets are arranged chronologically from latest to oldest.
 
 ## v0.0.1 (unreleased)
 
+-   [dev] Upgrade dependencies
 -   [build][fix] Don't push tags for development releases
 -   [build][fix] Publish bundled CSS and types
 -   [build][dev] Include WVUI version in release
