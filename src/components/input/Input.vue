@@ -228,17 +228,15 @@ export default Vue.extend( {
 // Temp: hardcoded icon styles from mw-components
 .wvui-icon {
 	align-items: center;
-	// stylelint-disable
+	// stylelint-disable plugin/no-unsupported-browser-features
 	display: inline-flex;
 	font-feature-settings: 'liga';
-	// stylelint-enable
+	// stylelint-enable plugin/no-unsupported-browser-features
 	font-size: 1.5em;
 	justify-content: center;
 	letter-spacing: normal;
 	line-height: 1;
 	text-indent: 0;
-	-webkit-transition: 0.3s cubic-bezier(0.25, 0.8, 0.5, 1), visibility 0s;
-	-moz-transition: 0.3s cubic-bezier(0.25, 0.8, 0.5, 1), visibility 0s;
 	transition: 0.3s cubic-bezier(0.25, 0.8, 0.5, 1), visibility 0s;
 	vertical-align: middle;
 	user-select: none;
