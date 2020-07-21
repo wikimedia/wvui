@@ -77,7 +77,7 @@ export default Vue.extend( {
 
 	&[ disabled ] {
 		// Hide the border but keep the sizing.
-		border: @border-width-base @border-style-base #0000;
+		border: @border-width-base @border-style-base transparent;
 		background-color: @background-color-filled--disabled;
 		// Show the default pointer cursor icongraphy to visually indicate the button is
 		// unresponsive.
@@ -103,11 +103,11 @@ export default Vue.extend( {
 
 		&.wvui-button--quiet {
 			// Hide the border but keep the sizing.
-			border: @border-width-base @border-style-base #0000;
+			border: @border-width-base @border-style-base transparent;
 
 			&:active {
 				&:focus {
-					border-color: #0000;
+					border-color: transparent;
 					box-shadow: none;
 				}
 			}
