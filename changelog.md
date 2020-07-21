@@ -4,14 +4,14 @@ Versions and bullets are arranged chronologically from latest to oldest.
 
 ## v0.0.1 (unreleased)
 
--   [update][button] Add initial styles
+-   [component][button] Add initial styles
 -   [build][fix] Publish bundled CSS and types
 -   [build][dev] Include WVUI version in release
 -   [build][dev] Move docs to development release script
--   [update][button] Flesh out props
+-   [component][button] Flesh out props
 -   [dev] Upgrade dependencies
 -   [build][fix] Export TypeScript definitions
--   [update] Add initial TextInput styles and props
+-   [component] Add initial TextInput styles and props
 -   [build][dev] Enable development releases
 -   [dev] Add wikimedia-ui theme
 -   [dev] Prevent prettier from checking less files
