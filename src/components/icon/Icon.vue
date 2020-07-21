@@ -51,7 +51,7 @@ export default Vue.extend( {
 			type: String,
 			default: 'currentColor'
 		},
-		/** The default height and width of the icon, in pixels. */
+		/** The height and width of the icon, in pixels. */
 		size: {
 			type: [ Number, String ],
 			default: 20
@@ -77,7 +77,7 @@ export default Vue.extend( {
 
 			// Icon that differs per language.
 			if ( this.icon.languageMap ) {
-				// If there's a path specified for this language, user it.
+				// If there's a path specified for this language, use it.
 				const iconKey = this.icon.languageMap?.[ this.langCode ];
 				if ( iconKey && this.icon.paths?.[ iconKey ] ) {
 					return this.icon.paths?.[ iconKey ];
@@ -87,7 +87,7 @@ export default Vue.extend( {
 				return this.icon.paths?.[ this.icon.default ] || '';
 			}
 
-			// Icon that differs between LTR and RTL languages, but can't just
+			// Icon that differs between LTR and RTL languages but can't just
 			// be flipped horizontally.
 			return this.icon.paths?.[ this.dir ] || '';
 		}
