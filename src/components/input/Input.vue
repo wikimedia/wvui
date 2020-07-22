@@ -144,7 +144,7 @@ export default Vue.extend( {
 	&__icon {
 		position: absolute;
 		top: 50%;
-		transform: translateY(-50%);
+		transform: translateY( -50% );
 		line-height: 1;
 		padding-left: @padding-horizontal-input-text;
 	}

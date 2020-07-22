@@ -62,16 +62,3 @@ it( 'should emit focus on icon click', async () => {
 	expect( focusSpy ).toHaveBeenCalled();
 
 } );
-
-it( 'should set correct offset', async () => {
-	const expectedStyles = { marginLeft: '5px', marginRight: '5px' };
-	const wrapper = mount( WvuiInput, { propsData: { icon: 'search', iconOffset: 5 } } );
-
-	expect( wrapper.vm.$data.iconStyles ).toEqual( expectedStyles );
-
-	const icon: HTMLElement = wrapper.find( '.wvui-input__icon' ).element;
-
-	expect( icon.style.marginLeft ).toEqual( expectedStyles.marginLeft );
-	expect( icon.style.marginRight ).toEqual( expectedStyles.marginRight );
-
-} );
