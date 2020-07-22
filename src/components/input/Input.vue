@@ -238,7 +238,8 @@ export default Vue.extend( {
 	&__control {
 		height: @size-base;
 
-		& button {
+		// Eliminate the gap between the button and the input.
+		& .wvui-button {
 			height: 100%;
 			border-top-left-radius: 0;
 			border-bottom-left-radius: 0;
@@ -249,7 +250,6 @@ export default Vue.extend( {
 	&--has-control {
 		// stylelint-disable-next-line plugin/no-unsupported-browser-features
 		display: flex;
-		flex-direction: row;
 
 		& > .wvui-input__input {
 			flex: 1;
