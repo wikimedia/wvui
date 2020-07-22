@@ -6,7 +6,7 @@ import { InputType } from './InputType';
 import './Input.stories.less';
 
 export default {
-	title: 'Components/wvui-input',
+	title: 'Components/Input',
 	component: WvuiInput,
 	parameters: { layout: 'centered' }
 };

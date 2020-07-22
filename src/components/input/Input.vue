@@ -166,10 +166,7 @@ export default Vue.extend( {
 		height: @size-base;
 
 		&:not( [ disabled ] ) {
-			transition:
-				border-color @transition-duration-medium,
-				box-shadow @transition-duration-medium
-			;
+			transition: border-color @transition-duration-medium, box-shadow @transition-duration-medium;
 		}
 
 		&[ disabled ] {
