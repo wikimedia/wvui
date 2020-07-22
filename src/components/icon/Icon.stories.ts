@@ -1,7 +1,7 @@
 import { color, text } from '@storybook/addon-knobs';
 import Vue from 'vue';
 import WvuiIcon from './Icon.vue';
-import * as iconGroups from './../../themes/iconGroups';
+import * as iconGroups from './../../themes/icons/iconGroups';
 
 export default {
 	title: 'Components/Icon',

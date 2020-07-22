@@ -1,9 +1,14 @@
 /**
  * Icons grouped by type.
  */
+import { Icon, IconVariedByLang, IconVariedByDir } from './iconTypes';
 import * as icons from './icons';
 
-export const wvuiIconGroupMovement = {
+interface IconGroup {
+	[key: string]: Icon | IconVariedByLang | IconVariedByDir
+}
+
+export const wvuiIconGroupMovement: IconGroup = {
 	arrowPrevious: icons.wvuiIconArrowPrevious,
 	arrowNext: icons.wvuiIconArrowNext,
 	downTriangle: icons.wvuiIconDownTriangle,
@@ -20,7 +25,7 @@ export const wvuiIconGroupMovement = {
 	draggable: icons.wvuiIconDraggable
 };
 
-export const wvuiIconGroupContent = {
+export const wvuiIconGroupContent: IconGroup = {
 	article: icons.wvuiIconArticle,
 	articles: icons.wvuiIconArticles,
 	articleAdd: icons.wvuiIconArticleAdd,
@@ -43,7 +48,7 @@ export const wvuiIconGroupContent = {
 	window: icons.wvuiIconWindow
 };
 
-export const wvuiIconGroupAlerts = {
+export const wvuiIconGroupAlerts: IconGroup = {
 	alert: icons.wvuiIconAlert,
 	bell: icons.wvuiIconBell,
 	bellOutline: icons.wvuiIconBellOutline,
@@ -56,7 +61,7 @@ export const wvuiIconGroupAlerts = {
 	tray: icons.wvuiIconTray
 };
 
-export const wvuiIconGroupInteractions = {
+export const wvuiIconGroupInteractions: IconGroup = {
 	add: icons.wvuiIconAdd,
 	browser: icons.wvuiIconBrowser,
 	cancel: icons.wvuiIconCancel,
@@ -87,7 +92,7 @@ export const wvuiIconGroupInteractions = {
 	subtract: icons.wvuiIconSubtract
 };
 
-export const wvuiIconGroupModeration = {
+export const wvuiIconGroupModeration: IconGroup = {
 	bookmarkOutline: icons.wvuiIconBookmarkOutline,
 	bookmark: icons.wvuiIconBookmark,
 	block: icons.wvuiIconBlock,
@@ -105,7 +110,7 @@ export const wvuiIconGroupModeration = {
 	ongoingConversation: icons.wvuiIconOngoingConversation
 };
 
-export const wvuiIconGroupEditingCore = {
+export const wvuiIconGroupEditingCore: IconGroup = {
 	edit: icons.wvuiIconEdit,
 	editLock: icons.wvuiIconEditLock,
 	editUndo: icons.wvuiIconEditUndo,
@@ -117,7 +122,7 @@ export const wvuiIconGroupEditingCore = {
 	undo: icons.wvuiIconUndo
 };
 
-export const wvuiIconGroupEditingStyle = {
+export const wvuiIconGroupEditingStyle: IconGroup = {
 	bigger: icons.wvuiIconBigger,
 	smaller: icons.wvuiIconSmaller,
 	subscript: icons.wvuiIconSubscript,
@@ -132,14 +137,14 @@ export const wvuiIconGroupEditingStyle = {
 	textStyle: icons.wvuiIconTextStyle
 };
 
-export const wvuiIconGroupEditingList = {
+export const wvuiIconGroupEditingList: IconGroup = {
 	indent: icons.wvuiIconIndent,
 	listBullet: icons.wvuiIconListBullet,
 	listNumbered: icons.wvuiIconListNumbered,
 	outdent: icons.wvuiIconOutdent
 };
 
-export const wvuiIconGroupEditingAdvanced = {
+export const wvuiIconGroupEditingAdvanced: IconGroup = {
 	alignCenter: icons.wvuiIconAlignCenter,
 	alignLeft: icons.wvuiIconAlignLeft,
 	alignRight: icons.wvuiIconAlignRight,
@@ -184,7 +189,7 @@ export const wvuiIconGroupEditingAdvanced = {
 	wikiText: icons.wvuiIconWikiText
 };
 
-export const wvuiIconGroupEditingCitation = {
+export const wvuiIconGroupEditingCitation: IconGroup = {
 	book: icons.wvuiIconBook,
 	journal: icons.wvuiIconJournal,
 	newspaper: icons.wvuiIconNewspaper,
@@ -193,7 +198,7 @@ export const wvuiIconGroupEditingCitation = {
 	references: icons.wvuiIconReferences
 };
 
-export const wvuiIconGroupMedia = {
+export const wvuiIconGroupMedia: IconGroup = {
 	camera: icons.wvuiIconCamera,
 	chart: icons.wvuiIconChart,
 	fullScreen: icons.wvuiIconFullScreen,
@@ -211,7 +216,7 @@ export const wvuiIconGroupMedia = {
 	zoomOut: icons.wvuiIconZoomOut
 };
 
-export const wvuiIconGroupLocation = {
+export const wvuiIconGroupLocation: IconGroup = {
 	globe: icons.wvuiIconGlobe,
 	map: icons.wvuiIconMap,
 	mapPin: icons.wvuiIconMapPin,
@@ -219,7 +224,7 @@ export const wvuiIconGroupLocation = {
 	mapTrail: icons.wvuiIconMapTrail
 };
 
-export const wvuiIconGroupUser = {
+export const wvuiIconGroupUser: IconGroup = {
 	userAdd: icons.wvuiIconUserAdd,
 	userAnonymous: icons.wvuiIconUserAnonymous,
 	userAvatar: icons.wvuiIconUserAvatar,
@@ -229,7 +234,7 @@ export const wvuiIconGroupUser = {
 	userTalk: icons.wvuiIconUserTalk
 };
 
-export const wvuiIconGroupLayout = {
+export const wvuiIconGroupLayout: IconGroup = {
 	menu: icons.wvuiIconMenu,
 	recentChanges: icons.wvuiIconRecentChanges,
 	textFlow: icons.wvuiIconTextFlow,
@@ -238,7 +243,7 @@ export const wvuiIconGroupLayout = {
 	viewDetails: icons.wvuiIconViewDetails
 };
 
-export const wvuiIconGroupAccessiblity = {
+export const wvuiIconGroupAccessiblity: IconGroup = {
 	bright: icons.wvuiIconBright,
 	halfBright: icons.wvuiIconHalfBright,
 	notBright: icons.wvuiIconNotBright,
@@ -250,7 +255,7 @@ export const wvuiIconGroupAccessiblity = {
 	visionSimulator: icons.wvuiIconVisionSimulator
 };
 
-export const wvuiIconGroupWikimedia = {
+export const wvuiIconGroupWikimedia: IconGroup = {
 	logoCC: icons.wvuiIconLogoCC,
 	logoWikidata: icons.wvuiIconLogoWikidata,
 	logoWikimedia: icons.wvuiIconLogoWikimedia,

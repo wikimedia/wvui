@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`matches the snapshot Case 0 With icon: ({"icon": "path string"}) => HTML 1`] = `
+exports[`matches the snapshot Case 0 With icon: ({"icon": [Object]}) => HTML 1`] = `
 <span
   class="wvui-icon"
 >
@@ -27,7 +27,7 @@ exports[`matches the snapshot Case 0 With icon: ({"icon": "path string"}) => HTM
 </span>
 `;
 
-exports[`matches the snapshot Case 1 With icon and hex color: ({"icon": "path string", "iconColor": "#ff6347"}) => HTML 1`] = `
+exports[`matches the snapshot Case 1 With icon and hex color: ({"icon": [Object], "iconColor": "#ff6347"}) => HTML 1`] = `
 <span
   class="wvui-icon"
 >
@@ -54,7 +54,7 @@ exports[`matches the snapshot Case 1 With icon and hex color: ({"icon": "path st
 </span>
 `;
 
-exports[`matches the snapshot Case 2 With icon and slot content: ({"icon": "path string"}) => HTML 1`] = `
+exports[`matches the snapshot Case 2 With icon and slot content: ({"icon": [Object]}) => HTML 1`] = `
 <span
   class="wvui-icon"
 >
@@ -83,9 +83,9 @@ exports[`matches the snapshot Case 2 With icon and slot content: ({"icon": "path
 </span>
 `;
 
-exports[`matches the snapshot Case 3 With flippable icon: ({"icon": [Object]}) => HTML 1`] = `
+exports[`matches the snapshot Case 3 With icon that should flip for RTL: ({"icon": [Object]}) => HTML 1`] = `
 <span
-  class="wvui-icon wvui-icon--flippable"
+  class="wvui-icon wvui-icon--should-flip"
 >
   <svg
     aria-hidden="true"

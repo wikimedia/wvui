@@ -1,26 +1,31 @@
 import { shallowMount } from '@vue/test-utils';
+import { Icon, IconVariedByLang, IconVariedByDir } from './../../themes/icons/iconTypes';
 import WvuiIcon from './Icon.vue';
 
-const iconString = 'path string';
-const iconFlippable = {
+const iconSimple: Icon = { path: 'path string' };
+const iconShouldFlip: Icon = {
 	path: 'path flippable',
-	flippable: true
+	shouldFlip: true
 };
-const iconVariesPerDir = {
-	paths: {
-		ltr: 'path ltr',
-		rtl: 'path rtl'
-	}
-};
-const iconVariesPerLang = {
-	languageMap: {
-		de: 'b'
+const iconDirLtr: Icon = { path: 'path ltr' };
+const iconDirRtl: Icon = { path: 'path ltr' };
+const iconDir: IconVariedByDir = {
+	dirVariants: {
+		ltr: iconDirLtr,
+		rtl: iconDirRtl
 	},
-	default: 'a',
-	paths: {
-		a: 'path a',
-		b: 'path b'
-	}
+	default: iconDirLtr
+};
+const iconLangA: Icon = { path: 'path a' };
+const iconLangB: Icon = { path: 'path a' };
+const iconLang: IconVariedByLang = {
+	langVariants: {
+		de: iconLangB
+	},
+	default: iconLangA
+};
+const iconInvalid = {
+	something: 'invalid'
 };
 
 describe( 'matches the snapshot', () => {
@@ -28,10 +33,10 @@ describe( 'matches the snapshot', () => {
 	type Case = [string, Record<keyof unknown, unknown>, string];
 
 	const cases: Case[] = [
-		[ 'With icon', { icon: iconString }, '' ],
-		[ 'With icon and hex color', { icon: iconString, iconColor: '#ff6347' }, '' ],
-		[ 'With icon and slot content', { icon: iconString }, 'Add something' ],
-		[ 'With flippable icon', { icon: iconFlippable }, '' ]
+		[ 'With icon', { icon: iconSimple }, '' ],
+		[ 'With icon and hex color', { icon: iconSimple, iconColor: '#ff6347' }, '' ],
+		[ 'With icon and slot content', { icon: iconSimple }, 'Add something' ],
+		[ 'With icon that should flip for RTL', { icon: iconShouldFlip }, '' ]
 	];
 
 	test.each( cases )( 'Case %# %s: (%p) => HTML', ( _, props, slot ) => {
@@ -41,58 +46,67 @@ describe( 'matches the snapshot', () => {
 } );
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-it( 'handles ltr text direction', () => {
-	// Default dir is 'ltr'.
+it( 'handles text direction default', () => {
 	const wrapper = shallowMount( WvuiIcon, {
 		propsData: {
-			icon: iconVariesPerDir
+			icon: iconDir
 		}
 	} );
 
-	expect( ( wrapper.vm as any ).iconPath ).toMatch( iconVariesPerDir.paths.ltr );
+	expect( ( wrapper.vm as any ).iconPath ).toMatch( iconDir.default.path );
 } );
 
 it( 'handles rtl text direction', () => {
 	document.documentElement.setAttribute( 'dir', 'rtl' );
 	const wrapper = shallowMount( WvuiIcon, {
 		propsData: {
-			icon: iconVariesPerDir
+			icon: iconDir
 		}
 	} );
 
-	expect( ( wrapper.vm as any ).iconPath ).toMatch( iconVariesPerDir.paths.rtl );
+	expect( ( wrapper.vm as any ).iconPath ).toMatch( iconDir.dirVariants.rtl.path );
 } );
 
 it( 'handles language-specific icon default', () => {
 	// Default lang is 'unknown'.
 	const wrapper = shallowMount( WvuiIcon, {
 		propsData: {
-			icon: iconVariesPerLang
+			icon: iconLang
 		}
 	} );
 
-	expect( ( wrapper.vm as any ).iconPath ).toMatch( iconVariesPerLang.paths.a );
+	expect( ( wrapper.vm as any ).iconPath ).toMatch( iconLang.default.path );
 } );
 
 it( 'handles language-specific icon', () => {
 	document.documentElement.setAttribute( 'lang', 'de' );
 	const wrapper = shallowMount( WvuiIcon, {
 		propsData: {
-			icon: iconVariesPerLang
+			icon: iconLang
 		}
 	} );
 
-	expect( ( wrapper.vm as any ).iconPath ).toMatch( iconVariesPerLang.paths.b );
+	expect( ( wrapper.vm as any ).iconPath ).toMatch( iconLang.langVariants.de.path );
 } );
 
 it( 'handles language-specific icon with explicit langCode prop', () => {
 	document.documentElement.setAttribute( 'lang', 'en' );
 	const wrapper = shallowMount( WvuiIcon, {
 		propsData: {
-			icon: iconVariesPerLang,
+			icon: iconLang,
 			langCode: 'de'
 		}
 	} );
 
-	expect( ( wrapper.vm as any ).iconPath ).toMatch( iconVariesPerLang.paths.b );
+	expect( ( wrapper.vm as any ).iconPath ).toMatch( iconLang.langVariants.de.path );
+} );
+
+it( 'returns nothing given invalid icon', () => {
+	const wrapper = shallowMount( WvuiIcon, {
+		propsData: {
+			icon: iconInvalid
+		}
+	} );
+
+	expect( ( wrapper.vm as any ).iconPath ).toMatch( '' );
 } );

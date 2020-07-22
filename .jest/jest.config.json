@@ -18,7 +18,8 @@
 	"collectCoverageFrom": [
 		"<rootDir>/src/**/*.(ts|vue)",
 		"!<rootDir>/src/**/*.(d|test|snap|stories).ts",
-		"!<rootDir>/src/entries/**/*.ts"
+		"!<rootDir>/src/entries/**/*.ts",
+		"!<rootDir>/src/themes/icons/**/*.ts"
 	],
 	"coverageDirectory": "<rootDir>/docs/coverage",
 	"errorOnDeprecated": true,

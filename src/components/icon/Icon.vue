@@ -65,30 +65,27 @@ export default Vue.extend( {
 	computed: {
 		classes(): Record<string, boolean> {
 			return {
-				'wvui-icon--flippable': this.icon?.flippable
+				'wvui-icon--should-flip': this.icon?.shouldFlip
 			};
 		},
 		iconPath(): string {
 			// Icon with a single path.
-			if ( !this.icon.paths ) {
-				return this.icon?.path || this.icon;
+			if ( this.icon.path ) {
+				return this.icon.path;
 			}
 
 			// Icon that differs per language.
-			if ( this.icon.languageMap ) {
-				// If there's a path specified for this language, use it.
-				const iconKey = this.icon.languageMap?.[ this.langCode ];
-				if ( iconKey && this.icon.paths?.[ iconKey ] ) {
-					return this.icon.paths?.[ iconKey ];
-				}
-
-				// Use the default path if there is one.
-				return this.icon.paths?.[ this.icon.default ] || '';
+			if ( this.icon.langVariants ) {
+				return this.icon.langVariants[ this.langCode ]?.path || this.icon.default.path;
 			}
 
 			// Icon that differs between LTR and RTL languages but can't just
 			// be flipped horizontally.
-			return this.icon.paths?.[ this.dir ] || '';
+			if ( this.icon.dirVariants ) {
+				return this.icon.dirVariants[ this.dir ]?.path || this.icon.default.path;
+			}
+
+			return '';
 		}
 	}
 } );
@@ -116,7 +113,7 @@ export default Vue.extend( {
 }
 
 // Horizontally flip icons that should be flipped for RTL languages.
-[ dir='rtl' ] .wvui-icon--flippable svg {
+[ dir='rtl' ] .wvui-icon--should-flip svg {
 	transform: scaleX( -1 );
 }
 </style>
