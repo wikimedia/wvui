@@ -1,5 +1,8 @@
 <template>
-	<div class="wvui-input">
+	<div
+		class="wvui-input"
+		:class="rootClasses"
+	>
 		<input
 			ref="input"
 			dir="auto"
@@ -75,10 +78,12 @@ export default Vue.extend( {
 		};
 
 	},
-	mounted() {
-		this.$nextTick( () => {
-			this.adjustIcon();
-		} );
+	computed: {
+		rootClasses(): Record<string, boolean> {
+			return {
+				'wvui-input--icon': !!this.icon
+			};
+		}
 	},
 	methods: {
 		onInput( event: InputEvent ): void {
@@ -102,32 +107,6 @@ export default Vue.extend( {
 
 				$input.focus(); // eslint-disable-line no-jquery/no-event-shorthand
 			} );
-		},
-
-		/*
-		* Adjusts input's left padding if icon is provided
-		* */
-		adjustIcon: function (): void {
-			if ( this.icon ) {
-				const $icon = this.$refs.icon as HTMLElement;
-				const $input = this.$refs.input as HTMLElement;
-				// eslint-disable-next-line no-jquery/no-other-methods
-				const { width } = $icon.getBoundingClientRect();
-				const { paddingLeft } = this.getInputInitialPaddings();
-
-				$input.style.paddingLeft = `${width + paddingLeft}px`;
-			}
-		},
-		/*
-		* Calculates initial input's paddings
-		* */
-		getInputInitialPaddings: function (): Record<string, number> {
-			const $input = this.$refs.input as HTMLElement;
-			const inputStyles = getComputedStyle( $input );
-			const paddingRight = +( inputStyles.paddingRight.replace( 'px', '' ) );
-			const paddingLeft = +( inputStyles.paddingLeft.replace( 'px', '' ) );
-
-			return { paddingRight, paddingLeft };
 		}
 	}
 } );
@@ -206,6 +185,12 @@ export default Vue.extend( {
 			&::-webkit-search-cancel-button {
 				display: none;
 			}
+		}
+	}
+
+	&--icon {
+		.wvui-input__input {
+			padding-left: @padding-horizontal-input-text * 2 + @size-icon;
 		}
 	}
 

@@ -30,7 +30,7 @@ exports[`matches the snapshot Case 1 Input Type: search : ({"type": "search"}) =
 
 exports[`should render an icon 1`] = `
 <div
-  class="wvui-input"
+  class="wvui-input wvui-input--icon"
 >
   <input
     class="wvui-input__input"
