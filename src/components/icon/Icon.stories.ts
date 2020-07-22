@@ -1,7 +1,7 @@
 import { color, text } from '@storybook/addon-knobs';
 import Vue from 'vue';
 import WvuiIcon from './Icon.vue';
-import * as iconGroups from './../../themes/icons/iconGroups';
+import * as icons from './../../themes/icons/icons';
 
 export default {
 	title: 'Components/Icon',
@@ -20,7 +20,7 @@ export const iconsLTR = (): Vue.Component =>
 		},
 		data() {
 			return {
-				iconGroups,
+				icons,
 				icon: null
 			};
 		},
@@ -29,20 +29,17 @@ export const iconsLTR = (): Vue.Component =>
 		},
 		template: `
 		<div>
-			<div v-for="iconGroup in Object.keys( iconGroups )" :key="iconGroup">
-				<h2>{{ iconGroup.replace( 'wvuiIconGroup', '' ) }}</h2>
-				<div v-for="icon in Object.keys( iconGroups[ iconGroup ] )" :key="icon">
-					<p>
-						<wvui-icon
-							:icon="iconGroups[ iconGroup ][ icon ]"
-							:iconColor="iconColor"
-							:langCode="langCode"
-						>
-							{{ icon }}
-						</wvui-icon>
+			<div v-for="icon in Object.keys( icons )" :key="icon">
+				<p>
+					<wvui-icon
+						:icon="icons[ icon ]"
+						:iconColor="iconColor"
+						:langCode="langCode"
+					>
 						{{ icon }}
-					</p>
-				</div>
+					</wvui-icon>
+					{{ icon }}
+				</p>
 			</div>
 		</div>
 		`
@@ -60,7 +57,7 @@ export const iconsRTL = (): Vue.Component =>
 		},
 		data() {
 			return {
-				iconGroups,
+				icons,
 				icon: null
 			};
 		},
@@ -69,20 +66,17 @@ export const iconsRTL = (): Vue.Component =>
 		},
 		template: `
 		<div>
-			<div v-for="iconGroup in Object.keys( iconGroups )" :key="iconGroup">
-				<h2>{{ iconGroup.replace( 'wvuiIconGroup', '' ) }}</h2>
-				<div v-for="icon in Object.keys( iconGroups[ iconGroup ] )" :key="icon">
-					<p>
-						<wvui-icon
-							:icon="iconGroups[ iconGroup ][ icon ]"
-							:iconColor="iconColor"
-							:langCode="langCode"
-						>
-							{{ icon }}
-						</wvui-icon>
+			<div v-for="icon in Object.keys( icons )" :key="icon">
+				<p>
+					<wvui-icon
+						:icon="icons[ icon ]"
+						:iconColor="iconColor"
+						:langCode="langCode"
+					>
 						{{ icon }}
-					</p>
-				</div>
+					</wvui-icon>
+					{{ icon }}
+				</p>
 			</div>
 		</div>
 		`
