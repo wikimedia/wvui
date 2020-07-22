@@ -71,3 +71,55 @@ export const withIcon = (): Vue.Component =>
 		</div>
 	`
 	} );
+
+export const withIndicator = (): Vue.Component =>
+	Vue.extend( {
+		components: { WvuiInput },
+		props: {
+			disabled: { type: Boolean, default: boolean( 'Disabled', false ) }
+		},
+		data() {
+			return {
+				InputType
+			};
+		},
+
+		template: `
+		<div class="sb-input-preview">
+			<wvui-input
+				placeholder="Search..."
+				:type="InputType.Search"
+				indicator="clear"
+				:disabled="disabled"
+			/>
+		</div>
+	`
+	} );
+
+export const withClearAction = (): Vue.Component =>
+	Vue.extend( {
+		components: { WvuiInput },
+		props: {
+			disabled: { type: Boolean, default: boolean( 'Disabled', false ) }
+		},
+		data() {
+			return {
+				InputType
+			};
+		},
+		methods: {
+			input: action( 'input' )
+		},
+		template: `
+		<div class="sb-input-preview">
+			<wvui-input
+				placeholder="Search..."
+				:type="InputType.Search"
+				:clearable="true"
+				:disabled="disabled"
+				value="Some value"
+				@input="input"
+			/>
+		</div>
+	`
+	} );

@@ -19,8 +19,28 @@ describe( 'matches the snapshot', () => {
 
 it( 'should render an icon', () => {
 	const wrapper = shallowMount( WvuiInput, { propsData: { icon: 'search' } } );
+
 	expect( wrapper.element ).toMatchSnapshot();
 	expect( wrapper.find( '.wvui-input__icon' ) ).toBeTruthy();
+} );
+
+it( 'should render a clear icon', () => {
+	const wrapper = shallowMount(
+		WvuiInput,
+		{ propsData: { clearable: true, value: 'Some value' } }
+	);
+	const clearElement = wrapper.find( '.wvui-input__indicator' );
+
+	expect( wrapper.element ).toMatchSnapshot();
+	expect( wrapper.classes() ).toContain( 'wvui-input--clear' );
+	expect( clearElement ).toBeTruthy();
+} );
+
+it( 'should render an indicator', () => {
+	const wrapper = shallowMount( WvuiInput, { propsData: { indicator: 'info' } } );
+
+	expect( wrapper.element ).toMatchSnapshot();
+	expect( wrapper.find( '.wvui-input__indicator' ) ).toBeTruthy();
 } );
 
 it( 'emits input events', async () => {
@@ -61,4 +81,22 @@ it( 'should emit focus on icon click', async () => {
 
 	expect( focusSpy ).toHaveBeenCalled();
 
+} );
+/*
+* It is supposed to be reconsidered once
+* wvui-icon component is done.
+* */
+it( 'should set and clear value', async () => {
+	const wrapper = mount( WvuiInput, { propsData: { clearable: true, value: 'Some value' } } );
+	const clearElement = wrapper.find( '.wvui-input__indicator' );
+	const input = wrapper.find( 'input' ).element as HTMLInputElement;
+
+	expect( input.value ).toEqual( 'Some value' );
+
+	await clearElement.trigger( 'click' );
+
+	expect( input.value ).toEqual( '' );
+	expect( wrapper.emitted().input ).toBeTruthy();
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	expect( ( wrapper.vm as any ).iconName ).toEqual( 'clear' );
 } );
