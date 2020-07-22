@@ -135,7 +135,6 @@ export default Vue.extend( {
 
 			this.setCurrentValue( value );
 			this.$emit( 'input', value );
-
 		},
 		onChange( event: Event ): void {
 			this.$emit( 'change', event );
@@ -163,7 +162,7 @@ export default Vue.extend( {
 			this.$emit( 'input', '' );
 			this.setCurrentValue( '' );
 		},
-		setCurrentValue( value: string | number ) {
+		setCurrentValue( value: string | number ): void {
 			if ( value === this.currentValue ) {
 				return;
 			}
