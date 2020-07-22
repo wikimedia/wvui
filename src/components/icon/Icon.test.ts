@@ -30,18 +30,18 @@ const iconInvalid = {
 };
 
 describe( 'matches the snapshot', () => {
-	// [description, props, slot]
-	type Case = [string, Record<keyof unknown, unknown>, string];
+	// [description, props]
+	type Case = [string, Record<keyof unknown, unknown>];
 
 	const cases: Case[] = [
-		[ 'With icon', { icon: iconSimple }, '' ],
-		[ 'With icon and hex color', { icon: iconSimple, iconColor: '#ff6347' }, '' ],
-		[ 'With icon and slot content', { icon: iconSimple }, 'Add something' ],
-		[ 'With icon that should flip for RTL', { icon: iconShouldFlip }, '' ]
+		[ 'With icon', { icon: iconSimple } ],
+		[ 'With icon and hex color', { icon: iconSimple, iconColor: '#ff6347' } ],
+		[ 'With icon and title', { icon: iconSimple, iconTitle: 'Add something' } ],
+		[ 'With icon that should flip for RTL', { icon: iconShouldFlip } ]
 	];
 
-	test.each( cases )( 'Case %# %s: (%p) => HTML', ( _, props, slot ) => {
-		const wrapper = shallowMount( WvuiIcon, { propsData: props, slots: { default: slot } } );
+	test.each( cases )( 'Case %# %s: (%p) => HTML', ( _, props ) => {
+		const wrapper = shallowMount( WvuiIcon, { propsData: props } );
 		expect( wrapper.element ).toMatchSnapshot();
 	} );
 } );

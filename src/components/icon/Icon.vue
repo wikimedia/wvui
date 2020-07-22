@@ -5,14 +5,13 @@
 			width="1em"
 			height="1em"
 			viewBox="0 0 20 20"
-			aria-hidden="true"
-			role="presentation"
+			:aria-hidden="lacksTitle"
 		>
+			<title v-if="iconTitle">{{ iconTitle }}</title>
 			<g :fill="iconColor">
 				<path :d="iconPath" />
 			</g>
 		</svg>
-		<span class="wvui-icon__content"><slot /></span>
 	</span>
 </template>
 
@@ -41,7 +40,7 @@ import Vue from 'vue';
 export default Vue.extend( {
 	name: 'WvuiIcon',
 	props: {
-		/** The svg path or an object containing that path plus other data. */
+		/** The SVG path or an object containing that path plus other data. */
 		icon: {
 			type: [ String, Object ],
 			required: true
@@ -51,6 +50,14 @@ export default Vue.extend( {
 			type: String,
 			default: 'currentColor'
 		},
+		/**
+		 * Accessible title for SVG. String or message object. If not included,
+		 * the SVG will be hidden from screen readers.
+		 */
+		iconTitle: {
+			type: [ String, Object ],
+			default: ''
+		},
 		/** Explicitly set the language or default to document lang. */
 		langCode: {
 			type: String,
@@ -59,7 +66,7 @@ export default Vue.extend( {
 	},
 	data(): Record<string, string> {
 		return {
-			dir: document.documentElement.dir || 'ltr'
+			dir: document.documentElement.dir
 		};
 	},
 	computed: {
@@ -75,6 +82,9 @@ export default Vue.extend( {
 			}
 
 			return this.icon?.shouldFlip;
+		},
+		lacksTitle(): boolean {
+			return !this.iconTitle;
 		},
 		iconPath(): string {
 			// Icon with a single path.
@@ -113,11 +123,6 @@ export default Vue.extend( {
 	// For inline, inline-block, and table layouts.
 	vertical-align: middle;
 	user-select: none;
-
-	// Text content is only for screen readers.
-	&__content {
-		.wvui-visually-hidden();
-	}
 }
 
 // Horizontally flip icons that should be flipped for RTL languages.
