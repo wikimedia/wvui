@@ -5,7 +5,8 @@ import WvuiIcon from './Icon.vue';
 const iconSimple: Icon = { path: 'path string' };
 const iconShouldFlip: Icon = {
 	path: 'path flippable',
-	shouldFlip: true
+	shouldFlip: true,
+	shouldFlipExceptions: [ 'he' ]
 };
 const iconDirLtr: Icon = { path: 'path ltr' };
 const iconDirRtl: Icon = { path: 'path ltr' };
@@ -46,6 +47,17 @@ describe( 'matches the snapshot', () => {
 } );
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
+it( 'handles shouldFlip exception', () => {
+	const wrapper = shallowMount( WvuiIcon, {
+		propsData: {
+			icon: iconShouldFlip,
+			langCode: 'he'
+		}
+	} );
+
+	expect( ( wrapper.vm as any ).shouldFlip ).toBeFalsy();
+} );
+
 it( 'handles text direction default', () => {
 	const wrapper = shallowMount( WvuiIcon, {
 		propsData: {

@@ -65,8 +65,16 @@ export default Vue.extend( {
 	computed: {
 		classes(): Record<string, boolean> {
 			return {
-				'wvui-icon--should-flip': this.icon?.shouldFlip
+				'wvui-icon--should-flip': this.shouldFlip
 			};
+		},
+		shouldFlip(): boolean {
+			// Don't flip if the current language is listed as an exception.
+			if ( this.icon.shouldFlipExceptions ) {
+				return this.icon.shouldFlipExceptions.indexOf( this.langCode ) === -1;
+			}
+
+			return this.icon?.shouldFlip;
 		},
 		iconPath(): string {
 			// Icon with a single path.

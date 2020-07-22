@@ -130,8 +130,8 @@ export const wvuiIconGroupEditingStyle: IconGroup = {
 	bold: icons.wvuiIconBold,
 	highlight: icons.wvuiIconHighlight,
 	italic: icons.wvuiIconItalic,
-	strikethrough: icons.wvuiIconStrikethroughS,
-	underline: icons.wvuiIconUnderlineU,
+	strikethrough: icons.wvuiIconStrikethrough,
+	underline: icons.wvuiIconUnderline,
 	textDirLTR: icons.wvuiIconTextDirLTR,
 	textDirRTL: icons.wvuiIconTextDirRTL,
 	textStyle: icons.wvuiIconTextStyle

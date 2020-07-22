@@ -57,7 +57,8 @@ export const wvuiIconArticleDisambiguation = {
 };
 export const wvuiIconArticleNotFound: Icon = {
 	path: 'M15 1H5a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2V3a2 2 0 00-2-2zm-4 15H9v-2h2zm2.7-7.6a4.88 4.88 0 01-.3.7 2.65 2.65 0 01-.5.6l-.5.5a2.65 2.65 0 01-.6.5c-.2.2-.3.4-.5.6a1.91 1.91 0 00-.3.8 3.4 3.4 0 00-.1 1H9.1a4.87 4.87 0 01.1-1.2 2.92 2.92 0 01.2-.9 2.51 2.51 0 01.4-.7l.6-.6a1.76 1.76 0 01.5-.4c.2-.1.3-.3.4-.4l.3-.6a1.7 1.7 0 00.1-.7 2.92 2.92 0 00-.2-.9 2.19 2.19 0 00-1-.9.9.9 0 00-.5-.1 1.68 1.68 0 00-1.5.7A2.86 2.86 0 008 8.1H6.2a5.08 5.08 0 01.3-1.7 3.53 3.53 0 01.8-1.3 3.6 3.6 0 011.2-.8 5.08 5.08 0 011.7-.3 5.9 5.9 0 011.4.2 2.59 2.59 0 011.1.7 4.44 4.44 0 01.8 1.1 4 4 0 01.3 1.5 3.08 3.08 0 01-.1.9z',
-	shouldFlip: true
+	shouldFlip: true,
+	shouldFlipExceptions: [ 'he', 'yi' ]
 };
 export const wvuiIconArticleRedirect: Icon = {
 	path: 'M5 1a2 2 0 00-2 2v1c0 5 2 8 7 8V9l5 4-5 4v-3c-3.18 0-5.51-.85-7-2.68V17a2 2 0 002 2h10a2 2 0 002-2V3a2 2 0 00-2-2z',
@@ -122,7 +123,7 @@ export const wvuiIconBoldF: Icon = {
 	path: 'M15 5V3H5v14h3v-6h5.833V9H8V5z'
 };
 export const wvuiIconBoldG: Icon = {
-	path:'M10.168 12.333V10H16v4.903c-.58.554-1.423 1.043-2.527 1.47a9.325 9.325 0 01-3.34.626c-1.435 0-2.687-.295-3.753-.887a5.725 5.725 0 01-2.405-2.548 8.175 8.175 0 01-.806-3.61c0-1.41.303-2.663.898-3.759.604-1.097 1.481-1.936 2.636-2.52C7.583 3.225 8.678 3 9.988 3c1.703 0 3.033.354 3.987 1.061.962.704 1.58 1.675 1.855 2.919l-2.753.507a2.838 2.838 0 00-1.097-1.57c-.53-.396-1.192-.583-1.99-.583-1.212 0-2.175.373-2.894 1.131-.711.759-1.066 1.878-1.066 3.372 0 1.603.362 2.81 1.085 3.616.723.801 1.673 1.201 2.846 1.201.58 0 1.16-.11 1.738-.332.59-.229 1.556-.665 1.972-.987V12.32'
+	path: 'M10.168 12.333V10H16v4.903c-.58.554-1.423 1.043-2.527 1.47a9.325 9.325 0 01-3.34.626c-1.435 0-2.687-.295-3.753-.887a5.725 5.725 0 01-2.405-2.548 8.175 8.175 0 01-.806-3.61c0-1.41.303-2.663.898-3.759.604-1.097 1.481-1.936 2.636-2.52C7.583 3.225 8.678 3 9.988 3c1.703 0 3.033.354 3.987 1.061.962.704 1.58 1.675 1.855 2.919l-2.753.507a2.838 2.838 0 00-1.097-1.57c-.53-.396-1.192-.583-1.99-.583-1.212 0-2.175.373-2.894 1.131-.711.759-1.066 1.878-1.066 3.372 0 1.603.362 2.81 1.085 3.616.723.801 1.673 1.201 2.846 1.201.58 0 1.16-.11 1.738-.332.59-.229 1.556-.665 1.972-.987V12.32'
 };
 export const wvuiIconBoldGeorMan: Icon = {
 	path: 'M11.554 12.403c0-2-.46-3-1.379-3-1.013 0-1.519.91-1.519 2.727-.012 1.895.49 2.842 1.51 2.842.926 0 1.39-.856 1.39-2.566m2.527 0c0 3.061-1.302 4.594-3.908 4.594-2.837 0-4.258-1.617-4.258-4.853 0-3.193 1.42-4.79 4.258-4.79.982 0 1.38.736 1.38.736V6.249c0-.92-.525-1.38-1.571-1.38-.668 0-1.001.436-1.001 1.31h-2.73C6.255 4.06 7.492 3 9.956 3c2.762 0 4.139 1.104 4.127 3.313'
@@ -171,7 +172,7 @@ export const wvuiIconBold: IconVariedByLang = {
 		os: wvuiIconBoldCyrlBe,
 		ur: wvuiIconBoldArabJeem
 	},
-	default: wvuiIconBoldA,
+	default: wvuiIconBoldA
 };
 export const wvuiIconBook: Icon = {
 	path: 'M15 2a7.65 7.65 0 00-5 2 7.65 7.65 0 00-5-2H1v15h4a7.65 7.65 0 015 2 7.65 7.65 0 015-2h4V2zm2.5 13.5H14a4.38 4.38 0 00-3 1V5s1-1.5 4-1.5h2.5z M9 3.5h2v1H9z',
@@ -315,11 +316,13 @@ export const wvuiIconHeart: Icon = {
 };
 export const wvuiIconHelp: Icon = {
 	path: 'M10.06 1C13 1 15 2.89 15 5.53a4.59 4.59 0 01-2.29 4.08c-1.42.92-1.82 1.53-1.82 2.71V13H8.38v-.81a3.84 3.84 0 012-3.84c1.34-.9 1.79-1.53 1.79-2.71a2.1 2.1 0 00-2.08-2.14h-.17a2.3 2.3 0 00-2.38 2.22v.17H5A4.71 4.71 0 019.51 1a5 5 0 01.55 0z M12 17 A2 2 0 0 1 10 19 A2 2 0 0 1 8 17 A2 2 0 0 1 12 17 z',
-	shouldFlip: true
+	shouldFlip: true,
+	shouldFlipExceptions: [ 'he', 'yi' ]
 };
 export const wvuiIconHelpNotice: Icon = {
 	path: 'M10 0a10 10 0 1010 10A10 10 0 0010 0zm1 16H9v-2h2zm2.71-7.6a2.64 2.64 0 01-.33.74 3.16 3.16 0 01-.48.55l-.54.48c-.21.18-.41.35-.58.52a2.54 2.54 0 00-.47.56A2.3 2.3 0 0011 12a3.79 3.79 0 00-.11 1H9.08a8.9 8.9 0 01.07-1.25 3.28 3.28 0 01.25-.9 2.79 2.79 0 01.41-.67 4 4 0 01.58-.58c.17-.16.34-.3.51-.44a3 3 0 00.43-.44 1.83 1.83 0 00.3-.55 2 2 0 00.11-.72 2.06 2.06 0 00-.17-.86 1.71 1.71 0 00-1-.9 1.7 1.7 0 00-.5-.1 1.77 1.77 0 00-1.53.68 3 3 0 00-.5 1.82H6.16a4.74 4.74 0 01.28-1.68 3.56 3.56 0 01.8-1.29 3.88 3.88 0 011.28-.83A4.59 4.59 0 0110.18 4a4.44 4.44 0 011.44.23 3.51 3.51 0 011.15.65 3.08 3.08 0 01.78 1.06 3.54 3.54 0 01.29 1.45 3.39 3.39 0 01-.13 1.01z',
-	shouldFlip: true
+	shouldFlip: true,
+	shouldFlipExceptions: [ 'he', 'yi' ]
 };
 export const wvuiIconHieroglyph: Icon = {
 	path: 'M15 11h-3.75l2.55-3.4a4.75 4.75 0 10-7.6 0L8.75 11H5v2h4v7h2v-7h4zM7.54 3.52A2.75 2.75 0 1112.2 6.4L10 9.33 7.8 6.4a2.69 2.69 0 01-.26-2.88z'
@@ -366,11 +369,26 @@ export const wvuiIconIndent: Icon = {
 	path: 'M1 16h18v2H1zm8-9h10v2H9zm0 4h10v2H9zM1 2h18v2H1zm5 8l-5 4V6z',
 	shouldFlip: true
 };
-export const wvuiIconInfo: Icon = {
+export const wvuiIconLightbulb: Icon = {
+	path: 'M8 19a1 1 0 001 1h2a1 1 0 001-1v-1H8zm9-12a7 7 0 10-12 4.9S7 14 7 15v1a1 1 0 001 1h4a1 1 0 001-1v-1c0-1 2-3.1 2-3.1A7 7 0 0017 7z'
+};
+export const wvuiIconInfoDefault: Icon = {
 	path: 'M9.5 16A6.61 6.61 0 013 9.5 6.61 6.61 0 019.5 3 6.61 6.61 0 0116 9.5 6.63 6.63 0 019.5 16zm0-14A7.5 7.5 0 1017 9.5 7.5 7.5 0 009.5 2zm.5 6v4.08h1V13H8.07v-.92H9V9H8V8zM9 6h1v1H9z'
 };
-export const wvuiIconInfoFilled: Icon = {
+export const wvuiIconInfo: IconVariedByLang = {
+	langVariants: {
+		ar: wvuiIconLightbulb
+	},
+	default: wvuiIconInfoDefault
+};
+export const wvuiIconInfoFilledDefault: Icon = {
 	path: 'M10 0C4.477 0 0 4.477 0 10s4.477 10 10 10 10-4.477 10-10S15.523 0 10 0zM9 5h2v2H9zm0 4h2v6H9z'
+};
+export const wvuiIconInfoFilled: IconVariedByLang = {
+	langVariants: {
+		ar: wvuiIconLightbulb
+	},
+	default: wvuiIconInfoFilledDefault
 };
 export const wvuiIconItalicA: Icon = {
 	path: 'M8.605 11.274l3.326-6.543 1.266 6.543zM14.322 17H17L13.703 3h-3L3 17h2.678l2.047-3.995h5.808z'
@@ -467,9 +485,6 @@ export const wvuiIconLargerText: Icon = {
 export const wvuiIconLayout: Icon = {
 	path: 'M8 12V1H1v18h18v-7z M11 1v8h8V1zm6 6h-4V3h4z',
 	shouldFlip: true
-};
-export const wvuiIconLightbulb: Icon = {
-	path: 'M8 19a1 1 0 001 1h2a1 1 0 001-1v-1H8zm9-12a7 7 0 10-12 4.9S7 14 7 15v1a1 1 0 001 1h4a1 1 0 001-1v-1c0-1 2-3.1 2-3.1A7 7 0 0017 7z'
 };
 export const wvuiIconLink: Icon = {
 	path: 'M4.83 15h2.91a4.88 4.88 0 01-1.55-2H5a3 3 0 110-6h3a3 3 0 012.82 4h2.1a4.82 4.82 0 00.08-.83v-.34A4.83 4.83 0 008.17 5H4.83A4.83 4.83 0 000 9.83v.34A4.83 4.83 0 004.83 15z M15.17 5h-2.91a4.88 4.88 0 011.55 2H15a3 3 0 110 6h-3a3 3 0 01-2.82-4h-2.1a4.82 4.82 0 00-.08.83v.34A4.83 4.83 0 0011.83 15h3.34A4.83 4.83 0 0020 10.17v-.34A4.83 4.83 0 0015.17 5z'
@@ -750,6 +765,13 @@ export const wvuiIconStrikethroughS: Icon = {
 export const wvuiIconStrikethroughY: Icon = {
 	path: 'M7.338 8h2.29L5.634 2h-2.3zm3.06 0h2.264l4.004-6h-2.299zM1 10v2h7.926v6h2.148v-6H19v-2z'
 };
+export const wvuiIconStrikethrough: IconVariedByLang = {
+	langVariants: {
+		en: wvuiIconStrikethroughS,
+		fi: wvuiIconStrikethroughY
+	},
+	default: wvuiIconStrikethroughA
+};
 export const wvuiIconSubscript: Icon = {
 	path: 'M13.68 16h-2.42a.67.67 0 01-.46-.15 1.33 1.33 0 01-.28-.34l-2.77-4.44a2.65 2.65 0 01-.28.69L5 15.51a2.22 2.22 0 01-.29.34.58.58 0 01-.42.15H2l4.15-6.19L2.17 4h2.42a.81.81 0 01.41.09.8.8 0 01.24.26L8 8.59a2.71 2.71 0 01.33-.74L10.6 4.4a.69.69 0 01.6-.4h2.32l-4 5.71zm3.82-4h.5v-1h-.5a1.49 1.49 0 00-1 .39 1.49 1.49 0 00-1-.39H15v1h.5a.5.5 0 01.5.5v6a.5.5 0 01-.5.5H15v1h.5a1.49 1.49 0 001-.39 1.49 1.49 0 001 .39h.5v-1h-.5a.5.5 0 01-.5-.5v-6a.5.5 0 01.5-.5z',
 	shouldFlip: true
@@ -850,6 +872,13 @@ export const wvuiIconUnderlineA: Icon = {
 };
 export const wvuiIconUnderlineU: Icon = {
 	path: 'M3 17h14v2H3zm2.61-2.71a5.46 5.46 0 001.89 1.26A6.56 6.56 0 0010 16a6.56 6.56 0 002.5-.45 5.37 5.37 0 003.08-3.17A6.78 6.78 0 0016 10V2h-2.2v8a5 5 0 01-.26 1.66 3.73 3.73 0 01-.75 1.29 3.33 3.33 0 01-1.19.84 4.06 4.06 0 01-1.6.3 4.06 4.06 0 01-1.6-.3 3.33 3.33 0 01-1.19-.84 3.65 3.65 0 01-.74-1.3A5.18 5.18 0 016.21 10V2H4v8a6.78 6.78 0 00.42 2.41 5.49 5.49 0 001.19 1.88z'
+};
+export const wvuiIconUnderline: IconVariedByLang = {
+	langVariants: {
+		en: wvuiIconUnderlineU,
+		de: wvuiIconUnderlineU
+	},
+	default: wvuiIconUnderlineA
 };
 export const wvuiIconUndo: Icon = {
 	path: 'M1 8.5L8 14v-4h1c4 0 7 2 7 6v1h3v-1c0-6-5-9-10-9H8V3z',
