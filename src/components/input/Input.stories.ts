@@ -3,6 +3,7 @@ import { action } from '@storybook/addon-actions';
 import Vue, { PropType } from 'vue';
 import WvuiInput from './Input.vue';
 import { InputType } from './InputType';
+import './Input.stories.less';
 
 export default {
 	title: 'Components/wvui-input',
