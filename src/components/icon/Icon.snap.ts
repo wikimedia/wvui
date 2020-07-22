@@ -6,10 +6,10 @@ exports[`matches the snapshot Case 0 With icon: ({"icon": "path string"}) => HTM
 >
   <svg
     aria-hidden="true"
-    height="20"
+    height="1em"
     role="presentation"
     viewBox="0 0 20 20"
-    width="20"
+    width="1em"
     xmlns="http://www.w3.org/2000/svg"
   >
     <g
@@ -33,10 +33,10 @@ exports[`matches the snapshot Case 1 With icon and hex color: ({"icon": "path st
 >
   <svg
     aria-hidden="true"
-    height="20"
+    height="1em"
     role="presentation"
     viewBox="0 0 20 20"
-    width="20"
+    width="1em"
     xmlns="http://www.w3.org/2000/svg"
   >
     <g
@@ -54,43 +54,16 @@ exports[`matches the snapshot Case 1 With icon and hex color: ({"icon": "path st
 </span>
 `;
 
-exports[`matches the snapshot Case 2 With icon and size: ({"icon": "path string", "size": "32"}) => HTML 1`] = `
+exports[`matches the snapshot Case 2 With icon and slot content: ({"icon": "path string"}) => HTML 1`] = `
 <span
   class="wvui-icon"
 >
   <svg
     aria-hidden="true"
-    height="32"
+    height="1em"
     role="presentation"
     viewBox="0 0 20 20"
-    width="32"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <g
-      fill="currentColor"
-    >
-      <path
-        d="path string"
-      />
-    </g>
-  </svg>
-   
-  <span
-    class="wvui-icon__content"
-  />
-</span>
-`;
-
-exports[`matches the snapshot Case 3 With icon and slot content: ({"icon": "path string"}) => HTML 1`] = `
-<span
-  class="wvui-icon"
->
-  <svg
-    aria-hidden="true"
-    height="20"
-    role="presentation"
-    viewBox="0 0 20 20"
-    width="20"
+    width="1em"
     xmlns="http://www.w3.org/2000/svg"
   >
     <g
@@ -110,16 +83,16 @@ exports[`matches the snapshot Case 3 With icon and slot content: ({"icon": "path
 </span>
 `;
 
-exports[`matches the snapshot Case 4 With flippable icon: ({"icon": [Object]}) => HTML 1`] = `
+exports[`matches the snapshot Case 3 With flippable icon: ({"icon": [Object]}) => HTML 1`] = `
 <span
   class="wvui-icon wvui-icon--flippable"
 >
   <svg
     aria-hidden="true"
-    height="20"
+    height="1em"
     role="presentation"
     viewBox="0 0 20 20"
-    width="20"
+    width="1em"
     xmlns="http://www.w3.org/2000/svg"
   >
     <g
