@@ -1,5 +1,8 @@
 <template>
-	<div class="wvui-input" :class="rootClasses">
+	<div
+		class="wvui-input"
+		:class="rootClasses"
+	>
 		<input
 			ref="input"
 			dir="auto"
@@ -16,7 +19,6 @@
 			v-if="icon"
 			ref="icon"
 			class="wvui-input__icon"
-			@click="onIconClick"
 		>
 			<!--For now icon is hardcoded inline, it will be replaced with
 			wvui-icon once it's ready-->
@@ -37,8 +39,8 @@
 		</span>
 		<span
 			v-if="hasControlSlot"
-			ref="control"
-			class="wvui-input__control"
+			ref="button"
+			class="wvui-input__button"
 		>
 			<slot />
 		</span>
@@ -91,14 +93,10 @@ export default Vue.extend( {
 		},
 		rootClasses: function () {
 			return {
-				'wvui-input--has-control': !!this.$scopedSlots.default
+				'wvui-input--button': !!this.$scopedSlots.default,
+				'wvui-input--icon': !!this.icon
 			};
 		}
-	},
-	mounted() {
-		this.$nextTick( () => {
-			this.adjustIcon();
-		} );
 	},
 	methods: {
 		onInput( event: InputEvent ): void {
@@ -112,42 +110,6 @@ export default Vue.extend( {
 		},
 		onBlur( event: FocusEvent ): void {
 			this.$emit( 'blur', event );
-		},
-		/*
-		* Sets focus to input if icon is clicked
-		* */
-		onIconClick(): void {
-			this.$nextTick( () => {
-				const $input = this.$refs.input as HTMLInputElement;
-
-				$input.focus(); // eslint-disable-line no-jquery/no-event-shorthand
-			} );
-		},
-
-		/*
-		* Adjusts input's left padding if icon is provided
-		* */
-		adjustIcon: function (): void {
-			if ( this.icon ) {
-				const $icon = this.$refs.icon as HTMLElement;
-				const $input = this.$refs.input as HTMLElement;
-				// eslint-disable-next-line no-jquery/no-other-methods
-				const { width } = $icon.getBoundingClientRect();
-				const { paddingLeft } = this.getInputInitialPaddings();
-
-				$input.style.paddingLeft = `${width + paddingLeft}px`;
-			}
-		},
-		/*
-		* Calculates initial input's paddings
-		* */
-		getInputInitialPaddings: function (): Record<string, number> {
-			const $input = this.$refs.input as HTMLElement;
-			const inputStyles = getComputedStyle( $input );
-			const paddingRight = +( inputStyles.paddingRight.replace( 'px', '' ) );
-			const paddingLeft = +( inputStyles.paddingLeft.replace( 'px', '' ) );
-
-			return { paddingRight, paddingLeft };
 		}
 	}
 } );
@@ -167,6 +129,7 @@ export default Vue.extend( {
 		transform: translateY( -50% );
 		line-height: 1;
 		padding-left: @padding-horizontal-input-text;
+		pointer-events: none;
 	}
 
 	&__input {
@@ -229,13 +192,19 @@ export default Vue.extend( {
 		}
 	}
 
+	&--icon {
+		.wvui-input__input {
+			padding-left: @padding-horizontal-input-text * 2 + @size-icon;
+		}
+	}
+
 	&:hover {
 		&__input {
 			border-color: @border-color-input--hover;
 		}
 	}
 
-	&__control {
+	&__button {
 		height: @size-base;
 
 		// Eliminate the gap between the button and the input.
@@ -247,7 +216,7 @@ export default Vue.extend( {
 		}
 	}
 
-	&--has-control {
+	&--button {
 		// stylelint-disable-next-line plugin/no-unsupported-browser-features
 		display: flex;
 

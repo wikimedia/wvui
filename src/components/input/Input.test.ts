@@ -28,7 +28,6 @@ it( 'should render a button in a slot', () => {
 	const wrapper = shallowMount(
 		WvuiInput,
 		{
-			propsData: { icon: 'search' },
 			stubs: {
 				'wvui-button': WvuiButton
 			},
@@ -38,8 +37,8 @@ it( 'should render a button in a slot', () => {
 		}
 	);
 	expect( wrapper.element ).toMatchSnapshot();
-	expect( wrapper.classes() ).toContain( 'wvui-input--has-control' );
-	expect( wrapper.find( '.wvui-input__control' ) ).toBeTruthy();
+	expect( wrapper.classes() ).toContain( 'wvui-input--button' );
+	expect( wrapper.find( '.wvui-input__button' ) ).toBeTruthy();
 	expect( wrapper.find( '.wvui-button' ) ).toBeTruthy();
 } );
 
@@ -69,16 +68,4 @@ it( 'emits blur events', () => {
 
 	wrapper.get( 'input' ).trigger( 'blur' );
 	expect( wrapper.emitted().blur ).toBeTruthy();
-} );
-
-it( 'should emit focus on icon click', async () => {
-	const wrapper = mount( WvuiInput, { propsData: { icon: 'search' } } );
-	const iconElement = wrapper.find( '.wvui-input__icon' );
-	const input: HTMLElement = wrapper.find( 'input' ).element;
-	const focusSpy = jest.spyOn( input, 'focus' );
-
-	await iconElement.trigger( 'click' );
-
-	expect( focusSpy ).toHaveBeenCalled();
-
 } );
