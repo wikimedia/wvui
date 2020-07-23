@@ -84,9 +84,8 @@ export const withButton = (): Vue.Component =>
 		template: `
 		<div class="sb-input-preview">
 			<wvui-input
-					placeholder="Search..."
-					:type="InputType.Search"
-				
+				placeholder="Search..."
+				:type="InputType.Search"
 			>
 				<wvui-button action="progressive">Search</wvui-button>
 			</wvui-input>
@@ -107,8 +106,7 @@ export const wikipediaSearchInput = (): Vue.Component =>
 			<wvui-input
 				placeholder="Search..."
 				:type="InputType.Search"
-        icon="search"
-					
+				icon="search"
 			>
 				<wvui-button>Search</wvui-button>
 			</wvui-input>
