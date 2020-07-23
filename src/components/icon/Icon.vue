@@ -1,5 +1,5 @@
 <template>
-	<span class="wvui-icon" :class="classes">
+	<span class="wvui-icon" :class="rootClasses">
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
 			width="1em"
@@ -70,7 +70,7 @@ export default Vue.extend( {
 		};
 	},
 	computed: {
-		classes(): Record<string, boolean> {
+		rootClasses(): Record<string, boolean> {
 			return {
 				'wvui-icon--should-flip': this.shouldFlip
 			};
