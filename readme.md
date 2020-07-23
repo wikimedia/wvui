@@ -105,18 +105,35 @@ dependencies instead of in control of them.
 
 ### Integration
 
-The following example demonstrates an integration with the Vue application instance that has access
-to the entire component library and styles:
+The following example demonstrates an integration with the Vue root App that has access to the
+entire WVUI component library and styles:
+
+```html
+<!-- App.vue -->
+<template>
+	<wvui-button>Hello WVUI</wvui-button>
+</template>
+
+<script lang="ts">
+	import Vue from "vue";
+	import components from "@wikimedia/wvui";
+	import "@wikimedia/wvui/dist/wvui.css";
+
+	export default {
+		name: "App",
+		components, // App can compose any WVUI component.
+	};
+</script>
+```
 
 ```ts
+// index.ts
 import Vue from "vue";
-import components from "@wikimedia/wvui";
-import "@wikimedia/wvui/dist/wvui.css";
 import App from "./App.vue";
 
 new Vue({
-	components, // App can compose any WVUI component.
 	el: "#app",
+	components: { App },
 	render: (createElement) => createElement(App),
 });
 ```
