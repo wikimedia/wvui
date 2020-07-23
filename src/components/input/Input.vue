@@ -120,8 +120,8 @@ export default Vue.extend( {
 	computed: {
 		rootClasses(): Record<string, boolean> {
 			return {
-				'wvui-input--icon': !!this.icon,
-				'wvui-input--clear': this.clearable
+				'wvui-input--has-icon': !!this.icon,
+				'wvui-input--clearable': this.clearable
 			};
 		},
 		iconName(): string {
@@ -163,9 +163,6 @@ export default Vue.extend( {
 			this.setCurrentValue( '' );
 		},
 		setCurrentValue( value: string | number ): void {
-			if ( value === this.currentValue ) {
-				return;
-			}
 			this.currentValue = value;
 		}
 	}
@@ -198,7 +195,7 @@ export default Vue.extend( {
 		padding-right: @padding-horizontal-input-text;
 	}
 
-	&--clear {
+	&--clearable {
 		.wvui-input__indicator {
 			cursor: pointer;
 		}
@@ -264,7 +261,7 @@ export default Vue.extend( {
 		}
 	}
 
-	&--icon {
+	&--has-icon {
 		.wvui-input__input {
 			padding-left: @padding-horizontal-input-text * 2 + @size-icon;
 		}
