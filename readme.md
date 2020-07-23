@@ -16,7 +16,9 @@ Vue.js shared user-interface components for Wikipedia, MediaWiki, and beyond. Se
 <!-- code_chunk_output -->
 
 - [Table of contents](#table-of-contents)
-- [Installation and version history](#installation-and-version-history)
+- [Usage](#usage)
+  - [Installation and version history](#installation-and-version-history)
+  - [Integration](#integration)
   - [Different builds](#different-builds)
 - [Development](#development)
   - [Quick start](#quick-start)
@@ -60,7 +62,9 @@ Vue.js shared user-interface components for Wikipedia, MediaWiki, and beyond. Se
 <!-- /code_chunk_output -->
 <!-- prettier-ignore-end -->
 
-## Installation and version history
+## Usage
+
+### Installation and version history
 
 Install the library and Vue.js v2:
 
@@ -98,6 +102,24 @@ specifies dependencies with looser versioning instead, that project will be at t
 dependencies instead of in control of them.
 
 </details>
+
+### Integration
+
+The following example demonstrates an integration with the Vue application instance that has access
+to the entire component library and styles:
+
+```ts
+import Vue from "vue";
+import components from "@wikimedia/wvui";
+import "@wikimedia/wvui/dist/wvui.css";
+import App from "./App.vue";
+
+new Vue({
+	components, // App can compose any WVUI component.
+	el: "#app",
+	render: (createElement) => createElement(App),
+});
+```
 
 ### Different builds
 
