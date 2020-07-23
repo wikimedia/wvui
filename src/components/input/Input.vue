@@ -88,10 +88,10 @@ export default Vue.extend( {
 		/*
 		* Checks if slot component is provided
 		* */
-		hasControlSlot: function (): boolean {
+		hasControlSlot(): boolean {
 			return !!this.$scopedSlots.default;
 		},
-		rootClasses: function () {
+		rootClasses(): Record<string, boolean> {
 			return {
 				'wvui-input--button': !!this.$scopedSlots.default,
 				'wvui-input--icon': !!this.icon
