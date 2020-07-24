@@ -1,6 +1,10 @@
 <template>
-	<div class="wvui-input">
+	<div
+		class="wvui-input"
+		:class="rootClasses"
+	>
 		<input
+			ref="input"
 			dir="auto"
 			class="wvui-input__input"
 			v-bind="$attrs"
@@ -11,12 +15,38 @@
 			@focus="onFocus"
 			@blur="onBlur"
 		>
+		<span
+			v-if="icon"
+			ref="icon"
+			class="wvui-input__icon"
+		>
+			<!--For now icon is hardcoded inline, it will be replaced with
+			wvui-icon once it's ready-->
+			<span class="wvui-icon">
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					width="20"
+					height="20"
+					viewBox="0 0 20 20"
+					aria-hidden="true"
+					role="presentation"
+				>
+					<g fill="#72777d">
+						<path :d="searchIcon" />
+					</g>
+				</svg>
+			</span>
+		</span>
 	</div>
 </template>
 
 <script lang="ts">
 import { InputType, isInputType } from './InputType';
 import Vue, { PropType } from 'vue';
+
+// Hardcoded svg for search icon, will be removed after icon <wvui-icon/> is ready
+// eslint-disable-next-line max-len
+const mwIconSearch = 'M7.5 13c3.04 0 5.5-2.46 5.5-5.5S10.54 2 7.5 2 2 4.46 2 7.5 4.46 13 7.5 13zm4.55.46A7.432 7.432 0 0 1 7.5 15C3.36 15 0 11.64 0 7.5S3.36 0 7.5 0C11.64 0 15 3.36 15 7.5c0 1.71-.57 3.29-1.54 4.55l6.49 6.49-1.41 1.41-6.49-6.49z';
 
 export default Vue.extend( {
 	name: 'WvuiInput',
@@ -30,6 +60,28 @@ export default Vue.extend( {
 		disabled: {
 			type: Boolean,
 			default: false
+		},
+		icon: {
+			type: String,
+			default: null
+		},
+		indicator: {
+			type: String,
+			default: null
+		}
+	},
+	data() {
+		return {
+			// temporary hardcoded icons
+			searchIcon: mwIconSearch
+		};
+
+	},
+	computed: {
+		rootClasses(): Record<string, boolean> {
+			return {
+				'wvui-input--icon': !!this.icon
+			};
 		}
 	},
 	methods: {
@@ -57,6 +109,15 @@ export default Vue.extend( {
 	vertical-align: middle;
 	box-sizing: border-box;
 
+	&__icon {
+		position: absolute;
+		top: 50%;
+		transform: translateY( -50% );
+		line-height: 1;
+		padding-left: @padding-horizontal-input-text;
+		pointer-events: none;
+	}
+
 	&__input {
 		background-color: @background-color-base;
 		box-shadow: @box-shadow-widget;
@@ -83,6 +144,11 @@ export default Vue.extend( {
 			color: @color-placeholder;
 			text-shadow: @text-shadow-base--disabled;
 			border-color: @border-color-base--disabled;
+
+			& ~ .wvui-input__icon,
+			& ~ .wvui-input__indicator {
+				opacity: @opacity-base--disabled;
+			}
 		}
 
 		&::placeholder {
@@ -112,10 +178,28 @@ export default Vue.extend( {
 		}
 	}
 
+	&--icon {
+		.wvui-input__input {
+			padding-left: @padding-horizontal-input-text * 2 + @size-icon;
+		}
+	}
+
 	&:hover {
 		&__input {
 			border-color: @border-color-input--hover;
 		}
 	}
+}
+// Temp: hardcoded icon styles from
+// https://github.com/wikimedia/wvui/pull/47
+.wvui-icon {
+	align-items: center;
+	// Maintain an inline outer element while using flexbox to center the SVG
+	// and avoid extra space around the image.
+	display: inline-flex; // stylelint-disable-line plugin/no-unsupported-browser-features
+	justify-content: center;
+	// For inline, inline-block, and table layouts.
+	vertical-align: middle;
+	user-select: none;
 }
 </style>
