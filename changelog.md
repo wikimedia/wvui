@@ -2,8 +2,11 @@
 
 Versions and bullets are arranged chronologically from latest to oldest.
 
-## v0.0.1 (unreleased)
+## v0.0.2 (unreleased)
 
+## v0.0.1
+
+-   [component][input] Add icon implementation for input
 -   [component][button] Add initial styles
 -   [dev] Upgrade dependencies
 -   [build][fix] Don't push tags for development releases

@@ -13,7 +13,7 @@ describe( 'isInputType()', () => {
 
 	test.each( cases )(
 		'Case %# %s: (%p) => %p',
-		( _, action, expected ) =>
-			expect( isInputType( action ) ).toStrictEqual( expected )
+		( _, type, expected ) =>
+			expect( isInputType( type ) ).toStrictEqual( expected )
 	);
 } );

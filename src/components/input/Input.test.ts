@@ -17,10 +17,16 @@ describe( 'matches the snapshot', () => {
 	} );
 } );
 
-it( 'emits input events', () => {
+it( 'should render an icon', () => {
+	const wrapper = shallowMount( WvuiInput, { propsData: { icon: 'search' } } );
+	expect( wrapper.element ).toMatchSnapshot();
+	expect( wrapper.find( '.wvui-input__icon' ) ).toBeTruthy();
+} );
+
+it( 'emits input events', async () => {
 	const wrapper = shallowMount( WvuiInput );
 
-	wrapper.get( 'input' ).trigger( 'input' );
+	await wrapper.get( 'input' ).trigger( 'input' );
 	expect( wrapper.emitted().input ).toBeTruthy();
 } );
 
