@@ -35,7 +35,6 @@ exports[`should render an icon 1`] = `
   <input
     class="wvui-input__input"
     dir="auto"
-    type="text"
   />
    
   <span

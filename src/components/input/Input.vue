@@ -8,8 +8,6 @@
 			dir="auto"
 			class="wvui-input__input"
 			v-bind="$attrs"
-			:disabled="disabled"
-			:type="type"
 			@input="onInput"
 			@change="onChange"
 			@focus="onFocus"
@@ -41,7 +39,7 @@
 </template>
 
 <script lang="ts">
-import { InputType, isInputType } from './InputType';
+import { SelectionRange } from './Selection';
 import Vue, { PropType } from 'vue';
 
 // Hardcoded svg for search icon, will be removed after icon <wvui-icon/> is ready
@@ -50,24 +48,38 @@ const mwIconSearch = 'M7.5 13c3.04 0 5.5-2.46 5.5-5.5S10.54 2 7.5 2 2 4.46 2 7.5
 
 export default Vue.extend( {
 	name: 'WvuiInput',
+	/**
+	 * All atributes set on the components such as disabled and type are passed to the underlying
+	 * input.
+	 */
 	inheritAttrs: false,
 	props: {
-		type: {
-			type: String as PropType<InputType>,
-			default: InputType.Text,
-			validator: isInputType
+		/** An icon at the start of the input element. Similar to a ::before pseudo-element. */
+		icon: {
+			type: String as PropType<string | undefined>,
+			default: undefined
 		},
-		disabled: {
+		/** An icon at the end of the input element. Similar to an ::after pseudo-element. */
+		indicator: {
+			type: String as PropType<string | undefined>,
+			default: undefined
+		},
+		/**
+		 * If true, request focus before mounting. If false, do nothing (blur is not requested).
+		 * This is useful for transitioning from a server-side rendered (SSR) input to a client-side
+		 * input which may be focused at client render time. See selection for related concerns.
+		 */
+		focus: {
 			type: Boolean,
 			default: false
 		},
-		icon: {
-			type: String,
-			default: null
-		},
-		indicator: {
-			type: String,
-			default: null
+		/**
+		 * If set, select the text range. Like focus, a server-side rendered (SSR) input may have
+		 * text highlighted on the SSR input at client-side render time.
+		 */
+		selection: {
+			type: Object as PropType<SelectionRange | undefined>,
+			default: undefined
 		}
 	},
 	data() {
@@ -75,7 +87,6 @@ export default Vue.extend( {
 			// temporary hardcoded icons
 			searchIcon: mwIconSearch
 		};
-
 	},
 	computed: {
 		rootClasses(): Record<string, boolean> {
@@ -83,6 +94,22 @@ export default Vue.extend( {
 				'wvui-input--icon': !!this.icon
 			};
 		}
+	},
+	// beforeMount() is only invoked on client-rendered components.
+	beforeMount(): void {
+		this.$nextTick( () => {
+			const input = this.$refs.input as HTMLInputElement;
+			if ( this.focus ) {
+				input.focus();
+			}
+			if ( this.selection ) {
+				input.setSelectionRange(
+					this.selection.start,
+					this.selection.end,
+					this.selection.direction
+				);
+			}
+		} );
 	},
 	methods: {
 		onInput( event: InputEvent ): void {
