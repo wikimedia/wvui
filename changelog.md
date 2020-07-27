@@ -2,7 +2,9 @@
 
 Versions and bullets are arranged chronologically from latest to oldest.
 
-## v0.0.1 (unreleased)
+## v0.0.2 (unreleased)
+
+## v0.0.1
 
 -   [dev] Decrease test coverage to 80%
 -   [component][input] Add clear action for input
