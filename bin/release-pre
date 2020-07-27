@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+# Publish a pre-release (alpha, beta, or release candidate).
+#
+# Environment variables:
+# - TYPE: Required release type: prerelease, prepatch, preminor, or premajor.
+# - PRE_ID: Required package version identifier: alpha, beta, or rc.
+#
+# Example (if master is v0.0.0, publish v0.0.1-rc.0):
+#
+#   TYPE=prerelease PRE_ID=rc bin/release-pre
+
+set -euo pipefail
+
+"$(dirname "$0")/node-test-version"
+
+# Checkout the latest master branch.
+git checkout master
+git pull
+
+# Validate the installation. See `npm help ci`.
+npm ci
+
+# This will create a new version commit on master like `v1.0.1-alpha.0`.
+npm version "$TYPE" --preid="$PRE_ID"
+
+# Scoped packages (like `@wikimedia/*`) are private by default. Specify that public is wanted.
+npm publish --access public
