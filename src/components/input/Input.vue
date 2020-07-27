@@ -85,9 +85,11 @@ export default Vue.extend( {
 
 	},
 	computed: {
-		/*
-		* Checks if slot component is provided
-		* */
+		/**
+		 * Checks if slot component is provided.
+		 *
+		 * @return boolean
+		 */
 		hasControlSlot(): boolean {
 			return !!this.$scopedSlots.default;
 		},
@@ -208,7 +210,7 @@ export default Vue.extend( {
 		height: @size-base;
 
 		// Eliminate the gap between the button and the input.
-		& .wvui-button {
+		& .wvui-button.wvui-button--framed {
 			height: 100%;
 			border-top-left-radius: 0;
 			border-bottom-left-radius: 0;
