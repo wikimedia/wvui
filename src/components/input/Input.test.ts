@@ -32,7 +32,7 @@ it( 'should render a clear icon', () => {
 	const clearElement = wrapper.find( '.wvui-input__indicator' );
 
 	expect( wrapper.element ).toMatchSnapshot();
-	expect( wrapper.classes() ).toContain( 'wvui-input--clear' );
+	expect( wrapper.classes() ).toContain( 'wvui-input--clearable' );
 	expect( clearElement ).toBeTruthy();
 } );
 
@@ -69,18 +69,6 @@ it( 'emits blur events', () => {
 
 	wrapper.get( 'input' ).trigger( 'blur' );
 	expect( wrapper.emitted().blur ).toBeTruthy();
-} );
-
-it( 'should emit focus on icon click', async () => {
-	const wrapper = mount( WvuiInput, { propsData: { icon: 'search' } } );
-	const iconElement = wrapper.find( '.wvui-input__icon' );
-	const input: HTMLElement = wrapper.find( 'input' ).element;
-	const focusSpy = jest.spyOn( input, 'focus' );
-
-	await iconElement.trigger( 'click' );
-
-	expect( focusSpy ).toHaveBeenCalled();
-
 } );
 /*
 * It is supposed to be reconsidered once

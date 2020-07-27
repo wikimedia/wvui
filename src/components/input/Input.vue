@@ -20,7 +20,6 @@
 			v-if="icon"
 			ref="icon"
 			class="wvui-input__icon"
-			@click="onIconClick"
 		>
 			<!--For now icon is hardcoded inline, it will be replaced with
 			wvui-icon once it's ready-->
@@ -145,20 +144,11 @@ export default Vue.extend( {
 		onBlur( event: FocusEvent ): void {
 			this.$emit( 'blur', event );
 		},
-		/*
-		* Sets focus to input if icon is clicked
-		* */
-		onIconClick(): void {
-			this.$nextTick( () => {
-				const $input = this.$refs.input as HTMLInputElement;
-
-				$input.focus(); // eslint-disable-line no-jquery/no-event-shorthand
-			} );
-		},
 		onClear(): void {
 			if ( !this.clearable ) {
 				return;
 			}
+
 			this.$emit( 'input', '' );
 			this.setCurrentValue( '' );
 		},
@@ -184,6 +174,7 @@ export default Vue.extend( {
 		transform: translateY( -50% );
 		line-height: 1;
 		padding-left: @padding-horizontal-input-text;
+		pointer-events: none;
 	}
 
 	&__icon {

@@ -34,7 +34,7 @@ exports[`matches the snapshot Case 1 Input Type: search : ({"type": "search"}) =
 
 exports[`should render a clear icon 1`] = `
 <div
-  class="wvui-input wvui-input--clear"
+  class="wvui-input wvui-input--clearable"
 >
   <input
     class="wvui-input__input"
@@ -73,7 +73,7 @@ exports[`should render a clear icon 1`] = `
 
 exports[`should render an icon 1`] = `
 <div
-  class="wvui-input wvui-input--icon"
+  class="wvui-input wvui-input--has-icon"
 >
   <input
     class="wvui-input__input"
