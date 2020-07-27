@@ -72,7 +72,7 @@ export default Vue.extend( {
 	computed: {
 		rootClasses(): Record<string, boolean> {
 			return {
-				'wvui-icon--should-flip': this.shouldFlip
+				'wvui-icon--flip-for-rtl': this.shouldFlip
 			};
 		},
 		shouldFlip(): boolean {
@@ -126,7 +126,7 @@ export default Vue.extend( {
 }
 
 // Horizontally flip icons that should be flipped for RTL languages.
-[ dir='rtl' ] .wvui-icon--should-flip svg {
+[ dir='rtl' ] .wvui-icon--flip-for-rtl svg {
 	transform: scaleX( -1 );
 }
 </style>

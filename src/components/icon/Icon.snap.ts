@@ -75,7 +75,7 @@ exports[`matches the snapshot Case 2 With icon and title: ({"icon": [Object], "i
 
 exports[`matches the snapshot Case 3 With icon that should flip for RTL: ({"icon": [Object]}) => HTML 1`] = `
 <span
-  class="wvui-icon wvui-icon--should-flip"
+  class="wvui-icon wvui-icon--flip-for-rtl"
 >
   <svg
     aria-hidden="true"
