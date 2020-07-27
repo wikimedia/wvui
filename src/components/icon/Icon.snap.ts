@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`matches the snapshot Case 0 With icon: ({"icon": [Object]}) => HTML 1`] = `
+exports[`matches the snapshot Case 0 With icon: ({"icon": "path string"}) => HTML 1`] = `
 <span
   class="wvui-icon"
 >
@@ -24,7 +24,7 @@ exports[`matches the snapshot Case 0 With icon: ({"icon": [Object]}) => HTML 1`]
 </span>
 `;
 
-exports[`matches the snapshot Case 1 With icon and hex color: ({"icon": [Object], "iconColor": "#ff6347"}) => HTML 1`] = `
+exports[`matches the snapshot Case 1 With icon and hex color: ({"icon": "path string", "iconColor": "#ff6347"}) => HTML 1`] = `
 <span
   class="wvui-icon"
 >
@@ -48,7 +48,7 @@ exports[`matches the snapshot Case 1 With icon and hex color: ({"icon": [Object]
 </span>
 `;
 
-exports[`matches the snapshot Case 2 With icon and title: ({"icon": [Object], "iconTitle": "Add something"}) => HTML 1`] = `
+exports[`matches the snapshot Case 2 With icon and title: ({"icon": "path string", "iconTitle": "Add something"}) => HTML 1`] = `
 <span
   class="wvui-icon"
 >
@@ -90,7 +90,7 @@ exports[`matches the snapshot Case 3 With icon that should flip for RTL: ({"icon
       fill="currentColor"
     >
       <path
-        d="path flippable"
+        d="path should flip"
       />
     </g>
   </svg>

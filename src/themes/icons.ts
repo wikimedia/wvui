@@ -1,21 +1,11 @@
 /**
- * These icon paths will be used by the Icon component to display an svg. Icons
- * are not shouldFlip by default.
- *
- * An icon can take the following forms:
- *  - A path string
- *  - An object containing a path property
- *  - An object containing a paths property that contains different paths per
- *    language (e.g. wvuiIconBold) or text direction (e.g. wvuiIconEditUndo).
- *
- * The shouldFlip property will allow an icon to be flipped horizontally if text
- * direction is set to rtl.
+ * Wikimedia icons.
  *
  * If tree-shaking cannot be relied upon, consider creating an entry point that
  * defines the icons that are needed instead of including them all.
  */
 
-import { Icon, IconVariedByLang, IconVariedByDir } from './iconTypes';
+import { Icon, IconVariedByLang, IconVariedByDir } from '../components/icon/iconTypes';
 
 /* eslint-disable max-len */
 export const wvuiIconAdd: Icon = {
@@ -51,7 +41,7 @@ export const wvuiIconArticleAdd: Icon = {
 export const wvuiIconArticleCheck: Icon = {
 	path: 'M9 17l-4.59-4.59L5.83 11 9 14.17l8-8V3a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2V9z'
 };
-export const wvuiIconArticleDisambiguation = {
+export const wvuiIconArticleDisambiguation: Icon = {
 	path: 'M15 1H5c-1.1 0-2 .9-2 2v6h4.6l3.7-3.7L10 4h4v4l-1.3-1.3L9.4 10l3.3 3.3L14 12v4h-4l1.3-1.3L7.6 11H3v6c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-2-2-2z',
 	shouldFlip: true
 };
@@ -138,7 +128,7 @@ export const wvuiIconBoldV: Icon = {
 	path: 'M3 3h3.5l3.5 9.333L13.5 3H17l-5.25 14h-3.5z'
 };
 export const wvuiIconBold: IconVariedByLang = {
-	langVariants: {
+	langCodeMap: {
 		ar: wvuiIconBoldArabAin,
 		be: wvuiIconBoldCyrlTe,
 		ce: wvuiIconBoldCyrlPalochka,
@@ -257,10 +247,7 @@ export const wvuiIconEditUndoRtl: Icon = {
 	path: 'M3 15.25V20h4.75l8.33-8.33-5.27-4.23z M13 2.86V0l5 4-5 4V5h-.86c-2.28 0-4 1.43-4 4.29H6a6.51 6.51 0 016.14-6.43z'
 };
 export const wvuiIconEditUndo: IconVariedByDir = {
-	dirVariants: {
-		ltr: wvuiIconEditUndoLtr,
-		rtl: wvuiIconEditUndoRtl
-	},
+	rtl: wvuiIconEditUndoRtl,
 	default: wvuiIconEditUndoLtr
 };
 export const wvuiIconEllipsis: Icon = {
@@ -339,7 +326,7 @@ export const wvuiIconHome: Icon = {
 export const wvuiIconImage: Icon = {
 	path: 'M2 2a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V4a2 2 0 00-2-2zm-.17 13l4.09-5.25 2.92 3.51L12.92 8l5.25 7z'
 };
-export const wvuiIconImageAdd = {
+export const wvuiIconImageAdd: Icon = {
 	path: 'M16 17H2l3.5-4.5 2.5 3 3.5-4.5.5.67V8H8V6H2a2 2 0 00-2 2v10a2 2 0 002 2h14a2 2 0 002-2v-6h-5.75z M16 4V0h-2v4h-4v2h4v4h2V6h4V4z',
 	shouldFlip: true
 };
@@ -376,7 +363,7 @@ export const wvuiIconInfoDefault: Icon = {
 	path: 'M9.5 16A6.61 6.61 0 013 9.5 6.61 6.61 0 019.5 3 6.61 6.61 0 0116 9.5 6.63 6.63 0 019.5 16zm0-14A7.5 7.5 0 1017 9.5 7.5 7.5 0 009.5 2zm.5 6v4.08h1V13H8.07v-.92H9V9H8V8zM9 6h1v1H9z'
 };
 export const wvuiIconInfo: IconVariedByLang = {
-	langVariants: {
+	langCodeMap: {
 		ar: wvuiIconLightbulb
 	},
 	default: wvuiIconInfoDefault
@@ -385,7 +372,7 @@ export const wvuiIconInfoFilledDefault: Icon = {
 	path: 'M10 0C4.477 0 0 4.477 0 10s4.477 10 10 10 10-4.477 10-10S15.523 0 10 0zM9 5h2v2H9zm0 4h2v6H9z'
 };
 export const wvuiIconInfoFilled: IconVariedByLang = {
-	langVariants: {
+	langCodeMap: {
 		ar: wvuiIconLightbulb
 	},
 	default: wvuiIconInfoFilledDefault
@@ -427,7 +414,7 @@ export const wvuiIconItalicS: Icon = {
 	path: 'M15.526 3.702l-.353 1.779a8.585 8.585 0 00-1.816-.733 6.336 6.336 0 00-1.734-.253c-1.09 0-1.96.238-2.601.714-.646.476-.968 1.108-.968 1.898 0 .431.117.758.352 1.003.242.222.855.466 1.843.735l1.093.268c1.236.32 2.094.725 2.575 1.22.482.49.723 1.175.723 2.06 0 1.361-.536 2.469-1.61 3.324C11.967 16.573 10.559 17 8.813 17c-.717 0-1.437-.07-2.16-.216a11.97 11.97 0 01-2.178-.641l.362-1.878a8.88 8.88 0 002.006.939 6.77 6.77 0 002.018.315c1.138 0 2.053-.252 2.737-.758.689-.507 1.03-1.167 1.03-1.98 0-.542-.14-.952-.413-1.23-.271-.281-.86-.536-1.763-.765l-1.093-.28c-1.248-.327-2.1-.7-2.554-1.125-.455-.429-.682-1.026-.682-1.79 0-1.344.516-2.443 1.546-3.299C8.706 3.43 10.05 3 11.707 3a10.985 10.985 0 013.815.686'
 };
 export const wvuiIconItalic: IconVariedByLang = {
-	langVariants: {
+	langCodeMap: {
 		ar: wvuiIconItalicArabMeem,
 		cs: wvuiIconItalicI,
 		en: wvuiIconItalicI,
@@ -507,10 +494,7 @@ export const wvuiIconListNumberedRtl: Icon = {
 	path: 'M2 15h11v2H2zm0-6h11v2H2zm0-6h11v2H2zm15-2h-1v1h1v4h1V1zm-2 12v1h2v1h-1v1h1v1h-2v1h3v-5zm0-6v1h2v1h-1.5c-.3 0-.5.2-.5.5V12h3v-1h-2v-1h1.5c.3 0 .5-.2.5-.5v-2c0-.3-.2-.5-.5-.5z'
 };
 export const wvuiIconListNumbered: IconVariedByDir = {
-	dirVariants: {
-		ltr: wvuiIconListNumberedLtr,
-		rtl: wvuiIconListNumberedRtl
-	},
+	rtl: wvuiIconListNumberedRtl,
 	default: wvuiIconListNumberedLtr
 };
 export const wvuiIconLock: Icon = {
@@ -664,10 +648,7 @@ export const wvuiIconRecentChangesRtl: Icon = {
 	path: 'M14 15h-4v2h4zm0-6h-2v2h2zm0-6H3v2h11z M20 4 A2 2 0 0 1 18 6 A2 2 0 0 1 16 4 A2 2 0 0 1 20 4 z M20 10 A2 2 0 0 1 18 12 A2 2 0 0 1 16 10 A2 2 0 0 1 20 10 z M20 16 A2 2 0 0 1 18 18 A2 2 0 0 1 16 16 A2 2 0 0 1 20 16 z M6.11 9.24l1.113-1.08a.556.556 0 01.783 0l1.833 1.857a.556.556 0 010 .782l-1.078 1.09-2.65-2.65zm2.062 3.226L2.64 18H0v-2.64l5.533-5.532z'
 };
 export const wvuiIconRecentChanges: IconVariedByDir = {
-	dirVariants: {
-		ltr: wvuiIconRecentChangesLtr,
-		rtl: wvuiIconRecentChangesRtl
-	},
+	rtl: wvuiIconRecentChangesRtl,
 	default: wvuiIconRecentChangesLtr
 };
 export const wvuiIconRedo: Icon = {
@@ -684,10 +665,7 @@ export const wvuiIconReferenceExistingRtl: Icon = {
 	path: 'M13 0a2 2 0 012 2H6a2 2 0 00-2 2v12a2 2 0 01-2-2V2a2 2 0 012-2z M5 18c0 1.1.9 2 2 2h9c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2v9l-2.8-2.8-2.8 2.8V3H7C5.4 3 5 4.6 5 5v13z'
 };
 export const wvuiIconReferenceExisting: IconVariedByDir = {
-	dirVariants: {
-		ltr: wvuiIconReferenceExistingLtr,
-		rtl: wvuiIconReferenceExistingRtl
-	},
+	rtl: wvuiIconReferenceExistingRtl,
 	default: wvuiIconReferenceExistingLtr
 };
 export const wvuiIconReferences: Icon = {
@@ -718,7 +696,7 @@ export const wvuiIconSearchRegularExpression: Icon = {
 export const wvuiIconSettings: Icon = {
 	path: 'M11.5 0l.42 2.75a7.67 7.67 0 0 1 1.87.77L16 1.87 18.16 4 16.49 6.23a7.67 7.67 0 0 1 .76 1.85L20 8.5v3l-2.75.42a7.67 7.67 0 0 1-.77 1.87L18.13 16 16 18.16l-2.24-1.67a7.67 7.67 0 0 1-1.85.76L11.5 20h-3l-.42-2.75a7.45 7.45 0 0 1-1.86-.77L4 18.13 1.87 16l1.65-2.23a7 7 0 0 1-.77-1.85L0 11.5v-3l2.75-.42a7.45 7.45 0 0 1 .77-1.86L1.87 4 4 1.87 6.23 3.52a7.17 7.17 0 0 1 1.85-.77L8.5 0ZM10 6.5A3.5 3.5 0 1 0 13.5 10 3.5 3.5 0 0 0 10 6.5Z'
 };
-export const wvuiIconSignature = {
+export const wvuiIconSignature: Icon = {
 	path: 'M0 18h20v1H0zm-.003-6.155l1.06-1.06 4.363 4.362-1.06 1.06z M.004 15.147l4.363-4.363 1.06 1.061-4.362 4.363zM17 5c0 9-11 9-11 9v-1.5s8 .5 9.5-6.5C16 4 15 2.5 14 2.5S11 4 10.75 10c-.08 2 .75 4.5 3.25 4.5 1.5 0 2-1 3.5-1a2.07 2.07 0 012.25 2.5h-1.5s.13-1-.5-1C16 15 16 16 14 16c0 0-4.75 0-4.75-6S12 1 14 1c.5 0 3 0 3 4z',
 	shouldFlip: true
 };
@@ -766,7 +744,7 @@ export const wvuiIconStrikethroughY: Icon = {
 	path: 'M7.338 8h2.29L5.634 2h-2.3zm3.06 0h2.264l4.004-6h-2.299zM1 10v2h7.926v6h2.148v-6H19v-2z'
 };
 export const wvuiIconStrikethrough: IconVariedByLang = {
-	langVariants: {
+	langCodeMap: {
 		en: wvuiIconStrikethroughS,
 		fi: wvuiIconStrikethroughY
 	},
@@ -874,7 +852,7 @@ export const wvuiIconUnderlineU: Icon = {
 	path: 'M3 17h14v2H3zm2.61-2.71a5.46 5.46 0 001.89 1.26A6.56 6.56 0 0010 16a6.56 6.56 0 002.5-.45 5.37 5.37 0 003.08-3.17A6.78 6.78 0 0016 10V2h-2.2v8a5 5 0 01-.26 1.66 3.73 3.73 0 01-.75 1.29 3.33 3.33 0 01-1.19.84 4.06 4.06 0 01-1.6.3 4.06 4.06 0 01-1.6-.3 3.33 3.33 0 01-1.19-.84 3.65 3.65 0 01-.74-1.3A5.18 5.18 0 016.21 10V2H4v8a6.78 6.78 0 00.42 2.41 5.49 5.49 0 001.19 1.88z'
 };
 export const wvuiIconUnderline: IconVariedByLang = {
-	langVariants: {
+	langCodeMap: {
 		en: wvuiIconUnderlineU,
 		de: wvuiIconUnderlineU
 	},
