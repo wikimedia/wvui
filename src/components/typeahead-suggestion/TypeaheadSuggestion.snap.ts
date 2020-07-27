@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`matches the snapshot Case 0 With thumnail: ({"suggestion": [Object]}) => HTML 1`] = `
+exports[`matches the snapshot Case 0 With thumbnail: ({"suggestion": [Object]}) => HTML 1`] = `
 <li
   class="wvui-typeahead-suggestion"
 >
@@ -32,7 +32,7 @@ exports[`matches the snapshot Case 0 With thumnail: ({"suggestion": [Object]}) =
 </li>
 `;
 
-exports[`matches the snapshot Case 1 Without thumnail: ({"suggestion": [Object]}) => HTML 1`] = `
+exports[`matches the snapshot Case 1 Without thumbnail: ({"suggestion": [Object]}) => HTML 1`] = `
 <li
   class="wvui-typeahead-suggestion"
 >

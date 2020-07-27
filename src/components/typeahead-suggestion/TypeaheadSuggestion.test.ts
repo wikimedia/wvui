@@ -7,8 +7,8 @@ describe( 'matches the snapshot', () => {
 	type Case = [string, Record<string, TypeaheadSuggestion>];
 
 	const cases: Case[] = [
-		[ 'With thumnail', { suggestion: suggestionsList.pages[ 1 ] as TypeaheadSuggestion } ],
-		[ 'Without thumnail', { suggestion: suggestionsList.pages[ 0 ] as TypeaheadSuggestion } ]
+		[ 'With thumbnail', { suggestion: suggestionsList.pages[ 1 ] as TypeaheadSuggestion } ],
+		[ 'Without thumbnail', { suggestion: suggestionsList.pages[ 0 ] as TypeaheadSuggestion } ]
 	];
 
 	test.each( cases )( 'Case %# %s: (%p) => HTML', ( _, props ) => {
