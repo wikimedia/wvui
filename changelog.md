@@ -4,6 +4,8 @@ Versions and bullets are arranged chronologically from latest to oldest.
 
 ## v0.0.2 (unreleased)
 
+-   [component][typeahead-suggestion] Add initial styles and props
+
 ## v0.0.1
 
 -   [component][input] Add icon implementation for input
