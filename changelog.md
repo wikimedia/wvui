@@ -5,6 +5,7 @@ Versions and bullets are arranged chronologically from latest to oldest.
 ## v0.0.2 (unreleased)
 
 -   [component][typeahead-suggestion] Add initial styles and props
+-   [build][dev] Add production and pre-release scripts
 
 ## v0.0.1
 

@@ -16,7 +16,9 @@ Vue.js shared user-interface components for Wikipedia, MediaWiki, and beyond. Se
 <!-- code_chunk_output -->
 
 - [Table of contents](#table-of-contents)
-- [Installation and version history](#installation-and-version-history)
+- [Usage](#usage)
+  - [Installation and version history](#installation-and-version-history)
+  - [Integration](#integration)
   - [Different builds](#different-builds)
 - [Development](#development)
   - [Quick start](#quick-start)
@@ -60,7 +62,9 @@ Vue.js shared user-interface components for Wikipedia, MediaWiki, and beyond. Se
 <!-- /code_chunk_output -->
 <!-- prettier-ignore-end -->
 
-## Installation and version history
+## Usage
+
+### Installation and version history
 
 Install the library and Vue.js v2:
 
@@ -98,6 +102,41 @@ specifies dependencies with looser versioning instead, that project will be at t
 dependencies instead of in control of them.
 
 </details>
+
+### Integration
+
+The following example demonstrates an integration with the Vue root App that has access to the
+entire WVUI component library and styles:
+
+```html
+<!-- App.vue -->
+<template>
+	<wvui-button>Hello WVUI</wvui-button>
+</template>
+
+<script lang="ts">
+	import Vue from "vue";
+	import components from "@wikimedia/wvui";
+	import "@wikimedia/wvui/dist/wvui.css";
+
+	export default {
+		name: "App",
+		components, // App can compose any WVUI component.
+	};
+</script>
+```
+
+```ts
+// index.ts
+import Vue from "vue";
+import App from "./App.vue";
+
+new Vue({
+	el: "#app",
+	components: { App },
+	render: (createElement) => createElement(App),
+});
+```
 
 ### Different builds
 
@@ -417,16 +456,19 @@ some measure of fixing or "formatting" problems automatically by executing `npm 
 
 To publish a new release:
 
-1. Update the [changelog](changelog.md) with release notes.
-2. Commit the changelog.
-3. Execute `npm version <patch|minor|major>`.
-4. Execute `npm publish --access public`.
+1. Checkout the latest master branch: `git checkout master && git pull`.
+2. Update the [changelog](changelog.md) with release notes.
+3. Commit the changelog.
+4. Execute `TYPE=<patch|minor|major> bin/release-prod`.
 5. Perform a [rolling development release](#rolling-development-release).
 
 <details markdown>
 <summary>Expand for example…</summary>
 
 ```bash
+# Checkout the latest master branch.
+git checkout master && git pull
+
 # Review the changes since the last release. For example,
 # `git log "$(git describe --tags --abbrev=0)..@" --oneline`.
 
@@ -441,10 +483,7 @@ git add changelog.md
 git commit -m '[docs][changelog] prepare release notes'
 
 # Version, build, and test a release.
-npm version minor
-
-# Publish the release
-npm publish --access public
+TYPE=patch bin/release-prod
 ```
 
 </details>
@@ -498,26 +537,24 @@ See also:
 
 #### Pre-release (alpha, beta, or release candidate)
 
-To publish a new alpha, beta, or release candidate:
-
-1. Execute `npm version <prerelease|prepatch|preminor|premajor> --preid=<alpha|beta|rc>`. This will
-   create a new version commit on the current branch.
-2. Execute `npm publish --access public`.
+To publish a new alpha, beta, or release candidate, execute
+`TYPE=<prerelease|prepatch|preminor|premajor> PRE_ID=<alpha|beta|rc> bin/release-pre`. This will
+create a new version commit on the current branch.
 
 <details markdown>
 <summary>Expand for details on which version to use…</summary>
 
 `prerelease` is the safest choice. It always bumps the metadata number and _only_ bumps the patch
 number if a stable version exists. For example, given the current version is a stable v1.2.3,
-`npm version prerelease --preid=alpha` will create `v1.2.4-alpha.0`. Note that both the patch is
-bumped and metadata is added. If executed _again_, note that only the metadata number is bumped and
-the patch number stays the same: `v1.2.4-alpha.1`.
+`TYPE=prerelease PRE_ID=alpha bin/release-pre` will create `v1.2.4-alpha.0`. Note that both the
+patch is bumped and metadata is added. If executed _again_, note that only the metadata number is
+bumped and the patch number stays the same: `v1.2.4-alpha.1`.
 
 `prerelease` can be slightly incorrect if the next release is known to be a minor or major release.
-In those cases, the correct initial alpha release would be `npm version preminor --preid=alpha` (or
-`premajor`) which would create `v1.3.0-alpha.0`. The subsequent alpha release would then be
-`npm version prerelease --preid=alpha` (note the command changes to `prerelease`) which creates
-`v1.3.0-alpha.1`.
+In those cases, the correct initial alpha release would be
+`TYPE=preminor PRE_ID=alpha bin/release-pre` (or `premajor`) which would create `v1.3.0-alpha.0`.
+The subsequent alpha release would then be `TYPE=prerelease PRE_ID=alpha bin/release-pre` (note the
+command `TYPE` changes to `prerelease`) which creates `v1.3.0-alpha.1`.
 
 </details>
 
