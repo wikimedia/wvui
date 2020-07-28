@@ -8,6 +8,9 @@ Versions and bullets are arranged chronologically from latest to oldest.
 
 ## v0.0.1
 
+-   [dev] Decrease test coverage to 80%
+-   [component][input] Add clear action for input
+-   [component][input] Add indicator implementation for input
 -   [component][input] Add icon implementation for input
 -   [component][button] Add initial styles
 -   [dev] Upgrade dependencies
