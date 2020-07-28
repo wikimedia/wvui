@@ -9,9 +9,12 @@ it( 'should escape regexp', () => {
 } );
 
 it( 'should escape html', () => {
-	const htmlString = '<>\'"& a';
-	const escapedHtml = '&lt;&gt;&#039;&quot;&amp; a';
+	const htmlString = '<>\'"&';
+	const string = 's';
+	const escapedHtml = '&lt;&gt;&#039;&quot;&amp;';
 	const result = WvuiUtils.htmlEscape( htmlString );
+	const resultUnescaped = WvuiUtils.htmlEscape( string );
 
 	expect( result ).toEqual( escapedHtml );
+	expect( resultUnescaped ).toEqual( string );
 } );

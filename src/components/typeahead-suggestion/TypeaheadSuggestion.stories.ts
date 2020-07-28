@@ -20,7 +20,10 @@ export const configurable = (): Vue.Component =>
 				default: boolean( 'Thumbnail?', true )
 			},
 			active: { type: Boolean, default: boolean( 'Active?', false ) },
-			query: { type: String, default: text( 'Query (for highlighting)', 'Ob' ) }
+			query: {
+				type: String,
+				default: text( 'Query (to highlight)', 'ob' )
+			}
 		},
 		computed: {
 			suggestion(): TypeaheadSuggestion {
@@ -68,7 +71,8 @@ export const withInput = (): Vue.Component =>
 		components: { WvuiTypeaheadSuggestion, WvuiInput },
 		data() {
 			return {
-				isVisible: false
+				isVisible: false,
+				query: 'ob'
 			};
 		},
 		computed: {
@@ -78,17 +82,22 @@ export const withInput = (): Vue.Component =>
 		},
 		methods: {
 			onInput( event: InputEvent ): void {
-				const { target } = event;
+				const { value } = event.target as HTMLInputElement;
 
-				this.isVisible = !!( target as HTMLInputElement ).value;
+				this.isVisible = !!value;
+				this.query = value;
 			}
 		},
 		template: `
 		<div class="sb-search-wrapper">
-			<wvui-input icon="search" @input="onInput" placeholder="Type something..."/>
+			<wvui-input 
+				icon="search"
+				@input="onInput" 
+				placeholder="Type ob..."
+			/>
 			<ul class="sb-suggestions-list" v-if="suggestionsList.length">
 				<wvui-typeahead-suggestion
-					query="ob"
+					:query="query"
 					v-for="suggestion in suggestionsList"
 					:suggestion="suggestion"
 					:key="suggestion.id"

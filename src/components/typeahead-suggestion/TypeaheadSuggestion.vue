@@ -17,7 +17,10 @@
 			/>
 			<span class="wvui-typeahead-suggestion__text">
 				<!--eslint-disable-next-line vue/no-v-html-->
-				<span class="wvui-typeahead-suggestion__title" v-html="suggestionTitle" />
+				<span
+					v-highlighted-text="{query: query, title: suggestion.title}"
+					class="wvui-typeahead-suggestion__title"
+				/>
 				<span
 					class="wvui-typeahead-suggestion__description"
 				>{{ suggestion.description }}</span>
@@ -29,10 +32,13 @@
 <script lang="ts">
 import Vue, { PropType } from 'vue';
 import { TypeaheadSuggestion } from './TypeaheadSuggestion';
-import WvuiUtils from '../../utils/Utils';
+import { highlightedText } from '../../directives';
 
 export default Vue.extend( {
 	name: 'WvuiTypeaheadSuggestion',
+	directives: {
+		highlightedText
+	},
 	inheritAttrs: false,
 	props: {
 		active: {
@@ -59,31 +65,6 @@ export default Vue.extend( {
 		* */
 		suggestionWikiLink(): string {
 			return `/wiki/${this.suggestion?.key}`;
-		},
-		/*
-		* Formats title adding highlighted query if it matches
-		* */
-		suggestionTitle(): string | undefined {
-			if ( !this.query ) {
-				return this.suggestion?.title;
-			}
-
-			const title = this.suggestion?.title;
-
-			const sanitizedQuery = WvuiUtils.htmlEscape( WvuiUtils.regexpEscape( this.query ) );
-			const matchStartIndex = title.search( new RegExp( sanitizedQuery, 'i' ) );
-
-			if ( matchStartIndex < 0 ) {
-				return WvuiUtils.htmlEscape( title );
-			}
-
-			const matchEndIndex = matchStartIndex + sanitizedQuery.length;
-			const highlightedTitle = title.substring( matchStartIndex, matchEndIndex );
-			const beforeHighlight = title.substring( 0, matchStartIndex );
-			const afterHighlight = title.substring( matchEndIndex, title.length );
-
-			// eslint-disable-next-line max-len
-			return `${beforeHighlight}<em class="wvui-typeahead-suggestion__matching-title">${highlightedTitle}</em>${afterHighlight}`;
 		},
 		/*
 		* Generates a proper value for background-image
