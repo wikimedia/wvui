@@ -68,6 +68,8 @@ export default Vue.extend( {
 	},
 	data(): Record<string, string> {
 		return {
+			// Initially, use the document dir. Once the component mounts, we'll
+			// check the element's computed style and update dir if needed.
 			dir: document.documentElement.dir
 		};
 	},
@@ -83,6 +85,10 @@ export default Vue.extend( {
 		iconPath(): string {
 			return getIconPath( this.icon, this.langCode, this.dir );
 		}
+	},
+	mounted() {
+		const computedStyle = window.getComputedStyle( this.$el );
+		this.dir = computedStyle?.direction || this.dir;
 	}
 } );
 </script>
