@@ -73,9 +73,12 @@ export const withIcon = (): Vue.Component =>
 	`
 	} );
 
-export const withButton = (): Vue.Component =>
+export const withIndicator = (): Vue.Component =>
 	Vue.extend( {
-		components: { WvuiInput, WvuiButton },
+		components: { WvuiInput },
+		props: {
+			disabled: { type: Boolean, default: boolean( 'Disabled', false ) }
+		},
 		data() {
 			return {
 				InputType
@@ -86,29 +89,89 @@ export const withButton = (): Vue.Component =>
 			<wvui-input
 				placeholder="Search..."
 				:type="InputType.Search"
+				indicator="info"
+				:disabled="disabled"
+			/>
+		</div>
+	`
+	} );
+
+export const withClearAction = (): Vue.Component =>
+	Vue.extend( {
+		components: { WvuiInput },
+		props: {
+			disabled: { type: Boolean, default: boolean( 'Disabled', false ) }
+		},
+		data() {
+			return {
+				InputType
+			};
+		},
+		methods: {
+			input: action( 'input' )
+		},
+		template: `
+		<div class="sb-input-preview">
+			<wvui-input
+				placeholder="Type something..."
+				:type="InputType.Search"
+				:clearable="true"
+				:disabled="disabled"
+				value="Some value"
+				@input="input"
+			/>
+		</div>
+	`
+	} );
+
+export const withButton = (): Vue.Component =>
+	Vue.extend( {
+		components: { WvuiInput, WvuiButton },
+		props: {
+			disabled: { type: Boolean, default: boolean( 'Disabled', false ) }
+		},
+		template: `
+		<div class="sb-input-preview">
+			<wvui-input
+				placeholder="Search..."
+				:disabled="disabled"
 			>
-				<wvui-button action="progressive">Search</wvui-button>
+				<wvui-button>Search</wvui-button>
 			</wvui-input>
 		</div>
 	`
 	} );
 
+const searchLanguageMap = {
+	English: 'Search',
+	Russian: 'Искать',
+	Vietnamese: 'Tìm kiếm',
+	Japaneese: '探す',
+	Greek: 'Αναζήτηση',
+	Swedish: 'Söka',
+	Mazandeerani: 'جستجو کردن'
+};
+
 export const wikipediaSearchInput = (): Vue.Component =>
 	Vue.extend( {
 		components: { WvuiInput, WvuiButton },
-		data() {
-			return {
-				InputType
-			};
+		props: {
+			disabled: { type: Boolean, default: boolean( 'Disabled', false ) },
+			buttonLabel: {
+				type: String,
+				default: select( 'Label language', searchLanguageMap, 'Search' )
+			}
 		},
 		template: `
 		<div class="sb-input-preview">
 			<wvui-input
 				placeholder="Search..."
-				:type="InputType.Search"
 				icon="search"
+				:disabled="disabled"
+				indicator="test"
+				:clearable="true"
 			>
-				<wvui-button>Search</wvui-button>
+				<wvui-button>{{ buttonLabel }}</wvui-button>
 			</wvui-input>
 		</div>
 	`
