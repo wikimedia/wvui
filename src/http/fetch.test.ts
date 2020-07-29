@@ -1,4 +1,4 @@
-import { fetch } from './fetch';
+import { buildQueryString, fetch } from './fetch';
 import * as jestFetchMock from 'jest-fetch-mock';
 
 describe( 'fetch() using window.fetch', () => {
@@ -64,4 +64,24 @@ describe( 'fetch() using window.fetch', () => {
 			undefined
 		);
 	} );
+} );
+
+describe( 'buildQueryString()', () => {
+	// [description, input, expected]
+	type Case = [string, Record<string, string|number|boolean>, string];
+
+	const cases: Case[] = [
+		[ 'empty object', {}, '' ],
+		[ 'single property object', { single: 'value' }, 'single=value' ],
+		[
+			'multiple mixed property object',
+			{ str: 'val', num: 1, bool: true },
+			'str=val&num=1&bool=true'
+		]
+	];
+	test.each( cases )(
+		'Case %# %s: (%p) => %p',
+		( _, obj, result ) =>
+			expect( buildQueryString( obj ) ).toStrictEqual( result )
+	);
 } );
