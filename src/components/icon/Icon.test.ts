@@ -1,9 +1,9 @@
 import { shallowMount } from '@vue/test-utils';
-import { Icon } from './iconTypes';
+import { Icon, IconFlipForRtl } from './iconTypes';
 import WvuiIcon from './Icon.vue';
 
-const iconString = 'path string';
-const iconShouldFlip: Icon = {
+const iconString: Icon = 'path string';
+const iconShouldFlip: IconFlipForRtl = {
 	path: 'path should flip',
 	shouldFlip: true
 };

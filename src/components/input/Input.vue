@@ -73,13 +73,6 @@ export default Vue.extend( {
 		box-sizing: border-box;
 		height: @size-base;
 
-		&:not( [ disabled ] ) {
-			transition:
-				border-color @transition-duration-medium,
-				box-shadow @transition-duration-medium
-			;
-		}
-
 		&[ disabled ] {
 			background-color: @background-color-base--disabled;
 			-webkit-text-fill-color: @color-placeholder;

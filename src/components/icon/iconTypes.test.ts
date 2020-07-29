@@ -1,5 +1,6 @@
 import {
 	Icon,
+	IconFlipForRtl,
 	IconVariedByLang,
 	IconVariedByDir,
 	AnyIcon,
@@ -7,50 +8,62 @@ import {
 	shouldFlip
 } from './iconTypes';
 
-const iconString = 'path string';
-const iconSinglePath: Icon = {
-	path: 'path single'
-};
-const iconShouldFlip: Icon = {
+const iconString: Icon = 'path string';
+const iconShouldFlip: IconFlipForRtl = {
 	path: 'path should flip',
 	shouldFlip: true
 };
-const iconShouldFlipWithExceptions: Icon = {
+const iconShouldFlipWithExceptions: IconFlipForRtl = {
 	path: 'path should flip',
 	shouldFlip: true,
 	shouldFlipExceptions: [ 'he' ]
 };
-const iconShouldFlipWithUndefinedExceptions: Icon = {
-	path: 'path should flip',
-	shouldFlip: true,
-	shouldFlipExceptions: undefined
-};
-const iconDirLtr: Icon = { path: 'path ltr' };
-const iconDirRtl: Icon = { path: 'path ltr' };
+const iconDirLtr: Icon = 'path ltr';
+const iconDirRtl: Icon = 'path ltr';
 const iconDir: IconVariedByDir = {
 	rtl: iconDirRtl,
 	default: iconDirLtr
 };
-const iconLangA: Icon = { path: 'path a' };
-const iconLangB: Icon = { path: 'path a' };
+const iconLangA: Icon = 'path a';
+const iconLangB: Icon = 'path b';
 const iconLang: IconVariedByLang = {
 	langCodeMap: {
 		de: iconLangB
 	},
 	default: iconLangA
 };
+const iconLangWithFlip: IconVariedByLang = {
+	langCodeMap: {
+		de: iconShouldFlip
+	},
+	default: iconShouldFlipWithExceptions
+};
 
 describe( 'computes proper icon path', () => {
 	// [description, icon, langCode, dir, expectedPath]
 	type Case = [string, AnyIcon, string, string, string];
 
+	const iconLangDefault = typeof iconLang.default === 'string' ?
+		iconLang.default :
+		iconLang.default.path;
+	const iconLangDe = typeof iconLang.langCodeMap.de === 'string' ?
+		iconLang.langCodeMap.de :
+		iconLang.langCodeMap.de.path;
+	const iconLangWithFlipDefault = typeof iconLangWithFlip.default === 'string' ?
+		iconLangWithFlip.default :
+		iconLangWithFlip.default.path;
+	const iconLangWithFlipDe = typeof iconLangWithFlip.langCodeMap.de === 'string' ?
+		iconLangWithFlip.langCodeMap.de :
+		iconLangWithFlip.langCodeMap.de.path;
+
 	const cases: Case[] = [
 		[ 'String', iconString, 'en', 'ltr', iconString ],
-		[ 'Single path', iconSinglePath, 'en', 'ltr', iconSinglePath.path ],
-		[ 'Dir-specific default', iconDir, 'en', 'ltr', iconDir.default.path ],
-		[ 'RTL path', iconDir, 'en', 'rtl', iconDir.rtl.path ],
-		[ 'Lang-specific default', iconLang, 'en', 'ltr', iconLang.default.path ],
-		[ 'Lang-specific', iconLang, 'de', 'ltr', iconLang.langCodeMap.de.path ]
+		[ 'Dir-specific default', iconDir, 'en', 'ltr', iconDir.default ],
+		[ 'RTL path', iconDir, 'en', 'rtl', iconDir.rtl ],
+		[ 'Lang-specific default', iconLang, 'en', 'ltr', iconLangDefault ],
+		[ 'Lang-specific', iconLang, 'de', 'ltr', iconLangDe ],
+		[ 'Lang-specific default w/ flip', iconLangWithFlip, 'en', 'ltr', iconLangWithFlipDefault ],
+		[ 'Lang-specific w/ flip', iconLangWithFlip, 'en', 'ltr', iconLangWithFlipDe ]
 	];
 
 	test.each( cases )( 'Case %# %s: (%p)', ( _, icon, langCode, dir, expectedPath ) => {
@@ -63,8 +76,7 @@ describe( 'sets shouldFlip to true', () => {
 	type Case = [string, AnyIcon, string ];
 
 	const cases: Case[] = [
-		[ 'with true shouldFlip property', iconShouldFlip, 'en' ],
-		[ 'with undefined exceptions property', iconShouldFlipWithUndefinedExceptions, 'he' ]
+		[ 'with true shouldFlip property', iconShouldFlip, 'en' ]
 	];
 
 	test.each( cases )( 'Case %# %s: (%p)', ( _, icon, langCode ) => {
@@ -78,8 +90,8 @@ describe( 'sets shouldFlip to false', () => {
 
 	const cases: Case[] = [
 		[ 'String', iconString, 'en' ],
-		[ 'Single path', iconSinglePath, 'en' ],
-		[ 'shouldFlip exception', iconShouldFlipWithExceptions, 'he' ]
+		[ 'shouldFlip exception', iconShouldFlipWithExceptions, 'he' ],
+		[ 'Text-direction-specific icon', iconDir, 'en' ]
 	];
 
 	test.each( cases )( 'Case %# %s: (%p) => HTML', ( _, icon, langCode ) => {

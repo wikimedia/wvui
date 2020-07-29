@@ -1,27 +1,33 @@
+type SvgPath = string
+
 /**
  * An icon with a single path.
  */
-export interface Icon {
+export type Icon = SvgPath;
+
+/**
+ * An icon with a single path that should flip horizontally in RTL mode.
+ */
+export interface IconFlipForRtl {
 	/** SVG path string. */
 	path: SvgPath,
-	/** Whether the icon should be flipped horizontally via CSS in RTL mode. */
-	shouldFlip?: boolean,
+	/** Indicates that the icon should be flipped via CSS in RTL mode. */
+	shouldFlip: true,
 	/**
 	 * Language codes that are exceptions to the above property (e.g. the help
 	 * icon should flip in RTL mode, but not for Hebrew or Yiddish).
 	 */
 	shouldFlipExceptions?: string[]
 }
-type SvgPath = string
 
 /**
  * An icon that varies per language.
  */
 export interface IconVariedByLang {
 	/** HTMLElement.lang code with corresponding icon. */
-	langCodeMap: Record<string, Icon>,
+	langCodeMap: Record<string, Icon | IconFlipForRtl>,
 	/** The default icon. */
-	default: Icon
+	default: Icon | IconFlipForRtl
 }
 
 /**
@@ -34,7 +40,7 @@ export interface IconVariedByDir {
 	default: Icon
 }
 
-export type AnyIcon = string | Icon | IconVariedByLang | IconVariedByDir;
+export type AnyIcon = Icon | IconFlipForRtl | IconVariedByLang | IconVariedByDir;
 
 /**
  * @param icon The icon string or object.
@@ -54,12 +60,15 @@ export function getIconPath( icon: AnyIcon, langCode: string, dir: string ): str
 
 	// Icon that differs per language.
 	if ( 'langCodeMap' in icon ) {
-		return icon.langCodeMap[ langCode ]?.path || icon.default.path;
+		const langCodeIcon = langCode in icon.langCodeMap ?
+			icon.langCodeMap[ langCode ] :
+			icon.default;
+		return typeof langCodeIcon === 'string' ? langCodeIcon : langCodeIcon.path;
 	}
 
 	// Icon that differs between LTR and RTL languages but can't just
 	// be flipped horizontally.
-	return dir === 'rtl' ? icon.rtl.path : icon.default.path;
+	return dir === 'rtl' ? icon.rtl : icon.default;
 }
 
 /**
