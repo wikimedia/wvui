@@ -2,9 +2,17 @@
 
 Versions and bullets are arranged chronologically from latest to oldest.
 
-## v0.0.1 (unreleased)
+## v0.0.2 (unreleased)
 
 -   [component][icon] Add component, styles, and icon data
+-   [build][dev] Add production and pre-release scripts
+
+## v0.0.1
+
+-   [dev] Decrease test coverage to 80%
+-   [component][input] Add clear action for input
+-   [component][input] Add indicator implementation for input
+-   [component][input] Add icon implementation for input
 -   [component][button] Add initial styles
 -   [dev] Upgrade dependencies
 -   [build][fix] Don't push tags for development releases

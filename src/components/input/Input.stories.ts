@@ -3,6 +3,7 @@ import { action } from '@storybook/addon-actions';
 import Vue, { PropType } from 'vue';
 import WvuiInput from './Input.vue';
 import { InputType } from './InputType';
+import './Input.stories.less';
 
 export default {
 	title: 'Components/Input',
@@ -22,7 +23,9 @@ export const configurable = (): Vue.Component =>
 			placeholder: { type: String, default: text( 'Placeholder', 'Search...' ) }
 		},
 		data() {
-			return { InputType };
+			return {
+				InputType
+			};
 		},
 		methods: {
 			input: action( 'input' ),
@@ -31,14 +34,92 @@ export const configurable = (): Vue.Component =>
 			blur: action( 'blur' )
 		},
 		template: `
-		<wvui-input
-			:placeholder="placeholder"
-			:type="InputType[ type ]"
-			:disabled="disabled"
-			@input="input"
-			@change="change"
-			@focus="focus"
-			@blur="blur"
-		></wvui-input>
+		<div class="sb-input-preview">
+			<wvui-input
+				:placeholder="placeholder"
+				:type="InputType[ type ]"
+				:disabled="disabled"
+				@input="input"
+				@change="change"
+				@focus="focus" 
+				@blur="blur"
+			/>
+		</div>
 		`
+	} );
+
+export const withIcon = (): Vue.Component =>
+	Vue.extend( {
+		components: { WvuiInput },
+		props: {
+			disabled: { type: Boolean, default: boolean( 'Disabled', false ) }
+		},
+		data() {
+			return {
+				InputType
+			};
+		},
+
+		template: `
+		<div class="sb-input-preview">
+			<wvui-input
+				placeholder="Search..."
+				:type="InputType.Search"
+				icon="search"
+				:disabled="disabled"
+			/>
+		</div>
+	`
+	} );
+
+export const withIndicator = (): Vue.Component =>
+	Vue.extend( {
+		components: { WvuiInput },
+		props: {
+			disabled: { type: Boolean, default: boolean( 'Disabled', false ) }
+		},
+		data() {
+			return {
+				InputType
+			};
+		},
+
+		template: `
+		<div class="sb-input-preview">
+			<wvui-input
+				placeholder="Search..."
+				:type="InputType.Search"
+				indicator="clear"
+				:disabled="disabled"
+			/>
+		</div>
+	`
+	} );
+
+export const withClearAction = (): Vue.Component =>
+	Vue.extend( {
+		components: { WvuiInput },
+		props: {
+			disabled: { type: Boolean, default: boolean( 'Disabled', false ) }
+		},
+		data() {
+			return {
+				InputType
+			};
+		},
+		methods: {
+			input: action( 'input' )
+		},
+		template: `
+		<div class="sb-input-preview">
+			<wvui-input
+				placeholder="Search..."
+				:type="InputType.Search"
+				:clearable="true"
+				:disabled="disabled"
+				value="Some value"
+				@input="input"
+			/>
+		</div>
+	`
 	} );
