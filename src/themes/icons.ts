@@ -50,7 +50,10 @@ export const wvuiIconArticles: IconFlipForRtl = {
 	path: 'M7 0a2 2 0 00-2 2h9a2 2 0 012 2v12a2 2 0 002-2V2a2 2 0 00-2-2z M13 20a2 2 0 002-2V5a2 2 0 00-2-2H4a2 2 0 00-2 2v13a2 2 0 002 2zM9 5h4v5H9zM4 5h4v1H4zm0 2h4v1H4zm0 2h4v1H4zm0 2h9v1H4zm0 2h9v1H4zm0 2h9v1H4z',
 	shouldFlip: true
 };
-export const wvuiIconArticlesSearch: Icon = 'M7 0a2 2 0 00-2 2h9a2 2 0 012 2v12a2 2 0 002-2V2a2 2 0 00-2-2z M10.8 15.6a4.6 4.7 0 01-2.3.6 4.6 4.7 0 113.7-1.9l2.8 3V4.9A1.9 1.9 0 0013.1 3H4a1.9 1.9 0 00-2 1.9V18a1.9 1.9 0 001.9 2H13a1.9 1.9 0 001.4-.6z M11.5 11.5 A3 3 0 0 1 8.5 14.5 A3 3 0 0 1 5.5 11.5 A3 3 0 0 1 11.5 11.5 z';
+export const wvuiIconArticlesSearch: IconVariedByDir = {
+	rtl: 'M13 0a2 2 0 012 2H6a2 2 0 00-2 2v12a2 2 0 01-2-2V2a2 2 0 012-2z M13.8 15.5a4.6 4.7 0 01-2.3.6 4.6 4.7 0 113.7-1.9l2.8 3V5a1.9 1.9 0 00-1.9-2H7a1.9 1.9 0 00-2 1.9V18a1.9 1.9 0 001.9 2H16a1.9 1.9 0 001.4-.6z M14.5 11.5 A3 3 0 0 1 11.5 14.5 A3 3 0 0 1 8.5 11.5 A3 3 0 0 1 14.5 11.5 z',
+	default: 'M7 0a2 2 0 00-2 2h9a2 2 0 012 2v12a2 2 0 002-2V2a2 2 0 00-2-2z M10.8 15.6a4.6 4.7 0 01-2.3.6 4.6 4.7 0 113.7-1.9l2.8 3V4.9A1.9 1.9 0 0013.1 3H4a1.9 1.9 0 00-2 1.9V18a1.9 1.9 0 001.9 2H13a1.9 1.9 0 001.4-.6z M11.5 11.5 A3 3 0 0 1 8.5 14.5 A3 3 0 0 1 5.5 11.5 A3 3 0 0 1 11.5 11.5 z'
+};
 export const wvuiIconAttachment: Icon = 'M9.5 19.75a4.25 4.25 0 01-4.25-4.25V9a2.75 2.75 0 015.5 0v6h-1.5V9a1.25 1.25 0 00-2.5 0v6.5a2.75 2.75 0 005.5 0V4a2.25 2.25 0 00-4.5 0v1h-1.5V4a3.75 3.75 0 017.5 0v11.5a4.25 4.25 0 01-4.25 4.25z';
 export const wvuiIconBell: Icon = 'M16 7a5.38 5.38 0 00-4.46-4.85C11.6 1.46 11.53 0 10 0S8.4 1.46 8.46 2.15A5.38 5.38 0 004 7v6l-2 2v1h16v-1l-2-2zm-6 13a3 3 0 003-3H7a3 3 0 003 3z';
 export const wvuiIconBellOutline: Icon = 'M11.5 2.19C14.09 2.86 16 5.2 16 8v6l2 2v1H2v-1l2-2V8c0-2.8 1.91-5.14 4.5-5.81V1.5C8.5.67 9.17 0 10 0s1.5.67 1.5 1.5v.69zM10 4C7.79 4 6 5.79 6 8v7h8V8c0-2.21-1.79-4-4-4zM8 18h4c0 1.1-.9 2-2 2s-2-.9-2-2z';
@@ -110,7 +113,7 @@ export const wvuiIconBold: IconVariedByLang = {
 	default: wvuiIconBoldA
 };
 export const wvuiIconBook: IconFlipForRtl = {
-	path: 'M15 2a7.65 7.65 0 00-5 2 7.65 7.65 0 00-5-2H1v15h4a7.65 7.65 0 015 2 7.65 7.65 0 015-2h4V2zm2.5 13.5H14a4.38 4.38 0 00-3 1V5s1-1.5 4-1.5h2.5z M9 3.5h2v1H9z',
+	path: 'M15 2a7.65 7.65 0 00-5 2 7.65 7.65 0 00-5-2H1v15h4a7.65 7.65 0 015 2 7.65 7.65 0 015-2h4V2zm2.5 13.5H14a4.38 4.38 0 00-3 1V5s1-1.5 4-1.5h2.5z',
 	shouldFlip: true
 };
 export const wvuiIconBookmark: Icon = 'M5 1a2 2 0 00-2 2v16l7-5 7 5V3a2 2 0 00-2-2z';
@@ -161,6 +164,10 @@ export const wvuiIconFeedback: IconFlipForRtl = {
 	path: 'M19 16L2 12a3.83 3.83 0 01-1-2.5A3.83 3.83 0 012 7l17-4z M6 9 H6 A2 2 0 0 1 8 11 V15 A2 2 0 0 1 6 17 H6 A2 2 0 0 1 4 15 V11 A2 2 0 0 1 6 9 z',
 	shouldFlip: true
 };
+export const wvuiIconFirst: IconFlipForRtl = {
+	path: 'M3 1h2v18H3zm13.5 1.5L15 1l-9 9 9 9 1.5-1.5L9 10z',
+	shouldFlip: true
+};
 export const wvuiIconFlag: IconFlipForRtl = {
 	path: 'M17 6L3 1v18h2v-6.87z',
 	shouldFlip: true
@@ -199,9 +206,9 @@ export const wvuiIconHighlight: Icon = 'M15.14 2.27a1 1 0 00-1.41 0l-10 10a1 1 0
 export const wvuiIconHistory: Icon = 'M9 6v5h.06l2.48 2.47 1.41-1.41L11 10.11V6z M10 1a9 9 0 00-7.85 13.35L.5 16H6v-5.5l-2.38 2.38A7 7 0 1110 17v2a9 9 0 000-18z';
 export const wvuiIconHome: Icon = 'M10 1L0 10h3v9h4v-4.6c0-1.47 1.31-2.66 3-2.66s3 1.19 3 2.66V19h4v-9h3L10 1z';
 export const wvuiIconImage: Icon = 'M2 2a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V4a2 2 0 00-2-2zm-.17 13l4.09-5.25 2.92 3.51L12.92 8l5.25 7z';
-export const wvuiIconImageAdd: IconFlipForRtl = {
-	path: 'M16 17H2l3.5-4.5 2.5 3 3.5-4.5.5.67V8H8V6H2a2 2 0 00-2 2v10a2 2 0 002 2h14a2 2 0 002-2v-6h-5.75z M16 4V0h-2v4h-4v2h4v4h2V6h4V4z',
-	shouldFlip: true
+export const wvuiIconImageAdd: IconVariedByDir = {
+	rtl: 'M12 6v2H8v4H2v6a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2zM3.83 17l3.55-4.5 2.52 3 3.55-4.5L18 17zM4 10h2V6h4V4H6V0H4v4H0v2h4z',
+	default: 'M16 17H2l3.5-4.5 2.5 3 3.5-4.5.5.67V8H8V6H2a2 2 0 00-2 2v10a2 2 0 002 2h14a2 2 0 002-2v-6h-5.75z M16 4V0h-2v4h-4v2h4v4h2V6h4V4z'
 };
 export const wvuiIconImageBroken: Icon = 'M16.67 9.47L20 12.13v4.09A2 2 0 0117.78 18H2.22A2 2 0 010 16.22v-5.86L3.33 13l4.45-3.53L12.22 13z M20 9.64L16.67 7l-4.44 3.56L7.78 7l-4.45 3.53L0 7.87V3.78A2 2 0 012.22 2h15.56A2 2 0 0120 3.78z';
 export const wvuiIconImageGallery: Icon = 'M3 5a2 2 0 00-2 2v10a2 2 0 002 2h14a2 2 0 002-2V7a2 2 0 00-2-2zm0 11l3.5-4.5 2.5 3 3.5-4.5 4.5 6zM16 2a2 2 0 012 2H2a2 2 0 012-2z';
@@ -209,9 +216,9 @@ export const wvuiIconImageLayoutBasic: Icon = 'M1 3v14h18V3zm17 13H2V4h16z M8.58
 export const wvuiIconImageLayoutFrame: Icon = 'M3 2a2 2 0 00-2 2v12a2 2 0 002 2h14a2 2 0 002-2V4a2 2 0 00-2-2zm0 15a1 1 0 01-1-1V4a1 1 0 011-1h14a1 1 0 011 1v12a1 1 0 01-1 1z M17 4H3v12h14zM5 13l2.5-3 2 2L12 9l3 4z';
 export const wvuiIconImageLayoutFrameless: Icon = 'M19 3H1v14h18zM3 14l3.5-4.5 2.5 3L12.5 8l4.5 6z';
 export const wvuiIconImageLayoutThumbnail: Icon = 'M3 2a2 2 0 00-2 2v12a2 2 0 002 2h14a2 2 0 002-2V4a2 2 0 00-2-2zm0 15a1 1 0 01-1-1V4a1 1 0 011-1h14a1 1 0 011 1v12a1 1 0 01-1 1z M17 4H3v10h14zM5 12l2.5-3 2 2L12 8l3 4zm-1 3h12v1H4z';
-export const wvuiIconImageLock: IconFlipForRtl = {
-	path: 'M16 17H2l3.5-4.5 2.5 3 3-3.81A2 2 0 0110 10V6H2a2 2 0 00-2 2v10a2 2 0 002 2h14a2 2 0 002-2v-6h-5.75z M19 4h-.5V2.5a2.5 2.5 0 00-5 0V4H13a1 1 0 00-1 1v4a1 1 0 001 1h6a1 1 0 001-1V5a1 1 0 00-1-1zm-3 4a1 1 0 111-1 1 1 0 01-1 1zm1.5-4h-3V2.75C14.5 2 14.5 1 16 1s1.5 1 1.5 1.75z',
-	shouldFlip: true
+export const wvuiIconImageLock: IconVariedByDir = {
+	rtl: 'M8 5a1 1 0 00-1-1h-.5V2.5A2.45 2.45 0 004 0a2.45 2.45 0 00-2.5 2.5V4H1a1 1 0 00-1 1v4a1 1 0 001 1h6a1 1 0 001-1zM4 8a1 1 0 111-1 1 1 0 01-1 1zm1.5-4h-3V2.75C2.5 2 2.5 1 4 1s1.5 1 1.5 1.75zM10 6v4a2 2 0 01-2 2H2v6a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2zM4 17l3.54-4.5 2.53 3 3.54-4.5 4.56 6z',
+	default: 'M16 17H2l3.5-4.5 2.5 3 3-3.81A2 2 0 0110 10V6H2a2 2 0 00-2 2v10a2 2 0 002 2h14a2 2 0 002-2v-6h-5.75z M19 4h-.5V2.5a2.5 2.5 0 00-5 0V4H13a1 1 0 00-1 1v4a1 1 0 001 1h6a1 1 0 001-1V5a1 1 0 00-1-1zm-3 4a1 1 0 111-1 1 1 0 01-1 1zm1.5-4h-3V2.75C14.5 2 14.5 1 16 1s1.5 1 1.5 1.75z'
 };
 export const wvuiIconIndent: IconFlipForRtl = {
 	path: 'M1 16h18v2H1zm8-9h10v2H9zm0 4h10v2H9zM1 2h18v2H1zm5 8l-5 4V6z',
@@ -290,6 +297,10 @@ export const wvuiIconKeyboard: Icon = 'M0 15a2 2 0 002 2h16a2 2 0 002-2V5a2 2 0 
 export const wvuiIconLabFlask: Icon = 'M13 7.61V3h1V1H6v2h1v4.61l-5.86 9.88A1 1 0 002 19h16a1 1 0 00.86-1.51zm-4.2.88a1 1 0 00.2-.6V3h2v4.89a1 1 0 00.14.51l2.14 3.6H6.72z';
 export const wvuiIconLanguage: Icon = 'M20 18h-1.44a.61.61 0 01-.4-.12.81.81 0 01-.23-.31L17 15h-5l-1 2.54a.77.77 0 01-.22.3.59.59 0 01-.4.14H9l4.55-11.47h1.89zm-3.53-4.31L14.89 9.5a11.62 11.62 0 01-.39-1.24q-.09.37-.19.69l-.19.56-1.58 4.19zm-6.3-1.58a13.43 13.43 0 01-2.91-1.41 11.46 11.46 0 002.81-5.37H12V4H7.31a4 4 0 00-.2-.56C6.87 2.79 6.6 2 6.6 2l-1.47.5s.4.89.6 1.5H0v1.33h2.15A11.23 11.23 0 005 10.7a17.19 17.19 0 01-5 2.1q.56.82.87 1.38a23.28 23.28 0 005.22-2.51 15.64 15.64 0 003.56 1.77zM3.63 5.33h4.91a8.11 8.11 0 01-2.45 4.45 9.11 9.11 0 01-2.46-4.45z';
 export const wvuiIconLargerText: Icon = 'M17.66 18h-2a.85.85 0 01-.56-.17 1.11 1.11 0 01-.32-.43l-1.33-3.53h-6.9L5.22 17.4a1.06 1.06 0 01-.31.41.83.83 0 01-.56.19h-2L8.68 2h2.63zm-4.92-6l-2.2-5.84A16.17 16.17 0 0110 4.43q-.12.52-.27 1t-.27.77L7.26 12z';
+export const wvuiIconLast: IconFlipForRtl = {
+	path: 'M15 1h2v18h-2zM3.5 2.5L11 10l-7.5 7.5L5 19l9-9-9-9z',
+	shouldFlip: true
+};
 export const wvuiIconLayout: IconFlipForRtl = {
 	path: 'M8 12V1H1v18h18v-7z M11 1v8h8V1zm6 6h-4V3h4z',
 	shouldFlip: true
@@ -341,14 +352,6 @@ export const wvuiIconMenu: Icon = 'M1 3v2h18V3zm0 8h18V9H1zm0 6h18v-2H1z';
 export const wvuiIconMessage: Icon = 'M0 8v8a2 2 0 002 2h16a2 2 0 002-2V8l-10 4z M2 2a2 2 0 00-2 2v2l10 4 10-4V4a2 2 0 00-2-2z';
 export const wvuiIconMoon: Icon = 'M17.39 15.14A7.33 7.33 0 0111.75 1.6c.23-.11.56-.23.79-.34a8.19 8.19 0 00-5.41.45 9 9 0 107 16.58 8.42 8.42 0 004.29-3.84 5.3 5.3 0 01-1.03.69z';
 export const wvuiIconMove: Icon = 'M19 10l-4-3v2h-4V5h2l-3-4-3 4h2v4H5V7l-4 3 4 3v-2h4v4H7l3 4 3-4h-2v-4h4v2z';
-export const wvuiIconMoveFirst: IconFlipForRtl = {
-	path: 'M3 1h2v18H3zm13.5 1.5L15 1l-9 9 9 9 1.5-1.5L9 10z',
-	shouldFlip: true
-};
-export const wvuiIconMoveLast: IconFlipForRtl = {
-	path: 'M15 1h2v18h-2zM3.5 2.5L11 10l-7.5 7.5L5 19l9-9-9-9z',
-	shouldFlip: true
-};
 export const wvuiIconMusicalScore: Icon = 'M6 2v10.2c-.3-.1-.6-.2-1-.2-1.7 0-3 1.3-3 3s1.3 3 3 3 3-1.3 3-3V5h8v7.2c-.3-.1-.6-.2-1-.2-1.7 0-3 1.3-3 3s1.3 3 3 3 3-1.3 3-3V2z';
 export const wvuiIconNewWindow: IconFlipForRtl = {
 	path: 'M17 17H3V3h5V1H3a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-5h-2z M11 1l3.29 3.29-5.73 5.73 1.42 1.42 5.73-5.73L19 9V1z',
@@ -517,9 +520,9 @@ export const wvuiIconTextSummary: IconFlipForRtl = {
 export const wvuiIconTrash: Icon = 'M17 2h-3.5l-1-1h-5l-1 1H3v2h14zM4 17a2 2 0 002 2h8a2 2 0 002-2V5H4z';
 export const wvuiIconTray: Icon = 'M3 1a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V3a2 2 0 00-2-2zm14 12h-4l-1 2H8l-1-2H3V3h14z';
 export const wvuiIconUnBlock: Icon = 'M1.22 0L0 1.22l3.06 3.06a9 9 0 0012.66 12.66L18.78 20 20 18.78zM5 11V9h2.78l2 2zm5-10a9 9 0 00-4.26 1.08L12.66 9H15v2h-.34l3.26 3.26A9 9 0 0010 1z';
-export const wvuiIconUnFlag: IconFlipForRtl = {
-	path: 'M12.14 8.48L17 6 5.58 1.92zM1.22 0L0 1.22l3 3V19h2v-6.87l3.91-2L18.78 20 20 18.78z',
-	shouldFlip: true
+export const wvuiIconUnFlag: IconVariedByDir = {
+	rtl: 'M0 1.2l4.27 4.27L0 7l11.84 6.04.16.16V20h2v-4.8l4.74 4.74 1.198-1.198L1.198.002zM14 2L7.809 4.209 14 10.399z',
+	default: 'M12.14 8.48L17 6 5.58 1.92zM1.22 0L0 1.22l3 3V19h2v-6.87l3.91-2L18.78 20 20 18.78z'
 };
 export const wvuiIconUnLink: Icon = 'M4.83 5A4.83 4.83 0 000 9.83v.34A4.83 4.83 0 004.83 15h2.91a4.88 4.88 0 01-1.55-2H5c-4 0-4-6 0-6h3c.075.001.15.005.225.012L6.215 5zm7.43 0a4.88 4.88 0 011.55 2H15c3.179.003 4.17 4.3 1.314 5.695l1.508 1.508A4.83 4.83 0 0020 10.17v-.34A4.83 4.83 0 0015.17 5zm-3.612.03l4.329 4.327A4.83 4.83 0 008.648 5.03zM7.227 8.411C7.17 8.595 7.08 9 7.08 9c-.045.273-.08.584-.08.83v.34A4.83 4.83 0 0011.83 15h3.34c.316 0 .631-.032.941-.094L14.205 13H12c-2.067-.006-3.51-2.051-2.82-4zm3.755 1.36A3 3 0 0110.82 11h1.389z M1.22 0L0 1.22 18.8 20l1.2-1.22z';
 export const wvuiIconUnLock: Icon = 'M15 8V5s0-5-5-5a4.63 4.63 0 00-4.88 4h2C7.31 2.93 8 2 10 2c3 0 3 2 3 3.5V8H3.93A1.93 1.93 0 002 9.93v8.15A1.93 1.93 0 003.93 20h12.14A1.93 1.93 0 0018 18.07V9.93A1.93 1.93 0 0016.07 8zm-5 8a2 2 0 112-2 2 2 0 01-2 2z';
