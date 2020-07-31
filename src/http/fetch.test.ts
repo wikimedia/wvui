@@ -1,68 +1,76 @@
 import { buildQueryString, fetch } from './fetch';
 import * as jestFetchMock from 'jest-fetch-mock';
 
+jestFetchMock.enableFetchMocks();
+const mockedRequests = !process.env.TEST_LIVE_REQUESTS;
+
 describe( 'fetch() using window.fetch', () => {
+	const url = '//en.wikipedia.org/w/rest.php/v1/search/title?q=jfgkdajgioj&limit=10';
+
 	jestFetchMock.enableFetchMocks();
 
 	beforeEach( () => {
 		fetchMock.resetMocks();
-		fetchMock.mockIf( /^https?:\/\/example.org.*$/, async ( req ) => {
-			if ( req.url.endsWith( '/validPath' ) ) {
+		if ( !mockedRequests ) {
+			fetchMock.disableMocks();
+		}
+		fetchMock.mockIf( /^\/\/en.wikipedia.org\//, async ( req ) => {
+			if ( req.url === url ) {
 				return {
-					body: JSON.stringify( { success: true } ),
+					body: JSON.stringify( { pages: [] } ),
 					headers: {
-						'X-Some-Response-Header': 'Some header value'
+						'Content-Type': 'application/json'
 					}
 				};
 			} else {
 				return {
 					status: 404,
-					body: JSON.stringify( { errorCode: 'not_found' } )
+					body: 'Page not found'
 				};
 			}
 		} );
 	} );
 
 	test( '200 without init param passed', async () => {
-		const response = await fetch( 'https://example.org/validPath' );
+		const response = await fetch( url );
 
 		expect( response.ok ).toBeTruthy();
-		await expect( response.json() ).resolves.toEqual( { success: true } );
+		await expect( response.json() ).resolves.toEqual( { pages: [] } );
 
-		expect( fetchMock ).toHaveBeenCalledTimes( 1 );
-		expect( fetchMock ).toHaveBeenCalledWith(
-			'https://example.org/validPath',
-			undefined
-		);
+		if ( mockedRequests ) {
+			expect( fetchMock ).toHaveBeenCalledTimes( 1 );
+			expect( fetchMock ).toHaveBeenCalledWith( url, undefined );
+		}
 	} );
 
 	test( '200 with init param passed', async () => {
-		const response = await fetch( 'https://example.org/validPath', { method: 'POST', body: 'foo' } );
+		const response = await fetch( url, { mode: 'cors' } );
 
 		expect( response.ok ).toBeTruthy();
-		await expect( response.json() ).resolves.toEqual( { success: true } );
+		await expect( response.json() ).resolves.toEqual( { pages: [] } );
 
-		expect( fetchMock ).toHaveBeenCalledTimes( 1 );
-		expect( fetchMock ).toHaveBeenCalledWith(
-			'https://example.org/validPath',
-			expect.objectContaining( {
-				method: 'POST',
-				body: 'foo'
-			} )
-		);
+		if ( mockedRequests ) {
+			expect( fetchMock ).toHaveBeenCalledTimes( 1 );
+			expect( fetchMock ).toHaveBeenCalledWith(
+				url,
+				expect.objectContaining( { mode: 'cors' } )
+			);
+		}
 	} );
 
-	test( '404', async () => {
-		const response = await fetch( 'https://example.org/INVALID' );
+	test( '404 response', async () => {
+		const response = await fetch( '//en.wikipedia.org/doesNotExist' );
 
 		expect( response.ok ).toBeFalsy();
-		await expect( response.json() ).resolves.toEqual( { errorCode: 'not_found' } );
+		await expect( response.text() ).resolves.toContain( 'Page not found' );
 
-		expect( fetchMock ).toHaveBeenCalledTimes( 1 );
-		expect( fetchMock ).toHaveBeenCalledWith(
-			'https://example.org/INVALID',
-			undefined
-		);
+		if ( mockedRequests ) {
+			expect( fetchMock ).toHaveBeenCalledTimes( 1 );
+			expect( fetchMock ).toHaveBeenCalledWith(
+				'//en.wikipedia.org/doesNotExist',
+				undefined
+			);
+		}
 	} );
 } );
 
