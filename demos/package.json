@@ -1,0 +1,20 @@
+{
+	"scripts": {
+		"start": "webpack-dev-server",
+		"build": "webpack -p"
+	},
+	"devDependencies": {
+		"@types/copy-webpack-plugin": "6.0.0",
+		"@types/mini-css-extract-plugin": "0.9.1",
+		"@types/webpack-dev-server": "3.11.0",
+		"@wikimedia/wvui": "..",
+		"clean-webpack-plugin": "3.0.0",
+		"copy-webpack-plugin": "6.0.3",
+		"mini-css-extract-plugin": "0.9.0",
+		"vue": "2.6.11",
+		"vue-loader": "15.9.3",
+		"webpack": "4.44.1",
+		"webpack-cli": "3.3.12",
+		"webpack-dev-server": "3.11.0"
+	}
+}
