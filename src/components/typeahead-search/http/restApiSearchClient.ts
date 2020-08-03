@@ -46,7 +46,7 @@ function fetchByTitle(
 	domain: string,
 	limit: number
 ): Promise<SearchResponse> {
-	const params: Record<string, string|number> = {
+	const params = {
 		q: searchText,
 		limit: limit
 	};
