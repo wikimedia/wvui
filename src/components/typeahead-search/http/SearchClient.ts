@@ -31,7 +31,7 @@ export interface SearchResult {
 export interface SearchResultThumbnail {
 	url: string;
 	/** Image width in pixels. */
-	width: number;
+	width?: number;
 	/** Image height in pixels. */
-	height: number;
+	height?: number;
 }

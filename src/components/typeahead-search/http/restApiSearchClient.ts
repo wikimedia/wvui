@@ -18,8 +18,8 @@ interface RestResult {
 
 interface RestThumbnail {
 	url: string;
-	width: number;
-	height: number;
+	width?: number;
+	height?: number;
 }
 
 function adaptApiResponse( restResponse: RestResponse ): SearchResponse {
