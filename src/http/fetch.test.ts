@@ -1,13 +1,18 @@
 import { buildQueryString, fetch } from './fetch';
 import * as jestFetchMock from 'jest-fetch-mock';
 
-jestFetchMock.enableFetchMocks();
 const mockedRequests = !process.env.TEST_LIVE_REQUESTS;
 
 describe( 'fetch() using window.fetch', () => {
 	const url = '//en.wikipedia.org/w/rest.php/v1/search/title?q=jfgkdajgioj&limit=10';
 
-	jestFetchMock.enableFetchMocks();
+	beforeAll( () => {
+		jestFetchMock.enableFetchMocks();
+	} );
+
+	afterAll( () => {
+		jestFetchMock.disableFetchMocks();
+	} );
 
 	beforeEach( () => {
 		fetchMock.resetMocks();
@@ -76,7 +81,7 @@ describe( 'fetch() using window.fetch', () => {
 
 describe( 'buildQueryString()', () => {
 	// [description, input, expected]
-	type Case = [string, Record<string, string|number|boolean>, string];
+	type Case = [ string, Record<string, string | number | boolean>, string ];
 
 	const cases: Case[] = [
 		[ 'empty object', {}, '' ],

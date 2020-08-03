@@ -1,10 +1,17 @@
 import { restSearchClient } from './restApiSearchClient';
 import * as jestFetchMock from 'jest-fetch-mock';
 
-jestFetchMock.enableFetchMocks();
 const mockedRequests = !process.env.TEST_LIVE_REQUESTS;
 
 describe( 'restSearchClient', () => {
+	beforeAll( () => {
+		jestFetchMock.enableFetchMocks();
+	} );
+
+	afterAll( () => {
+		jestFetchMock.disableFetchMocks();
+	} );
+
 	beforeEach( () => {
 		fetchMock.resetMocks();
 		if ( !mockedRequests ) {
