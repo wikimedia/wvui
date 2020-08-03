@@ -31,7 +31,6 @@ function adaptApiResponse( restResponse: RestResponse ): SearchResponse {
 					key: page.key,
 					title: page.title,
 					description: page.description,
-					excerpt: page.excerpt,
 					thumbnail: page.thumbnail ? {
 						url: page.thumbnail.url,
 						width: page.thumbnail.width,

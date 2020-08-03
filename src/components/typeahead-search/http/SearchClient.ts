@@ -22,8 +22,6 @@ export interface SearchResult {
 	key: string;
 	/** Page title. */
 	title: string;
-	/** Page lead. */
-	excerptHTML?: string;
 	/** Page description. */
 	description?: string;
 	/** Page image. */
