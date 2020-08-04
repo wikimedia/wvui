@@ -27,7 +27,6 @@ describe( 'restSearchClient', () => {
 					id: 37298,
 					key: 'Media',
 					title: 'Media',
-					excerpt: 'Media',
 					description: 'Wikimedia disambiguation page',
 					thumbnail: null
 				},
@@ -35,7 +34,6 @@ describe( 'restSearchClient', () => {
 					id: 323710,
 					key: 'MediaWiki',
 					title: 'MediaWiki',
-					excerpt: 'MediaWiki',
 					description: 'wiki software',
 					thumbnail: {
 						width: 200,

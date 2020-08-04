@@ -11,7 +11,6 @@ interface RestResult {
 	id: number;
 	key: string;
 	title: string;
-	excerpt?: string;
 	description?: string;
 	thumbnail?: RestThumbnail | null;
 }
