@@ -13,7 +13,7 @@ interface RestResult {
 	title: string;
 	excerpt?: string;
 	description?: string;
-	thumbnail?: RestThumbnail;
+	thumbnail?: RestThumbnail | null;
 }
 
 interface RestThumbnail {

@@ -1,4 +1,4 @@
-import { restSearchClient } from './restApiSearchClient';
+import { RestResponse, restSearchClient } from './restApiSearchClient';
 import * as jestFetchMock from 'jest-fetch-mock';
 
 const mockedRequests = !process.env.TEST_LIVE_REQUESTS;
@@ -21,7 +21,7 @@ describe( 'restSearchClient', () => {
 
 	test( '2 results', async () => {
 		const thumbUrl = '//upload.wikimedia.org/wikipedia/commons/0/01/MediaWiki-smaller-logo.png';
-		fetchMock.mockResponse( JSON.stringify( {
+		const restResponse: RestResponse = {
 			pages: [
 				{
 					id: 37298,
@@ -37,16 +37,15 @@ describe( 'restSearchClient', () => {
 					title: 'MediaWiki',
 					excerpt: 'MediaWiki',
 					description: 'wiki software',
-					someExtraField: 'extra',
 					thumbnail: {
 						width: 200,
 						height: 189,
-						url: thumbUrl,
-						someExtraThumbnailField: 'extra thumb field'
+						url: thumbUrl
 					}
 				}
 			]
-		} ) );
+		};
+		fetchMock.mockResponse( JSON.stringify( restResponse ) );
 
 		const searchResult = await restSearchClient().fetchByTitle(
 			'media',
@@ -85,7 +84,8 @@ describe( 'restSearchClient', () => {
 	} );
 
 	test( '0 results', async () => {
-		fetchMock.mockResponse( JSON.stringify( { pages: [] } ) );
+		const restResponse: RestResponse = { pages: [] };
+		fetchMock.mockResponse( JSON.stringify( restResponse ) );
 
 		const searchResult = await restSearchClient().fetchByTitle(
 			'thereIsNothingLikeThis',
