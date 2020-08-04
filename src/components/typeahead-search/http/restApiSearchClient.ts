@@ -21,8 +21,9 @@ interface RestThumbnail {
 	height?: number;
 }
 
-function adaptApiResponse( restResponse: RestResponse ): SearchResponse {
+function adaptApiResponse( searchText: string, restResponse: RestResponse ): SearchResponse {
 	return {
+		searchText,
 		results:
 			restResponse.pages
 				.map( ( page ) => ( {
@@ -56,7 +57,7 @@ function fetchByTitle(
 	const url = `//${domain}/w/rest.php/v1/search/title?${buildQueryString( params )}`;
 	return fetch( url, { headers } )
 		.then( ( response ) => response.json() )
-		.then( ( response ) => adaptApiResponse( response ) );
+		.then( ( response ) => adaptApiResponse( searchText, response ) );
 }
 
 export function restSearchClient(): SearchClient {

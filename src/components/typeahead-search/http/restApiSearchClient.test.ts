@@ -51,6 +51,7 @@ describe( 'restSearchClient', () => {
 			2
 		);
 
+		expect( searchResult.searchText ).toEqual( 'media' );
 		expect( searchResult.results ).toBeTruthy();
 		expect( searchResult.results.length ).toBe( 2 );
 		expect( searchResult.results[ 0 ] ).toStrictEqual( {
@@ -90,6 +91,7 @@ describe( 'restSearchClient', () => {
 			'en.wikipedia.org'
 		);
 
+		expect( searchResult.searchText ).toEqual( 'thereIsNothingLikeThis' );
 		expect( searchResult.results ).toBeTruthy();
 		expect( searchResult.results.length ).toBe( 0 );
 

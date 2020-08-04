@@ -12,6 +12,7 @@ export interface SearchClient {
 }
 
 export interface SearchResponse {
+	searchText: string,
 	results: SearchResult[];
 }
 
