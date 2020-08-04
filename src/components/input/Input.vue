@@ -62,7 +62,7 @@
 			</span>
 		</span>
 		<span
-			v-if="hasControlSlot"
+			v-if="hasButtonSlot"
 			ref="button"
 			class="wvui-input__button"
 		>
@@ -110,7 +110,7 @@ export default Vue.extend( {
 			type: String,
 			default: null
 		},
-		// clearable property will override indicator property
+		// clearable property will override indicator property.
 		clearable: {
 			type: Boolean,
 			default: false
@@ -135,7 +135,7 @@ export default Vue.extend( {
 		 *
 		 * @return boolean
 		 */
-		hasControlSlot(): boolean {
+		hasButtonSlot(): boolean {
 			return !!this.$scopedSlots.default;
 		},
 		isClearable(): boolean {
@@ -160,7 +160,7 @@ export default Vue.extend( {
 		* See https://developer.mozilla.org/ru/docs/Web/API/MutationObserver
 		* */
 		slotObserver(): MutationObserver | null {
-			if ( !this.hasControlSlot ) {
+			if ( !this.hasButtonSlot ) {
 				return null;
 			}
 
@@ -213,7 +213,7 @@ export default Vue.extend( {
 		* Adjusts input's right position for indicator if slot component is provided.
 		* */
 		adjustIndicator: function (): void {
-			if ( !this.hasControlSlot ||
+			if ( !this.hasButtonSlot ||
 				( !this.clearable &&
 				!this.currentValue ) ) {
 				return;

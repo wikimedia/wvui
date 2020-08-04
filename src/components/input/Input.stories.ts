@@ -21,7 +21,7 @@ export const configurable = (): Vue.Component =>
 				type: String as PropType<keyof typeof InputType>,
 				default: select( 'Input Type', Object.keys( InputType ), 'Search' )
 			},
-			placeholder: { type: String, default: text( 'Placeholder', 'Search...' ) }
+			placeholder: { type: String, default: text( 'Placeholder', 'Search…' ) }
 		},
 		data() {
 			return {
@@ -38,7 +38,6 @@ export const configurable = (): Vue.Component =>
 		<div class="sb-input-preview">
 			<wvui-input
 				:placeholder="placeholder"
-				:type="InputType[ type ]"
 				:disabled="disabled"
 				@input="input"
 				@change="change"
@@ -64,7 +63,7 @@ export const withIcon = (): Vue.Component =>
 		template: `
 		<div class="sb-input-preview">
 			<wvui-input
-				placeholder="Search..."
+				placeholder="Search…"
 				:type="InputType.Search"
 				icon="search"
 				:disabled="disabled"
@@ -87,7 +86,7 @@ export const withIndicator = (): Vue.Component =>
 		template: `
 		<div class="sb-input-preview">
 			<wvui-input
-				placeholder="Search..."
+				placeholder="Search…"
 				:type="InputType.Search"
 				indicator="info"
 				:disabled="disabled"
@@ -113,7 +112,7 @@ export const withClearAction = (): Vue.Component =>
 		template: `
 		<div class="sb-input-preview">
 			<wvui-input
-				placeholder="Type something..."
+				placeholder="Type something…"
 				:type="InputType.Search"
 				:clearable="true"
 				:disabled="disabled"
@@ -133,7 +132,7 @@ export const withButton = (): Vue.Component =>
 		template: `
 		<div class="sb-input-preview">
 			<wvui-input
-				placeholder="Search..."
+				placeholder="Search…"
 				:disabled="disabled"
 			>
 				<wvui-button>Search</wvui-button>
@@ -165,7 +164,7 @@ export const wikipediaSearchInput = (): Vue.Component =>
 		template: `
 		<div class="sb-input-preview">
 			<wvui-input
-				placeholder="Search..."
+				placeholder="Search…"
 				icon="search"
 				:disabled="disabled"
 				indicator="test"
