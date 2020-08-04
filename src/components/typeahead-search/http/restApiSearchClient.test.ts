@@ -103,4 +103,15 @@ describe( 'restSearchClient', () => {
 			);
 		}
 	} );
+
+	test( 'no searchText', async () => {
+		const searchResult = await restSearchClient().fetchByTitle(
+			'',
+			'foo.org'
+		);
+
+		expect( searchResult.searchText ).toEqual( '' );
+		expect( searchResult.results ).toBeTruthy();
+		expect( searchResult.results.length ).toBe( 0 );
+	} );
 } );
