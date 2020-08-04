@@ -50,7 +50,7 @@ function fetchByTitle(
 		q: searchText,
 		limit: limit
 	};
-	const headers: Record<string, string> = {
+	const headers = {
 		accept: 'application/json'
 	};
 
