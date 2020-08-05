@@ -3,7 +3,7 @@ import * as jestFetchMock from 'jest-fetch-mock';
 
 const mockedRequests = !process.env.TEST_LIVE_REQUESTS;
 
-describe( 'restSearchClient', () => {
+describe( 'restApiSearchClient', () => {
 	beforeAll( () => {
 		jestFetchMock.enableFetchMocks();
 	} );
