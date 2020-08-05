@@ -1,127 +1,110 @@
 {
 	"pages": [
 		{
-			"id": 58128,
-			"key": "Ob",
-			"title": "Ob",
-			"excerpt": "Ob",
+			"id": 8399891,
+			"key": "Co",
+			"title": "Co",
+			"excerpt": "Co",
 			"description": null,
 			"thumbnail": null
 		},
 		{
-			"id": 20082214,
-			"key": "Obsessive–compulsive_disorder",
-			"title": "Obsessive–compulsive disorder",
-			"excerpt": "Obsessive–compulsive disorder",
-			"description": "anxiety disorder that involves unwanted and repeated thoughts, feelings, ideas, sensations (obsessions), or behaviors that make them feel driven to do something (compulsions)",
+			"id": 5921,
+			"key": "Color",
+			"title": "Color",
+			"excerpt": "Color",
+			"description": "visual perception of light wavelengths",
 			"thumbnail": {
 				"mimetype": "image/jpeg",
-				"size": null,
-				"width": 192,
-				"height": 200,
-				"duration": null,
-				"url": "//upload.wikimedia.org/wikipedia/commons/thumb/1/1b/OCD_handwash.jpg/192px-OCD_handwash.jpg"
-			}
-		},
-		{
-			"id": 27471338,
-			"key": "Object-oriented_programming",
-			"title": "Object-oriented programming",
-			"excerpt": "Object-oriented programming",
-			"description": "programming paradigm based on the concept of objects",
-			"thumbnail": null
-		},
-		{
-			"id": 56435,
-			"key": "Obesity",
-			"title": "Obesity",
-			"excerpt": "Obesity",
-			"description": "medical condition in which excess body fat harms health",
-			"thumbnail": {
-				"mimetype": "image/svg+xml",
-				"size": 28230,
-				"width": 200,
-				"height": 176,
-				"duration": null,
-				"url": "//upload.wikimedia.org/wikipedia/commons/thumb/0/08/Obesity-waist_circumference.svg/200px-Obesity-waist_circumference.svg.png"
-			}
-		},
-		{
-			"id": 22256,
-			"key": "Objectivism",
-			"title": "Objectivism",
-			"excerpt": "Objectivism",
-			"description": "philosophy created by Ayn Rand",
-			"thumbnail": {
-				"mimetype": "image/jpeg",
-				"size": null,
-				"width": 136,
-				"height": 200,
-				"duration": null,
-				"url": "//upload.wikimedia.org/wikipedia/commons/thumb/9/91/Objectivist1.jpg/136px-Objectivist1.jpg"
-			}
-		},
-		{
-			"id": 56196,
-			"key": "Obi-Wan_Kenobi",
-			"title": "Obi-Wan Kenobi",
-			"excerpt": "Obi-Wan Kenobi",
-			"description": "fictional character in the Star Wars universe",
-			"thumbnail": {
-				"mimetype": "image/png",
 				"size": null,
 				"width": 200,
 				"height": 150,
 				"duration": null,
-				"url": "//upload.wikimedia.org/wikipedia/en/thumb/3/32/Ben_Kenobi.png/200px-Ben_Kenobi.png"
+				"url": "//upload.wikimedia.org/wikipedia/commons/thumb/2/21/64_365_Color_Macro_%285498808099%29.jpg/200px-64_365_Color_Macro_%285498808099%29.jpg"
 			}
 		},
 		{
-			"id": 251399,
-			"key": "Observable_universe",
-			"title": "Observable universe",
-			"excerpt": "Observable universe",
-			"description": "spherical region of the Universe comprising all matter that can be observed from Earth at the present time",
+			"id": 5399,
+			"key": "Colorado",
+			"title": "Colorado",
+			"excerpt": "Colorado",
+			"description": "state of the United States of America",
+			"thumbnail": {
+				"mimetype": "image/svg+xml",
+				"size": 3476,
+				"width": 200,
+				"height": 133,
+				"duration": null,
+				"url": "//upload.wikimedia.org/wikipedia/commons/thumb/2/21/Flag_of_Colorado_designed_by_Andrew_Carlisle_Carson.svg/200px-Flag_of_Colorado_designed_by_Andrew_Carlisle_Carson.svg.png"
+			}
+		},
+		{
+			"id": 6250,
+			"key": "Colorado_Springs,_Colorado",
+			"title": "Colorado Springs, Colorado",
+			"excerpt": "Colorado Springs, Colorado",
+			"description": "county seat of El Paso County, Colorado, United States",
+			"thumbnail": {
+				"mimetype": "image/jpeg",
+				"size": null,
+				"width": 200,
+				"height": 134,
+				"duration": null,
+				"url": "//upload.wikimedia.org/wikipedia/commons/thumb/4/45/CC_COSPRINGS.jpg/200px-CC_COSPRINGS.jpg"
+			}
+		},
+		{
+			"id": 180968,
+			"key": "Colorado_River",
+			"title": "Colorado River",
+			"excerpt": "Colorado River",
+			"description": "major river in the western United States and Mexico",
+			"thumbnail": {
+				"mimetype": "image/jpeg",
+				"size": null,
+				"width": 200,
+				"height": 133,
+				"duration": null,
+				"url": "//upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Horseshoe_Bend_TC_27-09-2012_15-34-14.jpg/200px-Horseshoe_Bend_TC_27-09-2012_15-34-14.jpg"
+			}
+		},
+		{
+			"id": 331448,
+			"key": "Color_depth",
+			"title": "Color depth",
+			"excerpt": "Color depth",
+			"description": "range of colors in a display",
+			"thumbnail": null
+		},
+		{
+			"id": 7164,
+			"key": "Color_temperature",
+			"title": "Color temperature",
+			"excerpt": "Color temperature",
+			"description": "property of light sources related to black-body radiation",
 			"thumbnail": {
 				"mimetype": "image/png",
 				"size": null,
-				"width": 200,
+				"width": 178,
 				"height": 200,
 				"duration": null,
-				"url": "//upload.wikimedia.org/wikipedia/commons/thumb/9/98/Observable_Universe_with_Measurements_01.png/200px-Observable_Universe_with_Measurements_01.png"
+				"url": "//upload.wikimedia.org/wikipedia/commons/thumb/b/ba/PlanckianLocus.png/178px-PlanckianLocus.png"
 			}
 		},
 		{
-			"id": 44399484,
-			"key": "Obergefell_v._Hodges",
-			"title": "Obergefell v. Hodges",
-			"excerpt": "Obergefell v. Hodges",
-			"description": "US Supreme Court case on same-sex marriage",
-			"thumbnail": null
-		},
-		{
-			"id": 39809523,
-			"key": "Objective-C",
-			"title": "Objective-C",
-			"excerpt": "Objective-C",
-			"description": "general-purpose, high-level, object-oriented programming language",
-			"thumbnail": null
-		},
-		{
-			"id": 290842,
-			"key": "Obsessive–compulsive_personality_disorder",
-			"title": "Obsessive–compulsive personality disorder",
-			"excerpt": "Obsessive–compulsive personality disorder",
-			"description": "personal perfectionism at the cost of flexibility, openness, efficiency & effect on others",
-			"thumbnail": null
-		},
-		{
-			"id": 18958648,
-			"key": "Obesity_in_the_United_States",
-			"title": "Obesity in the United States",
-			"excerpt": "Obesity in the United States",
-			"description": "Statistics of obesity in the United States",
-			"thumbnail": null
+			"id": 444758,
+			"key": "Color_photography",
+			"title": "Color photography",
+			"excerpt": "Color photography",
+			"description": "that uses media capable of representing colors",
+			"thumbnail": {
+				"mimetype": "image/jpeg",
+				"size": null,
+				"width": 152,
+				"height": 200,
+				"duration": null,
+				"url": "//upload.wikimedia.org/wikipedia/commons/thumb/4/46/Hillotypie.jpg/152px-Hillotypie.jpg"
+			}
 		}
 	]
 }

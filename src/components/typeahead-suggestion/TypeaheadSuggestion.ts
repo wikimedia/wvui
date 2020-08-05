@@ -1,14 +1,14 @@
 export interface TypeaheadSuggestion {
 	key: string;
-	description: string | null;
+	description?: string;
 	title: string;
-	thumbnail: TypeaheadSuggestionThumbnail | null
+	thumbnail?: TypeaheadSuggestionThumbnail
 }
 
 export interface TypeaheadSuggestionThumbnail {
 	mimetype: string;
 	width: number;
-	size: number | null
+	size?: number
 	height: number;
 	url: string
 }

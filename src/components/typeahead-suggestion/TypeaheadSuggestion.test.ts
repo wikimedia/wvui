@@ -17,19 +17,3 @@ describe( 'matches the snapshot', () => {
 		expect( wrapper.element ).toMatchSnapshot();
 	} );
 } );
-
-it( 'should highlight query in the title', () => {
-	const suggestion: TypeaheadSuggestion = suggestionsList.pages[ 1 ] as TypeaheadSuggestion;
-	const wrapper = mount(
-		WvuiTypeaheadSuggestion,
-		{
-			propsData: {
-				suggestion,
-				query: 'ob'
-			}
-		} );
-	const emElement = wrapper.find( '.wvui-typeahead-suggestion__matching-title' );
-
-	expect( wrapper.element ).toMatchSnapshot();
-	expect( emElement ).toBeTruthy();
-} );

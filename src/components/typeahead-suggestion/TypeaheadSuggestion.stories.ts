@@ -20,25 +20,27 @@ export const configurable = (): Vue.Component =>
 				default: boolean( 'Thumbnail?', true )
 			},
 			active: { type: Boolean, default: boolean( 'Active?', false ) },
-			query: { type: String, default: text( 'Query (for highlighting)', 'Ob' ) }
+			query: { type: String, default: text( 'Query (for highlighting)', 'Co' ) }
 		},
 		computed: {
 			suggestion(): TypeaheadSuggestion {
-				const suggestion = suggestionsList.pages[ 1 ];
+				const suggestion = suggestionsList.pages[ 1 ] as TypeaheadSuggestion;
+
 				return {
-					...suggestionsList.pages[ 1 ],
-					thumbnail: this.thumbnail ? suggestion.thumbnail : null
+					...suggestion,
+					thumbnail: this.thumbnail ? suggestion.thumbnail : undefined
 				};
 			}
 		},
 		template: `
-		<ul class="sb-suggestions-list" role="listbox">
-			<wvui-typeahead-suggestion
-				role="option"
-				:suggestion="suggestion"
-				:active="active"
-				:query="query"
-			/>
+		<ul class="sb-search__suggestions" role="listbox">
+			<li role="option">
+				<wvui-typeahead-suggestion
+					:suggestion="suggestion"
+					:active="active"
+					:query="query"
+				/>
+			</li>
 		</ul>
 		`
 	} );
@@ -52,13 +54,14 @@ export const exampleList = (): Vue.Component =>
 			};
 		},
 		template: `
-		<ul class="sb-suggestions-list">
-			<wvui-typeahead-suggestion 
-				query="ob"
-				v-for="suggestion in suggestionsList" 
-				:suggestion="suggestion"
-				:key="suggestion.id"
-			/>
+		<ul class="sb-search__suggestions">
+			<li v-for="suggestion in suggestionsList" >
+				<wvui-typeahead-suggestion
+					query="co"
+					:suggestion="suggestion"
+					:key="suggestion.id"
+				/>
+			</li>
 		</ul>
 		`
 	} );
@@ -84,15 +87,27 @@ export const withInput = (): Vue.Component =>
 			}
 		},
 		template: `
-		<div class="sb-search-wrapper">
-			<wvui-input icon="search" @input="onInput" placeholder="Type something..."/>
-			<ul class="sb-suggestions-list" v-if="suggestionsList.length">
-				<wvui-typeahead-suggestion
-					query="ob"
-					v-for="suggestion in suggestionsList"
-					:suggestion="suggestion"
-					:key="suggestion.id"
-				/>
+		<div class="sb-search">
+			<wvui-input 
+				icon="search" 
+				@input="onInput" 
+				placeholder="Type something…"
+			/>
+			<ul
+				v-if="suggestionsList.length"
+				class="sb-search__suggestions"
+				role="listbox"
+			>
+				<li 
+					v-for="suggestion in suggestionsList" 
+					role="option"
+				>
+					<wvui-typeahead-suggestion
+						query="co"
+						:suggestion="suggestion"
+						:key="suggestion.id"
+					/>
+				</li>
 			</ul>
 		</div>
 		`

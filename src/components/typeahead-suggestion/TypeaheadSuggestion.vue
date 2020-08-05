@@ -1,38 +1,42 @@
 <template>
-	<li
+	<a
 		v-if="suggestion"
-		class="wvui-typeahead-suggestion"
-		:class="rootClasses"
 		v-bind="$attrs"
+		:href="suggestionWikiLink"
+		:class="rootClasses"
+		class="wvui-typeahead-suggestion"
 	>
-		<a :href="suggestionWikiLink" class="wvui-typeahead-suggestion__link">
-			<span
-				v-if="suggestion.thumbnail"
-				:style="{backgroundImage: thumbnailBackgroundImage}"
-				class="wvui-typeahead-suggestion__thumbnail"
+		<span
+			v-if="suggestion.thumbnail"
+			:style="{backgroundImage: thumbnailBackgroundImage}"
+			class="wvui-typeahead-suggestion__thumbnail"
+		/>
+		<span
+			v-else
+			class="wvui-typeahead-suggestion__thumbnail-placeholder"
+		/>
+		<span class="wvui-typeahead-suggestion__text">
+			<wvui-typeahead-suggestion-title
+				:query="query"
+				:title="suggestion.title"
 			/>
 			<span
-				v-else
-				class="wvui-typeahead-suggestion__thumbnail-placeholder"
-			/>
-			<span class="wvui-typeahead-suggestion__text">
-				<!--eslint-disable-next-line vue/no-v-html-->
-				<span class="wvui-typeahead-suggestion__title" v-html="suggestionTitle" />
-				<span
-					class="wvui-typeahead-suggestion__description"
-				>{{ suggestion.description }}</span>
-			</span>
-		</a>
-	</li>
+				v-if="suggestion.description"
+				class="wvui-typeahead-suggestion__description"
+			>{{ suggestion.description }}</span>
+		</span>
+	</a>
 </template>
 
 <script lang="ts">
 import Vue, { PropType } from 'vue';
 import { TypeaheadSuggestion } from './TypeaheadSuggestion';
-import WvuiUtils from '../../utils/Utils';
+import WvuiTypeaheadSuggestionTitle
+	from '../typeahead-suggestion-title/TypeaheadSuggestionTitle.vue';
 
 export default Vue.extend( {
 	name: 'WvuiTypeaheadSuggestion',
+	components: { WvuiTypeaheadSuggestionTitle },
 	inheritAttrs: false,
 	props: {
 		active: {
@@ -40,12 +44,12 @@ export default Vue.extend( {
 			default: false
 		},
 		query: {
-			type: String,
-			default: null
+			type: String as PropType<string | undefined>,
+			default: undefined
 		},
 		suggestion: {
-			type: Object as PropType<TypeaheadSuggestion>,
-			default: null
+			type: Object as PropType<TypeaheadSuggestion | undefined>,
+			default: undefined
 		}
 	},
 	computed: {
@@ -59,31 +63,6 @@ export default Vue.extend( {
 		* */
 		suggestionWikiLink(): string {
 			return `/wiki/${this.suggestion?.key}`;
-		},
-		/*
-		* Formats title adding highlighted query if it matches
-		* */
-		suggestionTitle(): string | undefined {
-			if ( !this.query ) {
-				return this.suggestion?.title;
-			}
-
-			const title = this.suggestion?.title;
-
-			const sanitizedQuery = WvuiUtils.htmlEscape( WvuiUtils.regexpEscape( this.query ) );
-			const matchStartIndex = title.search( new RegExp( sanitizedQuery, 'i' ) );
-
-			if ( matchStartIndex < 0 ) {
-				return WvuiUtils.htmlEscape( title );
-			}
-
-			const matchEndIndex = matchStartIndex + sanitizedQuery.length;
-			const highlightedTitle = title.substring( matchStartIndex, matchEndIndex );
-			const beforeHighlight = title.substring( 0, matchStartIndex );
-			const afterHighlight = title.substring( matchEndIndex, title.length );
-
-			// eslint-disable-next-line max-len
-			return `${beforeHighlight}<em class="wvui-typeahead-suggestion__matching-title">${highlightedTitle}</em>${afterHighlight}`;
 		},
 		/*
 		* Generates a proper value for background-image
@@ -102,6 +81,11 @@ export default Vue.extend( {
 
 .wvui-typeahead-suggestion {
 	background-color: #fff;
+	// stylelint-disable-next-line plugin/no-unsupported-browser-features
+	display: flex;
+	align-items: center;
+	padding: 8px @padding-horizontal-base;
+	text-decoration: none;
 
 	// css class is supposed to be used when navigating with keyboard
 	&:hover,
@@ -130,27 +114,12 @@ export default Vue.extend( {
 		background-image: url( https://di-searchland.web.app/img/placeholder.svg );
 	}
 
-	&__link {
-		// stylelint-disable-next-line plugin/no-unsupported-browser-features
-		display: flex;
-		align-items: center;
-		padding: 8px @padding-horizontal-base;
-		text-decoration: none;
-	}
-
 	&__text {
 		overflow: hidden;
 
 		.wvui-typeahead-suggestion__title,
 		.wvui-typeahead-suggestion__description {
 			display: block;
-		}
-
-		.wvui-typeahead-suggestion__title {
-			margin: 0 0 2px 0;
-			color: @wmui-color-base10;
-			font-size: 15px;
-			font-weight: bold;
 		}
 
 		.wvui-typeahead-suggestion__description {
@@ -161,12 +130,6 @@ export default Vue.extend( {
 			text-overflow: ellipsis;
 			overflow: hidden;
 		}
-	}
-
-	&__matching-title {
-		// Remove italic
-		font-style: inherit;
-		text-decoration: underline;
 	}
 }
 </style>
