@@ -33,7 +33,7 @@ export const configurable = (): Vue.Component =>
 			}
 		},
 		template: `
-		<ul class="sb-search__suggestions" role="listbox">
+		<ol class="sb-search__suggestions" role="listbox">
 			<li role="option">
 				<wvui-typeahead-suggestion
 					:suggestion="suggestion"
@@ -41,7 +41,7 @@ export const configurable = (): Vue.Component =>
 					:query="query"
 				/>
 			</li>
-		</ul>
+		</ol>
 		`
 	} );
 
@@ -54,7 +54,7 @@ export const exampleList = (): Vue.Component =>
 			};
 		},
 		template: `
-		<ul class="sb-search__suggestions">
+		<ol class="sb-search__suggestions">
 			<li v-for="suggestion in suggestionsList" >
 				<wvui-typeahead-suggestion
 					query="co"
@@ -62,7 +62,7 @@ export const exampleList = (): Vue.Component =>
 					:key="suggestion.id"
 				/>
 			</li>
-		</ul>
+		</ol>
 		`
 	} );
 
@@ -93,7 +93,7 @@ export const withInput = (): Vue.Component =>
 				@input="onInput" 
 				placeholder="Type something…"
 			/>
-			<ul
+			<ol
 				v-if="suggestionsList.length"
 				class="sb-search__suggestions"
 				role="listbox"
@@ -108,7 +108,7 @@ export const withInput = (): Vue.Component =>
 						:key="suggestion.id"
 					/>
 				</li>
-			</ul>
+			</ol>
 		</div>
 		`
 	} );

@@ -306,6 +306,8 @@ Less is used for all runtime styles. The [Less playground] is useful for debuggi
 -   Each component should be entirely independent and usable in any context. Parents can specify the
     presentation of their children (for example, `display: flex`) but no component should expect to
     only exist in a given container.
+-   Storybook-specific styles are prefixed with sb-.
+-   Storybook-specific styles have their own Less files that end in .stories.less.
 
 [box-sizing]: https://developer.mozilla.org/docs/Web/CSS/box-sizing
 

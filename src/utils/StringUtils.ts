@@ -1,4 +1,4 @@
-export default class WvuiUtils {
+export default class WvuiStringUtils {
 	/*
 	* Escapes special characters
 	* */
@@ -7,10 +7,10 @@ export default class WvuiUtils {
 	}
 
 	/*
-	* Replaces '"<>& characters with HTMl special entities
+	* Replaces '"<>& characters with HTML special entities
 	* */
 	public static htmlEscape( value: string ): string {
-		return value.replace( /['"<>&]/g, WvuiUtils.htmlReplacer );
+		return value.replace( /['"<>&]/g, WvuiStringUtils.htmlReplacer );
 	}
 
 	/*

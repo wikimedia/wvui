@@ -8,7 +8,7 @@
 
 <script lang="ts">
 import Vue, { PropType } from 'vue';
-import WvuiUtils from '../../utils/Utils';
+import WvuiUtils from '../../utils/StringUtils';
 
 export default Vue.extend( {
 	name: 'WvuiTypeaheadSuggestionTitle',

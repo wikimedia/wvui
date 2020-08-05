@@ -1,7 +1,6 @@
 <template>
 	<a
 		v-if="suggestion"
-		v-bind="$attrs"
 		:href="suggestionWikiLink"
 		:class="rootClasses"
 		class="wvui-typeahead-suggestion"
@@ -37,7 +36,6 @@ import WvuiTypeaheadSuggestionTitle
 export default Vue.extend( {
 	name: 'WvuiTypeaheadSuggestion',
 	components: { WvuiTypeaheadSuggestionTitle },
-	inheritAttrs: false,
 	props: {
 		active: {
 			type: Boolean,
