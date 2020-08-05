@@ -95,7 +95,7 @@ export const withInput = (): Vue.Component =>
 			/>
 			<ol
 				v-if="suggestionsList.length"
-				class="sb-search__suggestions"
+				class="sb-search__suggestions sb-search__suggestions--typeahead"
 				role="listbox"
 			>
 				<li 
