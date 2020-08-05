@@ -167,7 +167,7 @@ module.exports = ( _env, argv ) => ( {
 	module: {
 		rules: [
 			...rules( argv.mode ),
-			// Process single-file components (SFCs). This match loader extensions to the SFC
+			// Process single-file components (SFCs). This matches loader extensions to the SFC
 			// language attributes.
 			{ test: /\.vue$/, use: 'vue-loader' }
 		]

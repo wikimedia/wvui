@@ -6,10 +6,14 @@ Versions and bullets are arranged chronologically from latest to oldest.
 
 -   [component][typeahead-suggestion-title] Add highlighting component
 -   [component][typeahead-suggestion] Add initial styles and props
+-   [docs][dev] Document way to clear Jest cache
 -   [build][dev] Add production and pre-release scripts
 
 ## v0.0.1
 
+-   [dev] Decrease test coverage to 80%
+-   [component][input] Add clear action for input
+-   [component][input] Add indicator implementation for input
 -   [component][input] Add icon implementation for input
 -   [component][button] Add initial styles
 -   [dev] Upgrade dependencies
