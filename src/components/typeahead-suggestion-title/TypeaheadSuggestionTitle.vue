@@ -1,6 +1,9 @@
 <template>
 	<!--eslint-disable-next-line vue/no-v-html-->
-	<span class="wvui-typeahead-suggestion__title" v-html="highlightedTitle" />
+	<span class="wvui-typeahead-suggestion__title">
+		<!--eslint-disable-next-line max-len-->
+		{{ titleChunks[ 0 ] }}<em v-if="titleChunks[ 1 ]" class="wvui-typeahead-suggestion__match">{{ titleChunks[ 1 ] }}</em>{{ titleChunks[ 2 ] }}
+	</span>
 </template>
 
 <script lang="ts">
@@ -24,9 +27,9 @@ export default Vue.extend( {
 		/*
 		* Formats title adding highlighted query if it matches
 		* */
-		highlightedTitle(): string | string[] {
+		titleChunks(): string[] {
 			if ( !this.query ) {
-				return this.title as string;
+				return [ this.title as string ];
 			}
 
 			const title = this.title as string;
@@ -35,7 +38,7 @@ export default Vue.extend( {
 			const matchStartIndex = title.search( new RegExp( sanitizedQuery, 'i' ) );
 
 			if ( matchStartIndex < 0 ) {
-				return WvuiUtils.htmlEscape( title );
+				return [ WvuiUtils.htmlEscape( title ) ];
 			}
 
 			const matchEndIndex = matchStartIndex + sanitizedQuery.length;
@@ -43,8 +46,7 @@ export default Vue.extend( {
 			const beforeHighlight = title.substring( 0, matchStartIndex );
 			const afterHighlight = title.substring( matchEndIndex, title.length );
 
-			// eslint-disable-next-line max-len
-			return `${beforeHighlight}<em class="wvui-typeahead-suggestion__match">${highlightedTitle}</em>${afterHighlight}`;
+			return [ beforeHighlight, highlightedTitle, afterHighlight ];
 		}
 	}
 } );

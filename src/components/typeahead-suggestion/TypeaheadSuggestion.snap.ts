@@ -16,7 +16,11 @@ exports[`matches the snapshot Case 0 With thumbnail: ({"suggestion": [Object]}) 
     <span
       class="wvui-typeahead-suggestion__title"
     >
-      Color
+      
+	Color
+      <!---->
+      
+
     </span>
      
     <span
@@ -43,7 +47,11 @@ exports[`matches the snapshot Case 1 Without thumbnail: ({"suggestion": [Object]
     <span
       class="wvui-typeahead-suggestion__title"
     >
-      Co
+      
+	Co
+      <!---->
+      
+
     </span>
      
     <!---->
