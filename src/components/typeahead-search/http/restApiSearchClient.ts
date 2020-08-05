@@ -17,8 +17,8 @@ interface RestResult {
 
 interface RestThumbnail {
 	url: string;
-	width?: number;
-	height?: number;
+	width?: number | null;
+	height?: number | null;
 }
 
 function adaptApiResponse( searchText: string, restResponse: RestResponse ): SearchResponse {
@@ -33,8 +33,8 @@ function adaptApiResponse( searchText: string, restResponse: RestResponse ): Sea
 					description: page.description,
 					thumbnail: page.thumbnail ? {
 						url: page.thumbnail.url,
-						width: page.thumbnail.width,
-						height: page.thumbnail.height
+						width: page.thumbnail.width ?? undefined,
+						height: page.thumbnail.height ?? undefined
 					} : undefined
 				} ) )
 	};
