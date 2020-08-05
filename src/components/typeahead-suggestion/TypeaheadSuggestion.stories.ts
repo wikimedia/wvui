@@ -80,10 +80,8 @@ export const withInput = (): Vue.Component =>
 			}
 		},
 		methods: {
-			onInput( event: InputEvent ): void {
-				const { target } = event;
-
-				this.isVisible = !!( target as HTMLInputElement ).value;
+			onInput( value: string ): void {
+				this.isVisible = !!value;
 			}
 		},
 		template: `
