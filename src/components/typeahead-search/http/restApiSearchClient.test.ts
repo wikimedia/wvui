@@ -106,7 +106,7 @@ describe( 'restSearchClient', () => {
 
 	test( 'no searchText', async () => {
 		const searchResult = await restSearchClient().fetchByTitle(
-			'',
+			' ',
 			'foo.org'
 		);
 

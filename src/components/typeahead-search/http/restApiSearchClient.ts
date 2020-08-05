@@ -46,7 +46,8 @@ function fetchByTitle(
 	domain: string,
 	limit: number
 ): Promise<SearchResponse> {
-	if ( searchText.length === 0 ) {
+	searchText = searchText.trim();
+	if ( !searchText ) {
 		return Promise.resolve( adaptApiResponse( searchText, { pages: [] } ) );
 	}
 	const params = {
