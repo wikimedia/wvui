@@ -55,23 +55,11 @@ describe( 'restApiSearchClient', () => {
 		expect( searchResult.results ).toBeTruthy();
 		expect( searchResult.results.length ).toBe( 2 );
 		expect( searchResult.results[ 0 ] ).toStrictEqual( {
-			id: 37298,
-			key: 'Media',
-			title: 'Media',
-			description: 'Wikimedia disambiguation page',
+			...restResponse.pages[ 0 ],
+			// thumbnail: null -> thumbnail: undefined
 			thumbnail: undefined
 		} );
-		expect( searchResult.results[ 1 ] ).toStrictEqual( {
-			id: 323710,
-			key: 'MediaWiki',
-			title: 'MediaWiki',
-			description: 'wiki software',
-			thumbnail: {
-				width: 200,
-				height: 189,
-				url: thumbUrl
-			}
-		} );
+		expect( searchResult.results[ 1 ] ).toStrictEqual( restResponse.pages[ 1 ] );
 
 		if ( mockedRequests ) {
 			expect( fetchMock ).toHaveBeenCalledTimes( 1 );
