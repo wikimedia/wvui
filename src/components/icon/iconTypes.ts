@@ -2,6 +2,8 @@ type SvgPath = string
 
 /**
  * An icon with a single path.
+ *
+ * This icon will never be flipped horizontally in RTL mode.
  */
 export type Icon = SvgPath;
 
