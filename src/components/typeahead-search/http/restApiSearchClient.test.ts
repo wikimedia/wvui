@@ -43,7 +43,7 @@ describe( 'restApiSearchClient', () => {
 				}
 			]
 		};
-		fetchMock.mockResponse( JSON.stringify( restResponse ) );
+		fetchMock.mockOnce( JSON.stringify( restResponse ) );
 
 		const searchResult = await restSearchClient().fetchByTitle(
 			'media',
@@ -72,7 +72,7 @@ describe( 'restApiSearchClient', () => {
 
 	test( '0 results', async () => {
 		const restResponse: RestResponse = { pages: [] };
-		fetchMock.mockResponse( JSON.stringify( restResponse ) );
+		fetchMock.mockOnce( JSON.stringify( restResponse ) );
 
 		const searchResult = await restSearchClient().fetchByTitle(
 			'thereIsNothingLikeThis',
