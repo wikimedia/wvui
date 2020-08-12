@@ -92,7 +92,7 @@ describe( 'restApiSearchClient', () => {
 		}
 	} );
 
-	test( 'no searchText', async () => {
+	test( 'searchText has only a space', async () => {
 		const searchResult = await restSearchClient().fetchByTitle(
 			' ',
 			'foo.org'
@@ -101,5 +101,9 @@ describe( 'restApiSearchClient', () => {
 		expect( searchResult.searchText ).toEqual( '' );
 		expect( searchResult.results ).toBeTruthy();
 		expect( searchResult.results.length ).toBe( 0 );
+
+		if ( mockedRequests ) {
+			expect( fetchMock ).toHaveBeenCalledTimes( 0 );
+		}
 	} );
 } );
