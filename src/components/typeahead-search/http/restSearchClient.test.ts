@@ -1,4 +1,4 @@
-import { RestResponse, restSearchClient } from './restApiSearchClient';
+import { RestResponse, restSearchClient } from './restSearchClient';
 import * as jestFetchMock from 'jest-fetch-mock';
 
 const mockedRequests = !process.env.TEST_LIVE_REQUESTS;
