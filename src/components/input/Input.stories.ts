@@ -35,64 +35,48 @@ export const configurable = (): Vue.Component =>
 			blur: action( 'blur' )
 		},
 		template: `
-		<div class="sb-input-preview">
 			<wvui-input
 				:placeholder="placeholder"
 				:disabled="disabled"
+				:type="InputType[type]"
 				@input="input"
 				@change="change"
 				@focus="focus"
 				@blur="blur"
 			/>
-		</div>
 		`
 	} );
 
-export const withIcon = (): Vue.Component =>
+export const withStartIcon = (): Vue.Component =>
 	Vue.extend( {
 		components: { WvuiInput },
 		props: {
 			disabled: { type: Boolean, default: boolean( 'Disabled', false ) }
 		},
-		data() {
-			return {
-				InputType
-			};
-		},
-
 		template: `
-		<div class="sb-input-preview">
 			<wvui-input
 				placeholder="Search…"
-				:type="InputType.Search"
-				icon="search"
+				type="search"
+				startIcon="search"
 				:disabled="disabled"
 			/>
-		</div>
-	`
+		`
 	} );
 
-export const withIndicator = (): Vue.Component =>
+export const withEndIcon = (): Vue.Component =>
 	Vue.extend( {
 		components: { WvuiInput },
 		props: {
 			disabled: { type: Boolean, default: boolean( 'Disabled', false ) }
 		},
-		data() {
-			return {
-				InputType
-			};
-		},
 		template: `
-		<div class="sb-input-preview">
 			<wvui-input
 				placeholder="Search…"
-				:type="InputType.Search"
-				indicator="info"
+				type="search"
+				endIcon="info"
 				:disabled="disabled"
 			/>
-		</div>
-	`
+		`
 	} );
 
 export const withClearAction = (): Vue.Component =>
@@ -101,26 +85,19 @@ export const withClearAction = (): Vue.Component =>
 		props: {
 			disabled: { type: Boolean, default: boolean( 'Disabled', false ) }
 		},
-		data() {
-			return {
-				InputType
-			};
-		},
 		methods: {
 			input: action( 'input' )
 		},
 		template: `
-		<div class="sb-input-preview">
 			<wvui-input
 				placeholder="Type something…"
-				:type="InputType.Search"
+				type="search"
 				:clearable="true"
 				:disabled="disabled"
 				value="Some value"
 				@input="input"
 			/>
-		</div>
-	`
+		`
 	} );
 
 export const withButton = (): Vue.Component =>
@@ -130,15 +107,9 @@ export const withButton = (): Vue.Component =>
 			disabled: { type: Boolean, default: boolean( 'Disabled', false ) }
 		},
 		template: `
-		<div class="sb-input-preview">
-			<wvui-input
-				placeholder="Search…"
-				:disabled="disabled"
-			>
-				<template slot="button">
-					<wvui-button>Search</wvui-button>
-				</template>
-			</wvui-input>
+		<div class="sb-input-field">
+			<wvui-input placeholder="Search…" :disabled="disabled" />
+			<wvui-button :disabled="disabled">Search</wvui-button>
 		</div>
 	`
 	} );
@@ -147,7 +118,7 @@ const searchLanguageMap = {
 	English: 'Search',
 	Russian: 'Искать',
 	Vietnamese: 'Tìm kiếm',
-	Japaneese: '探す',
+	Japanese: '探す',
 	Greek: 'Αναζήτηση',
 	Swedish: 'Söka',
 	Mazandeerani: 'جستجو کردن'
@@ -158,25 +129,21 @@ export const wikipediaSearchInput = (): Vue.Component =>
 		components: { WvuiInput, WvuiButton },
 		props: {
 			disabled: { type: Boolean, default: boolean( 'Disabled', false ) },
+			clearable: { type: Boolean, default: boolean( 'Clearable', true ) },
 			buttonLabel: {
 				type: String,
 				default: select( 'Label language', searchLanguageMap, 'Search' )
 			}
 		},
 		template: `
-		<div class="sb-input-preview">
+		<div class="sb-input-field">
 			<wvui-input
 				placeholder="Search…"
-				icon="search"
+				startIcon="search"
 				:disabled="disabled"
-				indicator="test"
-				:clearable="true"
-			>
-				<template slot="button" scope="props">
-					<wvui-button :disabled="disabled">{{ buttonLabel }}</wvui-button>
-				</template>
-				
-			</wvui-input>
+				:clearable="clearable"
+			/>
+			<wvui-button :disabled="disabled">{{ buttonLabel }}</wvui-button>
 		</div>
 	`
 	} );

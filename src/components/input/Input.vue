@@ -4,7 +4,6 @@
 		:class="rootClasses"
 	>
 		<input
-			ref="input"
 			dir="auto"
 			class="wvui-input__input"
 			v-bind="$attrs"
@@ -16,11 +15,7 @@
 			@focus="onFocus"
 			@blur="onBlur"
 		>
-		<span
-			v-if="icon"
-			ref="icon"
-			class="wvui-input__icon"
-		>
+		<span v-if="startIcon" class="wvui-input__start-icon">
 			<!--For now icon is hardcoded inline, it will be replaced with
 			wvui-icon once it's ready-->
 			<span class="wvui-icon">
@@ -33,20 +28,17 @@
 					role="presentation"
 				>
 					<g fill="#72777d">
-						<path :d="searchIcon" />
+						<path :d="startIconPath" />
 					</g>
 				</svg>
 			</span>
 		</span>
 		<span
-			v-if="isClearable || hasIndicator"
-			ref="indicator"
-			class="wvui-input__indicator"
-			@click="onClear"
+			v-if="isClearable || endIcon"
+			class="wvui-input__end-icon"
+			@click="onEndIconClick"
 		>
-			<span
-				class="wvui-icon"
-			>
+			<span class="wvui-icon">
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					width="12"
@@ -56,17 +48,10 @@
 					role="presentation"
 				>
 					<g fill="#72777d">
-						<path :d="clearIcon" />
+						<path :d="endIconPath" />
 					</g>
 				</svg>
 			</span>
-		</span>
-		<span
-			v-if="hasButtonSlot"
-			ref="button"
-			class="wvui-input__button"
-		>
-			<slot name="button" :disabled="disabled" />
 		</span>
 	</div>
 </template>
@@ -102,15 +87,15 @@ export default Vue.extend( {
 			type: Boolean,
 			default: false
 		},
-		icon: {
-			type: String,
-			default: null
+		startIcon: {
+			type: String as PropType<string|undefined>,
+			default: undefined
 		},
-		indicator: {
-			type: String,
-			default: null
+		endIcon: {
+			type: String as PropType<string|undefined>,
+			default: undefined
 		},
-		// clearable property will override indicator property.
+		// Clearable property will override endIcon property.
 		clearable: {
 			type: Boolean,
 			default: false
@@ -120,64 +105,22 @@ export default Vue.extend( {
 		return {
 			currentValue: this.value,
 			// temporary hardcoded icons
-			searchIcon: mwIconSearch,
-			clearIcon: this.clearable ? mwIconClose : mwIconInfo
+			startIconPath: mwIconSearch,
+			endIconPath: this.clearable ? mwIconClose : mwIconInfo
 		};
-
 	},
 	computed: {
-		/**
-		 * Checks if slot component is provided.
-		 *
-		 * @return boolean
-		 */
-		hasButtonSlot(): boolean {
-			return !!this.$scopedSlots.button;
-		},
 		isClearable(): boolean {
 			return this.clearable &&
 				!!this.currentValue &&
 				!this.disabled;
 		},
-		hasIndicator(): boolean {
-			return !this.clearable && !!this.indicator;
-		},
 		rootClasses(): Record<string, boolean> {
 			return {
-				'wvui-input--has-icon': !!this.icon,
-				'wvui-input--clearable': this.clearable,
-				'wvui-input--has-button': !!this.$scopedSlots.button
+				'wvui-input--has-start-icon': !!this.startIcon,
+				'wvui-input--has-end-icon': !!this.endIcon || this.clearable
 			};
-		},
-
-		/*
-		* Creates a MutationObserver instance for adjusting indicator position
-		* according to button slot DOM changes
-		* See https://developer.mozilla.org/ru/docs/Web/API/MutationObserver
-		* */
-		slotObserver(): MutationObserver | null {
-			if ( !this.hasButtonSlot ) {
-				return null;
-			}
-
-			return new MutationObserver( () => {
-				this.adjustIndicator();
-			} );
 		}
-	},
-	mounted() {
-		if ( this.slotObserver ) {
-			this.initSlotObserver();
-		}
-
-		// Initial adjustment
-		this.$nextTick( () => {
-			this.adjustIndicator();
-		} );
-	},
-	beforeDestroy() {
-		// Clean up observer
-		this.slotObserver?.disconnect();
 	},
 	methods: {
 		onInput( event: InputEvent ): void {
@@ -185,17 +128,6 @@ export default Vue.extend( {
 			const { value } = target;
 
 			this.setCurrentValue( value );
-
-			// Initially, clear indicator is hidden and after input
-			// has some value, we need to adjust clear indicator
-			// according to slotted button width
-			this.$nextTick( () => {
-				if ( value.length === 1 ) {
-					/* istanbul ignore next */
-					this.adjustIndicator();
-				}
-			} );
-
 			this.$emit( 'input', value );
 		},
 		onChange( event: Event ): void {
@@ -207,47 +139,14 @@ export default Vue.extend( {
 		onBlur( event: FocusEvent ): void {
 			this.$emit( 'blur', event );
 		},
-		onClear(): void {
+		onEndIconClick(): void {
 			if ( this.clearable ) {
-				this.$emit( 'input', '' );
 				this.setCurrentValue( '' );
+				this.$emit( 'input', '' );
 			}
 		},
 		setCurrentValue( value: string | number ): void {
 			this.currentValue = value;
-		},
-		/*
-		* Adjusts input's right position for indicator if slot component is provided.
-		* */
-		adjustIndicator: function (): void {
-			if ( !this.hasButtonSlot ||
-				( !this.clearable &&
-				!this.currentValue ) ) {
-				return;
-			}
-
-			const $control = this.$refs.button as HTMLElement;
-			const $indicator = this.$refs.indicator as HTMLElement;
-
-			// $refs are not accessible in test cases, so exclude it from coverage
-			/* istanbul ignore if */
-			if ( $control && $indicator ) {
-				// eslint-disable-next-line no-jquery/no-other-methods
-				const { width } = $control.getBoundingClientRect();
-
-				$indicator.style.right = `${width}px`;
-			}
-
-		},
-		initSlotObserver(): void {
-			const $control = this.$refs.button as HTMLElement;
-
-			// Subscribe to slot changes
-			this.slotObserver?.observe(
-				$control,
-				{ attributes: true, childList: true, characterData: true, subtree: true }
-			);
-
 		}
 	}
 } );
@@ -261,8 +160,8 @@ export default Vue.extend( {
 	vertical-align: middle;
 	box-sizing: border-box;
 
-	&__icon,
-	&__indicator {
+	&__start-icon,
+	&__end-icon {
 		position: absolute;
 		top: 50%;
 		transform: translateY( -50% );
@@ -270,29 +169,17 @@ export default Vue.extend( {
 		padding-left: @padding-horizontal-input-text;
 	}
 
-	&__icon {
+	&__start-icon {
 		pointer-events: none;
 	}
 
-	&__indicator {
+	&__end-icon {
 		right: 0;
 		padding-right: @padding-horizontal-input-text;
 	}
 
-	&__button {
-		height: @size-base;
-
-		// Eliminate the gap between the button and the input.
-		& .wvui-button.wvui-button--framed {
-			height: 100%;
-			border-top-left-radius: 0;
-			border-bottom-left-radius: 0;
-			border-left-width: 0;
-		}
-	}
-
 	&--clearable {
-		.wvui-input__indicator {
+		.wvui-input__end-icon {
 			cursor: pointer;
 		}
 	}
@@ -324,8 +211,8 @@ export default Vue.extend( {
 			text-shadow: @text-shadow-base--disabled;
 			border-color: @border-color-base--disabled;
 
-			& ~ .wvui-input__icon,
-			& ~ .wvui-input__indicator {
+			& ~ .wvui-input__start-icon,
+			& ~ .wvui-input__end-icon {
 				pointer-events: none;
 				opacity: @opacity-base--disabled;
 			}
@@ -358,25 +245,14 @@ export default Vue.extend( {
 		}
 	}
 
-	&--has-icon {
+	&--has-start-icon {
 		.wvui-input__input {
 			padding-left: @padding-horizontal-input-text * 2 + @size-icon;
 		}
 	}
 
-	&--has-button {
-		// stylelint-disable-next-line plugin/no-unsupported-browser-features
-		display: flex;
-
-		& > .wvui-input__input {
-			flex: 1;
-			border-top-right-radius: 0;
-			border-bottom-right-radius: 0;
-		}
-	}
-
 	// stylelint-disable-next-line no-duplicate-selectors
-	&--clearable {
+	&--has-end-icon {
 		// add padding for input if it's clearable
 		.wvui-input__input {
 			padding-right: @size-icon + @padding-horizontal-input-text;
