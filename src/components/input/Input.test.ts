@@ -100,7 +100,7 @@ it( 'should render a button in a slot', () => {
 				'wvui-button': WvuiButton
 			},
 			slots: {
-				default: '<wvui-button>Search</wvui-button>'
+				button: '<wvui-button>Search</wvui-button>'
 			}
 		}
 	);
@@ -119,10 +119,11 @@ it( 'should setup MutationObserver for slot', async () => {
 				'wvui-button': WvuiButton
 			},
 			slots: {
-				default: '<wvui-button>Search</wvui-button>'
+				button: '<wvui-button>Search</wvui-button>'
 			},
 			propsData: {
-				clearable: true
+				clearable: true,
+				value: 'some value'
 			}
 		}
 	);

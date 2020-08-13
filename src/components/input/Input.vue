@@ -39,12 +39,12 @@
 			</span>
 		</span>
 		<span
+			v-if="isClearable || hasIndicator"
 			ref="indicator"
 			class="wvui-input__indicator"
 			@click="onClear"
 		>
 			<span
-				v-if="hasIndicator || isClearable"
 				class="wvui-icon"
 			>
 				<svg
@@ -66,7 +66,7 @@
 			ref="button"
 			class="wvui-input__button"
 		>
-			<slot />
+			<slot name="button" :disabled="disabled" />
 		</span>
 	</div>
 </template>
@@ -114,10 +114,6 @@ export default Vue.extend( {
 		clearable: {
 			type: Boolean,
 			default: false
-		},
-		buttonLabel: {
-			type: String,
-			default: null
 		}
 	},
 	data() {
@@ -136,7 +132,7 @@ export default Vue.extend( {
 		 * @return boolean
 		 */
 		hasButtonSlot(): boolean {
-			return !!this.$scopedSlots.default;
+			return !!this.$scopedSlots.button;
 		},
 		isClearable(): boolean {
 			return this.clearable &&
@@ -150,7 +146,7 @@ export default Vue.extend( {
 			return {
 				'wvui-input--has-icon': !!this.icon,
 				'wvui-input--clearable': this.clearable,
-				'wvui-input--has-button': !!this.$scopedSlots.default
+				'wvui-input--has-button': !!this.$scopedSlots.button
 			};
 		},
 
@@ -189,6 +185,17 @@ export default Vue.extend( {
 			const { value } = target;
 
 			this.setCurrentValue( value );
+
+			// Initially, clear indicator is hidden and after input
+			// has some value, we need to adjust clear indicator
+			// according to slotted button width
+			this.$nextTick( () => {
+				if ( value.length === 1 ) {
+					/* istanbul ignore next */
+					this.adjustIndicator();
+				}
+			} );
+
 			this.$emit( 'input', value );
 		},
 		onChange( event: Event ): void {
@@ -222,7 +229,9 @@ export default Vue.extend( {
 			const $control = this.$refs.button as HTMLElement;
 			const $indicator = this.$refs.indicator as HTMLElement;
 
-			if ( $control ) {
+			// $refs are not accessible in test cases, so exclude it from coverage
+			/* istanbul ignore if */
+			if ( $control && $indicator ) {
 				// eslint-disable-next-line no-jquery/no-other-methods
 				const { width } = $control.getBoundingClientRect();
 
@@ -316,8 +325,7 @@ export default Vue.extend( {
 			border-color: @border-color-base--disabled;
 
 			& ~ .wvui-input__icon,
-			& ~ .wvui-input__indicator,
-			& ~ .wvui-input__button {
+			& ~ .wvui-input__indicator {
 				pointer-events: none;
 				opacity: @opacity-base--disabled;
 			}

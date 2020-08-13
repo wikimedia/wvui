@@ -135,7 +135,9 @@ export const withButton = (): Vue.Component =>
 				placeholder="Search…"
 				:disabled="disabled"
 			>
-				<wvui-button>Search</wvui-button>
+				<template slot="button">
+					<wvui-button>Search</wvui-button>
+				</template>
 			</wvui-input>
 		</div>
 	`
@@ -170,7 +172,10 @@ export const wikipediaSearchInput = (): Vue.Component =>
 				indicator="test"
 				:clearable="true"
 			>
-				<wvui-button>{{ buttonLabel }}</wvui-button>
+				<template slot="button" scope="props">
+					<wvui-button :disabled="disabled">{{ buttonLabel }}</wvui-button>
+				</template>
+				
 			</wvui-input>
 		</div>
 	`

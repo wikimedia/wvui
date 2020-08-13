@@ -12,11 +12,7 @@ exports[`matches the snapshot Case 0 Input Type: text : ({"type": "text"}) => HT
    
   <!---->
    
-  <span
-    class="wvui-input__indicator"
-  >
-    <!---->
-  </span>
+  <!---->
    
   <!---->
 </div>
@@ -34,11 +30,7 @@ exports[`matches the snapshot Case 1 Input Type: search : ({"type": "search"}) =
    
   <!---->
    
-  <span
-    class="wvui-input__indicator"
-  >
-    <!---->
-  </span>
+  <!---->
    
   <!---->
 </div>
@@ -56,11 +48,7 @@ exports[`should render a button in a slot 1`] = `
    
   <!---->
    
-  <span
-    class="wvui-input__indicator"
-  >
-    <!---->
-  </span>
+  <!---->
    
   <span
     class="wvui-input__button"
@@ -150,11 +138,7 @@ exports[`should render an icon 1`] = `
     </span>
   </span>
    
-  <span
-    class="wvui-input__indicator"
-  >
-    <!---->
-  </span>
+  <!---->
    
   <!---->
 </div>
