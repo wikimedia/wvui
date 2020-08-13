@@ -42,12 +42,12 @@ export default Vue.extend( {
 			default: false
 		},
 		query: {
-			type: String as PropType<string | undefined>,
-			default: undefined
+			type: String as PropType<string>,
+			default: ''
 		},
 		suggestion: {
-			type: Object as PropType<TypeaheadSuggestion | undefined>,
-			default: undefined
+			type: Object as PropType<TypeaheadSuggestion>,
+			required: true
 		}
 	},
 	computed: {
@@ -60,16 +60,14 @@ export default Vue.extend( {
 		* Generates wikipedia link for a suggestion.
 		* */
 		suggestionWikiLink(): string {
-			return `/wiki/${this.suggestion?.key}`;
+			return `/wiki/${this.suggestion.key}`;
 		},
 		/*
 		* Generates a proper value for background-image
 		* */
 		thumbnailBackgroundImage(): string {
-			return `url(${this.suggestion?.thumbnail?.url})`;
+			return `url(${this.suggestion.thumbnail?.url})`;
 		}
-	},
-	methods: {
 	}
 } );
 </script>
@@ -94,13 +92,12 @@ export default Vue.extend( {
 	&__thumbnail-placeholder,
 	&__thumbnail {
 		display: block;
-		min-width: @typeahead-suggestion-thumb-width;
-		min-height: @typeahead-suggestion-thumb-height;
-		max-width: @typeahead-suggestion-thumb-width;
-		max-height: @typeahead-suggestion-thumb-height;
-		border: @border-width-base @border-style-base @wmui-color-base80;
+		min-width: @thumb-width-search-suggestion;
+		min-height: @thumb-height-search-suggestion;
+		max-width: @thumb-width-search-suggestion;
+		max-height: @thumb-height-search-suggestion;
+		box-shadow: 0 0 @border-width-base @border-width-base @wmui-color-base80;
 		border-radius: @border-radius-base;
-		margin: 0 12px 0 0;
 		background-position: center;
 		background-repeat: no-repeat;
 		// stylelint-disable-next-line plugin/no-unsupported-browser-features
@@ -114,16 +111,13 @@ export default Vue.extend( {
 
 	&__text {
 		overflow: hidden;
+		text-indent: 12px;
 
-		.wvui-typeahead-suggestion__title,
 		.wvui-typeahead-suggestion__description {
 			display: block;
-		}
-
-		.wvui-typeahead-suggestion__description {
 			margin: 0;
 			color: @wmui-color-base30;
-			font-size: 13px;
+			font-size: @font-size-search-suggestion-description;
 			white-space: nowrap;
 			text-overflow: ellipsis;
 			overflow: hidden;
