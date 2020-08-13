@@ -363,6 +363,9 @@ To run tests, use `npm test` command (see [NPM scripts](#npm-scripts)).
             |-- YourComponent.snap.ts  <-- Jest snapshot rendered component HTML
 ```
 
+-   WVUI uses `jest-fetch-mock` to mock API calls. Mocks can be disabled and run against live
+    servers by setting the environment variable `TEST_LIVE_REQUESTS=true`.
+
 ##### Coverage
 
 Coverage reports are generated automatically in the [docs/coverage] directory whenever unit tests
@@ -682,7 +685,9 @@ The expectations for submitting a patch are:
 -   JavaScript configuration files are not type checked when building the library. This seems to be
     because Webpack shakes out dead code. All types can be tested manually via
     `npx --no-install tsc --noEmit --incremental false`.
--   The linter doesn't enforce tabs in in TypeScript enumerations or module declarations.
+-   The linter doesn't enforce tabs in TypeScript enumerations or module declarations.
+-   Renaming test files may cause Jest to still try to open the old file name. In that case consider
+    clearing the cache via `npm -s run test:unit -- --clearCache`.
 
 [storybook is incompatible with vue devtools]:
 	https://github.com/storybookjs/storybook/issues/1708#issuecomment-630262553

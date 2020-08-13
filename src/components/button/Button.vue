@@ -50,8 +50,8 @@ export default Vue.extend( {
 .wvui-button {
 	box-sizing: border-box;
 	// Interactive elements have a minimum touch area.
-	min-width: @min-size-widget-base;
-	min-height: @min-size-widget-base;
+	min-width: @min-size-base;
+	min-height: @min-size-base;
 	max-width: @max-width-button;
 	border-radius: @border-radius-base;
 	padding-left: @padding-horizontal-base;
