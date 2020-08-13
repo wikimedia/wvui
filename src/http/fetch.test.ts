@@ -40,7 +40,7 @@ describe( 'fetch() using window.fetch', () => {
 		const response = await fetch( url );
 
 		expect( response.ok ).toBeTruthy();
-		await expect( response.json() ).resolves.toEqual( { pages: [] } );
+		await expect( response.json() ).resolves.toStrictEqual( { pages: [] } );
 
 		if ( mockedRequests ) {
 			expect( fetchMock ).toHaveBeenCalledTimes( 1 );
@@ -52,7 +52,7 @@ describe( 'fetch() using window.fetch', () => {
 		const response = await fetch( url, { mode: 'cors' } );
 
 		expect( response.ok ).toBeTruthy();
-		await expect( response.json() ).resolves.toEqual( { pages: [] } );
+		await expect( response.json() ).resolves.toStrictEqual( { pages: [] } );
 
 		if ( mockedRequests ) {
 			expect( fetchMock ).toHaveBeenCalledTimes( 1 );
