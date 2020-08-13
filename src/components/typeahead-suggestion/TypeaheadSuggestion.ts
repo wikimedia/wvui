@@ -1,14 +1,19 @@
 export interface TypeaheadSuggestion {
+	/** Page title in URL-friendly format. Matches the database key. */
 	key: string;
-	description?: string;
+	/** Page title. */
 	title: string;
+	/** Page description. */
+	description?: string;
+	/** Page image thumbnail. */
 	thumbnail?: TypeaheadSuggestionThumbnail
 }
 
 export interface TypeaheadSuggestionThumbnail {
-	mimetype: string;
+	/** Thumbnail width in pixels. */
 	width: number;
-	size?: number
+	/** Thumbnail height in pixels. */
 	height: number;
+	/** Thumbnail url. */
 	url: string
 }
