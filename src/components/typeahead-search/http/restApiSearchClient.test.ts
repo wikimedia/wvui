@@ -106,4 +106,15 @@ describe( 'restApiSearchClient', () => {
 			expect( fetchMock ).toHaveBeenCalledTimes( 0 );
 		}
 	} );
+
+	if ( mockedRequests ) {
+		test( 'network error', async () => {
+			fetchMock.mockRejectOnce( new Error( 'failed' ) );
+
+			await expect( restSearchClient().fetchByTitle(
+				'anything',
+				'en.wikipedia.org'
+			) ).rejects.toThrow( 'failed' );
+		} );
+	}
 } );
