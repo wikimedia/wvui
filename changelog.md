@@ -6,6 +6,7 @@ Versions and bullets are arranged chronologically from latest to oldest.
 
 -   [component][typeahead-suggestion-title] Add highlighting component
 -   [component][typeahead-suggestion] Add initial styles and props
+-   [component][typeahead-search] Add network client
 -   [docs][dev] Document way to clear Jest cache
 -   [build][dev] Add production and pre-release scripts
 
