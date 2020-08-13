@@ -363,6 +363,9 @@ To run tests, use `npm test` command (see [NPM scripts](#npm-scripts)).
             |-- YourComponent.snap.ts  <-- Jest snapshot rendered component HTML
 ```
 
+-   WVUI uses `jest-fetch-mock` to mock API calls. Mocks can be disabled and run against live
+    servers by setting the environment variable `TEST_LIVE_REQUESTS=true`.
+
 ##### Coverage
 
 Coverage reports are generated automatically in the [docs/coverage] directory whenever unit tests
