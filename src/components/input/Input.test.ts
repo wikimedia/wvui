@@ -19,7 +19,7 @@ describe( 'matches the snapshot', () => {
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		const wrapperVm = wrapper.vm as any;
 
-		expect( wrapperVm.slotObserver ).toEqual( null );
+		expect( wrapperVm.slotObserver ).toStrictEqual( null );
 	} );
 } );
 
