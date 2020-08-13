@@ -21,9 +21,9 @@ interface RestThumbnail {
 	height?: number | null;
 }
 
-function adaptApiResponse( searchText: string, restResponse: RestResponse ): SearchResponse {
+function adaptApiResponse( query: string, restResponse: RestResponse ): SearchResponse {
 	return {
-		searchText,
+		query,
 		results:
 			restResponse.pages
 				.map( ( page ) => ( {
@@ -42,16 +42,16 @@ function adaptApiResponse( searchText: string, restResponse: RestResponse ): Sea
 
 // https://www.mediawiki.org/wiki/API:REST_API/Reference#Autocomplete_page_title
 function fetchByTitle(
-	searchText: string,
+	query: string,
 	domain: string,
 	limit: number
 ): Promise<SearchResponse> {
-	searchText = searchText.trim();
-	if ( !searchText ) {
-		return Promise.resolve( adaptApiResponse( searchText, { pages: [] } ) );
+	query = query.trim();
+	if ( !query ) {
+		return Promise.resolve( adaptApiResponse( query, { pages: [] } ) );
 	}
 	const params = {
-		q: searchText,
+		q: query,
 		limit: limit
 	};
 	const headers = {
@@ -61,13 +61,13 @@ function fetchByTitle(
 	const url = `//${domain}/w/rest.php/v1/search/title?${buildQueryString( params )}`;
 	return fetch( url, { headers } )
 		.then( ( response ) => response.json() )
-		.then( ( response ) => adaptApiResponse( searchText, response ) );
+		.then( ( response ) => adaptApiResponse( query, response ) );
 }
 
 export function restSearchClient(): SearchClient {
 	return {
-		fetchByTitle( searchText, domain, limit = 10 ) {
-			return fetchByTitle( searchText, domain, limit );
+		fetchByTitle( query, domain, limit = 10 ) {
+			return fetchByTitle( query, domain, limit );
 		}
 	};
 }

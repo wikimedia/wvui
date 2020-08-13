@@ -51,7 +51,7 @@ describe( 'restApiSearchClient', () => {
 			2
 		);
 
-		expect( searchResult.searchText ).toStrictEqual( 'media' );
+		expect( searchResult.query ).toStrictEqual( 'media' );
 		expect( searchResult.results ).toBeTruthy();
 		expect( searchResult.results.length ).toBe( 2 );
 		expect( searchResult.results[ 0 ] ).toStrictEqual( {
@@ -79,7 +79,7 @@ describe( 'restApiSearchClient', () => {
 			'en.wikipedia.org'
 		);
 
-		expect( searchResult.searchText ).toStrictEqual( 'thereIsNothingLikeThis' );
+		expect( searchResult.query ).toStrictEqual( 'thereIsNothingLikeThis' );
 		expect( searchResult.results ).toBeTruthy();
 		expect( searchResult.results.length ).toBe( 0 );
 
@@ -92,13 +92,13 @@ describe( 'restApiSearchClient', () => {
 		}
 	} );
 
-	test( 'searchText has only a space', async () => {
+	test( 'query has only a space', async () => {
 		const searchResult = await restSearchClient().fetchByTitle(
 			' ',
 			'foo.org'
 		);
 
-		expect( searchResult.searchText ).toStrictEqual( '' );
+		expect( searchResult.query ).toStrictEqual( '' );
 		expect( searchResult.results ).toBeTruthy();
 		expect( searchResult.results.length ).toBe( 0 );
 

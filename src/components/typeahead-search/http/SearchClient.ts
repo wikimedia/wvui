@@ -1,18 +1,18 @@
 export interface SearchClient {
 	/**
-	 * @param searchText search string to search for.
+	 * @param query search string to search for
 	 * @param domain the base URL for the wiki without protocol. Example: 'sr.wikipedia.org'
 	 * @param limit maximum number of results
 	 */
 	fetchByTitle(
-		searchText: string,
+		query: string,
 		domain: string,
 		limit?: number
 	): Promise<SearchResponse>;
 }
 
 export interface SearchResponse {
-	searchText: string,
+	query: string,
 	results: SearchResult[];
 }
 
