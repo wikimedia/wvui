@@ -1,6 +1,9 @@
 /package.json
 /package-lock.json
 
+/demos/package.json
+/demos/package-lock.json
+
 # These JSON files must be manually linted to allow comments which are more valuable than
 # presentation. eslint-plugin-json errors on overrides and file disables are unsupported:
 # https://github.com/azeemba/eslint-plugin-json/issues/17.

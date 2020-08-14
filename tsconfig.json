@@ -43,5 +43,5 @@
 
 	// Ignore generated folders. node_modules is ignored by default when `exclude` is unset but needs
 	// to be specified since `exclude` is overridden.
-	"exclude": ["node_modules", "dist", "docs", "demos/dist"]
+	"exclude": ["node_modules", "dist", "docs", "demos/dist", "demos"]
 }
