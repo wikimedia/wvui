@@ -17,7 +17,7 @@ module.exports = ( _env, argv ) => ( {
 	// Map of chunk names to entry files.
 	entry: {
 		'hello-world': './hello-world/hello-world.js',
-		'hello-search': './hello-search/hello-search.js'
+		'hello-hydration': './hello-hydration/hello-hydration.js'
 	},
 
 	module: {
@@ -61,7 +61,7 @@ module.exports = ( _env, argv ) => ( {
 		new CopyPlugin( {
 			patterns: [
 				{ context: 'hello-world', from: '**/*.html' },
-				{ context: 'hello-search', from: '**/*.html' }
+				{ context: 'hello-hydration', from: '**/*.html' }
 			]
 		} )
 	],

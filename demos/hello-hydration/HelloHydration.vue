@@ -16,8 +16,5 @@
 import Vue from 'vue';
 import components from '@wikimedia/wvui';
 
-export default Vue.extend( {
-	name: 'HelloSearch',
-	components
-} );
+export default Vue.extend( { name: 'HelloHydration', components } );
 </script>
