@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+	<head>
+		<!-- prettier-ignore -->
+		<meta charset="utf-8">
+		<!-- prettier-ignore -->
+		<meta name="viewport" content="width=device-width">
+		<title>WVUI demo: Hello Search!</title>
+		<script src="/hello-search.js" defer></script>
+		<!-- prettier-ignore -->
+		<link rel="icon" href="data:,">
+		<style>
+			body {
+				font-family: sans-serif;
+			}
+
+			/* prettier-ignore */
+			button::-moz-focus-inner,
+			[ type='submit' ]::-moz-focus-inner {
+				border-style: none; /* stylelint-disable-line declaration-property-value-blacklist */
+				padding: 0;
+			}
+
+			#right-navigation::after {
+				/* Add an empty node that clears the left and right so the page summary container
+					 can wrap its contents fully even if they're floated. */
+				/* prettier-ignore */
+				content: '';
+				clear: both;
+
+				/* Make the node dimensionless. */
+				display: block;
+				width: 0;
+				height: 0;
+
+				/* Forbid scrollbars and hide. */
+				overflow: hidden;
+				visibility: hidden;
+			}
+
+			#p-search {
+				float: left;
+				margin-right: 0.5em;
+				margin-left: 0.5em;
+			}
+
+			#p-search h3 {
+				display: block;
+				position: absolute;
+				/* prettier-ignore */
+				clip: rect( 1px, 1px, 1px, 1px );
+				width: 1px;
+				height: 1px;
+				margin: -1px;
+				border: 0;
+				padding: 0;
+				overflow: hidden;
+			}
+
+			#p-search form {
+				border: 0;
+				margin: 0.5em 0 0;
+			}
+
+			#simpleSearch {
+				position: relative;
+				height: 100%;
+				min-width: 5em;
+				width: 13.2em;
+				width: 20vw;
+				max-width: 20em;
+			}
+
+			#searchInput::placeholder {
+				color: #72777d;
+				opacity: 1;
+			}
+
+			#simpleSearch input {
+				margin: 0;
+			}
+
+			#searchInput {
+				background-color: #ffffff;
+				background-color: rgba(255, 255, 255, 0.5);
+				color: #000000;
+				width: 100%;
+				box-sizing: border-box;
+				border: 1px solid #a2a9b1;
+				border-radius: 2px;
+				padding: 0.4em 1.84615385em 0.4em 0.4em;
+				box-shadow: inset 0 0 0 1px transparent;
+				font-size: 0.8125em;
+				direction: ltr;
+				transition: border-color 250ms, box-shadow 250ms;
+			}
+
+			#searchButton {
+				/* prettier-ignore */
+				background-image: url( https://wikipedia.org/w/skins/Vector/resources/skins.vector.styles/images/search.svg );
+				background-position: center center;
+				background-repeat: no-repeat;
+				background-color: transparent;
+				position: absolute;
+				top: 1px;
+				bottom: 1px;
+				right: 1px;
+				min-width: 24px;
+				width: 1.84615385em;
+				border: 0;
+				padding: 0;
+				cursor: pointer;
+				font-size: 0.8125em;
+				direction: ltr;
+				text-indent: -99999px;
+				white-space: nowrap;
+				overflow: hidden;
+				z-index: 1;
+			}
+
+			/* prettier-ignore */
+			input[ dir='ltr' ],
+			input[ type='submit' ],
+			input[ type='button' ] {
+				direction: ltr;
+			}
+		</style>
+	</head>
+	<body>
+		<p>
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+			incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+			exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+			dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+			Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+			mollit anim id est laborum.
+		</p>
+
+		<div id="right-navigation">
+			<!-- prettier-ignore -->
+			<div id="p-search" role="search">
+				<h3>
+					<label for="searchInput">Search</label>
+				</h3>
+				<form action="/w/index.php" id="searchform">
+					<div id="simpleSearch">
+						<input type="search" name="search" placeholder="Search Wikipedia" title="Search Wikipedia [Alt+Shift+f]" accesskey="f" id="searchInput" autocomplete="off">
+						<input type="hidden" name="title" value="Special:Search">
+						
+						<input type="submit" name="go" value="Go" title="Go to a page with this exact name if it exists" id="searchButton" class="searchButton">
+					</div>
+				</form>
+			</div>
+		</div>
+
+		<div id="app"></div>
+
+		<p>
+			Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et
+			commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris.
+			Integer in mauris eu nibh euiasmod gravida. Duis ac tellus et risus vulputate vehicula.
+			Donec lobortis risus a elit. Etiam tempor.
+		</p>
+	</body>
+</html>
