@@ -4,6 +4,7 @@ Versions and bullets are arranged chronologically from latest to oldest.
 
 ## v0.0.2 (unreleased)
 
+-   [component][input] Add rtl support for input
 -   [component][input] Add button control for input
 -   [component][typeahead-search] Add network client
 -   [docs][dev] Document way to clear Jest cache

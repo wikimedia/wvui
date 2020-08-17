@@ -107,7 +107,7 @@ export default Vue.extend( {
 			default: false
 		}
 	},
-	data() {
+	data(): Record<string, unknown> {
 		return {
 			currentValue: this.value,
 			// temporary hardcoded icons
@@ -287,5 +287,54 @@ export default Vue.extend( {
 	// For inline, inline-block, and table layouts.
 	vertical-align: middle;
 	user-select: none;
+}
+
+[ dir='rtl' ] {
+	.wvui-input {
+		& > .wvui-input__input {
+			direction: rtl;
+		}
+
+		&--has-start-icon {
+			.wvui-input__input {
+				padding-left: @padding-horizontal-input-text;
+				padding-right: @padding-horizontal-input-text * 2 + @size-icon;
+			}
+		}
+
+		&--has-end-icon {
+			.wvui-input__input {
+				padding-left: @padding-horizontal-input-text * 2 + @size-icon;
+				padding-right: @padding-horizontal-input-text;
+			}
+		}
+
+		// stylelint-disable-next-line no-descending-specificity
+		&__start-icon {
+			right: 0;
+			left: auto;
+			padding-right: @padding-horizontal-input-text;
+		}
+		// stylelint-disable-next-line no-descending-specificity
+		&__end-icon {
+			left: 0;
+			right: auto;
+			padding-right: @padding-horizontal-input-text;
+		}
+
+		&--clearable {
+			// add padding for input if it's clearable
+			.wvui-input__input {
+				padding-left: @size-icon + @padding-horizontal-input-text;
+			}
+		}
+
+		// Add right padding for clearable input
+		&--clearable.wvui-input--has-start-icon {
+			.wvui-input__input {
+				padding-right: @padding-horizontal-input-text * 2 + @size-icon;
+			}
+		}
+	}
 }
 </style>
