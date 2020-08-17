@@ -6,15 +6,15 @@ exports[`matches the snapshot Case 0 With icon: ({"icon": "path string"}) => HTM
 >
   <svg
     aria-hidden="true"
-    height="1em"
+    height="20"
     viewBox="0 0 20 20"
-    width="1em"
+    width="20"
     xmlns="http://www.w3.org/2000/svg"
   >
     <!---->
      
     <g
-      fill="currentColor"
+      fill="#000"
     >
       <path
         d="path string"
@@ -30,9 +30,9 @@ exports[`matches the snapshot Case 1 With icon and hex color: ({"icon": "path st
 >
   <svg
     aria-hidden="true"
-    height="1em"
+    height="20"
     viewBox="0 0 20 20"
-    width="1em"
+    width="20"
     xmlns="http://www.w3.org/2000/svg"
   >
     <!---->
@@ -53,9 +53,9 @@ exports[`matches the snapshot Case 2 With icon and title: ({"icon": "path string
   class="wvui-icon"
 >
   <svg
-    height="1em"
+    height="20"
     viewBox="0 0 20 20"
-    width="1em"
+    width="20"
     xmlns="http://www.w3.org/2000/svg"
   >
     <title>
@@ -63,7 +63,7 @@ exports[`matches the snapshot Case 2 With icon and title: ({"icon": "path string
     </title>
      
     <g
-      fill="currentColor"
+      fill="#000"
     >
       <path
         d="path string"
@@ -79,15 +79,15 @@ exports[`matches the snapshot Case 3 With icon that should flip for RTL: ({"icon
 >
   <svg
     aria-hidden="true"
-    height="1em"
+    height="20"
     viewBox="0 0 20 20"
-    width="1em"
+    width="20"
     xmlns="http://www.w3.org/2000/svg"
   >
     <!---->
      
     <g
-      fill="currentColor"
+      fill="#000"
     >
       <path
         d="path should flip"

@@ -12,7 +12,7 @@ export const iconsLTR = (): Vue.Component =>
 	Vue.extend( {
 		components: { WvuiIcon },
 		props: {
-			iconColor: { type: String, default: color( 'Icon color', 'rgba(32,33,34,1)' ) },
+			iconColor: { type: String, default: color( 'Icon color', 'rgba( 32, 33, 34, 1)' ) },
 			langCode: {
 				type: String,
 				default: text( 'Language code', window.document.documentElement.lang )
@@ -29,17 +29,19 @@ export const iconsLTR = (): Vue.Component =>
 		},
 		template: `
 		<div>
-			<div v-for="icon in Object.keys( icons )" :key="icon">
-				<p>
-					<wvui-icon
-						:icon="icons[ icon ]"
-						:iconColor="iconColor"
-						:langCode="langCode"
-					>
-						{{ icon }}
-					</wvui-icon>
+			<div
+				v-for="icon in Object.keys( icons )"
+				:key="icon"
+				style="margin-bottom: 1em;"
+			>
+				<wvui-icon
+					:icon="icons[ icon ]"
+					:iconColor="iconColor"
+					:langCode="langCode"
+				>
 					{{ icon }}
-				</p>
+				</wvui-icon>
+				{{ icon }}
 			</div>
 		</div>
 		`
@@ -49,7 +51,7 @@ export const iconsRTL = (): Vue.Component =>
 	Vue.extend( {
 		components: { WvuiIcon },
 		props: {
-			iconColor: { type: String, default: color( 'Icon color', 'rgba(32,33,34,1)' ) },
+			iconColor: { type: String, default: color( 'Icon color', 'rgba( 32, 33, 34, 1 )' ) },
 			langCode: {
 				type: String,
 				default: text( 'Language code', window.document.documentElement.lang )
@@ -66,17 +68,19 @@ export const iconsRTL = (): Vue.Component =>
 		},
 		template: `
 		<div>
-			<div v-for="icon in Object.keys( icons )" :key="icon">
-				<p>
-					<wvui-icon
-						:icon="icons[ icon ]"
-						:iconColor="iconColor"
-						:langCode="langCode"
-					>
-						{{ icon }}
-					</wvui-icon>
+			<div
+				v-for="icon in Object.keys( icons )"
+				:key="icon"
+				style="margin-bottom: 1em;"
+			>
+				<wvui-icon
+					:icon="icons[ icon ]"
+					:iconColor="iconColor"
+					:langCode="langCode"
+				>
 					{{ icon }}
-				</p>
+				</wvui-icon>
+				{{ icon }}
 			</div>
 		</div>
 		`

@@ -2,8 +2,8 @@
 	<span class="wvui-icon" :class="rootClasses">
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
-			width="1em"
-			height="1em"
+			width="20"
+			height="20"
 			viewBox="0 0 20 20"
 			:aria-hidden="lacksTitle"
 		>
@@ -46,11 +46,11 @@ export default Vue.extend( {
 		 */
 		iconColor: {
 			type: String,
-			default: 'currentColor'
+			default: '#000'
 		},
 		/**
 		 * Accessible title for SVG. String or message object. If not included,
-		 * the SVG will be hidden from screen readers.
+		 * the SVG will be hidden from screen readers via aria-hidden="true".
 		 */
 		iconTitle: {
 			type: [ String, Object ],
@@ -106,7 +106,6 @@ export default Vue.extend( {
 	justify-content: center;
 	// For inline, inline-block, and table layouts.
 	vertical-align: middle;
-	user-select: none;
 }
 
 // Horizontally flip icons that should be flipped for RTL languages.
