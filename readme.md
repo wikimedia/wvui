@@ -689,9 +689,9 @@ The expectations for submitting a patch are:
     [when running Storybook](https://github.com/storybookjs/storybook/issues/4853).
 -   If Storybook encounters an error when booting, it does not launch even after the error is
     resolved.
--   Dead code is not type checked when building the library.
--   JavaScript configuration files are not type checked when building the library. This seems to be
-    because Webpack shakes out dead code. All types can be tested manually via
+-   Code that is executed but never used (e.g. JavaScript configuration files or unused exports) is
+    considered dead and is shaken out by Webpack on compile. As a result, dead code will not be type
+    checked when building the library. All types can be tested manually via
     `npx --no-install tsc --noEmit --incremental false`.
 -   The linter doesn't enforce tabs in TypeScript enumerations or module declarations.
 -   Renaming test files may cause Jest to still try to open the old file name. In that case consider
