@@ -1,6 +1,5 @@
 import { mount, shallowMount } from '@vue/test-utils';
 import WvuiInput from './Input.vue';
-import WvuiButton from '../button/Button.vue';
 import { InputType } from './InputType';
 
 describe( 'matches the snapshot', () => {
@@ -15,20 +14,23 @@ describe( 'matches the snapshot', () => {
 		const wrapper = mount( WvuiInput, { propsData: props } );
 
 		expect( wrapper.element ).toMatchSnapshot();
-
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-		const wrapperVm = wrapper.vm as any;
-
-		expect( wrapperVm.slotObserver ).toStrictEqual( null );
 	} );
 } );
 
-it( 'should render an icon', () => {
-	const wrapper = shallowMount( WvuiInput, { propsData: { icon: 'search' } } );
+it( 'should render  start icon', () => {
+	const wrapper = shallowMount( WvuiInput, { propsData: { startIcon: 'search' } } );
 
 	expect( wrapper.element ).toMatchSnapshot();
-	expect( wrapper.classes() ).toContain( 'wvui-input--has-icon' );
-	expect( wrapper.find( '.wvui-input__icon' ) ).toBeTruthy();
+	expect( wrapper.classes() ).toContain( 'wvui-input--has-start-icon' );
+	expect( wrapper.find( '.wvui-input__start-icon' ) ).toBeTruthy();
+} );
+
+it( 'should render end icon', () => {
+	const wrapper = shallowMount( WvuiInput, { propsData: { endIcon: 'info' } } );
+
+	expect( wrapper.element ).toMatchSnapshot();
+	expect( wrapper.classes() ).toContain( 'wvui-input--has-end-icon' );
+	expect( wrapper.find( '.wvui-input__end-icon' ) ).toBeTruthy();
 } );
 
 it( 'should render a clear icon', () => {
@@ -36,18 +38,11 @@ it( 'should render a clear icon', () => {
 		WvuiInput,
 		{ propsData: { clearable: true, value: 'Some value' } }
 	);
-	const clearElement = wrapper.find( '.wvui-input__indicator' );
+	const clearElement = wrapper.find( '.wvui-input__end-icon' );
 
 	expect( wrapper.element ).toMatchSnapshot();
 	expect( wrapper.classes() ).toContain( 'wvui-input--clearable' );
 	expect( clearElement ).toBeTruthy();
-} );
-
-it( 'should render an indicator', () => {
-	const wrapper = shallowMount( WvuiInput, { propsData: { indicator: 'info' } } );
-
-	expect( wrapper.element ).toMatchSnapshot();
-	expect( wrapper.find( '.wvui-input__indicator' ) ).toBeTruthy();
 } );
 
 it( 'emits input events', async () => {
@@ -83,55 +78,11 @@ it( 'emits blur events', () => {
 * */
 it( 'should set and clear value', async () => {
 	const wrapper = mount( WvuiInput, { propsData: { clearable: true, value: 'Some value' } } );
-	const clearElement = wrapper.find( '.wvui-input__indicator' );
+	const clearElement = wrapper.find( '.wvui-input__end-icon' );
 	const input = wrapper.find( 'input' ).element as HTMLInputElement;
 
 	expect( input.value ).toEqual( 'Some value' );
 	await clearElement.trigger( 'click' );
 	expect( input.value ).toEqual( '' );
 	expect( wrapper.emitted().input ).toBeTruthy();
-} );
-
-it( 'should render a button in a slot', () => {
-	const wrapper = shallowMount(
-		WvuiInput,
-		{
-			stubs: {
-				'wvui-button': WvuiButton
-			},
-			slots: {
-				button: '<wvui-button>Search</wvui-button>'
-			}
-		}
-	);
-
-	expect( wrapper.element ).toMatchSnapshot();
-	expect( wrapper.classes() ).toContain( 'wvui-input--has-button' );
-	expect( wrapper.find( '.wvui-input__button' ) ).toBeTruthy();
-	expect( wrapper.find( '.wvui-button' ) ).toBeTruthy();
-} );
-
-it( 'should setup MutationObserver for slot', async () => {
-	const wrapper = mount(
-		WvuiInput,
-		{
-			stubs: {
-				'wvui-button': WvuiButton
-			},
-			slots: {
-				button: '<wvui-button>Search</wvui-button>'
-			},
-			propsData: {
-				clearable: true,
-				value: 'some value'
-			}
-		}
-	);
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	const wrapperVm = wrapper.vm as any;
-
-	wrapperVm.slotObserver.disconnect = jest.fn();
-	expect( wrapperVm.slotObserver ).toBeInstanceOf( MutationObserver );
-	wrapper.destroy();
-	expect( wrapperVm.slotObserver.disconnect ).toHaveBeenCalled();
 } );

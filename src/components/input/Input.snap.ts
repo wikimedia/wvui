@@ -13,8 +13,6 @@ exports[`matches the snapshot Case 0 Input Type: text : ({"type": "text"}) => HT
   <!---->
    
   <!---->
-   
-  <!---->
 </div>
 `;
 
@@ -31,81 +29,12 @@ exports[`matches the snapshot Case 1 Input Type: search : ({"type": "search"}) =
   <!---->
    
   <!---->
-   
-  <!---->
 </div>
 `;
 
-exports[`should render a button in a slot 1`] = `
+exports[`should render  start icon 1`] = `
 <div
-  class="wvui-input wvui-input--has-button"
->
-  <input
-    class="wvui-input__input"
-    dir="auto"
-    type="text"
-  />
-   
-  <!---->
-   
-  <!---->
-   
-  <span
-    class="wvui-input__button"
-  >
-    <button
-      class="wvui-button wvui-button--default wvui-button--framed"
-    >
-      Search
-    </button>
-  </span>
-</div>
-`;
-
-exports[`should render a clear icon 1`] = `
-<div
-  class="wvui-input wvui-input--clearable"
->
-  <input
-    class="wvui-input__input"
-    dir="auto"
-    type="text"
-  />
-   
-  <!---->
-   
-  <span
-    class="wvui-input__indicator"
-  >
-    <span
-      class="wvui-icon"
-    >
-      <svg
-        aria-hidden="true"
-        height="12"
-        role="presentation"
-        viewBox="0 0 20 20"
-        width="12"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <g
-          fill="#72777d"
-        >
-          <path
-            d="M4.34 2.93l12.73 12.73-1.41 1.41L2.93 4.35z M17.07 4.34L4.34 17.07l-1.41-1.41L15.66 2.93z"
-          />
-        </g>
-      </svg>
-    </span>
-  </span>
-   
-  <!---->
-</div>
-`;
-
-exports[`should render an icon 1`] = `
-<div
-  class="wvui-input wvui-input--has-icon"
+  class="wvui-input wvui-input--has-start-icon"
 >
   <input
     class="wvui-input__input"
@@ -114,7 +43,7 @@ exports[`should render an icon 1`] = `
   />
    
   <span
-    class="wvui-input__icon"
+    class="wvui-input__start-icon"
   >
     <span
       class="wvui-icon"
@@ -139,14 +68,12 @@ exports[`should render an icon 1`] = `
   </span>
    
   <!---->
-   
-  <!---->
 </div>
 `;
 
-exports[`should render an indicator 1`] = `
+exports[`should render a clear icon 1`] = `
 <div
-  class="wvui-input"
+  class="wvui-input wvui-input--has-end-icon wvui-input--clearable"
 >
   <input
     class="wvui-input__input"
@@ -157,7 +84,46 @@ exports[`should render an indicator 1`] = `
   <!---->
    
   <span
-    class="wvui-input__indicator"
+    class="wvui-input__end-icon"
+  >
+    <span
+      class="wvui-icon"
+    >
+      <svg
+        aria-hidden="true"
+        height="12"
+        role="presentation"
+        viewBox="0 0 20 20"
+        width="12"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <g
+          fill="#72777d"
+        >
+          <path
+            d="M4.34 2.93l12.73 12.73-1.41 1.41L2.93 4.35z M17.07 4.34L4.34 17.07l-1.41-1.41L15.66 2.93z"
+          />
+        </g>
+      </svg>
+    </span>
+  </span>
+</div>
+`;
+
+exports[`should render end icon 1`] = `
+<div
+  class="wvui-input wvui-input--has-end-icon"
+>
+  <input
+    class="wvui-input__input"
+    dir="auto"
+    type="text"
+  />
+   
+  <!---->
+   
+  <span
+    class="wvui-input__end-icon"
   >
     <span
       class="wvui-icon"
@@ -180,7 +146,5 @@ exports[`should render an indicator 1`] = `
       </svg>
     </span>
   </span>
-   
-  <!---->
 </div>
 `;

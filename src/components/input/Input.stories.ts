@@ -35,10 +35,11 @@ export const configurable = (): Vue.Component =>
 			blur: action( 'blur' )
 		},
 		template: `
-		<div class="sb-input-preview">
+		<div class="sb-input">
 			<wvui-input
 				:placeholder="placeholder"
 				:disabled="disabled"
+				:type="InputType[type]"
 				@input="input"
 				@change="change"
 				@focus="focus"
@@ -48,7 +49,7 @@ export const configurable = (): Vue.Component =>
 		`
 	} );
 
-export const withIcon = (): Vue.Component =>
+export const withStartIcon = (): Vue.Component =>
 	Vue.extend( {
 		components: { WvuiInput },
 		props: {
@@ -61,18 +62,18 @@ export const withIcon = (): Vue.Component =>
 		},
 
 		template: `
-		<div class="sb-input-preview">
+		<div class="sb-input">
 			<wvui-input
 				placeholder="Search…"
 				:type="InputType.Search"
-				icon="search"
+				start-icon="search"
 				:disabled="disabled"
 			/>
 		</div>
 	`
 	} );
 
-export const withIndicator = (): Vue.Component =>
+export const withEndIcon = (): Vue.Component =>
 	Vue.extend( {
 		components: { WvuiInput },
 		props: {
@@ -84,11 +85,11 @@ export const withIndicator = (): Vue.Component =>
 			};
 		},
 		template: `
-		<div class="sb-input-preview">
+		<div class="sb-input">
 			<wvui-input
 				placeholder="Search…"
 				:type="InputType.Search"
-				indicator="info"
+				end-icon="info"
 				:disabled="disabled"
 			/>
 		</div>
@@ -110,7 +111,7 @@ export const withClearAction = (): Vue.Component =>
 			input: action( 'input' )
 		},
 		template: `
-		<div class="sb-input-preview">
+		<div class="sb-input">
 			<wvui-input
 				placeholder="Type something…"
 				:type="InputType.Search"
@@ -130,15 +131,12 @@ export const withButton = (): Vue.Component =>
 			disabled: { type: Boolean, default: boolean( 'Disabled', false ) }
 		},
 		template: `
-		<div class="sb-input-preview">
+		<div class="sb-input sb-input--has-button">
 			<wvui-input
 				placeholder="Search…"
 				:disabled="disabled"
-			>
-				<template slot="button">
-					<wvui-button>Search</wvui-button>
-				</template>
-			</wvui-input>
+			/>
+			<wvui-button :disabled="disabled">Search</wvui-button>
 		</div>
 	`
 	} );
@@ -164,19 +162,15 @@ export const wikipediaSearchInput = (): Vue.Component =>
 			}
 		},
 		template: `
-		<div class="sb-input-preview">
+		<div class="sb-input sb-input--has-button">
 			<wvui-input
 				placeholder="Search…"
 				icon="search"
 				:disabled="disabled"
-				indicator="test"
+				start-icon="test"
 				:clearable="true"
-			>
-				<template slot="button" scope="props">
-					<wvui-button :disabled="disabled">{{ buttonLabel }}</wvui-button>
-				</template>
-				
-			</wvui-input>
+			/>
+			<wvui-button :disabled="disabled">{{ buttonLabel }}</wvui-button>
 		</div>
 	`
 	} );
