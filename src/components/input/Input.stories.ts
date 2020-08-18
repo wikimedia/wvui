@@ -145,7 +145,7 @@ const searchLanguageMap = {
 	English: 'Search',
 	Russian: 'Искать',
 	Vietnamese: 'Tìm kiếm',
-	Japaneese: '探す',
+	Japanese: '探す',
 	Greek: 'Αναζήτηση',
 	Swedish: 'Söka',
 	Mazandeerani: 'جستجو کردن'
