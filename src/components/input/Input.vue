@@ -78,6 +78,10 @@ export const mwIconInfo = 'M9.5 16A6.61 6.61 0 0 1 3 9.5 6.61 6.61 0 0 1 9.5 3 6
 
 export default Vue.extend( {
 	name: 'WvuiInput',
+	/**
+	 * All atributes set on the components such as disabled and type are passed to the underlying
+	 * input.
+	 */
 	inheritAttrs: false,
 	props: {
 		value: {
@@ -93,10 +97,12 @@ export default Vue.extend( {
 			type: Boolean,
 			default: false
 		},
+		/** An icon at the start of the input element. Similar to a ::before pseudo-element. */
 		icon: {
 			type: String,
 			default: null
 		},
+		/** An icon at the end of the input element. Similar to an ::after pseudo-element. */
 		indicator: {
 			type: String,
 			default: null
@@ -114,7 +120,6 @@ export default Vue.extend( {
 			searchIcon: mwIconSearch,
 			clearIcon: this.clearable ? mwIconClose : mwIconInfo
 		};
-
 	},
 	computed: {
 		rootClasses(): Record<string, boolean> {
@@ -123,7 +128,7 @@ export default Vue.extend( {
 				'wvui-input--clearable': this.clearable
 			};
 		},
-		iconName(): string {
+		iconName(): string|undefined {
 			return this.clearable ? 'clear' : this.icon;
 		}
 	},
