@@ -56,15 +56,19 @@ export default Vue.extend( {
 				'wvui-typeahead-suggestion--active': this.active
 			};
 		},
-		/*
-		* Generates wikipedia link for a suggestion.
-		* */
+		/**
+		 * Generates wikipedia link for a suggestion.
+		 *
+		 * @return {string}
+		 * */
 		suggestionWikiLink(): string {
 			return `/wiki/${this.suggestion.key}`;
 		},
-		/*
-		* Generates a proper value for background-image
-		* */
+		/**
+		 * Generates a proper value for background-image.
+		 *
+		 * @return {string}
+		 * */
 		thumbnailBackgroundImage(): string {
 			return `url(${this.suggestion.thumbnail?.url})`;
 		}

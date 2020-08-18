@@ -1,5 +1,4 @@
 <template>
-	<!--eslint-disable-next-line vue/no-v-html-->
 	<span class="wvui-typeahead-suggestion__title">
 		<!--eslint-disable-next-line max-len-->
 		{{ titleChunks[ 0 ] }}<em v-if="titleChunks[ 1 ]" class="wvui-typeahead-suggestion__match">{{ titleChunks[ 1 ] }}</em>{{ titleChunks[ 2 ] }}
@@ -23,10 +22,12 @@ export default Vue.extend( {
 		}
 	},
 	computed: {
-		/*
-		* Formats title adding highlighted query if it matches
-		* */
-		titleChunks(): string[] {
+		/**
+		 * Formats title adding highlighted query if it matches.
+		 *
+		 * @return [ string, string, string ]
+		 */
+		titleChunks(): [ string, string, string ] {
 			return splitStringAtMatch( this.query, this.title );
 		}
 	}

@@ -7,7 +7,7 @@ import * as StringUtils from '../../utils/StringUtils';
  * @param {string} title Suggestion title
  * @return [string, string, string]
  */
-export function splitStringAtMatch( query: string, title: string ): [ string, string, string] {
+export function splitStringAtMatch( query: string, title: string ): [ string, string, string ] {
 	if ( !query ) {
 		return [ title, '', '' ];
 	}
