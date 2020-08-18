@@ -1,14 +1,14 @@
 import { mount } from '@vue/test-utils';
 import WvuiTypeaheadSuggestion from './TypeaheadSuggestion.vue';
-import { TypeaheadSuggestion } from './TypeaheadSuggestion';
+import { SearchResult } from '../typeahead-search/http/SearchClient';
 import * as suggestionsList from './TypeaheadSuggestion.stories.json';
 
 describe( 'matches the snapshot', () => {
-	type Case = [string, Record<string, TypeaheadSuggestion>];
+	type Case = [string, Record<string, SearchResult>];
 
 	const cases: Case[] = [
-		[ 'With thumbnail', { suggestion: suggestionsList.pages[ 1 ] as TypeaheadSuggestion } ],
-		[ 'Without thumbnail', { suggestion: suggestionsList.pages[ 0 ] as TypeaheadSuggestion } ]
+		[ 'With thumbnail', { suggestion: suggestionsList.pages[ 1 ] as SearchResult } ],
+		[ 'Without thumbnail', { suggestion: suggestionsList.pages[ 0 ] as SearchResult } ]
 	];
 
 	test.each( cases )( 'Case %# %s: (%p) => HTML', ( _, props ) => {
