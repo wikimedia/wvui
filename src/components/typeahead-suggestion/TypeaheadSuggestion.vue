@@ -29,7 +29,7 @@
 
 <script lang="ts">
 import Vue, { PropType } from 'vue';
-import { TypeaheadSuggestion } from './TypeaheadSuggestion';
+import { SearchResult } from '../typeahead-search/http/SearchClient';
 import WvuiTypeaheadSuggestionTitle
 	from '../typeahead-suggestion-title/TypeaheadSuggestionTitle.vue';
 
@@ -46,7 +46,7 @@ export default Vue.extend( {
 			default: ''
 		},
 		suggestion: {
-			type: Object as PropType<TypeaheadSuggestion>,
+			type: Object as PropType<SearchResult>,
 			required: true
 		}
 	},

@@ -7,11 +7,3 @@ it( 'should escape regular expression', () => {
 
 	expect( result ).toStrictEqual( escapedRegexp );
 } );
-
-it( 'should escape HTML', () => {
-	const htmlString = '\'<>"& a';
-	const escapedHtml = '&#039;&lt;&gt;&quot;&amp; a';
-	const result = StringUtils.htmlEscape( htmlString );
-
-	expect( result ).toStrictEqual( escapedHtml );
-} );

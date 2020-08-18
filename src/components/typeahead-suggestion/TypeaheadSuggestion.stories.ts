@@ -2,7 +2,7 @@ import { boolean, text } from '@storybook/addon-knobs';
 import Vue from 'vue';
 import WvuiTypeaheadSuggestion from './TypeaheadSuggestion.vue';
 import WvuiInput from '../input/Input.vue';
-import { TypeaheadSuggestion } from './TypeaheadSuggestion';
+import { SearchResult } from '../typeahead-search/http/SearchClient';
 import './TypeaheadSuggestion.stories.less';
 import suggestionsList from './TypeaheadSuggestion.stories.json';
 
@@ -23,8 +23,8 @@ export const configurable = (): Vue.Component =>
 			query: { type: String, default: text( 'Query (for highlighting)', 'Co' ) }
 		},
 		computed: {
-			suggestion(): TypeaheadSuggestion {
-				const suggestion = suggestionsList.pages[ 1 ] as TypeaheadSuggestion;
+			suggestion(): SearchResult {
+				const suggestion = suggestionsList.pages[ 1 ] as SearchResult;
 
 				return {
 					...suggestion,
@@ -75,7 +75,7 @@ export const withInput = (): Vue.Component =>
 			};
 		},
 		computed: {
-			suggestionsList(): TypeaheadSuggestion[] {
+			suggestionsList(): SearchResult[] {
 				return this.isVisible ? ( suggestionsList.pages as [] ).slice( 0, 6 ) : [];
 			}
 		},

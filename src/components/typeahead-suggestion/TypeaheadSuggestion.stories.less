@@ -1,26 +1,26 @@
 // Styles for a list of suggestions
-.sb-search__suggestions {
-	max-width: 500px;
-	list-style: none;
-	margin: 0;
-	background: #fff;
-	border: 1px solid #a2a9b1;
-	border-radius: 0 0 2px 2px;
-	padding: 0;
-}
-
 .sb-search {
 	position: relative;
-	width: 500px;
+	width: 400px;
 
-	// Styles for a list that simulates typeahead suggestions
-	&__suggestions--typeahead {
-		position: absolute;
-		top: 32px;
-		left: 0;
-		right: 0;
-		border-top-width: 0;
-		border-top-left-radius: 0;
-		border-top-right-radius: 0;
+	&__suggestions {
+		max-width: 400px;
+		margin: 0;
+		padding: 0;
+		border: 1px solid #a2a9b1;
+		border-radius: 0 0 2px 2px;
+		background: #fff;
+		list-style: none;
+
+		// Styles for a list that simulates typeahead suggestions
+		&--typeahead {
+			position: absolute;
+			top: 32px;
+			left: 0;
+			right: 0;
+			border-top-width: 0;
+			border-top-left-radius: 0;
+			border-top-right-radius: 0;
+		}
 	}
 }

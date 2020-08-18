@@ -8,7 +8,7 @@
 
 <script lang="ts">
 import Vue, { PropType } from 'vue';
-import { getTitleChunks } from './TypeaheadSuggestionTitleUtils';
+import { splitStringAtMatch } from './TypeaheadSuggestionTitleUtils';
 
 export default Vue.extend( {
 	name: 'WvuiTypeaheadSuggestionTitle',
@@ -27,7 +27,7 @@ export default Vue.extend( {
 		* Formats title adding highlighted query if it matches
 		* */
 		titleChunks(): string[] {
-			return getTitleChunks( this.query, this.title );
+			return splitStringAtMatch( this.query, this.title );
 		}
 	}
 } );

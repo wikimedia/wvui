@@ -1,18 +1,22 @@
 import * as StringUtils from '../../utils/StringUtils';
 
-/*
-* Formats title adding highlighted query if it matches
-* */
-export function getTitleChunks( query: string, title: string ): string[] {
+/**
+ * Formats title adding highlighted query if it matches.
+ *
+ * @param {string} query String to match with
+ * @param {string} title Suggestion title
+ * @return [string, string, string]
+ */
+export function splitStringAtMatch( query: string, title: string ): [ string, string, string] {
 	if ( !query ) {
-		return [ title ];
+		return [ title, '', '' ];
 	}
 
-	const sanitizedQuery = StringUtils.htmlEscape( StringUtils.regExpEscape( query ) );
+	const sanitizedQuery = StringUtils.regExpEscape( query );
 	const matchStartIndex = title.search( new RegExp( sanitizedQuery, 'i' ) );
 
 	if ( matchStartIndex < 0 ) {
-		return [ StringUtils.htmlEscape( title ) ];
+		return [ title, '', '' ];
 	}
 
 	const matchEndIndex = matchStartIndex + sanitizedQuery.length;
