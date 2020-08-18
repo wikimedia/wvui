@@ -1,14 +1,6 @@
 <template>
 	<div id="app">
-		<wvui-input
-			id="searchInput"
-			type="search"
-			name="search"
-			accesskey="f"
-			title="Search Wikipedia [Alt+Shift+f]"
-			placeholder="Search Wikipedia"
-			autocomplete="off"
-		/>
+		<wvui-input id="input" :value="value" />
 	</div>
 </template>
 
@@ -16,5 +8,14 @@
 import Vue from 'vue';
 import components from '@wikimedia/wvui';
 
-export default Vue.extend( { name: 'HelloHydration', components } );
+export default Vue.extend( {
+	name: 'HelloHydration',
+	components,
+	props: {
+		value: {
+			type: String,
+			default: ''
+		}
+	}
+} );
 </script>

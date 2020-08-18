@@ -21,7 +21,7 @@
 				padding: 0;
 			}
 
-			#right-navigation::after {
+			#right-navigation:after {
 				/* Add an empty node that clears the left and right so the page summary container
 					 can wrap its contents fully even if they're floated. */
 				/* prettier-ignore */
@@ -117,13 +117,6 @@
 				overflow: hidden;
 				z-index: 1;
 			}
-
-			/* prettier-ignore */
-			input[ dir='ltr' ],
-			input[ type='submit' ],
-			input[ type='button' ] {
-				direction: ltr;
-			}
 		</style>
 	</head>
 	<body>
@@ -136,24 +129,25 @@
 			mollit anim id est laborum.
 		</p>
 
+		<!-- prettier-ignore -->
 		<div id="right-navigation">
-			<!-- prettier-ignore -->
 			<div id="p-search" role="search">
 				<h3>
 					<label for="searchInput">Search</label>
 				</h3>
 				<form action="/w/index.php" id="searchform">
 					<div id="simpleSearch">
-						<input type="search" name="search" placeholder="Search Wikipedia" title="Search Wikipedia [Alt+Shift+f]" accesskey="f" id="searchInput" autocomplete="off">
+						<!-- Empty comment nodes are intentional and present in development and production builds.
+								 See https://github.com/vuejs/vue/issues/5117#issuecomment-284927949. -->
+						<!-- prettier-ignore -->
+						<div id="app" data-server-rendered="true"><div class="wvui-input"><input type="search" name="search" placeholder="Search Wikipedia" title="Search Wikipedia [Alt+Shift+f]" accesskey="f" id="searchInput" autocomplete="off" dir="auto" class="wvui-input__input"> <!----> <!----></div></div>
 						<input type="hidden" name="title" value="Special:Search">
-						
+
 						<input type="submit" name="go" value="Go" title="Go to a page with this exact name if it exists" id="searchButton" class="searchButton">
 					</div>
 				</form>
 			</div>
 		</div>
-
-		<div id="app"></div>
 
 		<p>
 			Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et

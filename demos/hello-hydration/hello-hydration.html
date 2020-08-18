@@ -9,9 +9,12 @@
 		<script src="/hello-hydration.js" defer></script>
 		<!-- prettier-ignore -->
 		<link rel="icon" href="data:,">
+		<style></style>
 	</head>
 	<body>
+		<!-- Empty comment nodes are intentional and present in development and production builds.
+			   See https://github.com/vuejs/vue/issues/5117#issuecomment-284927949. -->
 		<!-- prettier-ignore -->
-		<div id="app" data-server-rendered="true"><div class="wvui-input"><input dir="auto" type="search" id="searchInput" name="search" accesskey="f" title="Search Wikipedia [Alt+Shift+f]" placeholder="Search Wikipedia" autocomplete="off" class="wvui-input__input"></div></div>
+		<div id="app" data-server-rendered="true"><div class="wvui-input"><input id="input" class="wvui-input__input"> <!----> <!----></div></div>
 	</body>
 </html>
