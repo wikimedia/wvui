@@ -79,7 +79,7 @@ export const mwIconInfo = 'M9.5 16A6.61 6.61 0 0 1 3 9.5 6.61 6.61 0 0 1 9.5 3 6
 export default Vue.extend( {
 	name: 'WvuiInput',
 	/**
-	 * All atributes set on the components such as disabled and type are passed to the underlying
+	 * All attributes set on the components such as disabled and type are passed to the underlying
 	 * input.
 	 */
 	inheritAttrs: false,
@@ -107,7 +107,11 @@ export default Vue.extend( {
 			type: String,
 			default: null
 		},
-		// clearable properyy will override indicator property
+		/**
+		 * Overrides indicator with a clear button at the end of the input element that when pressed
+		 * deletes the input's contents. The elements automatically hides and appears based on input
+		 * state.
+		 */
 		clearable: {
 			type: Boolean,
 			default: false
@@ -127,9 +131,6 @@ export default Vue.extend( {
 				'wvui-input--has-icon': !!this.icon,
 				'wvui-input--clearable': this.clearable
 			};
-		},
-		iconName(): string|undefined {
-			return this.clearable ? 'clear' : this.icon;
 		}
 	},
 	methods: {
