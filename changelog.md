@@ -4,6 +4,7 @@ Versions and bullets are arranged chronologically from latest to oldest.
 
 ## v0.0.2 (unreleased)
 
+-   [component][icon] Add component, styles, and icon data
 -   [component][typeahead-search] Add network client
 -   [docs][dev] Document way to clear Jest cache
 -   [build][dev] Add production and pre-release scripts
