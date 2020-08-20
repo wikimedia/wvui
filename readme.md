@@ -266,6 +266,16 @@ The [Vue.js Style Guide](https://vuejs.org/v2/style-guide) is adhered to where p
 
 [vue.js template explorer]: https://template-explorer.vuejs.org
 
+### Templates
+
+#### Conventions
+
+-   Static CSS class names should be included directly in the template while dynamic class names
+    should come from a computed property that returns an object (not an array). This computed
+    property should be named `rootClasses` for the outermost element.
+-   If an element has both static and dynamic class names, the static classes should be listed
+    first, then the dynamic classes should be included via `v-bind` on the next line.
+
 ### TypeScript
 
 TypeScript is used for all runtime sources. The [TypeScript playground] is useful for debugging.
@@ -682,8 +692,9 @@ The expectations for submitting a patch are:
     [when running Storybook](https://github.com/storybookjs/storybook/issues/4853).
 -   If Storybook encounters an error when booting, it does not launch even after the error is
     resolved.
--   JavaScript configuration files are not type checked when building the library. This seems to be
-    because Webpack shakes out dead code. All types can be tested manually via
+-   Code that is executed but never used (e.g. JavaScript configuration files or unused exports) is
+    considered dead and is shaken out by Webpack on compile. As a result, dead code will not be type
+    checked when building the library. All types can be tested manually via
     `npx --no-install tsc --noEmit --incremental false`.
 -   The linter doesn't enforce tabs in TypeScript enumerations or module declarations.
 -   Renaming test files may cause Jest to still try to open the old file name. In that case consider
