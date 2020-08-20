@@ -1,0 +1,28 @@
+// "replace" works only with strings,
+// so we need to check the value before applying "replace" function
+.checkStringAndReplace(@value, @string, @replacement) {
+	@result: if(isstring(@value), replace(@value, 'left', 'right'), @value);
+}
+
+.bidi(@property, @value) {
+	@{property}: @value;
+
+	@flipped-property-l2r: replace( @property, 'left', 'right');
+	@flipped-property:
+		if( @flipped-property-l2r=@property,
+		replace( @property, 'right', 'left'),
+		@flipped-property-l2r);
+
+	@flipped-value-l2r: if(isstring(@value), replace(@value, 'left', 'right'), @value);
+	@flipped-value-l2r: .checkStringAndReplace(@value, 'left', 'right')[@result];
+
+	@flipped-value: if(
+		@flipped-value-l2r=@value,
+		.checkStringAndReplace(@value, 'right', 'left')[@result],
+		@flipped-value-l2r
+	);
+
+	[ dir='rtl' ] & {
+		@{flipped-property}: @value;
+	}
+}

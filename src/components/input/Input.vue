@@ -29,7 +29,6 @@
 					height="20"
 					viewBox="0 0 20 20"
 					aria-hidden="true"
-					role="presentation"
 				>
 					<g fill="#72777d">
 						<path :d="startIconPath" />
@@ -51,7 +50,6 @@
 					height="12"
 					viewBox="0 0 20 20"
 					aria-hidden="true"
-					role="presentation"
 				>
 					<g fill="#72777d">
 						<path :d="endIconPath" />
@@ -163,6 +161,7 @@ export default Vue.extend( {
 
 <style lang="less">
 @import ( reference ) '@/themes/wikimedia-ui.less';
+@import '@/themes/mixins.less';
 
 .wvui-input {
 	position: relative; // For proper positioning of icons and slotted elements
@@ -176,10 +175,10 @@ export default Vue.extend( {
 		top: 0;
 		min-height: @size-icon;
 		height: 100%;
-		padding-left: @padding-horizontal-input-text;
 		// stylelint-disable-next-line plugin/no-unsupported-browser-features
 		display: flex;
 		align-items: center;
+		padding: 0 @padding-horizontal-input-text;
 	}
 
 	&__start-icon {
@@ -187,8 +186,8 @@ export default Vue.extend( {
 	}
 
 	&__end-icon {
-		right: 0;
-		padding-right: @padding-horizontal-input-text;
+		.bidi(~'right', 0);
+		.bidi(~'left', ~'auto');
 	}
 
 	&--clearable {
@@ -260,13 +259,25 @@ export default Vue.extend( {
 
 	&--has-start-icon {
 		.wvui-input__input {
-			padding-left: @padding-horizontal-input-text * 2 + @size-icon;
+			// add bidirectional padding for start icon
+			.bidi(~'padding-left', @padding-horizontal-input-text * 2 + @size-icon);
 		}
 	}
 
 	&--has-end-icon {
 		.wvui-input__input {
-			padding-right: @padding-horizontal-input-text + @size-icon;
+			// add bidirectional padding for end icon
+			.bidi(~'padding-right', @padding-horizontal-input-text + @size-icon);
+			// remove padding-left for LTR and padding-right for RTL
+			.bidi(~'padding-left', @padding-horizontal-input-text);
+		}
+	}
+
+	// override padding-right and padding-left if there are both icons provided
+	&--has-start-icon.wvui-input--has-end-icon {
+		.wvui-input__input {
+			.bidi(~'padding-right', @padding-horizontal-input-text + @size-icon);
+			.bidi(~'padding-left', @padding-horizontal-input-text * 2 + @size-icon);
 		}
 	}
 
@@ -293,47 +304,6 @@ export default Vue.extend( {
 	.wvui-input {
 		& > .wvui-input__input {
 			direction: rtl;
-		}
-
-		&--has-start-icon {
-			.wvui-input__input {
-				padding-left: @padding-horizontal-input-text;
-				padding-right: @padding-horizontal-input-text * 2 + @size-icon;
-			}
-		}
-
-		&--has-end-icon {
-			.wvui-input__input {
-				padding-left: @padding-horizontal-input-text * 2 + @size-icon;
-				padding-right: @padding-horizontal-input-text;
-			}
-		}
-
-		// stylelint-disable-next-line no-descending-specificity
-		&__start-icon {
-			right: 0;
-			left: auto;
-			padding-right: @padding-horizontal-input-text;
-		}
-		// stylelint-disable-next-line no-descending-specificity
-		&__end-icon {
-			left: 0;
-			right: auto;
-			padding-right: @padding-horizontal-input-text;
-		}
-
-		&--clearable {
-			// add padding for input if it's clearable
-			.wvui-input__input {
-				padding-left: @size-icon + @padding-horizontal-input-text;
-			}
-		}
-
-		// Add right padding for clearable input
-		&--clearable.wvui-input--has-start-icon {
-			.wvui-input__input {
-				padding-right: @padding-horizontal-input-text * 2 + @size-icon;
-			}
 		}
 	}
 }
