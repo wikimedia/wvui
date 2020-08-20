@@ -72,6 +72,14 @@ export default Vue.extend( {
 		thumbnailBackgroundImage(): string {
 			return `url(${this.suggestion.thumbnail?.url})`;
 		}
+	},
+	watch: {
+		active( isActive ) {
+			const el = this.$el as HTMLElement;
+			const state = isActive ? 'focus' : 'blur';
+
+			el[ state ]();
+		}
 	}
 } );
 </script>

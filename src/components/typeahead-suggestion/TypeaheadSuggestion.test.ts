@@ -17,3 +17,25 @@ describe( 'matches the snapshot', () => {
 		expect( wrapper.element ).toMatchSnapshot();
 	} );
 } );
+
+it( 'should focus/blur on active/inactive states', () => {
+	const div = document.createElement( 'div' );
+	div.id = 'root';
+	document.body.appendChild( div );
+	const wrapper = mount( WvuiTypeaheadSuggestion, {
+		attachTo: '#root'
+	} );
+	const el = wrapper.element as HTMLElement;
+
+	console.log(el);
+
+	wrapper.setData( { active: true } );
+
+	expect( el ).toBe( document.activeElement );
+
+	wrapper.destroy()
+
+	// wrapper.setData( { active: false } );
+	//
+	// expect( el ).not.toBe( document.activeElement );
+} );

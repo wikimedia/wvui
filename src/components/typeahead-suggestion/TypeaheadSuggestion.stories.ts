@@ -6,6 +6,9 @@ import { SearchResult } from '../typeahead-search/http/SearchClient';
 import './TypeaheadSuggestion.stories.less';
 import suggestionsList from './TypeaheadSuggestion.stories.json';
 
+const KEY_UP = 38;
+const KEY_DOWN = 40;
+
 export default {
 	title: 'Components/TypeaheadSuggestion',
 	component: WvuiTypeaheadSuggestion
@@ -71,7 +74,8 @@ export const withInput = (): Vue.Component =>
 		components: { WvuiTypeaheadSuggestion, WvuiInput },
 		data() {
 			return {
-				isVisible: false
+				isVisible: false,
+				activeIndex: -1
 			};
 		},
 		computed: {
@@ -82,10 +86,47 @@ export const withInput = (): Vue.Component =>
 		methods: {
 			onInput( value: string ): void {
 				this.isVisible = !!value;
+			},
+			getActiveIndex( index: number, offset = 1 ): number {
+				const { length } = this.suggestionsList;
+
+				for ( let i = 0; i < length; i += 1 ) {
+					return ( index + i * offset + length ) % length;
+				}
+
+				return -1;
+
+			},
+			onKeyDown( event: KeyboardEvent ) {
+				const { which } = event;
+
+				if ( !this.suggestionsList.length ) {
+					return;
+				}
+
+				switch ( which ) {
+					case KEY_UP:
+					case KEY_DOWN: {
+						let offset = 0;
+						if ( which === KEY_UP ) {
+							offset = -1;
+						} else if ( which === KEY_DOWN ) {
+							offset = 1;
+						}
+
+						if ( offset !== 0 ) {
+							this.activeIndex =
+								this.getActiveIndex( this.activeIndex + offset, offset );
+						}
+
+					}
+
+				}
 			}
+
 		},
 		template: `
-		<div class="sb-search">
+		<div class="sb-search" @keydown="onKeyDown">
 			<wvui-input 
 				icon="search" 
 				@input="onInput" 
@@ -97,11 +138,12 @@ export const withInput = (): Vue.Component =>
 				role="listbox"
 			>
 				<li 
-					v-for="suggestion in suggestionsList" 
+					v-for="(suggestion, index) in suggestionsList" 
 					role="option"
 				>
 					<wvui-typeahead-suggestion
 						query="co"
+						:active="activeIndex === index"
 						:suggestion="suggestion"
 						:key="suggestion.id"
 					/>
