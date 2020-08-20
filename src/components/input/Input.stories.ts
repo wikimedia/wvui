@@ -4,6 +4,7 @@ import Vue, { PropType } from 'vue';
 import WvuiInput from './Input.vue';
 import WvuiButton from '../button/Button.vue';
 import { InputType } from './InputType';
+import { wvuiIconSearch, wvuiIconInfo } from '@/themes/icons';
 import './Input.stories.less';
 
 export default {
@@ -57,7 +58,8 @@ export const withStartIcon = (): Vue.Component =>
 		},
 		data() {
 			return {
-				InputType
+				InputType,
+				searchIcon: wvuiIconSearch
 			};
 		},
 
@@ -66,7 +68,7 @@ export const withStartIcon = (): Vue.Component =>
 			<wvui-input
 				placeholder="Search…"
 				:type="InputType.Search"
-				start-icon="search"
+				:start-icon="searchIcon"
 				:disabled="disabled"
 			/>
 		</div>
@@ -81,7 +83,8 @@ export const withEndIcon = (): Vue.Component =>
 		},
 		data() {
 			return {
-				InputType
+				InputType,
+				endIcon: wvuiIconInfo
 			};
 		},
 		template: `
@@ -89,7 +92,7 @@ export const withEndIcon = (): Vue.Component =>
 			<wvui-input
 				placeholder="Search…"
 				:type="InputType.Search"
-				end-icon="info"
+				:end-icon="endIcon"
 				:disabled="disabled"
 			/>
 		</div>
@@ -161,13 +164,18 @@ export const wikipediaSearchInput = (): Vue.Component =>
 				default: select( 'Label language', searchLanguageMap, 'Search' )
 			}
 		},
+		data() {
+			return {
+				startIcon: wvuiIconSearch
+			};
+		},
 		template: `
 		<div class="sb-input sb-input--has-button">
 			<wvui-input
 				placeholder="Search…"
 				icon="search"
 				:disabled="disabled"
-				start-icon="test"
+				:start-icon="startIcon"
 				:clearable="true"
 			/>
 			<wvui-button :disabled="disabled">{{ buttonLabel }}</wvui-button>

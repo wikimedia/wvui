@@ -1,5 +1,7 @@
 import { mount, shallowMount } from '@vue/test-utils';
 import WvuiInput from './Input.vue';
+import WvuiIcon from './../icon/Icon.vue';
+import { wvuiIconSearch, wvuiIconInfo } from '../../themes/icons';
 import { InputType } from './InputType';
 
 describe( 'matches the snapshot', () => {
@@ -17,8 +19,13 @@ describe( 'matches the snapshot', () => {
 	} );
 } );
 
-it( 'should render  start icon', () => {
-	const wrapper = shallowMount( WvuiInput, { propsData: { startIcon: 'search' } } );
+it( 'should render start icon', () => {
+	const wrapper = shallowMount( WvuiInput, {
+		propsData: { startIcon: wvuiIconSearch },
+		stubs: {
+			'wvui-icon': WvuiIcon
+		}
+	} );
 
 	expect( wrapper.element ).toMatchSnapshot();
 	expect( wrapper.classes() ).toContain( 'wvui-input--has-start-icon' );
@@ -26,7 +33,14 @@ it( 'should render  start icon', () => {
 } );
 
 it( 'should render end icon', () => {
-	const wrapper = shallowMount( WvuiInput, { propsData: { endIcon: 'info' } } );
+	const wrapper = shallowMount( WvuiInput, {
+		propsData: {
+			endIcon: wvuiIconInfo
+		},
+		stubs: {
+			'wvui-icon': WvuiIcon
+		}
+	} );
 
 	expect( wrapper.element ).toMatchSnapshot();
 	expect( wrapper.classes() ).toContain( 'wvui-input--has-end-icon' );
@@ -36,7 +50,12 @@ it( 'should render end icon', () => {
 it( 'should render a clear icon', () => {
 	const wrapper = shallowMount(
 		WvuiInput,
-		{ propsData: { clearable: true, value: 'Some value' } }
+		{
+			propsData: { clearable: true, value: 'Some value' },
+			stubs: {
+				'wvui-icon': WvuiIcon
+			}
+		}
 	);
 	const clearElement = wrapper.find( '.wvui-input__end-icon' );
 
