@@ -1,3 +1,23 @@
-.sb-input-preview {
+.sb-input {
 	width: 400px;
+
+	&--has-button {
+		// stylelint-disable-next-line plugin/no-unsupported-browser-features
+		display: flex;
+
+		.wvui-input {
+			flex-grow: 1;
+
+			.wvui-input__input {
+				border-top-right-radius: 0;
+				border-bottom-right-radius: 0;
+				border-right-width: 0;
+			}
+		}
+
+		.wvui-button {
+			border-top-left-radius: 0;
+			border-bottom-left-radius: 0;
+		}
+	}
 }

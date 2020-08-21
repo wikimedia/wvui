@@ -182,7 +182,8 @@ Undocumented scripts are considered internal utilities and not expressly support
 
 💡 Tips:
 
--   Add `--` to pass arguments to the script command. For example, `npm run test:unit -- -u`.
+-   Add `--` to pass arguments to the script command. For example, `npm run test:unit -- -u` to
+    update snapshots or `npm run build -- -dw` to automatically rebuild a development output.
 -   Add `-s` to omit verbose command echoing. For example, `npm -s i` or `npm -s run format`.
 
 <details markdown>
@@ -418,9 +419,10 @@ The steps are:
    link to your local development copy.
 7. Verify the link is correct by seeing where that it resolves to WVUI's location. For example,
    `readlink -m node_modules/@wikimedia/wvui` should match `$wvuiDir`.
-8. Perform all development and iteration wanted in WVUI and integration project.
-9. Unlink the development WVUI via `npm unlink @wikimedia/wvui`. This deletes the _symlink_ to your
-   development copy of WVUI.
+8. Watch for changes and produce development build file outputs by executing `npm run build -- -dw`.
+9. Perform all development and iteration wanted in WVUI and integration project.
+10. Unlink the development WVUI via `npm unlink @wikimedia/wvui`. This deletes the _symlink_ to your
+    development copy of WVUI.
 
 The above process seems a little clumsy because it is initially. However, it's quite practical and
 becomes easy with practice.
