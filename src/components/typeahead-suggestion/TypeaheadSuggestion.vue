@@ -109,7 +109,7 @@ export default Vue.extend( {
 	// stylelint-disable-next-line plugin/no-unsupported-browser-features
 	display: flex;
 	align-items: center;
-	padding: 8px @padding-horizontal-base;
+	padding: @padding-vertical-typeahead-suggestion @padding-horizontal-typeahead-suggestion;
 	text-decoration: none;
 
 	// &--active is supposed to be used both when hover
@@ -120,9 +120,11 @@ export default Vue.extend( {
 
 	&__thumbnail-placeholder,
 	&__thumbnail {
-		display: block;
 		width: @width-search-suggestion-thumb;
 		height: @height-search-suggestion-thumb;
+		// Borders tend to cut into the border-radius and it makes the
+		// border-radius look smaller on the inside of the box than the outside.
+		// Using a box-shadow disguised as a border prevents that from happening
 		box-shadow: 0 0
 			@border-width-base
 			@border-width-base
@@ -132,6 +134,10 @@ export default Vue.extend( {
 		background-repeat: no-repeat;
 		// stylelint-disable-next-line plugin/no-unsupported-browser-features
 		background-size: cover;
+	}
+
+	&__thumbnail {
+		display: inline-block;
 	}
 
 	&__thumbnail-placeholder {
@@ -144,7 +150,7 @@ export default Vue.extend( {
 
 	&__text {
 		overflow: hidden;
-		text-indent: 12px;
+		text-indent: @padding-horizontal-base;
 
 		.wvui-typeahead-suggestion__description {
 			display: block;
