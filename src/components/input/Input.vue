@@ -21,7 +21,6 @@
 			class="wvui-input__start-icon"
 		>
 			<wvui-icon
-				:icon-color="iconColor"
 				:icon="startIcon"
 			/>
 		</span>
@@ -32,7 +31,6 @@
 		>
 			<wvui-icon
 				:icon="endIcon || closeIcon"
-				:icon-color="iconColor"
 			/>
 		</span>
 	</div>
@@ -80,8 +78,7 @@ export default Vue.extend( {
 	data() {
 		return {
 			currentValue: this.value,
-			closeIcon: wvuiIconClose,
-			iconColor: '#72777d'
+			closeIcon: wvuiIconClose
 		};
 
 	},
@@ -149,6 +146,7 @@ export default Vue.extend( {
 		// stylelint-disable-next-line plugin/no-unsupported-browser-features
 		display: flex;
 		align-items: center;
+		opacity: @opacity-icon-accessory;
 	}
 
 	&__start-icon {
