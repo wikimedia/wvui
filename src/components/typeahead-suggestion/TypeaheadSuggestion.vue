@@ -120,11 +120,14 @@ export default Vue.extend( {
 
 	&__thumbnail-placeholder,
 	&__thumbnail {
+		// min-width is used to prevent a thumbnail from gets
+		// squished if a description is lengthy.
+		min-width: @width-search-suggestion-thumb;
 		width: @width-search-suggestion-thumb;
 		height: @height-search-suggestion-thumb;
 		// Borders tend to cut into the border-radius and it makes the
 		// border-radius look smaller on the inside of the box than the outside.
-		// Using a box-shadow disguised as a border prevents that from happening
+		// Using a box-shadow disguised as a border prevents that from happening.
 		box-shadow: 0 0
 			@border-width-base
 			@border-width-base
