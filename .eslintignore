@@ -23,5 +23,5 @@
 # Ignore Jest snapshots.
 *.snap.ts
 
-# Ignore json files with mock data
+# Ignore JSON files with mock data.
 /src/components/typeahead-suggestion/TypeaheadSuggestion.stories.json

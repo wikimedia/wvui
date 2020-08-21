@@ -40,9 +40,9 @@ export default Vue.extend( {
 .wvui-typeahead-suggestion__title {
 	display: block;
 	margin: 0 0 2px 0;
-	color: @wmui-color-base10;
+	color: @color-base;
 	font-size: @font-size-search-suggestion-title;
-	font-weight: bold;
+	font-weight: @font-weight-bold;
 }
 
 .wvui-typeahead-suggestion__match {

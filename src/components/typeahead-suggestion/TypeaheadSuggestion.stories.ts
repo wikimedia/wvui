@@ -87,15 +87,14 @@ export const withInput = (): Vue.Component =>
 			onInput( value: string ): void {
 				this.isVisible = !!value;
 			},
-			getActiveIndex( index: number, offset = 1 ): number {
+			getNextActiveIndex( index: number ): number {
 				const { length } = this.suggestionsList;
 
-				for ( let i = 0; i < length; i += 1 ) {
-					return ( index + i * offset + length ) % length;
-				}
+				return ( index + length ) % length;
 
-				return -1;
-
+			},
+			onSuggestionMouseOver( index: number ) {
+				this.activeIndex = index;
 			},
 			onKeyDown( event: KeyboardEvent ) {
 				const { which } = event;
@@ -116,7 +115,7 @@ export const withInput = (): Vue.Component =>
 
 						if ( offset !== 0 ) {
 							this.activeIndex =
-								this.getActiveIndex( this.activeIndex + offset, offset );
+								this.getNextActiveIndex( this.activeIndex + offset );
 						}
 
 					}
@@ -146,6 +145,7 @@ export const withInput = (): Vue.Component =>
 						:active="activeIndex === index"
 						:suggestion="suggestion"
 						:key="suggestion.id"
+						@mouseover="onSuggestionMouseOver( index )"
 					/>
 				</li>
 			</ol>

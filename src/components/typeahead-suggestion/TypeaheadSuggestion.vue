@@ -4,6 +4,7 @@
 		:href="suggestionWikiLink"
 		:class="rootClasses"
 		class="wvui-typeahead-suggestion"
+		@mouseover="onMouseOver"
 	>
 		<span
 			v-if="suggestion.thumbnail"
@@ -13,7 +14,7 @@
 		<span
 			v-else
 			class="wvui-typeahead-suggestion__thumbnail-placeholder"
-		/>
+		><wvui-icon :icon="defaultThumbnailIcon" /></span>
 		<span class="wvui-typeahead-suggestion__text">
 			<wvui-typeahead-suggestion-title
 				:query="query"
@@ -30,12 +31,14 @@
 <script lang="ts">
 import Vue, { PropType } from 'vue';
 import { SearchResult } from '../typeahead-search/http/SearchClient';
+import WvuiIcon from '../icon/Icon.vue';
+import { wvuiIconArticle } from '../../themes/icons';
 import WvuiTypeaheadSuggestionTitle
 	from '../typeahead-suggestion-title/TypeaheadSuggestionTitle.vue';
 
 export default Vue.extend( {
 	name: 'WvuiTypeaheadSuggestion',
-	components: { WvuiTypeaheadSuggestionTitle },
+	components: { WvuiTypeaheadSuggestionTitle, WvuiIcon },
 	props: {
 		active: {
 			type: Boolean,
@@ -49,6 +52,11 @@ export default Vue.extend( {
 			type: Object as PropType<SearchResult>,
 			required: true
 		}
+	},
+	data() {
+		return {
+			defaultThumbnailIcon: wvuiIconArticle
+		};
 	},
 	computed: {
 		rootClasses(): Record<string, boolean> {
@@ -76,9 +84,18 @@ export default Vue.extend( {
 	watch: {
 		active( isActive ) {
 			const el = this.$el as HTMLElement;
-			const state = isActive ? 'focus' : 'blur';
 
-			el[ state ]();
+			if ( isActive ) {
+				el.focus();
+			} else {
+				el.blur();
+			}
+
+		}
+	},
+	methods: {
+		onMouseOver( event: MouseEvent ) {
+			this.$emit( 'mouseover', event );
 		}
 	}
 } );
@@ -88,15 +105,15 @@ export default Vue.extend( {
 @import ( reference ) '@/themes/wikimedia-ui.less';
 
 .wvui-typeahead-suggestion {
-	background-color: #fff;
+	background-color: @color-base--inverted;
 	// stylelint-disable-next-line plugin/no-unsupported-browser-features
 	display: flex;
 	align-items: center;
 	padding: 8px @padding-horizontal-base;
 	text-decoration: none;
 
-	// css class is supposed to be used when navigating with keyboard
-	&:hover,
+	// &--active is supposed to be used both when hover
+	// and when navigating with keyboard.
 	&--active {
 		background-color: @wmui-color-accent90;
 	}
@@ -104,11 +121,12 @@ export default Vue.extend( {
 	&__thumbnail-placeholder,
 	&__thumbnail {
 		display: block;
-		min-width: @thumb-width-search-suggestion;
-		min-height: @thumb-height-search-suggestion;
-		max-width: @thumb-width-search-suggestion;
-		max-height: @thumb-height-search-suggestion;
-		box-shadow: 0 0 @border-width-base @border-width-base @wmui-color-base80;
+		width: @width-search-suggestion-thumb;
+		height: @height-search-suggestion-thumb;
+		box-shadow: 0 0
+			@border-width-base
+			@border-width-base
+			@border-color-typeahead-suggestion-thumb;
 		border-radius: @border-radius-base;
 		background-position: center;
 		background-repeat: no-repeat;
@@ -117,8 +135,11 @@ export default Vue.extend( {
 	}
 
 	&__thumbnail-placeholder {
-		// temporary placeholder, probably will be replaced with <wvui-icon>
-		background-image: url( https://di-searchland.web.app/img/placeholder.svg );
+		background-color: @background-color-typeahead-suggestion-placeholder;
+		// stylelint-disable-next-line plugin/no-unsupported-browser-features
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
 	}
 
 	&__text {
@@ -128,7 +149,7 @@ export default Vue.extend( {
 		.wvui-typeahead-suggestion__description {
 			display: block;
 			margin: 0;
-			color: @wmui-color-base30;
+			color: @color-placeholder;
 			font-size: @font-size-search-suggestion-description;
 			white-space: nowrap;
 			text-overflow: ellipsis;

@@ -39,7 +39,29 @@ exports[`matches the snapshot Case 1 Without thumbnail: ({"suggestion": [Object]
 >
   <span
     class="wvui-typeahead-suggestion__thumbnail-placeholder"
-  />
+  >
+    <span
+      class="wvui-icon wvui-icon--flip-for-rtl"
+    >
+      <svg
+        aria-hidden="true"
+        height="20"
+        viewBox="0 0 20 20"
+        width="20"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <!---->
+         
+        <g
+          fill="#000"
+        >
+          <path
+            d="M5 1a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2V3a2 2 0 00-2-2zm0 3h5v1H5zm0 2h5v1H5zm0 2h5v1H5zm10 7H5v-1h10zm0-2H5v-1h10zm0-2H5v-1h10zm0-2h-4V4h4z"
+          />
+        </g>
+      </svg>
+    </span>
+  </span>
    
   <span
     class="wvui-typeahead-suggestion__text"

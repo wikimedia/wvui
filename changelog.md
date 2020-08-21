@@ -4,6 +4,7 @@ Versions and bullets are arranged chronologically from latest to oldest.
 
 ## v0.0.2 (unreleased)
 
+-   [component][typeahead-suggestion] Add keyboard support fot suggestions list
 -   [component][typeahead-suggestion-title] Add highlighting component
 -   [component][typeahead-suggestion] Add initial styles and props
 -   [component][icon] Add component, styles, and icon data
