@@ -43,6 +43,9 @@ export default Vue.extend( {
 	color: @color-base;
 	font-size: @font-size-search-suggestion-title;
 	font-weight: @font-weight-bold;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .wvui-typeahead-suggestion__match {
