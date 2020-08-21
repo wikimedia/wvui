@@ -30,7 +30,7 @@
 			@click="onEndIconClick"
 		>
 			<wvui-icon
-				:icon="endIcon || closeIcon"
+				:icon="endIcon || clearIcon"
 			/>
 		</span>
 	</div>
@@ -46,6 +46,10 @@ import { wvuiIconClose } from '../../themes/icons';
 export default Vue.extend( {
 	name: 'WvuiInput',
 	components: { WvuiIcon },
+	/**
+	 * All attributes set on the components such as disabled and type are passed to the underlying
+	 * input.
+	 */
 	inheritAttrs: false,
 	props: {
 		value: {
@@ -61,15 +65,21 @@ export default Vue.extend( {
 			type: Boolean,
 			default: false
 		},
+		/** An icon at the start of the input element. Similar to a ::before pseudo-element. */
 		startIcon: {
 			type: [ String, Object ] as PropType<AnyIcon | undefined>,
 			default: undefined
 		},
+		/** An icon at the end of the input element. Similar to an ::after pseudo-element. */
 		endIcon: {
 			type: [ String, Object ] as PropType<AnyIcon | undefined>,
 			default: undefined
 		},
-		// Clearable property will override endIcon property.
+		/**
+		 * Overrides indicator with a clear button at the end of the input element that when pressed
+		 * deletes the input's contents. The elements automatically hides and appears based on input
+		 * state.
+		 */
 		clearable: {
 			type: Boolean,
 			default: false
@@ -78,9 +88,8 @@ export default Vue.extend( {
 	data() {
 		return {
 			currentValue: this.value,
-			closeIcon: wvuiIconClose
+			clearIcon: wvuiIconClose
 		};
-
 	},
 	computed: {
 		isClearable(): boolean {
