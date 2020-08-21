@@ -115,7 +115,7 @@ export default Vue.extend( {
 	// &--active is supposed to be used both when hover
 	// and when navigating with keyboard.
 	&--active {
-		background-color: @wmui-color-accent90;
+		background-color: @background-color-primary;
 	}
 
 	&__thumbnail-placeholder,
