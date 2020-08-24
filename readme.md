@@ -115,7 +115,6 @@ entire WVUI component library and styles:
 </template>
 
 <script lang="ts">
-	import Vue from "vue";
 	import components from "@wikimedia/wvui";
 	import "@wikimedia/wvui/dist/wvui.css";
 
