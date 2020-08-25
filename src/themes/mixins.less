@@ -16,6 +16,6 @@
 	@flipped-value: if(@flipped-value-l2r=@value, .ifStringReplace(@value, 'right', 'left')[@result], @flipped-value-l2r);
 
 	[ dir='rtl' ] & {
-		@{flipped-property}: @value;
+		@{flipped-property}: @flipped-value;
 	}
 }
