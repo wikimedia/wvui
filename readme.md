@@ -182,7 +182,8 @@ Undocumented scripts are considered internal utilities and not expressly support
 
 💡 Tips:
 
--   Add `--` to pass arguments to the script command. For example, `npm run test:unit -- -u`.
+-   Add `--` to pass arguments to the script command. For example, `npm run test:unit -- -u` to
+    update snapshots or `npm run build -- -dw` to automatically rebuild a development output.
 -   Add `-s` to omit verbose command echoing. For example, `npm -s i` or `npm -s run format`.
 
 <details markdown>
@@ -265,6 +266,16 @@ The [Vue.js Style Guide](https://vuejs.org/v2/style-guide) is adhered to where p
 -   Avoid making primitive base components complex. Make new components instead.
 
 [vue.js template explorer]: https://template-explorer.vuejs.org
+
+### Templates
+
+#### Conventions
+
+-   Static CSS class names should be included directly in the template while dynamic class names
+    should come from a computed property that returns an object (not an array). This computed
+    property should be named `rootClasses` for the outermost element.
+-   If an element has both static and dynamic class names, the static classes should be listed
+    first, then the dynamic classes should be included via `v-bind` on the next line.
 
 ### TypeScript
 
@@ -406,9 +417,10 @@ The steps are:
    link to your local development copy.
 7. Verify the link is correct by seeing where that it resolves to WVUI's location. For example,
    `readlink -m node_modules/@wikimedia/wvui` should match `$wvuiDir`.
-8. Perform all development and iteration wanted in WVUI and integration project.
-9. Unlink the development WVUI via `npm unlink @wikimedia/wvui`. This deletes the _symlink_ to your
-   development copy of WVUI.
+8. Watch for changes and produce development build file outputs by executing `npm run build -- -dw`.
+9. Perform all development and iteration wanted in WVUI and integration project.
+10. Unlink the development WVUI via `npm unlink @wikimedia/wvui`. This deletes the _symlink_ to your
+    development copy of WVUI.
 
 The above process seems a little clumsy because it is initially. However, it's quite practical and
 becomes easy with practice.
@@ -682,8 +694,9 @@ The expectations for submitting a patch are:
     [when running Storybook](https://github.com/storybookjs/storybook/issues/4853).
 -   If Storybook encounters an error when booting, it does not launch even after the error is
     resolved.
--   JavaScript configuration files are not type checked when building the library. This seems to be
-    because Webpack shakes out dead code. All types can be tested manually via
+-   Code that is executed but never used (e.g. JavaScript configuration files or unused exports) is
+    considered dead and is shaken out by Webpack on compile. As a result, dead code will not be type
+    checked when building the library. All types can be tested manually via
     `npx --no-install tsc --noEmit --incremental false`.
 -   The linter doesn't enforce tabs in TypeScript enumerations or module declarations.
 -   Renaming test files may cause Jest to still try to open the old file name. In that case consider

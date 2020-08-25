@@ -1,5 +1,7 @@
 import { mount, shallowMount } from '@vue/test-utils';
 import WvuiInput from './Input.vue';
+import WvuiIcon from './../icon/Icon.vue';
+import { wvuiIconSearch, wvuiIconInfo } from '../../themes/icons';
 import { InputType } from './InputType';
 
 describe( 'matches the snapshot', () => {
@@ -17,16 +19,28 @@ describe( 'matches the snapshot', () => {
 	} );
 } );
 
-it( 'should render  start icon', () => {
-	const wrapper = shallowMount( WvuiInput, { propsData: { startIcon: 'search' } } );
+it( 'should render a start icon', () => {
+	const wrapper = shallowMount( WvuiInput, {
+		propsData: { startIcon: wvuiIconSearch },
+		stubs: {
+			'wvui-icon': WvuiIcon
+		}
+	} );
 
 	expect( wrapper.element ).toMatchSnapshot();
 	expect( wrapper.classes() ).toContain( 'wvui-input--has-start-icon' );
 	expect( wrapper.find( '.wvui-input__start-icon' ) ).toBeTruthy();
 } );
 
-it( 'should render end icon', () => {
-	const wrapper = shallowMount( WvuiInput, { propsData: { endIcon: 'info' } } );
+it( 'should render an end icon', () => {
+	const wrapper = shallowMount( WvuiInput, {
+		propsData: {
+			endIcon: wvuiIconInfo
+		},
+		stubs: {
+			'wvui-icon': WvuiIcon
+		}
+	} );
 
 	expect( wrapper.element ).toMatchSnapshot();
 	expect( wrapper.classes() ).toContain( 'wvui-input--has-end-icon' );
@@ -36,7 +50,12 @@ it( 'should render end icon', () => {
 it( 'should render a clear icon', () => {
 	const wrapper = shallowMount(
 		WvuiInput,
-		{ propsData: { clearable: true, value: 'Some value' } }
+		{
+			propsData: { clearable: true, value: 'Some value' },
+			stubs: {
+				'wvui-icon': WvuiIcon
+			}
+		}
 	);
 	const clearElement = wrapper.find( '.wvui-input__end-icon' );
 
@@ -72,10 +91,7 @@ it( 'emits blur events', () => {
 	wrapper.get( 'input' ).trigger( 'blur' );
 	expect( wrapper.emitted().blur ).toBeTruthy();
 } );
-/*
-* It is supposed to be reconsidered once
-* wvui-icon component is done.
-* */
+
 it( 'should set and clear value', async () => {
 	const wrapper = mount( WvuiInput, { propsData: { clearable: true, value: 'Some value' } } );
 	const clearElement = wrapper.find( '.wvui-input__end-icon' );
@@ -85,4 +101,6 @@ it( 'should set and clear value', async () => {
 	await clearElement.trigger( 'click' );
 	expect( input.value ).toEqual( '' );
 	expect( wrapper.emitted().input ).toBeTruthy();
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	expect( clearElement.find( 'path' ).attributes().d ).toEqual( ( wrapper.vm as any ).clearIcon );
 } );

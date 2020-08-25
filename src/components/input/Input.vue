@@ -20,42 +20,18 @@
 			v-if="startIcon"
 			class="wvui-input__start-icon"
 		>
-			<!--For now icon is hardcoded inline, it will be replaced with
-			wvui-icon once it's ready-->
-			<span class="wvui-icon">
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					width="20"
-					height="20"
-					viewBox="0 0 20 20"
-					aria-hidden="true"
-				>
-					<g fill="#72777d">
-						<path :d="startIconPath" />
-					</g>
-				</svg>
-			</span>
+			<wvui-icon
+				:icon="startIcon"
+			/>
 		</span>
 		<span
 			v-if="isClearable || endIcon"
 			class="wvui-input__end-icon"
 			@click="onEndIconClick"
 		>
-			<span
-				class="wvui-icon"
-			>
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					width="12"
-					height="12"
-					viewBox="0 0 20 20"
-					aria-hidden="true"
-				>
-					<g fill="#72777d">
-						<path :d="endIconPath" />
-					</g>
-				</svg>
-			</span>
+			<wvui-icon
+				:icon="endIcon || clearIcon"
+			/>
 		</span>
 	</div>
 </template>
@@ -63,19 +39,17 @@
 <script lang="ts">
 import { InputType, isInputType } from './InputType';
 import Vue, { PropType } from 'vue';
-
-// Hardcoded svg for search icon, will be removed after icon <wvui-icon/> is ready
-// eslint-disable-next-line max-len
-const mwIconSearch = 'M7.5 13c3.04 0 5.5-2.46 5.5-5.5S10.54 2 7.5 2 2 4.46 2 7.5 4.46 13 7.5 13zm4.55.46A7.432 7.432 0 0 1 7.5 15C3.36 15 0 11.64 0 7.5S3.36 0 7.5 0C11.64 0 15 3.36 15 7.5c0 1.71-.57 3.29-1.54 4.55l6.49 6.49-1.41 1.41-6.49-6.49z';
-// Hardcoded svg for clear action, will be removed after icon <wvui-icon/> is ready
-// eslint-disable-next-line max-len
-const mwIconClose = 'M4.34 2.93l12.73 12.73-1.41 1.41L2.93 4.35z M17.07 4.34L4.34 17.07l-1.41-1.41L15.66 2.93z';
-// Hardcoded svg for indicator , will be removed after icon <wvui-icon/> is ready
-// eslint-disable-next-line max-len
-export const mwIconInfo = 'M9.5 16A6.61 6.61 0 0 1 3 9.5 6.61 6.61 0 0 1 9.5 3 6.61 6.61 0 0 1 16 9.5 6.63 6.63 0 0 1 9.5 16zm0-14A7.5 7.5 0 1 0 17 9.5 7.5 7.5 0 0 0 9.5 2zm.5 6v4.08h1V13H8.07v-.92H9V9H8V8zM9 6h1v1H9z';
+import WvuiIcon from '../icon/Icon.vue';
+import { AnyIcon } from '../icon/iconTypes';
+import { wvuiIconClose } from '../../themes/icons';
 
 export default Vue.extend( {
 	name: 'WvuiInput',
+	components: { WvuiIcon },
+	/**
+	 * All attributes set on the components such as disabled and type are passed to the underlying
+	 * input.
+	 */
 	inheritAttrs: false,
 	props: {
 		value: {
@@ -91,15 +65,21 @@ export default Vue.extend( {
 			type: Boolean,
 			default: false
 		},
+		/** An icon at the start of the input element. Similar to a ::before pseudo-element. */
 		startIcon: {
-			type: String as PropType<string|undefined>,
+			type: [ String, Object ] as PropType<AnyIcon | undefined>,
 			default: undefined
 		},
+		/** An icon at the end of the input element. Similar to an ::after pseudo-element. */
 		endIcon: {
-			type: String as PropType<string|undefined>,
+			type: [ String, Object ] as PropType<AnyIcon | undefined>,
 			default: undefined
 		},
-		// Clearable property will override endIcon property.
+		/**
+		 * Overrides indicator with a clear button at the end of the input element that when pressed
+		 * deletes the input's contents. The elements automatically hides and appears based on input
+		 * state.
+		 */
 		clearable: {
 			type: Boolean,
 			default: false
@@ -108,11 +88,8 @@ export default Vue.extend( {
 	data(): Record<string, unknown> {
 		return {
 			currentValue: this.value,
-			// temporary hardcoded icons
-			startIconPath: mwIconSearch,
-			endIconPath: this.clearable ? mwIconClose : mwIconInfo
+			clearIcon: wvuiIconClose
 		};
-
 	},
 	computed: {
 		isClearable(): boolean {
@@ -179,6 +156,7 @@ export default Vue.extend( {
 		display: flex;
 		align-items: center;
 		padding: 0 @padding-horizontal-input-text;
+		opacity: @opacity-icon-accessory;
 	}
 
 	&__start-icon {
@@ -259,21 +237,23 @@ export default Vue.extend( {
 
 	&--has-start-icon {
 		.wvui-input__input {
-			// add bidirectional padding for start icon
+			// Add bidirectional padding for a start icon.
 			.bidi(~'padding-left', @padding-horizontal-input-text * 2 + @size-icon);
+			// Remove padding-right for LTR and padding-left for RTL.
+			.bidi(~'padding-right', @padding-horizontal-input-text);
 		}
 	}
 
 	&--has-end-icon {
 		.wvui-input__input {
-			// add bidirectional padding for end icon
+			// Add bidirectional padding for end icon.
 			.bidi(~'padding-right', @padding-horizontal-input-text + @size-icon);
-			// remove padding-left for LTR and padding-right for RTL
+			// Remove padding-left for LTR and padding-right for RTL.
 			.bidi(~'padding-left', @padding-horizontal-input-text);
 		}
 	}
 
-	// override padding-right and padding-left if there are both icons provided
+	// Override padding-right and padding-left if there are both icons provided.
 	&--has-start-icon.wvui-input--has-end-icon {
 		.wvui-input__input {
 			.bidi(~'padding-right', @padding-horizontal-input-text + @size-icon);
@@ -286,18 +266,6 @@ export default Vue.extend( {
 			border-color: @border-color-input--hover;
 		}
 	}
-}
-// Temp: hardcoded icon styles from
-// https://github.com/wikimedia/wvui/pull/47
-.wvui-icon {
-	align-items: center;
-	// Maintain an inline outer element while using flexbox to center the SVG
-	// and avoid extra space around the image.
-	display: inline-flex; // stylelint-disable-line plugin/no-unsupported-browser-features
-	justify-content: center;
-	// For inline, inline-block, and table layouts.
-	vertical-align: middle;
-	user-select: none;
 }
 
 [ dir='rtl' ] {
