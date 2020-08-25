@@ -53,14 +53,22 @@ export const exampleList = (): Vue.Component =>
 		components: { WvuiTypeaheadSuggestion },
 		data() {
 			return {
-				suggestionsList: suggestionsList.pages
+				suggestionsList: suggestionsList.pages,
+				activeIndex: -1
 			};
+		},
+		methods: {
+			onSuggestionMouseOver( index: number ) {
+				this.activeIndex = index;
+			}
 		},
 		template: `
 		<ol class="sb-search__suggestions">
-			<li v-for="suggestion in suggestionsList" >
+			<li v-for="(suggestion, index) in suggestionsList" >
 				<wvui-typeahead-suggestion
+					@mouseover="onSuggestionMouseOver( index )"
 					query="co"
+					:active="activeIndex === index"
 					:suggestion="suggestion"
 					:key="suggestion.id"
 				/>
@@ -80,7 +88,7 @@ export const withInput = (): Vue.Component =>
 		},
 		computed: {
 			suggestionsList(): SearchResult[] {
-				return this.isVisible ? ( suggestionsList.pages as [] ).slice( 0, 6 ) : [];
+				return this.isVisible ? suggestionsList.pages as [] : [];
 			}
 		},
 		methods: {

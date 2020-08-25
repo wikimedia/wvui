@@ -153,7 +153,16 @@ export default Vue.extend( {
 
 	&__text {
 		overflow: hidden;
-		text-indent: @padding-horizontal-base;
+		padding-left: 12px;
+		padding-right: 12px;
+
+		// stylelint-disable-next-line plugin/no-unsupported-browser-features
+		@supports (padding-inline-start: 12px) {
+			// Reset paddings for all modern browsers.
+			padding-right: 0;
+			padding-left: 0;
+			padding-inline-start: 12px;
+		}
 
 		.wvui-typeahead-suggestion__description {
 			display: block;
