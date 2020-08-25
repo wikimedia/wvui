@@ -6,8 +6,6 @@ import WvuiInput from '@/components/input/Input.vue';
 // passed to the Vue app instance's components directly.
 export const version = VERSION;
 
-export * as icons from '@/themes/icons';
-
 // Export all components available in the library.
 export default {
 	WvuiButton,

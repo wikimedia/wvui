@@ -4,6 +4,7 @@ Versions and bullets are arranged chronologically from latest to oldest.
 
 ## v0.0.2 (unreleased)
 
+-   [build] Split icons into a distinct entry
 -   [component][input] Add button control for input
 -   [component][icon] Add component, styles, and icon data
 -   [component][typeahead-search] Add network client

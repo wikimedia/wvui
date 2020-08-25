@@ -26,11 +26,13 @@ Vue.js shared user-interface components for Wikipedia, MediaWiki, and beyond. Se
   - [Storybook workflow](#storybook-workflow)
   - [Vue.js](#vuejs)
     - [Conventions](#conventions)
-  - [TypeScript](#typescript)
+  - [Templates](#templates)
     - [Conventions](#conventions-1)
+  - [TypeScript](#typescript)
+    - [Conventions](#conventions-2)
     - [Imports](#imports)
   - [Less](#less)
-    - [Conventions](#conventions-2)
+    - [Conventions](#conventions-3)
     - [Imports](#imports-1)
   - [Testing](#testing)
     - [Unit tests](#unit-tests)
@@ -145,7 +147,10 @@ There is currently one bundle available:
     code but is not performant if only part is used or if different parts should be loaded at
     different times. ⚠️ This chunk is standalone and should not be loaded with split chunks.
 
-    -   **wvui**.js/css: the complete library and default export. No other chunks required.
+    -   **wvui**.js/css: the complete library, excluding icons, and default export. No other chunks
+        required unless additional icons not referenced by the core library are used.
+
+    -   **wvui-icons**.js: the complete iconography (optional).
 
 Each chunk is side-effect free. All chunks are fully compiled ES5 / CSS and require a Vue.js
 runtime. See [peerDependencies](package.json).
