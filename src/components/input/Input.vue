@@ -85,7 +85,7 @@ export default Vue.extend( {
 			default: false
 		}
 	},
-	data() {
+	data(): Record<string, unknown> {
 		return {
 			currentValue: this.value,
 			clearIcon: wvuiIconClose
@@ -138,6 +138,7 @@ export default Vue.extend( {
 
 <style lang="less">
 @import ( reference ) '@/themes/wikimedia-ui.less';
+@import '@/themes/mixins.less';
 
 .wvui-input {
 	position: relative; // For proper positioning of icons and slotted elements
@@ -151,10 +152,10 @@ export default Vue.extend( {
 		top: 0;
 		min-height: @size-icon;
 		height: 100%;
-		padding-left: @padding-horizontal-input-text;
 		// stylelint-disable-next-line plugin/no-unsupported-browser-features
 		display: flex;
 		align-items: center;
+		padding: 0 @padding-horizontal-input-text;
 		opacity: @opacity-icon-accessory;
 	}
 
@@ -163,8 +164,8 @@ export default Vue.extend( {
 	}
 
 	&__end-icon {
-		right: 0;
-		padding-right: @padding-horizontal-input-text;
+		.bidi(~'right', 0);
+		.bidi(~'left', ~'auto');
 	}
 
 	&--clearable {
@@ -236,19 +237,41 @@ export default Vue.extend( {
 
 	&--has-start-icon {
 		.wvui-input__input {
-			padding-left: @padding-horizontal-input-text * 2 + @size-icon;
+			// Add bidirectional padding for a start icon.
+			.bidi(~'padding-left', @padding-horizontal-input-text * 2 + @size-icon);
+			// Remove padding-right for LTR and padding-left for RTL.
+			.bidi(~'padding-right', @padding-horizontal-input-text);
 		}
 	}
 
 	&--has-end-icon {
 		.wvui-input__input {
-			padding-right: @padding-horizontal-input-text * 2 + @size-icon;
+			// Add bidirectional padding for end icon.
+			.bidi(~'padding-right', @padding-horizontal-input-text + @size-icon);
+			// Remove padding-left for LTR and padding-right for RTL.
+			.bidi(~'padding-left', @padding-horizontal-input-text);
+		}
+	}
+
+	// Override padding-right and padding-left if there are both icons provided.
+	&--has-start-icon.wvui-input--has-end-icon {
+		.wvui-input__input {
+			.bidi(~'padding-right', @padding-horizontal-input-text + @size-icon);
+			.bidi(~'padding-left', @padding-horizontal-input-text * 2 + @size-icon);
 		}
 	}
 
 	&:hover {
 		&__input {
 			border-color: @border-color-input--hover;
+		}
+	}
+}
+
+[ dir='rtl' ] {
+	.wvui-input {
+		& > .wvui-input__input {
+			direction: rtl;
 		}
 	}
 }

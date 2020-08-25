@@ -19,7 +19,7 @@ describe( 'matches the snapshot', () => {
 	} );
 } );
 
-it( 'should render start icon', () => {
+it( 'should render a start icon', () => {
 	const wrapper = shallowMount( WvuiInput, {
 		propsData: { startIcon: wvuiIconSearch },
 		stubs: {
@@ -32,7 +32,7 @@ it( 'should render start icon', () => {
 	expect( wrapper.find( '.wvui-input__start-icon' ) ).toBeTruthy();
 } );
 
-it( 'should render end icon', () => {
+it( 'should render an end icon', () => {
 	const wrapper = shallowMount( WvuiInput, {
 		propsData: {
 			endIcon: wvuiIconInfo
@@ -91,10 +91,7 @@ it( 'emits blur events', () => {
 	wrapper.get( 'input' ).trigger( 'blur' );
 	expect( wrapper.emitted().blur ).toBeTruthy();
 } );
-/*
-* It is supposed to be reconsidered once
-* wvui-icon component is done.
-* */
+
 it( 'should set and clear value', async () => {
 	const wrapper = mount( WvuiInput, { propsData: { clearable: true, value: 'Some value' } } );
 	const clearElement = wrapper.find( '.wvui-input__end-icon' );

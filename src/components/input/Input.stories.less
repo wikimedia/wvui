@@ -1,3 +1,5 @@
+@import ( reference ) '@/themes/wikimedia-ui.less';
+
 .sb-input {
 	width: 400px;
 
@@ -19,5 +21,17 @@
 			border-top-left-radius: 0;
 			border-bottom-left-radius: 0;
 		}
+	}
+}
+
+[ dir='rtl' ] .sb-input--has-button {
+	.wvui-input__input {
+		border-radius: 0 @border-radius-base @border-radius-base 0;
+		border-right-width: @border-width-base;
+		border-left-width: 0;
+	}
+
+	.wvui-button {
+		border-radius: @border-radius-base 0 0 @border-radius-base;
 	}
 }

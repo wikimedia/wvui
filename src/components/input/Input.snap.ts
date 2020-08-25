@@ -72,47 +72,7 @@ exports[`should render a clear icon 1`] = `
 </div>
 `;
 
-exports[`should render end icon 1`] = `
-<div
-  class="wvui-input wvui-input--has-end-icon"
->
-  <input
-    class="wvui-input__input"
-    dir="auto"
-    type="text"
-  />
-   
-  <!---->
-   
-  <span
-    class="wvui-input__end-icon"
-  >
-    <span
-      class="wvui-icon"
-    >
-      <svg
-        aria-hidden="true"
-        height="20"
-        viewBox="0 0 20 20"
-        width="20"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <!---->
-         
-        <g
-          fill="#000"
-        >
-          <path
-            d="M9.5 16A6.61 6.61 0 013 9.5 6.61 6.61 0 019.5 3 6.61 6.61 0 0116 9.5 6.63 6.63 0 019.5 16zm0-14A7.5 7.5 0 1017 9.5 7.5 7.5 0 009.5 2zm.5 6v4.08h1V13H8.07v-.92H9V9H8V8zM9 6h1v1H9z"
-          />
-        </g>
-      </svg>
-    </span>
-  </span>
-</div>
-`;
-
-exports[`should render start icon 1`] = `
+exports[`should render a start icon 1`] = `
 <div
   class="wvui-input wvui-input--has-start-icon"
 >
@@ -149,5 +109,45 @@ exports[`should render start icon 1`] = `
   </span>
    
   <!---->
+</div>
+`;
+
+exports[`should render an end icon 1`] = `
+<div
+  class="wvui-input wvui-input--has-end-icon"
+>
+  <input
+    class="wvui-input__input"
+    dir="auto"
+    type="text"
+  />
+   
+  <!---->
+   
+  <span
+    class="wvui-input__end-icon"
+  >
+    <span
+      class="wvui-icon"
+    >
+      <svg
+        aria-hidden="true"
+        height="20"
+        viewBox="0 0 20 20"
+        width="20"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <!---->
+         
+        <g
+          fill="#000"
+        >
+          <path
+            d="M9.5 16A6.61 6.61 0 013 9.5 6.61 6.61 0 019.5 3 6.61 6.61 0 0116 9.5 6.63 6.63 0 019.5 16zm0-14A7.5 7.5 0 1017 9.5 7.5 7.5 0 009.5 2zm.5 6v4.08h1V13H8.07v-.92H9V9H8V8zM9 6h1v1H9z"
+          />
+        </g>
+      </svg>
+    </span>
+  </span>
 </div>
 `;
