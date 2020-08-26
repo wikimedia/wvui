@@ -1,5 +1,5 @@
 /* eslint-env node */
-const { commonConfig } = require( '../webpack.config' );
+const { resolve, rules, plugins } = require( '../.webpack/common.js' );
 
 module.exports = {
 	stories: [ '../src/**/*.stories.ts' ],
@@ -20,10 +20,10 @@ module.exports = {
 	 */
 	webpackFinal: ( config ) => {
 		config.stats = 'errors-warnings';
-		Object.assign( config.resolve.extensions, commonConfig.resolve.extensions );
-		Object.assign( config.resolve.alias, commonConfig.resolve.alias );
-		config.module.rules.push( ...commonConfig.rules( config.mode ) );
-		config.plugins.push( ...commonConfig.plugins( config.mode ) );
+		Object.assign( config.resolve.extensions, resolve.extensions );
+		Object.assign( config.resolve.alias, resolve.alias );
+		config.module.rules.push( ...rules( config.mode ) );
+		config.plugins.push( ...plugins( config.mode ) );
 		config.performance = {
 			// Disable Webpack bundle size warnings. These apply to the docs only and are not a
 			// priority to fix.

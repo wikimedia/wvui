@@ -7,8 +7,6 @@ import WvuiTypeaheadSuggestion from '@/components/typeahead-suggestion/Typeahead
 // passed to the Vue app instance's components directly.
 export const version = VERSION;
 
-export * as icons from '@/themes/icons';
-
 // Export all components available in the library.
 export default {
 	WvuiButton,
