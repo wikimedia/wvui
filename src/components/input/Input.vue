@@ -175,7 +175,7 @@ export default Vue.extend( {
 
 	&__input {
 		background-color: @background-color-base;
-		box-shadow: @box-shadow-widget;
+		box-shadow: @box-shadow-base;
 		color: @color-base--emphasized;
 		margin: 0;
 		border: @border-width-base @border-style-base @border-color-base;
@@ -183,7 +183,7 @@ export default Vue.extend( {
 		padding: @padding-input-text;
 		font-size: inherit;
 		font-family: inherit;
-		line-height: @line-height-base;
+		line-height: @line-height-component;
 		display: block;
 		width: 100%;
 		box-sizing: border-box;
