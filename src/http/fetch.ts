@@ -1,3 +1,9 @@
+// a function which returns a promise that resolves to a json
+export type GetJson = (
+	resource: string,
+	init?: RequestInit
+) => Promise<Record<string, unknown>>;
+
 // A wrapper which combines native fetch() in browsers and the following json() call.
 // Currently this rejects the returned promise if window.fetch is not available in the browser.
 // The plan is to add a way for clients of this library to pass in an implementation, e.g.

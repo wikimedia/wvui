@@ -1,13 +1,17 @@
+import { GetJson } from '../../../http/fetch';
+
 export interface SearchClient {
 	/**
 	 * @param query search string to search for
 	 * @param domain the base URL for the wiki without protocol. Example: 'sr.wikipedia.org'
 	 * @param limit maximum number of results
+	 * @param fetchJsonImpl a function which returns a promise that resolves to a json
 	 */
 	fetchByTitle(
 		query: string,
 		domain: string,
-		limit?: number
+		limit?: number,
+		fetchJsonImpl?: GetJson
 	): Promise<SearchResponse>;
 }
 

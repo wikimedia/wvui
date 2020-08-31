@@ -1,4 +1,4 @@
-import { buildQueryString, fetchJson } from '../../../http/fetch';
+import { buildQueryString, fetchJson, GetJson } from '../../../http/fetch';
 import { SearchClient, SearchResponse } from './SearchClient';
 
 // https://www.mediawiki.org/wiki/API:REST_API/Reference#Search_result_object
@@ -52,7 +52,8 @@ function adaptApiResponse( query: string, response: Record<string, unknown> ): S
 function fetchByTitle(
 	query: string,
 	domain: string,
-	limit: number
+	limit: number,
+	getJsonImpl: GetJson | undefined
 ): Promise<SearchResponse> {
 	query = query.trim();
 	if ( !query ) {
@@ -67,14 +68,15 @@ function fetchByTitle(
 	};
 
 	const url = `//${domain}/w/rest.php/v1/search/title?${buildQueryString( params )}`;
-	return fetchJson( url, { headers } )
-		.then( ( json ) => adaptApiResponse( query, json ) );
+
+	const getJson = !getJsonImpl ? fetchJson : getJsonImpl;
+	return getJson( url, { headers } ).then( ( json ) => adaptApiResponse( query, json ) );
 }
 
 export function restSearchClient(): SearchClient {
 	return {
-		fetchByTitle( query, domain, limit = 10 ) {
-			return fetchByTitle( query, domain, limit );
+		fetchByTitle( query, domain, limit = 10, getJsonImpl = undefined ) {
+			return fetchByTitle( query, domain, limit, getJsonImpl );
 		}
 	};
 }
