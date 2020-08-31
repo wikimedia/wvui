@@ -1,4 +1,4 @@
-import { buildQueryString, fetch } from '../../../http/fetch';
+import { buildQueryString, fetchJson } from '../../../http/fetch';
 import { SearchClient, SearchResponse } from './SearchClient';
 
 // https://www.mediawiki.org/wiki/API:REST_API/Reference#Search_result_object
@@ -21,7 +21,15 @@ interface RestThumbnail {
 	height?: number | null;
 }
 
-function adaptApiResponse( query: string, restResponse: RestResponse ): SearchResponse {
+function adaptApiResponse( query: string, response: Record<string, unknown> ): SearchResponse {
+	if ( !( 'pages' in response ) ) {
+		return {
+			query,
+			results: []
+		};
+	}
+
+	const restResponse: RestResponse = response as unknown as RestResponse;
 	return {
 		query,
 		results:
@@ -59,9 +67,8 @@ function fetchByTitle(
 	};
 
 	const url = `//${domain}/w/rest.php/v1/search/title?${buildQueryString( params )}`;
-	return fetch( url, { headers } )
-		.then( ( response ) => response.json() )
-		.then( ( response ) => adaptApiResponse( query, response ) );
+	return fetchJson( url, { headers } )
+		.then( ( json ) => adaptApiResponse( query, json ) );
 }
 
 export function restSearchClient(): SearchClient {

@@ -1,9 +1,20 @@
-// A wrapper for native fetch() in browsers.
+// A wrapper which combines native fetch() in browsers and the following json() call.
 // Currently this rejects the returned promise if window.fetch is not available in the browser.
-// The plan is to add a fallback so we can support older browsers in the future.
-export function fetch( resource: string, init?: RequestInit ): Promise<Response> {
+// The plan is to add a way for clients of this library to pass in an implementation, e.g.
+// using jQuery.ajax(), so we can support older browsers in the future.
+export function fetchJson(
+	resource: string,
+	init?: RequestInit
+): Promise<Record<string, unknown>> {
 	if ( 'fetch' in window ) {
-		return window.fetch( resource, init );
+		return window.fetch( resource, init )
+			.then( ( response ) => {
+				if ( response.ok ) {
+					return response.json();
+				} else {
+					return {};
+				}
+			} );
 	} else {
 		return Promise.reject( 'window.fetch() not available' );
 	}
