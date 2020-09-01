@@ -48,35 +48,26 @@ function adaptApiResponse( query: string, response: Record<string, unknown> ): S
 	};
 }
 
-// https://www.mediawiki.org/wiki/API:REST_API/Reference#Autocomplete_page_title
-function fetchByTitle(
-	query: string,
-	domain: string,
-	limit: number,
-	getJsonImpl: GetJson | undefined
-): Promise<SearchResponse> {
-	query = query.trim();
-	if ( !query ) {
-		return Promise.resolve( adaptApiResponse( query, { pages: [] } ) );
-	}
-	const params = {
-		q: query,
-		limit: limit
-	};
-	const headers = {
-		accept: 'application/json'
-	};
-
-	const url = `//${domain}/w/rest.php/v1/search/title?${buildQueryString( params )}`;
-
-	const getJson = !getJsonImpl ? fetchJson : getJsonImpl;
-	return getJson( url, { headers } ).then( ( json ) => adaptApiResponse( query, json ) );
-}
-
-export function restSearchClient(): SearchClient {
+export function restSearchClient( fetchJsonImpl?: GetJson ): SearchClient {
 	return {
-		fetchByTitle( query, domain, limit = 10, getJsonImpl = undefined ) {
-			return fetchByTitle( query, domain, limit, getJsonImpl );
+		// https://www.mediawiki.org/wiki/API:REST_API/Reference#Autocomplete_page_title
+		fetchByTitle( query, domain, limit = 10 ): Promise<SearchResponse> {
+			query = query.trim();
+			if ( !query ) {
+				return Promise.resolve( adaptApiResponse( query, { pages: [] } ) );
+			}
+			const params = {
+				q: query,
+				limit: limit
+			};
+			const headers = {
+				accept: 'application/json'
+			};
+
+			const url = `//${domain}/w/rest.php/v1/search/title?${buildQueryString( params )}`;
+
+			const getJson = !fetchJsonImpl ? fetchJson : fetchJsonImpl;
+			return getJson( url, { headers } ).then( ( json ) => adaptApiResponse( query, json ) );
 		}
 	};
 }
