@@ -3,6 +3,8 @@
 /docs/
 
 *.json
+*.yaml
+Dockerfile
 
 # Ignore Jest snapshots.
 *.snap.ts
