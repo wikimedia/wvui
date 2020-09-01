@@ -1,4 +1,4 @@
-import { buildQueryString, fetchJson, GetJson } from '../../../http/fetch';
+import { buildQueryString, fetchJson, FetchJson } from '../../../http/fetch';
 import { SearchClient, SearchResponse } from './SearchClient';
 
 // https://www.mediawiki.org/wiki/API:REST_API/Reference#Search_result_object
@@ -40,7 +40,7 @@ function adaptApiResponse( query: string, restResponse: RestResponse ): SearchRe
 	};
 }
 
-export function restSearchClient( getJson: GetJson = fetchJson ): SearchClient {
+export function restSearchClient( getJson: FetchJson = fetchJson ): SearchClient {
 	return {
 		// https://www.mediawiki.org/wiki/API:REST_API/Reference#Autocomplete_page_title
 		fetchByTitle( query, domain, limit = 10 ): Promise<SearchResponse> {

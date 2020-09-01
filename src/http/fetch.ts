@@ -1,5 +1,5 @@
 // A function which returns a promise that resolves to a JSON object
-export type GetJson = (
+export type FetchJson = (
 	resource: string,
 	init?: RequestInit
 ) => Promise<unknown>;
