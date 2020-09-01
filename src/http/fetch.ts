@@ -14,7 +14,7 @@ export function fetchJson(
 			if ( response.ok ) {
 				return response.json();
 			} else {
-				return {};
+				return Promise.reject( 'Network request failed' );
 			}
 		} );
 }

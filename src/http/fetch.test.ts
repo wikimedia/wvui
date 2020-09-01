@@ -62,11 +62,12 @@ describe( 'fetch() using window.fetch', () => {
 	} );
 
 	test( '404 response', async () => {
-		const json = await fetchJson( '//en.wikipedia.org/doesNotExist' );
-
-		await expect( json ).toStrictEqual( {} );
+		expect.assertions( 1 );
+		await expect( fetchJson( '//en.wikipedia.org/doesNotExist' ) )
+			.rejects.toStrictEqual( 'Network request failed' );
 
 		if ( mockedRequests ) {
+			expect.assertions( 3 );
 			expect( fetchMock ).toHaveBeenCalledTimes( 1 );
 			expect( fetchMock ).toHaveBeenCalledWith(
 				'//en.wikipedia.org/doesNotExist',
