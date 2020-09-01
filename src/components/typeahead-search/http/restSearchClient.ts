@@ -22,13 +22,6 @@ interface RestThumbnail {
 }
 
 function adaptApiResponse( query: string, response: Record<string, unknown> ): SearchResponse {
-	if ( !( 'pages' in response ) ) {
-		return {
-			query,
-			results: []
-		};
-	}
-
 	const restResponse: RestResponse = response as unknown as RestResponse;
 	return {
 		query,
