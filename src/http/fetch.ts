@@ -1,4 +1,4 @@
-// a function which returns a promise that resolves to a json
+// a function which returns a promise that resolves to a JSON object
 export type GetJson = (
 	resource: string,
 	init?: RequestInit
