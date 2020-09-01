@@ -4,6 +4,7 @@ exports[`matches the snapshot Case 0 With thumbnail: ({"suggestion": [Object]}) 
 <a
   class="wvui-typeahead-suggestion"
   href="/wiki/Color"
+  tabindex="0"
 >
   <span
     class="wvui-typeahead-suggestion__thumbnail"
@@ -36,12 +37,13 @@ exports[`matches the snapshot Case 1 Without thumbnail: ({"suggestion": [Object]
 <a
   class="wvui-typeahead-suggestion"
   href="/wiki/Co"
+  tabindex="0"
 >
   <span
     class="wvui-typeahead-suggestion__thumbnail-placeholder"
   >
     <span
-      class="wvui-icon wvui-icon--flip-for-rtl"
+      class="wvui-icon"
     >
       <svg
         aria-hidden="true"
@@ -56,7 +58,7 @@ exports[`matches the snapshot Case 1 Without thumbnail: ({"suggestion": [Object]
           fill="#000"
         >
           <path
-            d="M5 1a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2V3a2 2 0 00-2-2zm0 3h5v1H5zm0 2h5v1H5zm0 2h5v1H5zm10 7H5v-1h10zm0-2H5v-1h10zm0-2H5v-1h10zm0-2h-4V4h4z"
+            d="M19 3H1v14h18zM3 14l3.5-4.5 2.5 3L12.5 8l4.5 6z"
           />
         </g>
       </svg>

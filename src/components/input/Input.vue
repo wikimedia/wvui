@@ -10,7 +10,7 @@
 			v-bind="$attrs"
 			:disabled="disabled"
 			:type="type"
-			:value="currentValue"
+			:value="computedValue"
 			@input="onInput"
 			@change="onChange"
 			@focus="onFocus"
@@ -85,16 +85,16 @@ export default Vue.extend( {
 			default: false
 		}
 	},
-	data() {
+	data(): Record<string, string| number | AnyIcon> {
 		return {
-			currentValue: this.value,
+			newValue: this.value,
 			clearIcon: wvuiIconClose
 		};
 	},
 	computed: {
 		isClearable(): boolean {
 			return this.clearable &&
-				!!this.currentValue &&
+				!!this.computedValue &&
 				!this.disabled;
 		},
 		rootClasses(): Record<string, boolean> {
@@ -103,6 +103,20 @@ export default Vue.extend( {
 				'wvui-input--has-end-icon': !!this.endIcon || this.clearable,
 				'wvui-input--clearable': this.clearable
 			};
+		},
+		computedValue: {
+			get(): string | number {
+				return this.newValue as string;
+			},
+			set( value: string | number ) {
+				this.newValue = value;
+				this.$emit( 'input', value );
+			}
+		}
+	},
+	watch: {
+		value( value: string | number ) {
+			this.newValue = value;
 		}
 	},
 	methods: {
@@ -130,7 +144,7 @@ export default Vue.extend( {
 			}
 		},
 		setCurrentValue( value: string | number ): void {
-			this.currentValue = value;
+			this.computedValue = value;
 		}
 	}
 } );
