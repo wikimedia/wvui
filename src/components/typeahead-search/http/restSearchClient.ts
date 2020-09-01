@@ -48,7 +48,7 @@ function adaptApiResponse( query: string, response: Record<string, unknown> ): S
 	};
 }
 
-export function restSearchClient( fetchJsonImpl?: GetJson ): SearchClient {
+export function restSearchClient( getJson: GetJson = fetchJson ): SearchClient {
 	return {
 		// https://www.mediawiki.org/wiki/API:REST_API/Reference#Autocomplete_page_title
 		fetchByTitle( query, domain, limit = 10 ): Promise<SearchResponse> {
@@ -66,7 +66,6 @@ export function restSearchClient( fetchJsonImpl?: GetJson ): SearchClient {
 
 			const url = `//${domain}/w/rest.php/v1/search/title?${buildQueryString( params )}`;
 
-			const getJson = !fetchJsonImpl ? fetchJson : fetchJsonImpl;
 			return getJson( url, { headers } ).then( ( json ) => adaptApiResponse( query, json ) );
 		}
 	};
