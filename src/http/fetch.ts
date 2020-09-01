@@ -11,13 +11,13 @@ export function fetchJson(
 ): Promise<unknown> {
 	return fetch( resource, init )
 		.then( ( response ) => {
-			if ( response.ok ) {
-				return response.json();
-			} else {
+			if ( !response.ok ) {
 				return Promise.reject(
 					`Network request failed with HTTP code ${response.status}.`
 				);
 			}
+
+			return response.json();
 		} );
 }
 
