@@ -2,13 +2,13 @@
 export type GetJson = (
 	resource: string,
 	init?: RequestInit
-) => Promise<Record<string, unknown>>;
+) => Promise<unknown>;
 
 // A wrapper which combines native fetch() in browsers and the following json() call.
 export function fetchJson(
 	resource: string,
 	init?: RequestInit
-): Promise<Record<string, unknown>> {
+): Promise<unknown> {
 	return fetch( resource, init )
 		.then( ( response ) => {
 			if ( response.ok ) {

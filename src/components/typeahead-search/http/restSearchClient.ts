@@ -21,8 +21,7 @@ interface RestThumbnail {
 	height?: number | null;
 }
 
-function adaptApiResponse( query: string, response: Record<string, unknown> ): SearchResponse {
-	const restResponse: RestResponse = response as unknown as RestResponse;
+function adaptApiResponse( query: string, restResponse: RestResponse ): SearchResponse {
 	return {
 		query,
 		results:
@@ -59,7 +58,8 @@ export function restSearchClient( getJson: GetJson = fetchJson ): SearchClient {
 
 			const url = `//${domain}/w/rest.php/v1/search/title?${buildQueryString( params )}`;
 
-			return getJson( url, { headers } ).then( ( json ) => adaptApiResponse( query, json ) );
+			return getJson( url, { headers } )
+				.then( ( json ) => adaptApiResponse( query, json as RestResponse ) );
 		}
 	};
 }
