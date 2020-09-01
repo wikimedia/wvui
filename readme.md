@@ -23,6 +23,8 @@ Vue.js shared user-interface components for Wikipedia, MediaWiki, and beyond. Se
 - [Development](#development)
   - [Quick start](#quick-start)
   - [NPM scripts](#npm-scripts)
+  - [Docker](#Docker)
+    - [Blubber](#blubber)
   - [Storybook workflow](#storybook-workflow)
   - [Vue.js](#vuejs)
     - [Conventions](#conventions)
@@ -161,10 +163,79 @@ See the [performance section](#performance) for related topics.
 
 ### Quick start
 
+Get running on your host machine quickly with:
+
 ```bash
 npm install
 npm start
 ```
+
+(See **[below](#docker)** to get setup with Docker instead)
+
+### Docker
+
+WVUI comes with a docker configuration for local development.
+
+<details>
+<summary>Expand for details...</summary>
+
+However, using Docker is not necessary. See **[quick start](#quick-start)** for developing without
+Docker. Containerizing WVUI with Docker makes it easy to have a standard, shared environment for
+local devlopment among developers, as well as integration with automated CI pipelines.
+
+</details>
+
+To get started:
+
+1. Install Docker and [Docker Compose](https://docs.docker.com/compose/install/).
+2. Build Docker images
+
+```bash
+docker-compose build --build-arg UID=$(id -u) --build-arg GID=$(id -g) --build-arg HOST=$(uname -s)
+# Build arguments needed so that we own Docker generated files
+```
+
+3. Run npm install
+
+```bash
+docker-compose run --rm node npm install
+```
+
+4. Startup containers
+
+```bash
+docker-compose up
+```
+
+#### Container Configuration
+
+WVUI's docker compose configuration will produce 2 separate docker containers each with their own
+service: `node` and `storybook`. The rationale behind 2 containers is to separate of concerns, so
+each container is responsible for one service only.
+
+`storybook`<br> On container startup, `storybook` will be accessible on localhost:3003. This
+container is intended for local development with [Storybook](#storybook-workflow).
+
+`node`<br> On container startup, `node` is by default stopped. This service is for mounting project
+files. Execute any ad-hoc commands inside the container ( e.g. any [NPM scripts](#npm-scripts) by
+running:
+
+```bash
+docker-compose run --rm [node|storybook] npm run [script name]
+```
+
+If you need to install additional dependencies after container creation (e.g. adding any modules to
+package.json), make sure you run `docker-compose up` again for the changes to take affect.
+
+#### Blubber
+
+WVUI contains a [blubber.yaml](.pipeline/blubber.yaml) file, for use by the tool
+[Blubber](https://wikitech.wikimedia.org/wiki/Blubber). Blubber is developed and used by Wikimedia
+as an abstraction layer between a project and the creation of the Docker images that will build,
+test, and deploy the project. When WVUI goes through Wikimedia's Jenkins CI pipeline, Blubber will
+read the blubber.yaml, generate a Dockerfile, create the image per the blubber configuation, and
+execute the command specified in the blubber.yaml `command` attribute. The blubber.yaml file should
+be modified if you use Blubber in your CI pipeline. Otherwise, it can be ignored.
 
 ### NPM scripts
 
@@ -192,7 +263,7 @@ Undocumented scripts are considered internal utilities and not expressly support
 
 <details markdown>
 <summary><a href="http://nvm.sh">NVM</a> is recommended to configure the Node.js version used
-whenever executing these scripts. Expand for example…</summary>
+whenever executing these scripts from your host machine. If developing with Docker, this is not necessary as the image comes with the appropriate version of node. Expand for example…</summary>
 
 ```bash
 # Install the project's recommended Node.js version. This is a one-time installation command and
@@ -432,8 +503,9 @@ becomes easy with practice.
 
 ### Changing dependencies
 
--   Always configure your environment with NVM _prior_ to un/installing dependencies as these
-    operations modify the NPM lockfile. See [NPM scripts](#npm-scripts) for example usage.
+-   Always configure your environment with NVM _prior_ to un/installing dependencies (not necessary
+    when using Docker) as these operations modify the NPM lockfile. See [NPM scripts](#npm-scripts)
+    for example usage.
 -   Obviously, carefully consider any proposed new dependencies. Runtime dependencies that increase
     the bandwidth consumption should be given especial care and implicit dependencies should be
     avoided.
@@ -449,14 +521,15 @@ WVUI uses several linters and _formatters_. The former identify functional issue
 identify nonfunctional presentational inconsistencies such as incorrect indentation. Both support
 some measure of fixing or "formatting" problems automatically by executing `npm run format`.
 
--   [Prettier]: Markdown and JSON files are _formatted_ by Prettier. When it comes to generating
-    beautiful and extremely consistently styled code, Prettier's ability to accept utter garbage
-    code in and automatically apply formatting changes is exceptional, far superior to ESLint, and
-    may even change the way you write code. For example, the indentation of braceless loops is never
-    misleading once prettified. However, Prettier can never replace ESLint as it doesn't support any
-    functional linting, only nonfunctional formatting. ESLint integration and additional languages
-    such as TypeScript and JavaScript are supported but currently unused in WVUI. See
-    [.prettierrc.json](.prettierrc.json) and [.prettierignore](.prettierignore) for configuration.
+-   [Prettier]: Markdown, JSON, and YAML files are _formatted_ by Prettier. When it comes to
+    generating beautiful and extremely consistently styled code, Prettier's ability to accept utter
+    garbage code in and automatically apply formatting changes is exceptional, far superior to
+    ESLint, and may even change the way you write code. For example, the indentation of braceless
+    loops is never misleading once prettified. However, Prettier can never replace ESLint as it
+    doesn't support any functional linting, only nonfunctional formatting. ESLint integration and
+    additional languages such as TypeScript and JavaScript are supported but currently unused in
+    WVUI. See [.prettierrc.json](.prettierrc.json) and [.prettierignore](.prettierignore) for
+    configuration.
 -   [ESLint]: ESLint is used for linting _and_ formatting JavaScript, TypeScript, and Vue.js files.
     A hierarchy of overrides is used so that extends and rules can be separated. See
     [.eslintrc.json](.eslintrc.json) and [.eslintignore](.eslintignore) for details and
@@ -581,7 +654,8 @@ command `TYPE` changes to `prerelease`) which creates `v1.3.0-alpha.1`.
 
 #### Rolling development release
 
-To publish the current `master` `HEAD`, execute `bin/release-dev`.
+To publish the current `master` `HEAD`, execute `bin/release-dev`. If using the Docker setup,
+execute these scripts from outside your Docker container.
 
 Development releases can be installed by consumers via `npm install @wikimedia/wvui@next`. These
 releases are useful for integration testing and development as well as for early adopters who don't

@@ -1,0 +1,25 @@
+version: v4
+lives:
+    in: /srv/service
+base: docker-registry.wikimedia.org/nodejs10-slim:0.0.4
+variants:
+    build:
+        base: docker-registry.wikimedia.org/nodejs10-devel:0.0.3
+        copies: [local]
+        apt:
+            packages: [git, build-essential, python-pkgconfig]
+        node:
+            requirements: [package.json, package-lock.json]
+            env: development
+            use-npm-ci: true
+        builder:
+            command: [npm, run, build]
+            requirements: [dist/, src/, docs/, .webpack/, tsconfig.json, .postcssrc.json]
+            # Required files for the build to run.
+            # If any part of the build process changes these need to be revised.
+    development:
+        includes: [build]
+        entrypoint: [npm, start]
+    test:
+        includes: [build]
+        entrypoint: [npm, test]
