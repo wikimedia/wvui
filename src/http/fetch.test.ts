@@ -64,7 +64,7 @@ describe( 'fetch() using window.fetch', () => {
 	test( '404 response', async () => {
 		expect.assertions( 1 );
 		await expect( fetchJson( '//en.wikipedia.org/doesNotExist' ) )
-			.rejects.toStrictEqual( 'Network request failed' );
+			.rejects.toStrictEqual( 'Network request failed with HTTP code 404.' );
 
 		if ( mockedRequests ) {
 			expect.assertions( 3 );
