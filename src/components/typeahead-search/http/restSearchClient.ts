@@ -64,7 +64,7 @@ export function restSearchClient( getJson: FetchJson = fetchJson ): SearchClient
 
 			const params = {
 				q: query,
-				limit: limit
+				limit
 			};
 			const headers = {
 				accept: 'application/json'
