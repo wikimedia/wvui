@@ -57,9 +57,11 @@ export function restSearchClient( getJson: FetchJson = fetchJson ): SearchClient
 		// https://www.mediawiki.org/wiki/API:REST_API/Reference#Autocomplete_page_title
 		fetchByTitle( query, domain, limit = 10 ): Promise<SearchResponse> {
 			query = query.trim();
+
 			if ( !query ) {
 				return Promise.resolve( adaptApiResponse( query, { pages: [] } ) );
 			}
+
 			const params = {
 				q: query,
 				limit: limit
