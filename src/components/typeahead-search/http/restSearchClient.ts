@@ -22,12 +22,12 @@ interface RestThumbnail {
 }
 
 function isRestResponse( response: unknown ): response is RestResponse {
-	return ( response as RestResponse ).pages !== undefined;
+	return Array.isArray( ( response as RestResponse ).pages );
 }
 
 function checkResponse( response: unknown ): Promise<RestResponse> {
 	if ( !isRestResponse( response ) ) {
-		return Promise.reject( 'Not a RestResponse' );
+		return Promise.reject( 'Not a valid RestResponse' );
 	}
 
 	return Promise.resolve( response as RestResponse );
