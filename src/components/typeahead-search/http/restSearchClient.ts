@@ -22,7 +22,9 @@ interface RestThumbnail {
 }
 
 function isRestResponse( response: unknown ): response is RestResponse {
-	return Array.isArray( ( response as RestResponse ).pages );
+	return response instanceof Object &&
+		'pages' in response &&
+		Array.isArray( ( response as RestResponse ).pages );
 }
 
 function checkResponse( response: unknown ): Promise<RestResponse> {
