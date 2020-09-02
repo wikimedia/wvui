@@ -35,7 +35,6 @@ exports[`matches a snapshot 1`] = `
         aria-label="Search Wikipedia"
         autocapitalize="off"
         autocomplete="off"
-        autofocus="autofocus"
         class="wvui-input__input"
         dir="auto"
         id="wvui-typeahead-search__input"

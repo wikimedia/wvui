@@ -42,6 +42,7 @@ export const configurable = (): Vue.Component =>
 					:suggestion="suggestion"
 					:active="active"
 					:query="query"
+					domain="en.wikipedia.org"
 				/>
 			</li>
 		</ol>
@@ -71,6 +72,7 @@ export const exampleList = (): Vue.Component =>
 					:active="activeIndex === index"
 					:suggestion="suggestion"
 					:key="suggestion.id"
+					domain="en.wikipedia.org"
 				/>
 			</li>
 		</ol>
@@ -154,6 +156,7 @@ export const withInput = (): Vue.Component =>
 						:suggestion="suggestion"
 						:key="suggestion.id"
 						@mouseover="onSuggestionMouseOver( index )"
+						domain="en.wikipedia.org"
 					/>
 				</li>
 			</ol>

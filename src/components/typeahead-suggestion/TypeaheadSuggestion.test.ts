@@ -28,3 +28,25 @@ it( 'emits mouseover event', () => {
 	wrapper.get( '.wvui-typeahead-suggestion' ).trigger( 'mouseover' );
 	expect( wrapper.emitted().mouseover ).toBeTruthy();
 } );
+
+it( 'emits focus event', () => {
+	const wrapper = shallowMount( WvuiTypeaheadSuggestion, {
+		propsData: {
+			suggestion: suggestionsList.pages[ 1 ]
+		}
+	} );
+
+	wrapper.get( '.wvui-typeahead-suggestion' ).trigger( 'focus' );
+	expect( wrapper.emitted().focus ).toBeTruthy();
+} );
+
+it( 'emits click event', () => {
+	const wrapper = shallowMount( WvuiTypeaheadSuggestion, {
+		propsData: {
+			suggestion: suggestionsList.pages[ 1 ]
+		}
+	} );
+
+	wrapper.get( '.wvui-typeahead-suggestion' ).trigger( 'click' );
+	expect( wrapper.emitted().click ).toBeTruthy();
+} );

@@ -29,7 +29,6 @@
 				aria-autocomplete="list"
 				aria-controls="wvui-typeahead-search__suggestions"
 				title="Search Wikipedia [Alt+Shift+f]"
-				autofocus="autofocus"
 				accesskey="f"
 				aria-label="Search Wikipedia"
 				dir="auto"
@@ -66,7 +65,9 @@
 			</li>
 			<li>
 				<a
+					ref="containingSearch"
 					class="wvui-typeahead-search__suggestions__footer"
+					:href="searchContainingUrl"
 					:class="footerClasses"
 					@mouseover="onFooterHover"
 				>
@@ -128,6 +129,12 @@ export default Vue.extend( {
 		},
 		suggestionsList(): SearchResult[] {
 			return this.searchQuery.length ? suggestionsList.pages as [] : [];
+		},
+		searchContainingUrl(): string {
+			return encodeURI( `/w/index.php?search=${this.searchQuery}&title=Special Search&wprov=acrw1_-1&fulltext=1` );
+		},
+		isSearchContainingSelected(): boolean {
+			return this.suggestionActiveIndex === this.suggestionsList.length;
 		}
 	},
 	methods: {
@@ -157,7 +164,9 @@ export default Vue.extend( {
 			this.isFocused = true;
 		},
 		onInputBlur(): void {
-			this.isFocused = false;
+			if ( this.suggestionActiveIndex === -1 ) {
+				this.isFocused = false;
+			}
 			this.isHovered = false;
 		},
 		onFooterHover(): void {
@@ -177,17 +186,18 @@ export default Vue.extend( {
 		getNextActiveIndex( index: number ): number {
 			const { length } = this.suggestionsList;
 
-			if ( index === length || index === -1 ) {
-				return length;
-			} else if ( index > length ) {
-				return 0;
-			}
+			// We should count footer as well
+			const fullLength = length + 1;
 
-			return ( index + length ) % length;
+			return ( index + fullLength ) % fullLength;
 
 		},
+		navigateToContainingSearch() {
+			const link = this.$refs.containingSearch as HTMLAnchorElement;
+			link.click();
+		},
 		onKeyDown( event: KeyboardEvent ) {
-			const { which, target } = event;
+			const { which } = event;
 
 			if ( !this.suggestionsList.length || !this.isFocused ) {
 				return;
@@ -195,7 +205,12 @@ export default Vue.extend( {
 
 			switch ( which ) {
 				case KeyCodes.KEY_ENTER: {
-					event.preventDefault();
+					if ( this.isSearchContainingSelected ) {
+						event.preventDefault();
+
+						return this.navigateToContainingSearch();
+					}
+
 					break;
 				}
 				case KeyCodes.KEY_UP:
@@ -275,6 +290,13 @@ export default Vue.extend( {
 			align-items: center;
 			padding: @padding-vertical-typeahead-suggestion @padding-horizontal-base;
 			cursor: pointer;
+			text-decoration: none;
+			color: @color-base;
+
+			&:visited,
+			&:active {
+				color: @color-base;
+			}
 
 			&--active {
 				background-color: @background-color-primary;
@@ -312,14 +334,6 @@ export default Vue.extend( {
 			border-top-right-radius: 0;
 			border-bottom-right-radius: 0;
 			border-right-width: 0;
-
-			&:focus {
-				padding-left: 55px;
-
-				& ~ .wvui-input__start-icon {
-					padding-left: 20px;
-				}
-			}
 		}
 	}
 
@@ -337,6 +351,14 @@ export default Vue.extend( {
 		.wvui-input {
 			transform: translateX( -20px );
 			margin-right: -20px;
+
+			.wvui-input__input {
+				padding-left: 55px;
+
+				& ~ .wvui-input__start-icon {
+					padding-left: 20px;
+				}
+			}
 		}
 	}
 }
