@@ -40,15 +40,15 @@ function adaptApiResponse( query: string, restResponse: RestResponse ): SearchRe
 		query,
 		results:
 			restResponse.pages
-				.map( ( page ) => ( {
-					id: page.id,
-					key: page.key,
-					title: page.title,
-					description: page.description,
-					thumbnail: page.thumbnail ? {
-						url: page.thumbnail.url,
-						width: page.thumbnail.width ?? undefined,
-						height: page.thumbnail.height ?? undefined
+				.map( ( { id, key, title, description, thumbnail } ) => ( {
+					id,
+					key,
+					title,
+					description,
+					thumbnail: thumbnail ? {
+						url: thumbnail.url,
+						width: thumbnail.width ?? undefined,
+						height: thumbnail.height ?? undefined
 					} : undefined
 				} ) )
 	};
