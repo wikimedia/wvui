@@ -27,10 +27,10 @@ function isRestResponse( response: unknown ): response is RestResponse {
 
 function checkResponse( response: unknown ): Promise<RestResponse> {
 	if ( !isRestResponse( response ) ) {
-		return Promise.reject( 'Not a valid RestResponse' );
+		return Promise.reject( 'Invalid RestResponse' );
 	}
 
-	return Promise.resolve( response as RestResponse );
+	return Promise.resolve( response );
 }
 
 function adaptApiResponse( query: string, restResponse: RestResponse ): SearchResponse {
