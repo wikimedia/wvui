@@ -1,4 +1,4 @@
-version: 2
+version: "2"
 services:
     node:
         build:
@@ -6,7 +6,6 @@ services:
             dockerfile: ./Dockerfile
         image: wikimedia/wvui
         volumes:
-            - ~/.npm:/.npm
             - ./:/app
         working_dir: /app
     storybook:

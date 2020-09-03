@@ -4,14 +4,14 @@ lives:
 variants:
     build:
         base: docker-registry.wikimedia.org/nodejs-devel
-        copies: local
+        copies: [local]
         apt:
             packages: [git, build-essential, python-pkgconfig] # needed for npm install
-            node:
-                requirements: [package.json, package-lock.json]
-                env: development
-            builder:
-                command: [npm, build]
+        node:
+            requirements: [package.json, package-lock.json]
+            env: development
+        builder:
+            command: [npm, build]
     test:
-        includes: build
+        includes: [build]
         entrypoint: [npm, test]
