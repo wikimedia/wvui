@@ -30,7 +30,6 @@
 			"excludedFiles": ["*.test.ts"],
 			"extends": ["wikimedia/client", "wikimedia/language/es6"],
 			"parserOptions": {
-				"ecmaVersion": 2015,
 				"sourceType": "module"
 			}
 		},
@@ -39,7 +38,6 @@
 			"files": ["*.test.ts"],
 			"extends": ["wikimedia/language/es2020", "plugin:jest/recommended"],
 			"parserOptions": {
-				"ecmaVersion": 2020,
 				"sourceType": "module"
 			}
 		},

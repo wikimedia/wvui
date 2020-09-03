@@ -5,19 +5,29 @@
 @wvui-unit: em;
 
 @size-base: 32 / @font-size-browser / @font-size-base; // equals `2.5em`≈`32px`
+@size-indicator: 12 / @font-size-browser / @font-size-base;
 
 @background-color-quiet: @wmui-color-base90;
 @background-color-quiet--hover: @wmui-color-base80;
 
-@padding-horizontal-base: 12px;
-@padding-vertical-base: 6px;
-@padding-horizontal-input-text: 8px;
-@padding-input-text: @padding-vertical-base @padding-horizontal-input-text;
+@opacity-icon-accessory: 0.67;
 
-@line-height-base: unit(18 / @font-size-browser / @font-size-base, @wvui-unit);
+@line-height-component: unit( 20 / @font-size-browser / @font-size-base, @wvui-unit );
 
 @border-color-input--hover: @border-color-base--active;
 
 @box-shadow-widget: inset 0 0 0 1px transparent;
 
-@size-indicator: 12 / @font-size-browser / @font-size-base;
+@width-search-suggestion-thumb: unit(2.25, @wvui-unit);
+@height-search-suggestion-thumb: unit(2.25, @wvui-unit);
+
+@font-size-search-suggestion-description: unit( 14 / @font-size-browser, @wvui-unit );
+@font-size-search-suggestion-title: unit( 16 / @font-size-browser, @wvui-unit );
+
+@background-color-typeahead-suggestion--active: @wmui-color-accent90;
+@background-color-typeahead-suggestion-placeholder: @wmui-color-base90;
+
+@border-color-typeahead-suggestion-thumb: @wmui-color-base80;
+
+@padding-horizontal-typeahead-suggestion: @padding-horizontal-base;
+@padding-vertical-typeahead-suggestion: 8px;

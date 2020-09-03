@@ -27,7 +27,7 @@
   },
   "scripts": {
     "start": "start-storybook --quiet -p 3003",
-    "build": "webpack -p",
+    "build": "webpack --config .webpack/config.js -p",
     "test": "npm -s run test:unit && npm -s run test:lint && npm -s run build && npm -s run test:size && npm -s run docs",
     "test:unit": "jest -c .jest/jest.config.json",
     "test:lint": "npm -s run test:lint:etc && npm run -s test:lint:styles && npm run -s test:lint:js",
@@ -107,6 +107,6 @@
     "webpack": "4.43.0",
     "webpack-bundle-analyzer": "3.8.0",
     "webpack-cli": "3.3.12",
-    "wikimedia-ui-base": "0.16.0"
+    "wikimedia-ui-base": "0.17.0"
   }
 }
