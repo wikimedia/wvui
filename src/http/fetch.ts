@@ -1,12 +1,24 @@
-// A wrapper for native fetch() in browsers.
-// Currently this rejects the returned promise if window.fetch is not available in the browser.
-// The plan is to add a fallback so we can support older browsers in the future.
-export function fetch( resource: string, init?: RequestInit ): Promise<Response> {
-	if ( 'fetch' in window ) {
-		return window.fetch( resource, init );
-	} else {
-		return Promise.reject( 'window.fetch() not available' );
-	}
+// A function which returns a promise that resolves to a JSON object
+export type FetchJson = (
+	resource: string,
+	init?: RequestInit
+) => Promise<unknown>;
+
+// A wrapper which combines native fetch() in browsers and the following json() call.
+export function fetchJson(
+	resource: string,
+	init?: RequestInit
+): Promise<unknown> {
+	return fetch( resource, init )
+		.then( ( response ) => {
+			if ( !response.ok ) {
+				return Promise.reject(
+					`Network request failed with HTTP code ${response.status}.`
+				);
+			}
+
+			return response.json();
+		} );
 }
 
 /**
