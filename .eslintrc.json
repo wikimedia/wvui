@@ -14,7 +14,7 @@
 	"overrides": [
 		// Extends: all JavaScript, TypeScript, and Vue files everywhere.
 		{
-			"files": ["*.[jt]s", "*.vue"],
+			"files": ["*.[jt]s", "*.vue", "*.yaml"],
 			"extends": [
 				"wikimedia",
 				"plugin:@typescript-eslint/recommended",
