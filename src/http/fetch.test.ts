@@ -1,4 +1,4 @@
-import { buildQueryString, fetch } from './fetch';
+import { buildQueryString, fetchJson } from './fetch';
 import * as jestFetchMock from 'jest-fetch-mock';
 
 const mockedRequests = !process.env.TEST_LIVE_REQUESTS;
@@ -37,10 +37,9 @@ describe( 'fetch() using window.fetch', () => {
 	} );
 
 	test( '200 without init param passed', async () => {
-		const response = await fetch( url );
+		const json = await fetchJson( url );
 
-		expect( response.ok ).toBeTruthy();
-		await expect( response.json() ).resolves.toStrictEqual( { pages: [] } );
+		expect( json ).toStrictEqual( { pages: [] } );
 
 		if ( mockedRequests ) {
 			expect( fetchMock ).toHaveBeenCalledTimes( 1 );
@@ -49,10 +48,9 @@ describe( 'fetch() using window.fetch', () => {
 	} );
 
 	test( '200 with init param passed', async () => {
-		const response = await fetch( url, { mode: 'cors' } );
+		const json = await fetchJson( url, { mode: 'cors' } );
 
-		expect( response.ok ).toBeTruthy();
-		await expect( response.json() ).resolves.toStrictEqual( { pages: [] } );
+		await expect( json ).toStrictEqual( { pages: [] } );
 
 		if ( mockedRequests ) {
 			expect( fetchMock ).toHaveBeenCalledTimes( 1 );
@@ -64,12 +62,12 @@ describe( 'fetch() using window.fetch', () => {
 	} );
 
 	test( '404 response', async () => {
-		const response = await fetch( '//en.wikipedia.org/doesNotExist' );
-
-		expect( response.ok ).toBeFalsy();
-		await expect( response.text() ).resolves.toContain( 'Page not found' );
+		expect.assertions( 1 );
+		await expect( fetchJson( '//en.wikipedia.org/doesNotExist' ) )
+			.rejects.toStrictEqual( 'Network request failed with HTTP code 404.' );
 
 		if ( mockedRequests ) {
+			expect.assertions( 3 );
 			expect( fetchMock ).toHaveBeenCalledTimes( 1 );
 			expect( fetchMock ).toHaveBeenCalledWith(
 				'//en.wikipedia.org/doesNotExist',
