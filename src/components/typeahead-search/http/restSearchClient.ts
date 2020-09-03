@@ -21,20 +21,6 @@ interface RestThumbnail {
 	height?: number | null;
 }
 
-function isRestResponse( response: unknown ): response is RestResponse {
-	return response instanceof Object &&
-		'pages' in response &&
-		Array.isArray( ( response as RestResponse ).pages );
-}
-
-function checkResponse( response: unknown ): Promise<RestResponse> {
-	if ( !isRestResponse( response ) ) {
-		return Promise.reject( 'Invalid RestResponse' );
-	}
-
-	return Promise.resolve( response );
-}
-
 function adaptApiResponse( query: string, restResponse: RestResponse ): SearchResponse {
 	return {
 		query,
@@ -75,8 +61,7 @@ export function restSearchClient( getJson: FetchJson = fetchJson ): SearchClient
 			const url = `//${domain}/w/rest.php/v1/search/title?${buildQueryString( params )}`;
 
 			return getJson( url, { headers } )
-				.then( ( json ) => checkResponse( json ) )
-				.then( ( restResponse ) => adaptApiResponse( query, restResponse ) );
+				.then( ( json ) => adaptApiResponse( query, json as RestResponse ) );
 		}
 	};
 }
