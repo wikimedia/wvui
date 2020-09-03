@@ -12,5 +12,5 @@ services:
         extends:
             service: node
         ports:
-            - 3003:3003
+            - "3003:3003"
         command: npm start
