@@ -1,17 +1,17 @@
 version: v4
 lives:
-  in: /srv/service
+    in: /srv/service
 variants:
-  build:
-    base: docker-registry.wikimedia.org/nodejs-devel
-    copies: [local]
-    apt:
-      packages: [ git, build-essential, python-pkgconfig ] # needed for npm install
-    node:
-      requirements: [ package.json, package-lock.json]
-      env: development # unnecessary? 
-    builder:
-      command: [ npm, build ]
-  test:
-    includes: [ build ]
-    entrypoint: [ npm, test ]
+    build:
+        base: docker-registry.wikimedia.org/nodejs-devel
+        copies: local
+        apt:
+            packages: [git, build-essential, python-pkgconfig] # needed for npm install
+            node:
+                requirements: [package.json, package-lock.json]
+                env: development
+            builder:
+                command: [npm, build]
+    test:
+        includes: build
+        entrypoint: [npm, test]

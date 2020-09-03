@@ -1,4 +1,4 @@
-version: '2'
+version: 2
 services:
     node:
         build:
@@ -6,12 +6,12 @@ services:
             dockerfile: ./Dockerfile
         image: wikimedia/wvui
         volumes:
-            - '~/.npm:/.npm'
-            - './:/app'
+            - ~/.npm:/.npm
+            - ./:/app
         working_dir: /app
     storybook:
         extends:
             service: node
         ports:
-            - '3003:3003'
-        command: 'npm start'
+            - 3003:3003
+        command: npm start
