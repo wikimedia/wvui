@@ -47,7 +47,7 @@ export function restSearchClient( getJson: FetchJson = fetchJson ): SearchClient
 			query = query.trim();
 
 			if ( !query ) {
-				return Promise.resolve( adaptApiResponse( query, { pages: [] } ) );
+				return Promise.resolve( { query, results: [] } );
 			}
 
 			const params = {
