@@ -11,9 +11,9 @@
     "Wikimedia",
     "TypeScript"
   ],
-  "homepage": "https://github.com/wikimedia/wvui",
-  "repository": "github:wikimedia/wvui",
-  "bugs": "https://phabricator.wikimedia.org/tag/vue.js",
+  "homepage": "https://gerrit.wikimedia.org/r/plugins/gitiles/wvui",
+  "repository": "https://gerrit.wikimedia.org/r/admin/repos/wvui",
+  "bugs": "https://phabricator.wikimedia.org/tag/wvui",
   "license": "GPL-2.0+",
   "main": "dist/wvui.js",
   "types": "dist/src/entries/wvui.d.ts",
