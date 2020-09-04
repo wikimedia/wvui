@@ -41,7 +41,7 @@
     "docs:sourceMap:wvuiMin": "source-map-explorer            --html docs/sourceMaps/wvuiMin.html     dist/wvui.{js,css}",
     "docs:sourceMap:wvuiMinGzip": "source-map-explorer --gzip --html docs/sourceMaps/wvuiMinGzip.html dist/wvui.{js,css}",
     "version": "npm t",
-    "format": "npm -s run format:etc && npm -s run format:js && npm -s run format:styles",
+    "format": "npm -s run format:fetc && npm -s run format:js && npm -s run format:styles",
     "format:etc": "npm -s run linter:etc -- --write",
     "format:js": "npm -s run linter:js -- --fix .",
     "format:styles": "npm -s run linter:styles -- --fix .",

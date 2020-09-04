@@ -16,7 +16,13 @@ export const TypeaheadSearch = (): Vue.Component =>
 		},
 		template: `
 		<div style="margin-left: 40px">
-			<wvui-typeahead-search />
+			<wvui-typeahead-search
+				placeholder="Search Wikipedia"
+				title="Search Wikipedia [Alt+Shift+f]"
+				accesskey="f"
+				initial-input-value="tests"
+				button-label="Search"
+			/>
 		</div>
 		`
 	} );

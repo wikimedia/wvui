@@ -20,26 +20,22 @@
 
 			<wvui-input
 				id="wvui-typeahead-search__input"
-				placeholder="Search Wikipedia"
 				:start-icon="startIcon"
 				:value="inputValue"
 				:type="InputType.Search"
-				autocomplete="off"
+				name="search"
+				dir="auto"
 				autocapitalize="off"
+				v-bind="$attrs"
+				autocomplete="off"
 				aria-autocomplete="list"
 				aria-controls="wvui-typeahead-search__suggestions"
-				title="Search Wikipedia [Alt+Shift+f]"
-				accesskey="f"
 				aria-label="Search Wikipedia"
-				dir="auto"
-				name="search"
 				@input="onInput"
 				@blur="onInputBlur"
 				@focus="onInputFocus"
 			/>
-			<wvui-button>
-				Search
-			</wvui-button>
+			<wvui-button>{{ buttonLabel }}</wvui-button>
 		</form>
 		<ol
 			v-if="suggestionsList.length > 0 && isFocused"
@@ -101,6 +97,18 @@ enum KeyCodes {
 export default Vue.extend( {
 	name: 'WvuiTypeaheadSearch',
 	components: { WvuiTypeaheadSuggestion, WvuiButton, WvuiInput, WvuiIcon },
+	// Pass all attributes to input
+	inheritAttrs: false,
+	props: {
+		initialInputValue: {
+			type: String,
+			default: ''
+		},
+		buttonLabel: {
+			type: String,
+			required: true
+		}
+	},
 	data() {
 		return {
 			startIcon: wvuiIconSearch,
@@ -110,7 +118,7 @@ export default Vue.extend( {
 			suggestions: [],
 			isFocused: false,
 			searchQuery: '',
-			inputValue: '',
+			inputValue: this.initialInputValue,
 			InputType
 		};
 	},
@@ -131,6 +139,7 @@ export default Vue.extend( {
 			return this.searchQuery.length ? suggestionsList.pages as [] : [];
 		},
 		searchContainingUrl(): string {
+			// eslint-disable-next-line max-len
 			return encodeURI( `/w/index.php?search=${this.searchQuery}&title=Special Search&wprov=acrw1_-1&fulltext=1` );
 		},
 		isSearchContainingSelected(): boolean {
@@ -167,11 +176,11 @@ export default Vue.extend( {
 			if ( this.suggestionActiveIndex === -1 ) {
 				this.isFocused = false;
 			}
+
 			this.isHovered = false;
 		},
 		onFooterHover(): void {
-			this.suggestionActiveIndex =
-				this.suggestionsList.length;
+			this.suggestionActiveIndex = this.suggestionsList.length;
 		},
 		onRootMouseOver(): void {
 			this.isHovered = true;
@@ -186,7 +195,7 @@ export default Vue.extend( {
 		getNextActiveIndex( index: number ): number {
 			const { length } = this.suggestionsList;
 
-			// We should count footer as well
+			// We should count footer as well.
 			const fullLength = length + 1;
 
 			return ( index + fullLength ) % fullLength;
