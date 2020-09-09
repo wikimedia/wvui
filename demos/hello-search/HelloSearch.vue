@@ -1,14 +1,10 @@
 <template>
 	<div id="app">
-		<wvui-input
-			id="searchInput"
-			type="search"
-			name="search"
-			placeholder="Search Wikipedia"
-			title="Search Wikipedia [Alt+Shift+f]"
-			accesskey="f"
-			autocomplete="off"
-			:value="value"
+		<wvui-typeahead-search
+			:accesskey="searchAccessKey"
+			:title="searchTitle"
+			:placeholder="searchPlaceholder"
+			:initial-query="searchQuery"
 		/>
 	</div>
 </template>
@@ -21,7 +17,19 @@ export default Vue.extend( {
 	name: 'HelloSearch',
 	components,
 	props: {
-		value: {
+		searchAccessKey: {
+			type: String,
+			default: ''
+		},
+		searchTitle: {
+			type: String,
+			default: ''
+		},
+		searchPlaceholder: {
+			type: String,
+			default: ''
+		},
+		searchQuery: {
 			type: String,
 			default: ''
 		}

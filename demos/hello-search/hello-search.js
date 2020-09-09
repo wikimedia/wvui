@@ -12,12 +12,18 @@ const input = document.getElementById( 'searchInput' );
 input.addEventListener( 'focus', () => console.log( 'Preexisting listener invoked.' ) );
 
 setTimeout( function () {
-	const value = input instanceof HTMLInputElement ? input.value : '';
-	console.log( `value=${value}` ); // eslint-disable-line no-console
+	const searchAccessKey = input instanceof HTMLInputElement ? input.accessKey : '';
+	const searchTitle = input instanceof HTMLInputElement ? input.title : '';
+	const searchPlaceholder = input instanceof HTMLInputElement ? input.placeholder : '';
+	const searchQuery = input instanceof HTMLInputElement ? input.value : '';
+	console.log( `searchQuery=${searchQuery}` ); // eslint-disable-line no-console
 
 	// eslint-disable-next-line no-new
 	new Vue( {
 		el: '#app',
-		render: ( createElement ) => createElement( App, { props: { value } } )
+		render: ( createElement ) => createElement(
+			App,
+			{ props: { searchAccessKey, searchTitle, searchPlaceholder, searchQuery } }
+		)
 	} );
 }, Math.random() * 5000 );
