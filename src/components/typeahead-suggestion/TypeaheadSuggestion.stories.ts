@@ -4,7 +4,7 @@ import WvuiTypeaheadSuggestion from './TypeaheadSuggestion.vue';
 import WvuiInput from '../input/Input.vue';
 import { SearchResult } from '../typeahead-search/http/SearchClient';
 import './TypeaheadSuggestion.stories.less';
-import suggestionsList from './TypeaheadSuggestion.stories.json';
+import suggestionsList from '../typeahead-search/mocks/restapi.suggestions.json';
 
 const KEY_UP = 38;
 const KEY_DOWN = 40;
@@ -42,6 +42,7 @@ export const configurable = (): Vue.Component =>
 					:suggestion="suggestion"
 					:active="active"
 					:query="query"
+					domain="en.wikipedia.org"
 				/>
 			</li>
 		</ol>
@@ -71,6 +72,7 @@ export const exampleList = (): Vue.Component =>
 					:active="activeIndex === index"
 					:suggestion="suggestion"
 					:key="suggestion.id"
+					domain="en.wikipedia.org"
 				/>
 			</li>
 		</ol>
@@ -154,6 +156,7 @@ export const withInput = (): Vue.Component =>
 						:suggestion="suggestion"
 						:key="suggestion.id"
 						@mouseover="onSuggestionMouseOver( index )"
+						domain="en.wikipedia.org"
 					/>
 				</li>
 			</ol>

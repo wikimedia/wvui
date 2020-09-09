@@ -4,7 +4,10 @@
 		:href="suggestionWikiLink"
 		:class="rootClasses"
 		class="wvui-typeahead-suggestion"
+		tabindex="0"
+		@focus="onFocus"
 		@mouseover="onMouseOver"
+		@click="onClick"
 	>
 		<span
 			v-if="suggestion.thumbnail"
@@ -32,7 +35,7 @@
 import Vue, { PropType } from 'vue';
 import { SearchResult } from '../typeahead-search/http/SearchClient';
 import WvuiIcon from '../icon/Icon.vue';
-import { wvuiIconArticle } from '../../themes/icons';
+import { wvuiIconImageLayoutFrameless } from '../../themes/icons';
 import WvuiTypeaheadSuggestionTitle
 	from '../typeahead-suggestion-title/TypeaheadSuggestionTitle.vue';
 
@@ -55,7 +58,7 @@ export default Vue.extend( {
 	},
 	data() {
 		return {
-			defaultThumbnailIcon: wvuiIconArticle
+			defaultThumbnailIcon: wvuiIconImageLayoutFrameless
 		};
 	},
 	computed: {
@@ -81,21 +84,15 @@ export default Vue.extend( {
 			return `url(${this.suggestion.thumbnail?.url})`;
 		}
 	},
-	watch: {
-		active( isActive ) {
-			const el = this.$el as HTMLElement;
-
-			if ( isActive ) {
-				el.focus();
-			} else {
-				el.blur();
-			}
-
-		}
-	},
 	methods: {
 		onMouseOver( event: MouseEvent ) {
 			this.$emit( 'mouseover', event );
+		},
+		onFocus( event: Event ) {
+			this.$emit( 'focus', event );
+		},
+		onClick( event: MouseEvent ) {
+			this.$emit( 'click', event );
 		}
 	}
 } );
@@ -149,6 +146,10 @@ export default Vue.extend( {
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
+
+		& .wvui-icon {
+			opacity: @opacity-icon-accessory;
+		}
 	}
 
 	&__text {
