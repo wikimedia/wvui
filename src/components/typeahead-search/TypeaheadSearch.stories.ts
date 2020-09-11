@@ -1,4 +1,3 @@
-// import { boolean, text } from '@storybook/addon-knobs';
 import Vue from 'vue';
 import WvuiTypeaheadSearch from './TypeaheadSearch.vue';
 
@@ -16,7 +15,12 @@ export const TypeaheadSearch = (): Vue.Component =>
 		},
 		template: `
 		<div style="margin-left: 40px">
-			<wvui-typeahead-search />
+			<wvui-typeahead-search
+				placeholder="Search Wikipedia"
+				title="Search Wikipedia [Alt+Shift+f]"
+				accesskey="f"
+				button-label="Search"
+			/>
 		</div>
 		`
 	} );

@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils';
 import WvuiTypeaheadSuggestionTitle from './TypeaheadSuggestionTitle.vue';
-import * as suggestionsList from '../typeahead-search/TypeaheadSearch.stories.json';
+import * as suggestionsList from '../typeahead-search/mocks/restapi.suggestions.json';
 
 describe( 'matches the snapshot', () => {
 	type Case = [string, Record<string, string>];

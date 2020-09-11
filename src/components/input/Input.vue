@@ -125,8 +125,6 @@ export default Vue.extend( {
 			const { value } = target;
 
 			this.setCurrentValue( value );
-
-			this.$emit( 'input', value );
 		},
 		onChange( event: Event ): void {
 			this.$emit( 'change', event );

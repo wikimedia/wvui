@@ -4,7 +4,7 @@ import WvuiTypeaheadSuggestion from './TypeaheadSuggestion.vue';
 import WvuiInput from '../input/Input.vue';
 import { SearchResult } from '../typeahead-search/http/SearchClient';
 import './TypeaheadSuggestion.stories.less';
-import suggestionsList from '../typeahead-search/TypeaheadSearch.stories.json';
+import suggestionsList from '../typeahead-search/mocks/restapi.suggestions.json';
 
 const KEY_UP = 38;
 const KEY_DOWN = 40;

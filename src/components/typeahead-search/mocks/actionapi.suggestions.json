@@ -1,0 +1,129 @@
+{
+	"pages": [
+		{
+			"pageid": 5399,
+			"ns": 0,
+			"title": "Colorado",
+			"index": 2,
+			"description": "State in the western United States",
+			"descriptionsource": "local",
+			"thumbnail": {
+				"source": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Flag_of_Colorado_designed_by_Andrew_Carlisle_Carson.svg/80px-Flag_of_Colorado_designed_by_Andrew_Carlisle_Carson.svg.png",
+				"width": 80,
+				"height": 53
+			}
+		},
+		{
+			"pageid": 5921,
+			"ns": 0,
+			"title": "Color",
+			"index": 1,
+			"description": "Characteristic of human visual perception",
+			"descriptionsource": "local",
+			"thumbnail": {
+				"source": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/64_365_Color_Macro_%285498808099%29.jpg/80px-64_365_Color_Macro_%285498808099%29.jpg",
+				"width": 80,
+				"height": 60
+			}
+		},
+		{
+			"pageid": 6250,
+			"ns": 0,
+			"title": "Colorado Springs, Colorado",
+			"index": 5,
+			"description": "Home rule municipality in Colorado, United States",
+			"descriptionsource": "local",
+			"thumbnail": {
+				"source": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/CC_COSPRINGS.jpg/80px-CC_COSPRINGS.jpg",
+				"width": 80,
+				"height": 54
+			}
+		},
+		{
+			"pageid": 7164,
+			"ns": 0,
+			"title": "Color temperature",
+			"index": 8,
+			"description": "property of light sources related to black-body radiation",
+			"descriptionsource": "local",
+			"thumbnail": {
+				"source": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/PlanckianLocus.png/71px-PlanckianLocus.png",
+				"width": 71,
+				"height": 80
+			}
+		},
+		{
+			"pageid": 7397,
+			"ns": 0,
+			"title": "Color blindness",
+			"index": 4,
+			"description": "Inability or decreased ability to see colour or colour differences",
+			"descriptionsource": "local",
+			"thumbnail": {
+				"source": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Ishihara_9.png/80px-Ishihara_9.png",
+				"width": 80,
+				"height": 80
+			}
+		},
+		{
+			"pageid": 70948,
+			"ns": 0,
+			"title": "Colorado Avalanche",
+			"index": 10,
+			"description": "National Hockey League team in Denver, Colorado",
+			"descriptionsource": "local",
+			"thumbnail": {
+				"source": "https://upload.wikimedia.org/wikipedia/en/thumb/4/45/Colorado_Avalanche_logo.svg/80px-Colorado_Avalanche_logo.svg.png",
+				"width": 80,
+				"height": 65
+			}
+		},
+		{
+			"pageid": 180968,
+			"ns": 0,
+			"title": "Colorado River",
+			"index": 6,
+			"description": "Major river in the western United States and Mexico",
+			"descriptionsource": "local",
+			"thumbnail": {
+				"source": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Horseshoe_Bend_TC_27-09-2012_15-34-14.jpg/80px-Horseshoe_Bend_TC_27-09-2012_15-34-14.jpg",
+				"width": 80,
+				"height": 53
+			}
+		},
+		{
+			"pageid": 206979,
+			"ns": 0,
+			"title": "Colorectal cancer",
+			"index": 3,
+			"description": "Cancer of the colon or rectum",
+			"descriptionsource": "local",
+			"thumbnail": {
+				"source": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Blausen_0246_ColorectalCancer.png/80px-Blausen_0246_ColorectalCancer.png",
+				"width": 80,
+				"height": 60
+			}
+		},
+		{
+			"pageid": 331448,
+			"ns": 0,
+			"title": "Color depth",
+			"index": 7,
+			"description": "range of colors in a display",
+			"descriptionsource": "central"
+		},
+		{
+			"pageid": 444758,
+			"ns": 0,
+			"title": "Color photography",
+			"index": 9,
+			"description": "Photography that uses media capable of representing colors",
+			"descriptionsource": "local",
+			"thumbnail": {
+				"source": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Hillotypie.jpg/61px-Hillotypie.jpg",
+				"width": 61,
+				"height": 80
+			}
+		}
+	]
+}

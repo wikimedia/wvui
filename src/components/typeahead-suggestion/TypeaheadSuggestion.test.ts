@@ -1,7 +1,7 @@
 import { mount, shallowMount } from '@vue/test-utils';
 import WvuiTypeaheadSuggestion from './TypeaheadSuggestion.vue';
 import { SearchResult } from '../typeahead-search/http/SearchClient';
-import * as suggestionsList from '../typeahead-search/TypeaheadSearch.stories.json';
+import * as suggestionsList from '../typeahead-search/mocks/restapi.suggestions.json';
 
 describe( 'matches the snapshot', () => {
 	type Case = [string, Record<string, SearchResult>];

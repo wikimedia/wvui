@@ -27,4 +27,4 @@
 *.snap.ts
 
 # Ignore JSON files with mock data.
-/src/components/typeahead-search/TypeaheadSearch.stories.json
+/src/components/typeahead-search/mocks/*.*.json

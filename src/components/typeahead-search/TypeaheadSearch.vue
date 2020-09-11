@@ -20,26 +20,22 @@
 
 			<wvui-input
 				id="wvui-typeahead-search__input"
-				placeholder="Search Wikipedia"
 				:start-icon="startIcon"
 				:value="inputValue"
 				:type="InputType.Search"
-				autocomplete="off"
+				name="search"
+				dir="auto"
 				autocapitalize="off"
+				v-bind="$attrs"
+				autocomplete="off"
 				aria-autocomplete="list"
 				aria-controls="wvui-typeahead-search__suggestions"
-				title="Search Wikipedia [Alt+Shift+f]"
-				accesskey="f"
 				aria-label="Search Wikipedia"
-				dir="auto"
-				name="search"
 				@input="onInput"
 				@blur="onInputBlur"
 				@focus="onInputFocus"
 			/>
-			<wvui-button>
-				Search
-			</wvui-button>
+			<wvui-button>{{ buttonLabel }}</wvui-button>
 		</form>
 		<ol
 			v-if="suggestionsList.length > 0 && isFocused"
@@ -89,28 +85,50 @@ import { InputType } from '../input/InputType';
 import WvuiButton from '../button/Button.vue';
 import WvuiInput from '../input/Input.vue';
 import WvuiIcon from '../icon/Icon.vue';
-import { SearchResult } from '../typeahead-search/http/SearchClient';
+import { SearchResponse } from '../typeahead-search/http/SearchClient';
 import { wvuiIconSearch, wvuiIconArticleSearch } from '../../themes/icons';
-import suggestionsList from './TypeaheadSearch.stories.json';
+import { actionSearchClient } from './http/actionSearchClient';
+import { debounce } from '../../utils';
+
+const httpClient = actionSearchClient();
+
+async function search( value: string ): Promise<SearchResponse> {
+	return httpClient.fetchByTitle( value, 'en.wikipedia.org' );
+}
 
 enum KeyCodes {
 	KEY_UP = 38,
 	KEY_DOWN = 40,
 	KEY_ENTER = 13
 }
+
+const DEBOUNCE_INTERVAL = 200;
+
 export default Vue.extend( {
 	name: 'WvuiTypeaheadSearch',
 	components: { WvuiTypeaheadSuggestion, WvuiButton, WvuiInput, WvuiIcon },
+	// Pass all attributes to input
+	inheritAttrs: false,
+	props: {
+		initialInputValue: {
+			type: String,
+			default: ''
+		},
+		buttonLabel: {
+			type: String,
+			required: true
+		}
+	},
 	data() {
 		return {
 			startIcon: wvuiIconSearch,
 			articlesIcon: wvuiIconArticleSearch,
 			isHovered: false,
 			suggestionActiveIndex: -1,
-			suggestions: [],
+			suggestionsList: [],
 			isFocused: false,
 			searchQuery: '',
-			inputValue: '',
+			inputValue: this.initialInputValue,
 			InputType
 		};
 	},
@@ -127,10 +145,8 @@ export default Vue.extend( {
 					this.suggestionActiveIndex === this.suggestionsList.length
 			};
 		},
-		suggestionsList(): SearchResult[] {
-			return this.searchQuery.length ? suggestionsList.pages as [] : [];
-		},
 		searchContainingUrl(): string {
+			// eslint-disable-next-line max-len
 			return encodeURI( `/w/index.php?search=${this.searchQuery}&title=Special Search&wprov=acrw1_-1&fulltext=1` );
 		},
 		isSearchContainingSelected(): boolean {
@@ -138,9 +154,17 @@ export default Vue.extend( {
 		}
 	},
 	methods: {
-		onInput( value: string ): void {
-			this.searchQuery = value;
-		},
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		onInput: debounce( async function ( this: any, value: string ) {
+			try {
+				const { results, query } = await search( value );
+
+				this.suggestionsList = results;
+				this.searchQuery = query;
+			} catch ( e ) {
+				// Error handling?
+			}
+		}, DEBOUNCE_INTERVAL ),
 		onSuggestionMouseOver( index: number ): void {
 			this.suggestionActiveIndex = index;
 		},
@@ -167,11 +191,11 @@ export default Vue.extend( {
 			if ( this.suggestionActiveIndex === -1 ) {
 				this.isFocused = false;
 			}
+
 			this.isHovered = false;
 		},
 		onFooterHover(): void {
-			this.suggestionActiveIndex =
-				this.suggestionsList.length;
+			this.suggestionActiveIndex = this.suggestionsList.length;
 		},
 		onRootMouseOver(): void {
 			this.isHovered = true;
@@ -186,7 +210,7 @@ export default Vue.extend( {
 		getNextActiveIndex( index: number ): number {
 			const { length } = this.suggestionsList;
 
-			// We should count footer as well
+			// We should count footer as well.
 			const fullLength = length + 1;
 
 			return ( index + fullLength ) % fullLength;
@@ -194,16 +218,17 @@ export default Vue.extend( {
 		},
 		navigateToContainingSearch() {
 			const link = this.$refs.containingSearch as HTMLAnchorElement;
+
 			link.click();
 		},
 		onKeyDown( event: KeyboardEvent ) {
-			const { which } = event;
+			const { keyCode } = event;
 
 			if ( !this.suggestionsList.length || !this.isFocused ) {
 				return;
 			}
 
-			switch ( which ) {
+			switch ( keyCode ) {
 				case KeyCodes.KEY_ENTER: {
 					if ( this.isSearchContainingSelected ) {
 						event.preventDefault();
@@ -217,9 +242,14 @@ export default Vue.extend( {
 				case KeyCodes.KEY_DOWN: {
 					let offset = 0;
 
-					if ( which === KeyCodes.KEY_UP ) {
+					if ( keyCode === KeyCodes.KEY_UP ) {
 						offset = -1;
-					} else if ( which === KeyCodes.KEY_DOWN ) {
+
+						if ( this.suggestionActiveIndex === -1 ) {
+							this.suggestionActiveIndex = 0;
+						}
+
+					} else if ( keyCode === KeyCodes.KEY_DOWN ) {
 						offset = 1;
 					}
 
