@@ -809,7 +809,7 @@ When changing the [bundlesize configuration](bundlesize.config.json):
     that a comparison of two values is printed like `2.54KB < maxSize 2.6KB (gzip)`. If only one
     number is shown (e.g., `2.54KB (gzip)`), the number has been entered incorrectly.
 -   ⚠️ Warning: values entered must have a leading units position specified. Sub-one sizes like
-    `.5 KB` must be written with a leading zero like `0.5 KB` or they will not be pared.
+    `.5 KB` must be written with a leading zero like `0.5 KB` or they will not be parsed.
 -   The bundlesize thresholds specify minified gzipped maximums. Outputs are minified as part of the
     build process and gzip is the most common HTTP compression.
 
