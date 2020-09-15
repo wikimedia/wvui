@@ -6,6 +6,7 @@
 		<!-- prettier-ignore -->
 		<meta name="viewport" content="width=device-width">
 		<title>WVUI demo: Hello Search!</title>
+		<link rel="stylesheet" href="/hello-search.css" />
 		<script src="/hello-search.js" defer></script>
 		<!-- prettier-ignore -->
 		<link rel="icon" href="data:,">
@@ -71,30 +72,6 @@
 				max-width: 20em;
 			}
 
-			#searchInput::placeholder {
-				color: #72777d;
-				opacity: 1;
-			}
-
-			#simpleSearch input {
-				margin: 0;
-			}
-
-			#searchInput {
-				background-color: #ffffff;
-				background-color: rgba(255, 255, 255, 0.5);
-				color: #000000;
-				width: 100%;
-				box-sizing: border-box;
-				border: 1px solid #a2a9b1;
-				border-radius: 2px;
-				padding: 0.4em 1.84615385em 0.4em 0.4em;
-				box-shadow: inset 0 0 0 1px transparent;
-				font-size: 0.8125em;
-				direction: ltr;
-				transition: border-color 250ms, box-shadow 250ms;
-			}
-
 			#searchButton {
 				/* prettier-ignore */
 				background-image: url( https://wikipedia.org/w/skins/Vector/resources/skins.vector.styles/images/search.svg );
@@ -133,7 +110,7 @@
 			<!-- Empty comment nodes are intentional and present in development and production builds.
 				See https://github.com/vuejs/vue/issues/5117#issuecomment-284927949. -->
 			<!-- prettier-ignore -->
-			<div id="app" data-server-rendered="true"><div role="combobox" aria-expanded="true" aria-haspopup="listbox" aria-owns="wvui-typeahead-search__suggestions" class="wvui-typeahead-search" accesskey="f" title="Wikipedia Search" placeholder="Search Wikipedia" value=""><form id="wvui-typeahead-search__search" action="https://wikipedia.org/search-redirect.php" class="wvui-search-form"><input type="hidden" name="family" value="wikipedia"><input type="hidden" name="language" value="en"><div class="wvui-input wvui-input--has-start-icon"><input id="searchInput" dir="auto" type="search" placeholder="Search Wikipedia" autocomplete="off" autocapitalize="off" aria-autocomplete="list" aria-controls="wvui-typeahead-search__suggestions" title="Search Wikipedia [Alt+Shift+f]" accesskey="f" aria-label="Search Wikipedia" name="search" class="wvui-input__input"><span class="wvui-input__start-icon"><span class="wvui-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><!----><g fill="#000"><path d="M7.5 13c3.04 0 5.5-2.46 5.5-5.5S10.54 2 7.5 2 2 4.46 2 7.5 4.46 13 7.5 13zm4.55.46A7.432 7.432 0 017.5 15C3.36 15 0 11.64 0 7.5S3.36 0 7.5 0C11.64 0 15 3.36 15 7.5c0 1.71-.57 3.29-1.54 4.55l6.49 6.49-1.41 1.41-6.49-6.49z"></path></g></svg></span></span><!----></div><button class="wvui-button wvui-button--default wvui-button--framed"> Search </button></form><!----></div></div>
+			<div id="app" data-server-rendered="true"><div role="combobox" aria-expanded="true" aria-haspopup="listbox" aria-owns="wvui-typeahead-search__suggestions" class="wvui-typeahead-search"><form id="wvui-typeahead-search__search" action="https://wikipedia.org/search-redirect.php" class="wvui-search-form"><div class="wvui-input wvui-input--has-start-icon"><input dir="auto" type="search" id="searchInput" name="search" autocapitalize="off" autocomplete="off" aria-autocomplete="list" aria-controls="wvui-typeahead-search__suggestions" aria-label="Search Wikipedia" accesskey="f" title="Search Wikipedia [Alt+Shift+f]" placeholder="Search Wikipedia" class="wvui-input__input"><span class="wvui-input__start-icon"><span class="wvui-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><!----><g fill="#000"><path d="M7.5 13c3.04 0 5.5-2.46 5.5-5.5S10.54 2 7.5 2 2 4.46 2 7.5 4.46 13 7.5 13zm4.55.46A7.432 7.432 0 017.5 15C3.36 15 0 11.64 0 7.5S3.36 0 7.5 0C11.64 0 15 3.36 15 7.5c0 1.71-.57 3.29-1.54 4.55l6.49 6.49-1.41 1.41-6.49-6.49z"></path></g></svg></span></span><!----></div><input type="hidden" name="title" value="Special:Search"><button class="wvui-button wvui-button--default wvui-button--framed">Search</button></form><!----></div></div>
 		</div>
 
 		<p>

@@ -4,8 +4,11 @@
 			:accesskey="searchAccessKey"
 			:title="searchTitle"
 			:placeholder="searchPlaceholder"
-			:initial-query="searchQuery"
-		/>
+			:initial-input-value="searchQuery"
+			:button-label="searchButtonLabel"
+		>
+			<input type="hidden" name="title" value="Special:Search">
+		</wvui-typeahead-search>
 	</div>
 </template>
 
@@ -30,6 +33,10 @@ export default Vue.extend( {
 			default: ''
 		},
 		searchQuery: {
+			type: String,
+			default: ''
+		},
+		searchButtonLabel: {
 			type: String,
 			default: ''
 		}

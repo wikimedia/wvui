@@ -15,9 +15,6 @@
 			class="wvui-search-form"
 			action="https://wikipedia.org/search-redirect.php"
 		>
-			<input type="hidden" name="family" value="wikipedia">
-			<input type="hidden" name="language" value="en">
-
 			<wvui-input
 				id="wvui-typeahead-search__input"
 				:start-icon="startIcon"
@@ -35,6 +32,8 @@
 				@blur="onInputBlur"
 				@focus="onInputFocus"
 			/>
+			<slot />
+
 			<wvui-button>{{ buttonLabel }}</wvui-button>
 		</form>
 		<ol
@@ -85,7 +84,7 @@ import { InputType } from '../input/InputType';
 import WvuiButton from '../button/Button.vue';
 import WvuiInput from '../input/Input.vue';
 import WvuiIcon from '../icon/Icon.vue';
-import { SearchResponse } from '../typeahead-search/http/SearchClient';
+import { SearchResponse, SearchResult } from '../typeahead-search/http/SearchClient';
 import { wvuiIconSearch, wvuiIconArticleSearch } from '../../themes/icons';
 import { actionSearchClient } from './http/actionSearchClient';
 import { debounce } from '../../utils';
@@ -120,14 +119,15 @@ export default Vue.extend( {
 		}
 	},
 	data() {
+		console.log( this.initialInputValue );
 		return {
 			startIcon: wvuiIconSearch,
 			articlesIcon: wvuiIconArticleSearch,
 			isHovered: false,
 			suggestionActiveIndex: -1,
-			suggestionsList: [],
+			suggestionsList: [] as SearchResult[],
 			isFocused: false,
-			searchQuery: '',
+			searchQuery: this.initialInputValue,
 			inputValue: this.initialInputValue,
 			InputType
 		};
@@ -367,7 +367,8 @@ export default Vue.extend( {
 		}
 	}
 
-	&--active {
+	&--active,
+	&:hover {
 		.wvui-button {
 			opacity: @opacity-base;
 		}
