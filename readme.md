@@ -510,6 +510,7 @@ TYPE=patch bin/release-prod
 </details>
 
 <details markdown>
+
 <summary>The NPM scripts are configured to help ensure that only tested artifacts are published on
 Git and npmjs.com. Expand for details…</summary>
 
