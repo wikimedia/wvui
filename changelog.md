@@ -4,6 +4,7 @@ Versions and bullets are arranged chronologically from latest to oldest.
 
 ## v0.0.2 (unreleased)
 
+-   [search] Allow consumer fetch implementation to be passed
 -   [build] Upgrade dependencies
 -   [build] Fix audited NPM packages
 -   [component][typeahead-suggestion] Add keyboard support fot suggestions list
