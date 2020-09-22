@@ -9,6 +9,16 @@ export interface SearchClient {
 		domain: string,
 		limit?: number
 	): Promise<SearchResponse>;
+
+	/**
+	 * @param query search string to search for
+	 * @param submitParams params for building a query string
+	 * @return encoded search url
+	 */
+	submitSearchURL(
+		query: string,
+		submitParams: Record<string, string>
+	): string;
 }
 
 export interface SearchResponse {

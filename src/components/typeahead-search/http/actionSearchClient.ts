@@ -91,6 +91,12 @@ export function actionSearchClient( getJson: FetchJson = fetchJson ): SearchClie
 			const url = `//${domain}/w/api.php?${buildQueryString( params )}`;
 			return getJson( url, { headers } )
 				.then( ( json ) => adaptApiResponse( query, json as ActionResponse ) );
+		},
+		submitSearchURL(
+			query,
+			submitParams = { title: 'Special:Search' } ) {
+			// eslint-disable-next-line max-len
+			return encodeURI( `/w/index.php?${buildQueryString( { ...submitParams, search: query } )}` );
 		}
 	};
 }
