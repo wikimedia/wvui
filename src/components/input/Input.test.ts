@@ -104,6 +104,14 @@ it( 'should set and clear value', async () => {
 	await clearElement.trigger( 'click' );
 	expect( input.value ).toEqual( '' );
 	expect( wrapper.emitted().input ).toBeTruthy();
+
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	expect( clearElement.find( 'path' ).attributes().d ).toEqual( ( wrapper.vm as any ).clearIcon );
+
+	await wrapper.setProps( { value: 'New value' } );
+
+	expect( input.value ).toEqual( 'New value' );
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	expect( ( wrapper.vm as any ).$data.newValue ).toStrictEqual( 'New value' );
+
 } );
