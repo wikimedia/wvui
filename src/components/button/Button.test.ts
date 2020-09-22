@@ -3,8 +3,7 @@ import { shallowMount } from '@vue/test-utils';
 import WvuiButton from './Button.vue';
 
 describe( 'matches the snapshot', () => {
-	// [description, props, slot]
-	type Case = [string, Record<keyof unknown, unknown>, string];
+	type Case = [msg: string, props: Record<keyof unknown, unknown>, slot: string];
 
 	const cases: Case[] = [
 		[ 'No props and no slot', {}, '' ],

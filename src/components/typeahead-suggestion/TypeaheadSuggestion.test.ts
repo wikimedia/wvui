@@ -4,7 +4,7 @@ import { SearchResult } from '../typeahead-search/http/SearchClient';
 import * as suggestionsList from './TypeaheadSuggestion.stories.json';
 
 describe( 'matches the snapshot', () => {
-	type Case = [string, Record<string, SearchResult>];
+	type Case = [msg: string, props: Record<string, SearchResult>];
 
 	const cases: Case[] = [
 		[ 'With thumbnail', { suggestion: suggestionsList.pages[ 1 ] as SearchResult } ],

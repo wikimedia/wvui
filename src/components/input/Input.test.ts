@@ -5,7 +5,7 @@ import { wvuiIconSearch, wvuiIconInfo } from '../../themes/icons';
 import { InputType } from './InputType';
 
 describe( 'matches the snapshot', () => {
-	type Case = [string, Record<keyof unknown, unknown>];
+	type Case = [msg: string, props: Record<keyof unknown, unknown>];
 
 	const cases: Case[] = Object.values( InputType ).map( ( type ) => [
 		`Input Type: ${type} `,

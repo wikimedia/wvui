@@ -40,8 +40,9 @@ const iconLangWithFlip: IconVariedByLang = {
 };
 
 describe( 'computes proper icon path', () => {
-	// [description, icon, langCode, dir, expectedPath]
-	type Case = [string, AnyIcon, string, string, string];
+	type Case = [
+		description: string, icon: AnyIcon, langCode: string, dir: string, expectedPath: string
+	];
 
 	const iconLangDefault = typeof iconLang.default === 'string' ?
 		iconLang.default :
@@ -72,8 +73,7 @@ describe( 'computes proper icon path', () => {
 } );
 
 describe( 'sets shouldFlip to true', () => {
-	// [description, icon, langCode]
-	type Case = [string, AnyIcon, string ];
+	type Case = [msg: string, icon: AnyIcon, langCode: string ];
 
 	const cases: Case[] = [
 		[ 'with true shouldFlip property', iconShouldFlip, 'en' ]
@@ -85,8 +85,7 @@ describe( 'sets shouldFlip to true', () => {
 } );
 
 describe( 'sets shouldFlip to false', () => {
-	// [description, icon, langCode]
-	type Case = [string, AnyIcon, string ];
+	type Case = [msg: string, icon: AnyIcon, langCode: string ];
 
 	const cases: Case[] = [
 		[ 'String', iconString, 'en' ],

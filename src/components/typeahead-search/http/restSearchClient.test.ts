@@ -62,8 +62,8 @@ describe( 'restApiSearchClient', () => {
 		expect( searchResult.results[ 1 ] ).toStrictEqual( restResponse.pages[ 1 ] );
 
 		if ( mockedRequests ) {
-			expect( fetchMock ).toHaveBeenCalledTimes( 1 );
-			expect( fetchMock ).toHaveBeenCalledWith(
+			expect( fetchMock ).toHaveBeenCalledTimes( 1 ); // eslint-disable-line jest/no-conditional-expect
+			expect( fetchMock ).toHaveBeenCalledWith( // eslint-disable-line jest/no-conditional-expect
 				'//en.wikipedia.org/w/rest.php/v1/search/title?q=media&limit=2',
 				{ headers: { accept: 'application/json' } }
 			);
@@ -84,8 +84,8 @@ describe( 'restApiSearchClient', () => {
 		expect( searchResult.results.length ).toBe( 0 );
 
 		if ( mockedRequests ) {
-			expect( fetchMock ).toHaveBeenCalledTimes( 1 );
-			expect( fetchMock ).toHaveBeenCalledWith(
+			expect( fetchMock ).toHaveBeenCalledTimes( 1 ); // eslint-disable-line jest/no-conditional-expect
+			expect( fetchMock ).toHaveBeenCalledWith( // eslint-disable-line jest/no-conditional-expect
 				'//en.wikipedia.org/w/rest.php/v1/search/title?q=thereIsNothingLikeThis&limit=10',
 				{ headers: { accept: 'application/json' } }
 			);
@@ -103,7 +103,7 @@ describe( 'restApiSearchClient', () => {
 		expect( searchResult.results.length ).toBe( 0 );
 
 		if ( mockedRequests ) {
-			expect( fetchMock ).toHaveBeenCalledTimes( 0 );
+			expect( fetchMock ).toHaveBeenCalledTimes( 0 ); // eslint-disable-line jest/no-conditional-expect
 		}
 	} );
 

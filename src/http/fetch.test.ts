@@ -42,8 +42,8 @@ describe( 'fetch() using window.fetch', () => {
 		expect( json ).toStrictEqual( { pages: [] } );
 
 		if ( mockedRequests ) {
-			expect( fetchMock ).toHaveBeenCalledTimes( 1 );
-			expect( fetchMock ).toHaveBeenCalledWith( url, undefined );
+			expect( fetchMock ).toHaveBeenCalledTimes( 1 ); // eslint-disable-line jest/no-conditional-expect
+			expect( fetchMock ).toHaveBeenCalledWith( url, undefined ); // eslint-disable-line jest/no-conditional-expect
 		}
 	} );
 
@@ -53,8 +53,8 @@ describe( 'fetch() using window.fetch', () => {
 		await expect( json ).toStrictEqual( { pages: [] } );
 
 		if ( mockedRequests ) {
-			expect( fetchMock ).toHaveBeenCalledTimes( 1 );
-			expect( fetchMock ).toHaveBeenCalledWith(
+			expect( fetchMock ).toHaveBeenCalledTimes( 1 ); // eslint-disable-line jest/no-conditional-expect
+			expect( fetchMock ).toHaveBeenCalledWith( // eslint-disable-line jest/no-conditional-expect
 				url,
 				expect.objectContaining( { mode: 'cors' } )
 			);
@@ -68,8 +68,8 @@ describe( 'fetch() using window.fetch', () => {
 
 		if ( mockedRequests ) {
 			expect.assertions( 3 );
-			expect( fetchMock ).toHaveBeenCalledTimes( 1 );
-			expect( fetchMock ).toHaveBeenCalledWith(
+			expect( fetchMock ).toHaveBeenCalledTimes( 1 ); // eslint-disable-line jest/no-conditional-expect
+			expect( fetchMock ).toHaveBeenCalledWith( // eslint-disable-line jest/no-conditional-expect
 				'//en.wikipedia.org/doesNotExist',
 				undefined
 			);
@@ -78,8 +78,7 @@ describe( 'fetch() using window.fetch', () => {
 } );
 
 describe( 'buildQueryString()', () => {
-	// [description, input, expected]
-	type Case = [ string, Record<string, string | number | boolean>, string ];
+	type Case = [ msg: string, props: Record<string, string | number | boolean>, expected: string ];
 
 	const cases: Case[] = [
 		[ 'empty object', {}, '' ],

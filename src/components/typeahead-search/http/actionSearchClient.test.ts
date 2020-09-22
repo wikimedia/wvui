@@ -111,8 +111,8 @@ describe( 'restApiSearchClient', () => {
 		expect( searchResult.results[ 1 ] ).toStrictEqual( convertedPage1 );
 
 		if ( mockedRequests ) {
-			expect( fetchMock ).toHaveBeenCalledTimes( 1 );
-			expect( fetchMock ).toHaveBeenCalledWith(
+			expect( fetchMock ).toHaveBeenCalledTimes( 1 ); // eslint-disable-line jest/no-conditional-expect
+			expect( fetchMock ).toHaveBeenCalledWith( // eslint-disable-line jest/no-conditional-expect
 				commonRequestURL + '&gpslimit=2&gpssearch=media',
 				{ headers: { accept: 'application/json' } }
 			);
@@ -133,8 +133,8 @@ describe( 'restApiSearchClient', () => {
 		expect( searchResult.results.length ).toBe( 0 );
 
 		if ( mockedRequests ) {
-			expect( fetchMock ).toHaveBeenCalledTimes( 1 );
-			expect( fetchMock ).toHaveBeenCalledWith(
+			expect( fetchMock ).toHaveBeenCalledTimes( 1 ); // eslint-disable-line jest/no-conditional-expect
+			expect( fetchMock ).toHaveBeenCalledWith( // eslint-disable-line jest/no-conditional-expect
 				commonRequestURL + '&gpslimit=10&gpssearch=thereIsNothingLikeThis',
 				{ headers: { accept: 'application/json' } }
 			);
@@ -152,7 +152,7 @@ describe( 'restApiSearchClient', () => {
 		expect( searchResult.results.length ).toBe( 0 );
 
 		if ( mockedRequests ) {
-			expect( fetchMock ).toHaveBeenCalledTimes( 0 );
+			expect( fetchMock ).toHaveBeenCalledTimes( 0 ); // eslint-disable-line jest/no-conditional-expect
 		}
 	} );
 

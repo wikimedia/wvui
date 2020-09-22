@@ -9,8 +9,7 @@ const iconShouldFlip: IconFlipForRtl = {
 };
 
 describe( 'matches the snapshot', () => {
-	// [description, props]
-	type Case = [string, Record<keyof unknown, unknown>];
+	type Case = [msg: string, props: Record<keyof unknown, unknown>];
 
 	const cases: Case[] = [
 		[ 'With icon', { icon: iconString } ],

@@ -3,7 +3,7 @@ import WvuiTypeaheadSuggestionTitle from './TypeaheadSuggestionTitle.vue';
 import * as suggestionsList from '../typeahead-suggestion/TypeaheadSuggestion.stories.json';
 
 describe( 'matches the snapshot', () => {
-	type Case = [string, Record<string, string>];
+	type Case = [msg: string, props: Record<string, string>];
 
 	const { title } = suggestionsList.pages[ 1 ];
 	const cases: Case[] = [

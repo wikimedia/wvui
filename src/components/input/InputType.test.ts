@@ -1,8 +1,7 @@
 import { InputType, isInputType } from './InputType';
 
 describe( 'isInputType()', () => {
-	// [description, input, expected]
-	type Case = [string, string, boolean];
+	type Case = [msg: string, input: string, expected: boolean];
 
 	const cases: Case[] = [
 		...Object.values( InputType ).map(

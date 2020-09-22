@@ -1,4 +1,3 @@
-import Vue from 'vue';
 import { addParameters } from '@storybook/vue';
 import './preview.less';
 
@@ -9,7 +8,12 @@ import './preview.less';
 //   See more tips at https://vuejs.org/guide/deployment.html
 //
 // This setting only applies to documentation.
-Vue.config.productionTip = false;
+//
+// The conditional is necessary to work around a conflicting definition of Vue.
+// https://github.com/storybookjs/storybook/issues/7379
+if ( 'Vue' in window && window.Vue.config ) {
+	window.Vue.config.productionTip = false;
+}
 
 // See wikimedia-ui-base breakpoints
 const viewports = {

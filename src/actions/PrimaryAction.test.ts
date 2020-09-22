@@ -1,8 +1,7 @@
 import { PrimaryAction, isPrimaryAction } from './PrimaryAction';
 
 describe( 'isPrimaryAction()', () => {
-	// [description, input, expected]
-	type Case = [string, string, boolean];
+	type Case = [msg: string, input: string, expected: boolean];
 
 	const cases: Case[] = [
 		...Object.values( PrimaryAction ).map(

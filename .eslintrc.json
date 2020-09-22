@@ -107,7 +107,10 @@
 					{
 						"allowExpressions": true
 					}
-				]
+				],
+				"no-use-before-define": "off",
+				// This appears to break on TypeScript enums.
+				"no-shadow": "off"
 			}
 		},
 		// Rules: all Vue files everywhere.
