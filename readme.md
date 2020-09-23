@@ -219,7 +219,7 @@ npm install
 
 As the primary development flow WVUI uses
 [Storybook](https://storybook.js.org/docs/guides/guide-vue/) which allows developing UI components
-in isolation without worrying about  
+in isolation without worrying about
 specific dependencies and requirements. Storybook uses so called
 [stories](https://storybook.js.org/docs/basics/writing-stories/). For each SFC (single file
 component) its story should be placed in the same directory:
@@ -715,11 +715,11 @@ The expectations for submitting a patch are:
 ### Compatibility
 
 WVUI uses [Browserslist] to help support and enforce browser compatibility. Supported targets are
-configured in [.browserslistsrc](.browserslistsrc) according to [MediaWiki grade A compatibility].
+configured in [.browserslistrc](.browserslistrc) according to [MediaWiki modern browsers compatibility].
 To see the current list, execute `npx --no-install browserslist`.
 
 [browserslist]: https://github.com/browserslist/browserslist
-[mediawiki grade a compatibility]:
+[mediawiki modern browsers compatibility]:
 	https://www.mediawiki.org/wiki/Compatibility#Browser_support_matrix
 
 #### JavaScript
