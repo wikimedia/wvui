@@ -1,24 +1,17 @@
 export interface SearchClient {
 	/**
-	 * @param query search string to search for
-	 * @param domain the base URL for the wiki without protocol. Example: 'sr.wikipedia.org'
-	 * @param limit maximum number of results
+	 * @param query The search term.
+	 * @param domain The base URL for the wiki without protocol. Example: 'sr.wikipedia.org'.
+	 * @param limit Maximum number of results.
 	 */
-	fetchByTitle(
-		query: string,
-		domain: string,
-		limit?: number
-	): Promise<SearchResponse>;
+	fetchByTitle( query: string, domain: string, limit?: number ): Promise<SearchResponse>;
 
 	/**
-	 * @param query search string to search for
-	 * @param submitParams params for building a query string
-	 * @return encoded search url
+	 * @param query The search term.
+	 * @param params Parameters for building a URL query string. The query is inserted.
+	 * @return The encoded search URL.
 	 */
-	submitSearchURL(
-		query: string,
-		submitParams: Record<string, string>
-	): string;
+	submitSearchURL( query: string, params?: Record<string, string> ): string;
 }
 
 export interface SearchResponse {

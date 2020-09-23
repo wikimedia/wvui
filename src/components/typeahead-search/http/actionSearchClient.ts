@@ -94,9 +94,8 @@ export function actionSearchClient( getJson: FetchJson = fetchJson ): SearchClie
 		},
 		submitSearchURL(
 			query,
-			submitParams = { title: 'Special:Search' } ) {
-			// eslint-disable-next-line max-len
-			return encodeURI( `/w/index.php?${buildQueryString( { ...submitParams, search: query } )}` );
+			params = { title: 'Special:Search' } ) {
+			return encodeURI( `/w/index.php?${buildQueryString( { ...params, search: query } )}` );
 		}
 	};
 }
