@@ -204,6 +204,16 @@ export default Vue.extend( {
 
 		&:not( [ disabled ] ) {
 			transition: border-color @transition-duration-medium, box-shadow @transition-duration-medium;
+
+			&:hover {
+				border-color: @border-color-input--hover;
+			}
+
+			&:focus {
+				outline: 0;
+				border-color: @border-color-base--focus;
+				box-shadow: @box-shadow-base--focus;
+			}
 		}
 
 		&[ disabled ] {
@@ -232,12 +242,6 @@ export default Vue.extend( {
 			display: none;
 		}
 
-		&:focus {
-			outline: 0;
-			border-color: @wmui-color-accent50;
-			box-shadow: @box-shadow-base--focus;
-		}
-
 		&[ type='search' ] {
 			// Support: Safari, Chrome (Blink).
 			&::-webkit-search-decoration,
@@ -256,12 +260,6 @@ export default Vue.extend( {
 	&--has-end-icon {
 		.wvui-input__input {
 			padding-right: @padding-horizontal-input-text * 2 + @size-icon;
-		}
-	}
-
-	&:hover {
-		&__input {
-			border-color: @border-color-input--hover;
 		}
 	}
 }
