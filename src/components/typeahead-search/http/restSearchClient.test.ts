@@ -95,21 +95,6 @@ describe( 'restApiSearchClient', () => {
 		}
 	} );
 
-	test( 'query has only a space', async () => {
-		const searchResult = await restSearchClient().fetchByTitle(
-			' ',
-			'foo.org'
-		).fetch;
-
-		expect( searchResult.query ).toStrictEqual( '' );
-		expect( searchResult.results ).toBeTruthy();
-		expect( searchResult.results.length ).toBe( 0 );
-
-		if ( mockedRequests ) {
-			expect( fetchMock ).toHaveBeenCalledTimes( 0 ); // eslint-disable-line jest/no-conditional-expect
-		}
-	} );
-
 	if ( mockedRequests ) {
 		test( 'network error', async () => {
 			fetchMock.mockRejectOnce( new Error( 'failed' ) );

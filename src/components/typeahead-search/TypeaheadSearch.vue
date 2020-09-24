@@ -224,17 +224,28 @@ export default Vue.extend( {
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		onInput: async function ( this: any, value: string ) {
 			try {
+				const query = value.trim();
+
+				if ( !query ) {
+					this.suggestionsList = [];
+					this.searchQuery = query;
+					this.isExpanded = false;
+					return;
+				}
+
+				this.$emit( 'fetch-start' );
+
 				const {
-					results,
-					query
+					results
 				} = await this.client.fetchByTitle( value, this.domain ).fetch;
 
 				this.suggestionsList = results;
 				this.suggestionActiveIndex = -1;
+				this.isExpanded = true;
 
 				this.searchQuery = query;
 
-				this.isExpanded = !!this.searchQuery;
+				this.$emit( 'fetch-end' );
 			} catch ( e ) {
 				// Error handling?
 			}

@@ -1,5 +1,6 @@
 import { boolean } from '@storybook/addon-knobs';
 import Vue from 'vue';
+import { action } from '@storybook/addon-actions';
 import WvuiTypeaheadSearch from './TypeaheadSearch.vue';
 import './TypeaheadSearch.stories.less';
 
@@ -21,6 +22,10 @@ export const TypeaheadSearch = (): Vue.Component =>
 				default: boolean( 'Show description?', true )
 			}
 		},
+		methods: {
+			onFetchStart: action( 'fetch-start' ),
+			onFetchEnd: action( 'fetch-end' )
+		},
 		template: `
 			<div class="sb-typeahead-search">
 				<wvui-typeahead-search
@@ -35,6 +40,8 @@ export const TypeaheadSearch = (): Vue.Component =>
 					suggestions-label="search suggestions"
 					:showThumbnail="showThumbnail"
 					:showDescription="showDescription"
+					@fetch-start="onFetchStart"
+					@fetch-end="onFetchEnd"
 				>
 					<input type="hidden" name="title" value="Special:Search">
 				</wvui-typeahead-search>

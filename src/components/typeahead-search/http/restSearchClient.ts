@@ -45,18 +45,6 @@ export function restSearchClient( getJson: FetchJson = fetchJson ): SearchClient
 	return {
 		// https://www.mediawiki.org/wiki/API:REST_API/Reference#Autocomplete_page_title
 		fetchByTitle( query, domain, limit = 10 ): AbortableSearchFetch {
-			query = query.trim();
-
-			// [todo] [IE11] Remove `&& Promise` conditional when native Promise support is assumed.
-			if ( !query && Promise ) {
-				return {
-					abort: () => {
-						// Do nothing (no-op)
-					},
-					fetch: Promise.resolve( adaptApiResponse( query, { pages: [] } ) )
-				};
-			}
-
 			const params = {
 				q: query,
 				limit

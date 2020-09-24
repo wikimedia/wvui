@@ -4,6 +4,7 @@ import * as jestFetchMock from 'jest-fetch-mock';
 import * as restApiSuggestions from './mocks/restApi.suggestions.json';
 import { DEBOUNCE_INTERVAL } from './TypeaheadSearch.constants';
 import Vue from 'vue';
+import { SearchResponse } from './http/SearchClient';
 
 const propsData = {
 	buttonLabel: 'Search',
@@ -80,6 +81,89 @@ it( 'should set the button label', () => {
 	const button = wrapper.find( '.wvui-typeahead-search .wvui-button' );
 
 	expect( button.text() ).toStrictEqual( propsData.buttonLabel );
+} );
+
+describe( 'typing into input', () => {
+	let onFetchStart: jest.Mock;
+	let onFetchEnd: jest.Mock;
+	let client: Record<string, jest.Mock>;
+	let wrapper: Wrapper<Vue>;
+	let input: Wrapper<Vue>;
+	let fetchPromise: Promise<SearchResponse>;
+
+	beforeEach( () => {
+		onFetchStart = jest.fn();
+		onFetchEnd = jest.fn();
+
+		client = {
+			fetchByTitle: jest.fn( () => {
+				return {
+					fetch: fetchPromise,
+					abort: jest.fn()
+				};
+			} )
+		};
+
+		wrapper = mount( WvuiTypeaheadSearch, {
+			propsData: {
+				...propsData,
+				client
+			},
+			listeners: {
+				'fetch-start': onFetchStart,
+				'fetch-end': onFetchEnd
+			},
+			slots: {
+				default: defaultSlot
+			}
+		} );
+		input = wrapper.find( '.wvui-input__input' );
+	} );
+
+	it( 'emits `fetch-start` and `fetch-end` events when successful response', async () => {
+		fetchPromise = Promise.resolve( {
+			query: 'test',
+			results: []
+		} );
+
+		expect( onFetchStart.mock.calls.length ).toBe( 0 );
+		expect( onFetchEnd.mock.calls.length ).toBe( 0 );
+
+		input.setValue( 'test' );
+
+		expect( onFetchStart.mock.calls.length ).toBe( 1 );
+		expect( onFetchEnd.mock.calls.length ).toBe( 0 );
+
+		await fetchPromise;
+
+		expect( onFetchStart.mock.calls.length ).toBe( 1 );
+		expect( onFetchEnd.mock.calls.length ).toBe( 1 );
+	} );
+
+	it( 'emits `fetch-start` but not `fetch-end` event when failed response', async () => {
+		fetchPromise = Promise.reject( new Error( 'Network Error Test' ) );
+
+		input.setValue( 'test' );
+
+		expect( onFetchStart.mock.calls.length ).toBe( 1 );
+		expect( onFetchEnd.mock.calls.length ).toBe( 0 );
+
+		return fetchPromise.catch( () => {
+			expect( onFetchStart.mock.calls.length ).toBe( 1 );
+			expect( onFetchEnd.mock.calls.length ).toBe( 0 );
+		} );
+
+	} );
+
+	it( 'does not call search client or emit events when blank input', async () => {
+		input.setValue( '  ' );
+
+		expect( onFetchStart.mock.calls.length ).toBe( 0 );
+		expect( onFetchEnd.mock.calls.length ).toBe( 0 );
+		expect( client.fetchByTitle.mock.calls.length ).toBe( 0 );
+		expect( wrapper.vm.$data.suggestionsList ).toEqual( [ ] );
+		expect( wrapper.vm.$data.searchQuery ).toEqual( '' );
+	} );
 } );
 
 describe( 'when there are search results', () => {
