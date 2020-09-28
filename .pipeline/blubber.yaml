@@ -14,12 +14,15 @@ variants:
             use-npm-ci: true
         builder:
             command: [npm, run, build]
-            requirements: [dist/, src/, docs/, .webpack/, tsconfig.json, .postcssrc.json]
             # Required files for the build to run.
             # If any part of the build process changes these need to be revised.
+            requirements: [dist/, src/, docs/, .webpack/, tsconfig.json, .postcssrc.json]
     development:
         includes: [build]
         entrypoint: [npm, start]
     test:
         includes: [build]
         entrypoint: [npm, test]
+        # Allows Docker to write to the filesystem for things like reporting test coverage
+        runs:
+            insecurely: true

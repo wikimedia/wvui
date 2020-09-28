@@ -252,12 +252,14 @@ export default Vue.extend( {
 	}
 
 	&--has-start-icon {
+		// stylelint-disable-next-line no-descending-specificity
 		.wvui-input__input {
 			padding-left: @padding-horizontal-input-text * 2 + @size-icon;
 		}
 	}
 
 	&--has-end-icon {
+		// stylelint-disable-next-line no-descending-specificity
 		.wvui-input__input {
 			padding-right: @padding-horizontal-input-text * 2 + @size-icon;
 		}
