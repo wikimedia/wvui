@@ -4,6 +4,7 @@ Versions and bullets are arranged chronologically from latest to oldest.
 
 ## v0.0.2 (unreleased)
 
+-   [fix][http][IE11] Don't assume native Promise support
 -   [search] Make SearchClient submit parameters optional
 -   [search] Allow consumer fetch implementation to be passed
 -   [build] Upgrade dependencies

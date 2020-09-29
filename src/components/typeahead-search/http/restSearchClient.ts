@@ -46,7 +46,8 @@ export function restSearchClient( getJson: FetchJson = fetchJson ): SearchClient
 		fetchByTitle( query, domain, limit = 10 ): Promise<SearchResponse> {
 			query = query.trim();
 
-			if ( !query ) {
+			// [todo] [IE11] Remove `&& Promise` conditional when native Promise support is assumed.
+			if ( !query && Promise ) {
 				return Promise.resolve( adaptApiResponse( query, { pages: [] } ) );
 			}
 
