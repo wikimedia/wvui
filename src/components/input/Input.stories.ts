@@ -4,7 +4,7 @@ import Vue, { PropType } from 'vue';
 import WvuiInput from './Input.vue';
 import WvuiButton from '../button/Button.vue';
 import { InputType } from './InputType';
-import { wvuiIconSearch, wvuiIconInfo } from '@/themes/icons';
+import { wvuiIconSearch, wvuiIconInfoFilled } from '@/themes/icons';
 import './Input.stories.less';
 
 export default {
@@ -84,7 +84,7 @@ export const withEndIcon = (): Vue.Component =>
 		data() {
 			return {
 				InputType,
-				endIcon: wvuiIconInfo
+				endIcon: wvuiIconInfoFilled
 			};
 		},
 		template: `

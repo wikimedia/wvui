@@ -45,29 +45,25 @@ exports[`should render a clear icon 1`] = `
   <!---->
    
   <span
-    class="wvui-input__end-icon"
+    class="wvui-icon wvui-input__end-icon"
   >
-    <span
-      class="wvui-icon"
+    <svg
+      aria-hidden="true"
+      height="20"
+      viewBox="0 0 20 20"
+      width="20"
+      xmlns="http://www.w3.org/2000/svg"
     >
-      <svg
-        aria-hidden="true"
-        height="20"
-        viewBox="0 0 20 20"
-        width="20"
-        xmlns="http://www.w3.org/2000/svg"
+      <!---->
+       
+      <g
+        fill="#000"
       >
-        <!---->
-         
-        <g
-          fill="#000"
-        >
-          <path
-            d="M4.34 2.93l12.73 12.73-1.41 1.41L2.93 4.35z M17.07 4.34L4.34 17.07l-1.41-1.41L15.66 2.93z"
-          />
-        </g>
-      </svg>
-    </span>
+        <path
+          d="M4.34 2.93l12.73 12.73-1.41 1.41L2.93 4.35z M17.07 4.34L4.34 17.07l-1.41-1.41L15.66 2.93z"
+        />
+      </g>
+    </svg>
   </span>
 </div>
 `;
@@ -85,29 +81,25 @@ exports[`should render end icon 1`] = `
   <!---->
    
   <span
-    class="wvui-input__end-icon"
+    class="wvui-icon wvui-input__end-icon"
   >
-    <span
-      class="wvui-icon"
+    <svg
+      aria-hidden="true"
+      height="20"
+      viewBox="0 0 20 20"
+      width="20"
+      xmlns="http://www.w3.org/2000/svg"
     >
-      <svg
-        aria-hidden="true"
-        height="20"
-        viewBox="0 0 20 20"
-        width="20"
-        xmlns="http://www.w3.org/2000/svg"
+      <!---->
+       
+      <g
+        fill="#000"
       >
-        <!---->
-         
-        <g
-          fill="#000"
-        >
-          <path
-            d="M9.5 16A6.61 6.61 0 013 9.5 6.61 6.61 0 019.5 3 6.61 6.61 0 0116 9.5 6.63 6.63 0 019.5 16zm0-14A7.5 7.5 0 1017 9.5 7.5 7.5 0 009.5 2zm.5 6v4.08h1V13H8.07v-.92H9V9H8V8zM9 6h1v1H9z"
-          />
-        </g>
-      </svg>
-    </span>
+        <path
+          d="M10 0C4.477 0 0 4.477 0 10s4.477 10 10 10 10-4.477 10-10S15.523 0 10 0zM9 5h2v2H9zm0 4h2v6H9z"
+        />
+      </g>
+    </svg>
   </span>
 </div>
 `;
@@ -123,29 +115,25 @@ exports[`should render start icon 1`] = `
   />
    
   <span
-    class="wvui-input__start-icon"
+    class="wvui-icon wvui-input__start-icon"
   >
-    <span
-      class="wvui-icon"
+    <svg
+      aria-hidden="true"
+      height="20"
+      viewBox="0 0 20 20"
+      width="20"
+      xmlns="http://www.w3.org/2000/svg"
     >
-      <svg
-        aria-hidden="true"
-        height="20"
-        viewBox="0 0 20 20"
-        width="20"
-        xmlns="http://www.w3.org/2000/svg"
+      <!---->
+       
+      <g
+        fill="#000"
       >
-        <!---->
-         
-        <g
-          fill="#000"
-        >
-          <path
-            d="M7.5 13c3.04 0 5.5-2.46 5.5-5.5S10.54 2 7.5 2 2 4.46 2 7.5 4.46 13 7.5 13zm4.55.46A7.432 7.432 0 017.5 15C3.36 15 0 11.64 0 7.5S3.36 0 7.5 0C11.64 0 15 3.36 15 7.5c0 1.71-.57 3.29-1.54 4.55l6.49 6.49-1.41 1.41-6.49-6.49z"
-          />
-        </g>
-      </svg>
-    </span>
+        <path
+          d="M7.5 13c3.04 0 5.5-2.46 5.5-5.5S10.54 2 7.5 2 2 4.46 2 7.5 4.46 13 7.5 13zm4.55.46A7.432 7.432 0 017.5 15C3.36 15 0 11.64 0 7.5S3.36 0 7.5 0C11.64 0 15 3.36 15 7.5c0 1.71-.57 3.29-1.54 4.55l6.49 6.49-1.41 1.41-6.49-6.49z"
+        />
+      </g>
+    </svg>
   </span>
    
   <!---->

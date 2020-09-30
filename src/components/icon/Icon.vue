@@ -1,5 +1,5 @@
 <template>
-	<span class="wvui-icon" :class="rootClasses">
+	<span class="wvui-icon" :class="rootClasses" @click="onClick">
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
 			width="20"
@@ -89,6 +89,11 @@ export default Vue.extend( {
 	mounted() {
 		const computedStyle = window.getComputedStyle( this.$el );
 		this.dir = computedStyle?.direction || this.dir;
+	},
+	methods: {
+		onClick( event: Event ): void {
+			this.$emit( 'click', event );
+		}
 	}
 } );
 </script>

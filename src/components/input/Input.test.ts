@@ -1,7 +1,7 @@
 import { mount, shallowMount } from '@vue/test-utils';
 import WvuiInput from './Input.vue';
 import WvuiIcon from './../icon/Icon.vue';
-import { wvuiIconSearch, wvuiIconInfo } from '../../themes/icons';
+import { wvuiIconSearch, wvuiIconInfoFilled } from '../../themes/icons';
 import { InputType } from './InputType';
 
 describe( 'matches the snapshot', () => {
@@ -35,7 +35,7 @@ it( 'should render start icon', () => {
 it( 'should render end icon', () => {
 	const wrapper = shallowMount( WvuiInput, {
 		propsData: {
-			endIcon: wvuiIconInfo
+			endIcon: wvuiIconInfoFilled
 		},
 		stubs: {
 			'wvui-icon': WvuiIcon
@@ -44,7 +44,6 @@ it( 'should render end icon', () => {
 
 	expect( wrapper.element ).toMatchSnapshot();
 	expect( wrapper.classes() ).toContain( 'wvui-input--has-end-icon' );
-	expect( wrapper.find( '.wvui-input__end-icon' ) ).toBeTruthy();
 } );
 
 it( 'should render a clear icon', () => {
@@ -57,7 +56,7 @@ it( 'should render a clear icon', () => {
 			}
 		}
 	);
-	const clearElement = wrapper.find( '.wvui-input__end-icon' );
+	const clearElement = wrapper.find( '.wvui-input--clearable .wvui-input__end-icon' );
 
 	expect( wrapper.element ).toMatchSnapshot();
 	expect( wrapper.classes() ).toContain( 'wvui-input--clearable' );
@@ -97,7 +96,7 @@ it( 'emits blur events', () => {
 * */
 it( 'should set and clear value', async () => {
 	const wrapper = mount( WvuiInput, { propsData: { clearable: true, value: 'Some value' } } );
-	const clearElement = wrapper.find( '.wvui-input__end-icon' );
+	const clearElement = wrapper.find( '.wvui-input--clearable .wvui-input__end-icon' );
 	const input = wrapper.find( 'input' ).element as HTMLInputElement;
 
 	expect( input.value ).toEqual( 'Some value' );

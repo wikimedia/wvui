@@ -16,23 +16,17 @@
 			@focus="onFocus"
 			@blur="onBlur"
 		>
-		<span
+		<wvui-icon
 			v-if="startIcon"
+			:icon="startIcon"
 			class="wvui-input__start-icon"
-		>
-			<wvui-icon
-				:icon="startIcon"
-			/>
-		</span>
-		<span
+		/>
+		<wvui-icon
 			v-if="isClearable || endIcon"
+			:icon="endIcon || clearIcon"
 			class="wvui-input__end-icon"
 			@click="onEndIconClick"
-		>
-			<wvui-icon
-				:icon="endIcon || clearIcon"
-			/>
-		</span>
+		/>
 	</div>
 </template>
 
@@ -76,9 +70,9 @@ export default Vue.extend( {
 			default: undefined
 		},
 		/**
-		 * Overrides indicator with a clear button at the end of the input element that when pressed
-		 * deletes the input's contents. The elements automatically hides and appears based on input
-		 * state.
+		 * Override end icon with a clear button at the end of the input element. When clear is
+		 * pressed the input's contents is deleted. The elements automatically hides and appears
+		 * based on input state.
 		 */
 		clearable: {
 			type: Boolean,
