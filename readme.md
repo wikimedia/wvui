@@ -195,10 +195,10 @@ docker-compose build --build-arg UID=$(id -u) --build-arg GID=$(id -g) --build-a
 # Build arguments needed so that we own Docker generated files
 ```
 
-3. Run npm install
+3. Install npm packages from host machine
 
 ```bash
-docker-compose run --rm node npm install
+npm install
 ```
 
 4. Startup containers
@@ -210,7 +210,7 @@ docker-compose up
 #### Container Configuration
 
 WVUI's docker compose configuration will produce 2 separate docker containers each with their own
-service: `node` and `storybook`. The rationale behind 2 containers is to separate of concerns, so
+service: `node` and `storybook`. The rationale behind 2 containers is for separation of concerns, so
 each container is responsible for one service only.
 
 `storybook`<br> On container startup, `storybook` will be accessible on localhost:3003. This

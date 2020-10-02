@@ -1,0 +1,17 @@
+pipelines:
+  test:
+    blubberfile: blubber.yaml
+    stages:
+      - name: test
+  production:
+    blubberfile: blubber.yaml
+    stages:
+      - name: production
+  release:
+    blubberfile: blubber.yaml
+    stages:
+      - name: release
+        run:
+          credentials:
+            - id: WVUI_NPM_TOKEN
+              name: WVUI_NPM_TOKEN

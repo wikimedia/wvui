@@ -18,17 +18,18 @@ PRE_ID="${PRE_ID:-next.$(TZ=utc date +%F-%H-%M)}"
 
 "$(dirname "$0")/node-test-version"
 
-# Development tags are not wanted on the master branch. Checkout `HEAD` detached.
-git fetch origin master
-git checkout origin/master
-
-# Validate the installation. See `npm help ci`.
-npm ci
-
 # This will create a new version commit on the detached `HEAD` like
 # `v1.2.4-next.2020-07-09-20-40.0`.
 npm version prerelease --preid="$PRE_ID"
 
+# Add token in .npmrc for authenticating with npm
+echo "//registry.npmjs.org/:_authToken=${WVUI_NPM_TOKEN}" > ".npmrc"
+
 # Scoped packages (like `@wikimedia/*`) are private by default. Specify that public is wanted.
 # Point the next tag to this release.
-npm publish --access public --tag next
+# TODO: Remove dry run conditional once npm publish setup in CI T264244
+if [ "$#" -eq 1 ] && [ "$1" == "--dry-run" ]; then
+    npm publish --dry-run --access public --tag next
+else
+    npm publish --access public --tag next
+fi
