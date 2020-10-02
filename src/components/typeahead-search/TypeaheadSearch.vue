@@ -15,6 +15,7 @@
 		<form
 			class="wvui-typeahead-search__form"
 			:action="formAction"
+			@submit="onSubmit"
 		>
 			<wvui-input
 				class="wvui-typeahead-search__input"
@@ -105,6 +106,7 @@ import {
 import { wvuiIconSearch, wvuiIconArticleSearch } from '../../themes/icons';
 import { restSearchClient } from './http/restSearchClient';
 import { createDefaultUrlGenerator, UrlGenerator } from '../typeahead-suggestion/UrlGenerator';
+import { FetchEndEvent, SuggestionClickEvent, SubmitEvent } from './lifecycle-events';
 
 export default Vue.extend( {
 	name: 'WvuiTypeaheadSearch',
@@ -274,7 +276,13 @@ export default Vue.extend( {
 			this.request.fetch.then( ( { results } ) => {
 				this.updateSuggestions( query, results );
 
-				this.$emit( 'fetch-end' );
+				// Event
+				const event: FetchEndEvent = {
+					numberOfResults: results.length,
+					query
+				};
+
+				this.$emit( 'fetch-end', event );
 			} )
 				.catch( () => {
 					// Error handling?
@@ -324,11 +332,20 @@ export default Vue.extend( {
 		},
 
 		onSuggestionClick( suggestion?: SearchResult ) {
+			// State updates
 			this.inputValue = suggestion ? suggestion.title : this.searchQuery;
 			this.updateSuggestions( this.inputValue, [] );
 
 			this.isFocused = true;
 			this.isExpanded = false;
+
+			// Event
+			const event: SuggestionClickEvent = {
+				index: this.suggestionActiveIndex,
+				numberOfResults: this.suggestionsList.length
+			};
+
+			this.$emit( 'suggestion-click', event );
 		},
 
 		onKeyDownUp( event: KeyboardEvent ) { this.handleKeyUpDown( event, -1 ); },
@@ -397,6 +414,15 @@ export default Vue.extend( {
 
 		getSuggestionId( suggestion: SearchResult ): string {
 			return `wvui-typeahead-search-suggestion-${suggestion.id}`;
+		},
+
+		onSubmit() {
+			const event: SubmitEvent = {
+				index: this.suggestionActiveIndex,
+				numberOfResults: this.suggestionsList.length
+			};
+
+			this.$emit( 'submit', event );
 		}
 	}
 } );
