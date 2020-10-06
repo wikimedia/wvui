@@ -1,4 +1,4 @@
-import { buildQueryString, fetchJson } from './fetch';
+import { fetchJson } from './fetch';
 import * as jestFetchMock from 'jest-fetch-mock';
 
 const mockedRequests = !process.env.TEST_LIVE_REQUESTS;
@@ -75,23 +75,4 @@ describe( 'fetch() using window.fetch', () => {
 			);
 		}
 	} );
-} );
-
-describe( 'buildQueryString()', () => {
-	type Case = [ msg: string, props: Record<string, string | number | boolean>, expected: string ];
-
-	const cases: Case[] = [
-		[ 'empty object', {}, '' ],
-		[ 'single property object', { single: 'value' }, 'single=value' ],
-		[
-			'multiple mixed property object',
-			{ str: 'val', num: 1, bool: true },
-			'str=val&num=1&bool=true'
-		]
-	];
-	test.each( cases )(
-		'Case %# %s: (%p) => %p',
-		( _, obj, result ) =>
-			expect( buildQueryString( obj ) ).toStrictEqual( result )
-	);
 } );

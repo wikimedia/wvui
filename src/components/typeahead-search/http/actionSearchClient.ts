@@ -1,4 +1,5 @@
-import { buildQueryString, fetchJson, FetchJson } from '../../../http/fetch';
+import { fetchJson, FetchJson } from '../../../http/fetch';
+import { buildQueryString } from '../../../utils/StringUtils';
 import { SearchClient, SearchResponse } from './SearchClient';
 
 // https://www.mediawiki.org/wiki/API:Query
@@ -96,7 +97,7 @@ export function actionSearchClient( getJson: FetchJson = fetchJson ): SearchClie
 		submitSearchURL(
 			query,
 			params = { title: 'Special:Search' } ) {
-			return encodeURI( `/w/index.php?${buildQueryString( { ...params, search: query } )}` );
+			return `/w/index.php?${buildQueryString( { ...params, search: query } )}`;
 		}
 	};
 }
