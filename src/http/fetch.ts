@@ -1,15 +1,19 @@
-// A function which returns a promise that resolves to a JSON object
+// A function which returns an object containing a fetch function.
 export type FetchJson = (
 	resource: string,
 	init?: RequestInit
-) => Promise<unknown>;
+) => FetchJsonReturn;
+
+export interface FetchJsonReturn {
+	fetch: Promise<unknown>
+}
 
 // A wrapper which combines native fetch() in browsers and the following json() call.
 export function fetchJson(
 	resource: string,
 	init?: RequestInit
-): Promise<unknown> {
-	return fetch( resource, init )
+): FetchJsonReturn {
+	const getJson = fetch( resource, init )
 		.then( ( response ) => {
 			if ( !response.ok ) {
 				return Promise.reject(
@@ -19,4 +23,8 @@ export function fetchJson(
 
 			return response.json();
 		} );
+
+	return {
+		fetch: getJson
+	};
 }

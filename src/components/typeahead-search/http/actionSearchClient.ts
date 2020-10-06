@@ -91,8 +91,9 @@ export function actionSearchClient( getJson: FetchJson = fetchJson ): SearchClie
 			};
 
 			const url = `//${domain}/w/api.php?${buildQueryString( params )}`;
-			return getJson( url, { headers } )
-				.then( ( json ) => adaptApiResponse( query, json as ActionResponse ) );
+			const { fetch } = getJson( url, { headers } );
+
+			return fetch.then( ( json ) => adaptApiResponse( query, json as ActionResponse ) );
 		},
 		submitSearchURL(
 			query,

@@ -37,7 +37,8 @@ describe( 'fetch() using window.fetch', () => {
 	} );
 
 	test( '200 without init param passed', async () => {
-		const json = await fetchJson( url );
+		const { fetch } = fetchJson( url );
+		const json = await fetch;
 
 		expect( json ).toStrictEqual( { pages: [] } );
 
@@ -48,7 +49,8 @@ describe( 'fetch() using window.fetch', () => {
 	} );
 
 	test( '200 with init param passed', async () => {
-		const json = await fetchJson( url, { mode: 'cors' } );
+		const { fetch } = fetchJson( url, { mode: 'cors' } );
+		const json = await fetch;
 
 		await expect( json ).toStrictEqual( { pages: [] } );
 
@@ -63,7 +65,9 @@ describe( 'fetch() using window.fetch', () => {
 
 	test( '404 response', async () => {
 		expect.assertions( 1 );
-		await expect( fetchJson( '//en.wikipedia.org/doesNotExist' ) )
+		const { fetch } = fetchJson( '//en.wikipedia.org/doesNotExist' );
+
+		await expect( fetch )
 			.rejects.toStrictEqual( 'Network request failed with HTTP code 404.' );
 
 		if ( mockedRequests ) {
