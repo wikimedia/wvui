@@ -18,7 +18,11 @@ exports[`matches the snapshot Case 0 With thumbnail: ({"suggestion": [Object]}) 
     >
       
 	Color
-      <!---->
+      <span
+        class="wvui-typeahead-suggestion__match"
+      >
+        
+      </span>
       
 
     </span>
@@ -71,7 +75,11 @@ exports[`matches the snapshot Case 1 Without thumbnail: ({"suggestion": [Object]
     >
       
 	Co
-      <!---->
+      <span
+        class="wvui-typeahead-suggestion__match"
+      >
+        
+      </span>
       
 
     </span>

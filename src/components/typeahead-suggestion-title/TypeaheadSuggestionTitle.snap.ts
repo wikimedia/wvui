@@ -6,11 +6,11 @@ exports[`matches the snapshot Case 0 With highlight (query matches): ({"query": 
 >
   
 	
-  <em
+  <span
     class="wvui-typeahead-suggestion__match"
   >
     Co
-  </em>
+  </span>
   lor
 
 </span>
@@ -22,7 +22,11 @@ exports[`matches the snapshot Case 1 Without highlight (no query): ({"title": "C
 >
   
 	Color
-  <!---->
+  <span
+    class="wvui-typeahead-suggestion__match"
+  >
+    
+  </span>
   
 
 </span>
@@ -34,7 +38,11 @@ exports[`matches the snapshot Case 2 Without highlight (query doesn't match): ({
 >
   
 	Color
-  <!---->
+  <span
+    class="wvui-typeahead-suggestion__match"
+  >
+    
+  </span>
   
 
 </span>

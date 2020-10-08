@@ -1,7 +1,7 @@
 <template>
 	<span class="wvui-typeahead-suggestion__title">
 		<!--eslint-disable-next-line max-len-->
-		{{ titleChunks[ 0 ] }}<em v-if="titleChunks[ 1 ]" class="wvui-typeahead-suggestion__match">{{ titleChunks[ 1 ] }}</em>{{ titleChunks[ 2 ] }}
+		{{ titleChunks[ 0 ] }}<span class="wvui-typeahead-suggestion__match">{{ titleChunks[ 1 ] }}</span>{{ titleChunks[ 2 ] }}
 	</span>
 </template>
 
@@ -46,9 +46,7 @@ export default Vue.extend( {
 }
 
 .wvui-typeahead-suggestion__match {
-	// Remove italic
-	font-style: inherit;
-	text-decoration: underline;
+	font-weight: @font-weight-normal;
 }
 
 </style>
