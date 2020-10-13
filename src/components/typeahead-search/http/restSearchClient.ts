@@ -64,11 +64,6 @@ export function restSearchClient( getJson: FetchJson = fetchJson ): SearchClient
 			const { fetch } = getJson( url, { headers } );
 
 			return fetch.then( ( json ) => adaptApiResponse( query, json as RestResponse ) );
-		},
-		submitSearchURL(
-			query,
-			params = { title: 'Special:Search' } ) {
-			return `/w/index.php?${buildQueryString( { ...params, search: query } )}`;
 		}
 	};
 }

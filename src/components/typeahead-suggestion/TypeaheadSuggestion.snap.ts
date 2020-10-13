@@ -3,7 +3,7 @@
 exports[`matches the snapshot Case 0 With thumbnail: ({"suggestion": [Object]}) => HTML 1`] = `
 <a
   class="wvui-typeahead-suggestion"
-  href="/wiki/Color"
+  href="/w/index.php?title=Special%3ASearch&search=Color"
 >
   <span
     class="wvui-typeahead-suggestion__thumbnail"
@@ -35,7 +35,7 @@ exports[`matches the snapshot Case 0 With thumbnail: ({"suggestion": [Object]}) 
 exports[`matches the snapshot Case 1 Without thumbnail: ({"suggestion": [Object]}) => HTML 1`] = `
 <a
   class="wvui-typeahead-suggestion"
-  href="/wiki/Co"
+  href="/w/index.php?title=Special%3ASearch&search=Co"
 >
   <span
     class="wvui-typeahead-suggestion__thumbnail-placeholder"

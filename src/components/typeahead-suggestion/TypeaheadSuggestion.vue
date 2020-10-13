@@ -35,6 +35,7 @@ import WvuiIcon from '../icon/Icon.vue';
 import { wvuiIconArticle } from '../../themes/icons';
 import WvuiTypeaheadSuggestionTitle
 	from '../typeahead-suggestion-title/TypeaheadSuggestionTitle.vue';
+import { UrlGenerator, createDefaultUrlGenerator } from './UrlGenerator';
 
 export default Vue.extend( {
 	name: 'WvuiTypeaheadSuggestion',
@@ -51,6 +52,10 @@ export default Vue.extend( {
 		suggestion: {
 			type: Object as PropType<SearchResult>,
 			required: true
+		},
+		urlGenerator: {
+			type: Object as PropType<UrlGenerator>,
+			default: createDefaultUrlGenerator
 		}
 	},
 	data() {
@@ -70,7 +75,7 @@ export default Vue.extend( {
 		 * @return {string}
 		 * */
 		suggestionWikiLink(): string {
-			return `/wiki/${this.suggestion.key}`;
+			return this.urlGenerator.generateUrl( this.suggestion );
 		},
 		/**
 		 * Generates a proper value for background-image.

@@ -5,13 +5,6 @@ export interface SearchClient {
 	 * @param limit Maximum number of results.
 	 */
 	fetchByTitle( query: string, domain: string, limit?: number ): Promise<SearchResponse>;
-
-	/**
-	 * @param query The search term.
-	 * @param params Parameters for building a URL query string. The query is inserted.
-	 * @return The encoded search URL.
-	 */
-	submitSearchURL( query: string, params?: Record<string, string> ): string;
 }
 
 export interface SearchResponse {
