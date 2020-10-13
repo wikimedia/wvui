@@ -28,19 +28,20 @@
 
 @box-shadow-widget: inset 0 0 0 1px transparent;
 
-@width-search-suggestion-thumb: unit(2.5, @wvui-unit);
-@height-search-suggestion-thumb: unit(2, @wvui-unit);
-
-@font-size-search-suggestion-description: unit( 13 / @font-size-browser, @wvui-unit );
-@font-size-search-suggestion-title: unit( 15 / @font-size-browser, @wvui-unit );
+// Typeahead Suggestion.
+@min-width-typeahead-suggestion-thumb: 36px;
+@size-typeahead-suggestion-thumb: unit( 36 / @font-size-browser / @font-size-base, @wvui-unit );
 
 @background-color-typeahead-suggestion--active: @wmui-color-accent90;
 @background-color-typeahead-suggestion-placeholder: @wmui-color-base90;
 
+@padding-horizontal-typeahead-suggestion: @padding-horizontal-base;
+@padding-vertical-typeahead-suggestion: 8px;
+
 @border-color-typeahead-suggestion-thumb: @wmui-color-base80;
+
+@font-size-typeahead-suggestion-description: unit( 14 / @font-size-browser, @wvui-unit );
+@font-size-typeahead-suggestion-title: unit( 16 / @font-size-browser, @wvui-unit );
 
 // Put absolute positioned icon in input on correct starting coordinate.
 @start-input-text-icon: @padding-horizontal-input-text + @border-width-base;
-
-@padding-horizontal-typeahead-suggestion: @padding-horizontal-base;
-@padding-vertical-typeahead-suggestion: 8px;

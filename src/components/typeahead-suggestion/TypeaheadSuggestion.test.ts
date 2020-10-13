@@ -18,37 +18,21 @@ describe( 'matches the snapshot', () => {
 	} );
 } );
 
-it( 'should focus/blur on active/inactive states', async () => {
-	const div = document.createElement( 'div' );
+describe( 'event emitting', () => {
+	const props = { suggestion: suggestionsList.pages[ 0 ] as SearchResult };
+	const wrapper = shallowMount( WvuiTypeaheadSuggestion, { propsData: props } );
 
-	div.id = 'root';
-	document.body.appendChild( div );
+	it( 'emits mouseover events', async () => {
+		await wrapper.findComponent( WvuiTypeaheadSuggestion )
+			.trigger( 'mouseover' );
 
-	const wrapper = mount( WvuiTypeaheadSuggestion, {
-		attachTo: '#root',
-		propsData: {
-			suggestion: suggestionsList.pages[ 1 ]
-		}
-	} );
-	const el = wrapper.element as HTMLElement;
-
-	await wrapper.setProps( { active: true } );
-
-	expect( el ).toBe( document.activeElement );
-
-	await wrapper.setProps( { active: false } );
-
-	expect( el ).not.toBe( document.activeElement );
-
-} );
-
-it( 'emits mouseover event', () => {
-	const wrapper = shallowMount( WvuiTypeaheadSuggestion, {
-		propsData: {
-			suggestion: suggestionsList.pages[ 1 ]
-		}
+		expect( wrapper.emitted().mouseover ).toBeTruthy();
 	} );
 
-	wrapper.get( '.wvui-typeahead-suggestion' ).trigger( 'mouseover' );
-	expect( wrapper.emitted().mouseover ).toBeTruthy();
+	it( 'emits click events', async () => {
+		await wrapper.findComponent( WvuiTypeaheadSuggestion )
+			.trigger( 'click' );
+
+		expect( wrapper.emitted().click ).toBeTruthy();
+	} );
 } );

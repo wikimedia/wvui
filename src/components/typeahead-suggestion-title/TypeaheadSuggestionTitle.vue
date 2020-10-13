@@ -38,10 +38,10 @@ export default Vue.extend( {
 @import ( reference ) '@/themes/wikimedia-ui.less';
 
 .wvui-typeahead-suggestion__title {
+	color: @color-base;
 	display: block;
 	margin: 0 0 2px 0;
-	color: @color-base;
-	font-size: @font-size-search-suggestion-title;
+	font-size: @font-size-typeahead-suggestion-title;
 	font-weight: @font-weight-bold;
 }
 
