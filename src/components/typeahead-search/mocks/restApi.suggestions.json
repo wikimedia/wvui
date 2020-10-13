@@ -26,7 +26,7 @@
 		{
 			"id": 5399,
 			"key": "Colorado",
-			"title": "Co Curabitur aliquet quam id dui posuere blandit. Curabitur arcu erat.",
+			"title": "Colorado",
 			"excerpt": "Colorado",
 			"description": "state of the United States of America",
 			"thumbnail": {
@@ -69,6 +69,21 @@
 			}
 		},
 		{
+			"id": 1645200,
+			"key": "Colour_revolution",
+			"title": "Colour revolution",
+			"excerpt": "Colour revolution",
+			"description": "political term associated with democratization",
+			"thumbnail": {
+				"mimetype": "image/png",
+				"size": null,
+				"width": 200,
+				"height": 119,
+				"duration": null,
+				"url": "//upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Color_Revolutions_Map.png/200px-Color_Revolutions_Map.png"
+			}
+		},
+		{
 			"id": 331448,
 			"key": "Color_depth",
 			"title": "Color depth",
@@ -104,6 +119,21 @@
 				"height": 200,
 				"duration": null,
 				"url": "//upload.wikimedia.org/wikipedia/commons/thumb/4/46/Hillotypie.jpg/152px-Hillotypie.jpg"
+			}
+		},
+		{
+			"id": 475386,
+			"key": "Colorado_State_University",
+			"title": "Colorado State University",
+			"excerpt": "Colorado State University",
+			"description": "public research university in Fort Collins, Colorado, USA",
+			"thumbnail": {
+				"mimetype": "image/png",
+				"size": null,
+				"width": 200,
+				"height": 195,
+				"duration": null,
+				"url": "//upload.wikimedia.org/wikipedia/en/thumb/c/c4/Colorado_State_University_seal.png/200px-Colorado_State_University_seal.png"
 			}
 		}
 	]
