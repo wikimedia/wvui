@@ -3,15 +3,15 @@ import { SearchResult } from '../typeahead-search/http/SearchClient';
 
 export interface UrlGenerator {
 
-    /**
-     * Generates the URL that the user agent should navigate to when the user clicks the typeahead
-     * suggestion.
-     *
-     * @param suggestion
-     * @param params Additional parameters to include in the URL's query string
-     * @return
-     */
-    generateUrl( suggestion: SearchResult, params?: Record<string, string> ): string;
+	/**
+	 * Generates the URL that the user agent should navigate to when the user clicks the typeahead
+	 * suggestion.
+	 *
+	 * @param suggestion
+	 * @param params Additional parameters to include in the URL's query string
+	 * @return
+	 */
+	generateUrl( suggestion: SearchResult | string, params?: Record<string, string> ): string;
 }
 
 /**
@@ -22,12 +22,16 @@ export interface UrlGenerator {
 export function createDefaultUrlGenerator(): UrlGenerator {
 	return {
 		generateUrl(
-			suggestion: SearchResult,
+			suggestion: SearchResult | string,
 			params = {
 				title: 'Special:Search'
 			}
 		): string {
-			return `/w/index.php?${buildQueryString( { ...params, search: suggestion.title } )}`;
+			if ( typeof suggestion !== 'string' ) {
+				suggestion = suggestion.title;
+			}
+
+			return `/w/index.php?${buildQueryString( { ...params, search: suggestion } )}`;
 		}
 	};
 }
