@@ -1,15 +1,27 @@
+export interface AbortableSearchFetch {
+	fetch: Promise<SearchResponse>,
+	// Abort the request. This may also abort the reading of the response body
+	// depending on the implementation (e.g. when calling AbortController's abort
+	// method).
+	abort(): void
+}
+
 export interface SearchClient {
 	/**
 	 * @param query The search term.
 	 * @param domain The base URL for the wiki without protocol. Example: 'sr.wikipedia.org'.
 	 * @param limit Maximum number of results.
 	 */
-	fetchByTitle( query: string, domain: string, limit?: number ): Promise<SearchResponse>;
+	fetchByTitle(
+		query: string,
+		domain: string,
+		limit?: number,
+	): AbortableSearchFetch,
 }
 
 export interface SearchResponse {
 	query: string,
-	results: SearchResult[];
+	results: SearchResult[],
 }
 
 export interface SearchResult {

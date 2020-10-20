@@ -49,7 +49,9 @@ describe( 'restApiSearchClient', () => {
 			'media',
 			'en.wikipedia.org',
 			2
-		);
+		).fetch;
+
+		const controller = new AbortController();
 
 		expect( searchResult.query ).toStrictEqual( 'media' );
 		expect( searchResult.results ).toBeTruthy();
@@ -65,7 +67,7 @@ describe( 'restApiSearchClient', () => {
 			expect( fetchMock ).toHaveBeenCalledTimes( 1 ); // eslint-disable-line jest/no-conditional-expect
 			expect( fetchMock ).toHaveBeenCalledWith( // eslint-disable-line jest/no-conditional-expect
 				'//en.wikipedia.org/w/rest.php/v1/search/title?q=media&limit=2',
-				{ headers: { accept: 'application/json' } }
+				{ headers: { accept: 'application/json' }, signal: controller.signal }
 			);
 		}
 	} );
@@ -77,8 +79,9 @@ describe( 'restApiSearchClient', () => {
 		const searchResult = await restSearchClient().fetchByTitle(
 			'thereIsNothingLikeThis',
 			'en.wikipedia.org'
-		);
+		).fetch;
 
+		const controller = new AbortController();
 		expect( searchResult.query ).toStrictEqual( 'thereIsNothingLikeThis' );
 		expect( searchResult.results ).toBeTruthy();
 		expect( searchResult.results.length ).toBe( 0 );
@@ -87,7 +90,7 @@ describe( 'restApiSearchClient', () => {
 			expect( fetchMock ).toHaveBeenCalledTimes( 1 ); // eslint-disable-line jest/no-conditional-expect
 			expect( fetchMock ).toHaveBeenCalledWith( // eslint-disable-line jest/no-conditional-expect
 				'//en.wikipedia.org/w/rest.php/v1/search/title?q=thereIsNothingLikeThis&limit=10',
-				{ headers: { accept: 'application/json' } }
+				{ headers: { accept: 'application/json' }, signal: controller.signal }
 			);
 		}
 	} );
@@ -96,7 +99,7 @@ describe( 'restApiSearchClient', () => {
 		const searchResult = await restSearchClient().fetchByTitle(
 			' ',
 			'foo.org'
-		);
+		).fetch;
 
 		expect( searchResult.query ).toStrictEqual( '' );
 		expect( searchResult.results ).toBeTruthy();
@@ -114,7 +117,7 @@ describe( 'restApiSearchClient', () => {
 			await expect( restSearchClient().fetchByTitle(
 				'anything',
 				'en.wikipedia.org'
-			) ).rejects.toThrow( 'failed' );
+			).fetch ).rejects.toThrow( 'failed' );
 		} );
 	}
 } );

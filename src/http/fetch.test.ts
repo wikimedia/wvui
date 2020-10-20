@@ -2,10 +2,23 @@ import { fetchJson } from './fetch';
 import * as jestFetchMock from 'jest-fetch-mock';
 
 const mockedRequests = !process.env.TEST_LIVE_REQUESTS;
+const url = '//en.wikipedia.org/w/rest.php/v1/search/title?q=jfgkdajgioj&limit=10';
+
+describe( 'abort() using AbortController', () => {
+	test( 'Aborting an unfinished request throws an AbortError', async () => {
+		expect.assertions( 1 );
+
+		const { abort, fetch } = fetchJson( url );
+
+		abort();
+
+		return fetch.catch( ( e ) => {
+			expect( e.name ).toStrictEqual( 'AbortError' );
+		} );
+	} );
+} );
 
 describe( 'fetch() using window.fetch', () => {
-	const url = '//en.wikipedia.org/w/rest.php/v1/search/title?q=jfgkdajgioj&limit=10';
-
 	beforeAll( () => {
 		jestFetchMock.enableFetchMocks();
 	} );
@@ -40,11 +53,14 @@ describe( 'fetch() using window.fetch', () => {
 		const { fetch } = fetchJson( url );
 		const json = await fetch;
 
+		const controller = new AbortController();
 		expect( json ).toStrictEqual( { pages: [] } );
 
 		if ( mockedRequests ) {
-			expect( fetchMock ).toHaveBeenCalledTimes( 1 ); // eslint-disable-line jest/no-conditional-expect
-			expect( fetchMock ).toHaveBeenCalledWith( url, undefined ); // eslint-disable-line jest/no-conditional-expect
+			// eslint-disable-next-line jest/no-conditional-expect
+			expect( fetchMock ).toHaveBeenCalledTimes( 1 );
+			// eslint-disable-next-line jest/no-conditional-expect
+			expect( fetchMock ).toHaveBeenCalledWith( url, { signal: controller.signal } );
 		}
 	} );
 
@@ -52,7 +68,7 @@ describe( 'fetch() using window.fetch', () => {
 		const { fetch } = fetchJson( url, { mode: 'cors' } );
 		const json = await fetch;
 
-		await expect( json ).toStrictEqual( { pages: [] } );
+		expect( json ).toStrictEqual( { pages: [] } );
 
 		if ( mockedRequests ) {
 			expect( fetchMock ).toHaveBeenCalledTimes( 1 ); // eslint-disable-line jest/no-conditional-expect
@@ -71,12 +87,15 @@ describe( 'fetch() using window.fetch', () => {
 			.rejects.toStrictEqual( 'Network request failed with HTTP code 404.' );
 
 		if ( mockedRequests ) {
+			const controller = new AbortController();
 			expect.assertions( 3 );
-			expect( fetchMock ).toHaveBeenCalledTimes( 1 ); // eslint-disable-line jest/no-conditional-expect
-			expect( fetchMock ).toHaveBeenCalledWith( // eslint-disable-line jest/no-conditional-expect
-				'//en.wikipedia.org/doesNotExist',
-				undefined
+			// eslint-disable-next-line jest/no-conditional-expect
+			expect( fetchMock ).toHaveBeenCalledTimes( 1 );
+			// eslint-disable-next-line jest/no-conditional-expect
+			expect( fetchMock ).toHaveBeenCalledWith(
+				'//en.wikipedia.org/doesNotExist', { signal: controller.signal }
 			);
 		}
 	} );
+
 } );
