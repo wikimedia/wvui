@@ -153,14 +153,13 @@ export default Vue.extend( {
 
 	&__start-icon,
 	&__end-icon {
-		position: absolute;
-		line-height: 1;
-		top: 0;
 		min-height: @size-icon;
 		height: 100%;
-		padding-left: @padding-horizontal-input-text;
 		// stylelint-disable-next-line plugin/no-unsupported-browser-features
 		display: flex;
+		position: absolute;
+		top: 0;
+		left: @start-input-text-icon;
 		align-items: center;
 		opacity: @opacity-icon-accessory;
 	}
