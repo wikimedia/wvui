@@ -148,7 +148,6 @@ export default Vue.extend( {
 
 .wvui-input {
 	position: relative; // For proper positioning of icons and slotted elements
-	vertical-align: middle;
 	box-sizing: border-box;
 
 	&__start-icon,
