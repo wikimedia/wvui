@@ -45,21 +45,22 @@ export const combinations = (): Vue.Component =>
 				PrimaryAction,
 				combinations: [
 					{ enabled: true, quiet: false },
-					{ enabled: true, quiet: true },
 					{ enabled: false, quiet: false },
+					{ enabled: true, quiet: true },
 					{ enabled: false, quiet: true }
 				]
 			};
 		},
 		methods: { click: action( 'click' ) },
 		template: `
-		<table>
+		<table
+			style="border-spacing: 16px;">
 			<thead>
 				<tr>
 					<th scope="col">Action</th>
 					<th scope="col">Normal</th>
-					<th scope="col">Quiet</th>
 					<th scope="col">Disabled</th>
+					<th scope="col">Quiet</th>
 					<th scope="col">Quiet disabled</th>
 				</tr>
 			</thead>

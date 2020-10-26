@@ -157,32 +157,27 @@ export default Vue.extend( {
 			background-color: @color-primary;
 			color: @color-base--inverted;
 
-			&.wvui-button--framed {
-				border-color: @wmui-color-accent30;
-			}
-
 			&:hover {
 				background-color: @color-primary--hover;
 				color: @color-base--inverted;
-
-				&.wvui-button--framed {
-					border-color: @wmui-color-accent30;
-				}
 			}
 
 			&:focus {
+				background-color: @wmui-color-accent30;
 				box-shadow: @box-shadow-primary--focus;
 				color: @color-base--inverted;
 			}
 
-			&:active {
-				&.wvui-button--framed {
-					border-color: @wmui-color-accent30;
+			&.wvui-button--framed {
+				border-color: @border-color-primary;
+
+				&:hover {
+					border-color: @border-color-primary--hover;
 				}
 
-				&:focus {
+				&:active {
+					border-color: @border-color-primary--active;
 					box-shadow: none;
-					background-color: @wmui-color-accent30;
 				}
 			}
 		}
@@ -191,17 +186,9 @@ export default Vue.extend( {
 			background-color: @color-destructive;
 			color: @color-base--inverted;
 
-			&.wvui-button--framed {
-				border-color: @wmui-color-red30;
-			}
-
 			&:hover {
 				background-color: @color-destructive--hover;
 				color: @color-base--inverted;
-
-				&.wvui-button--framed {
-					border-color: @wmui-color-red30;
-				}
 			}
 
 			&:focus {
@@ -209,14 +196,20 @@ export default Vue.extend( {
 				color: @color-base--inverted;
 			}
 
-			&:active {
-				&.wvui-button--framed {
-					border-color: @border-color-destructive--active;
+			&.wvui-button--framed {
+				border-color: @border-color-destructive;
+
+				&:hover {
+					border-color: @border-color-destructive--hover;
 				}
 
 				&:focus {
+					background-color: @border-color-destructive--focus;
 					box-shadow: none;
-					background-color: @wmui-color-red30;
+				}
+
+				&:active {
+					border-color: @border-color-destructive--active;
 				}
 			}
 		}
