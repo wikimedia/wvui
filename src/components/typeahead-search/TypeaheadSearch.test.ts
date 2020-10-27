@@ -164,6 +164,22 @@ describe( 'typing into input', () => {
 		expect( wrapper.vm.$data.suggestionsList ).toEqual( [ ] );
 		expect( wrapper.vm.$data.searchQuery ).toEqual( '' );
 	} );
+
+	it( 'aborts the previous request when new input', async () => {
+		fetchPromise = new Promise( () => {
+			// No-op (represents a promise that hasn't resolved yet).
+		} );
+
+		input.setValue( 'first query' );
+		expect( client.fetchByTitle.mock.results[ 0 ].value.abort.mock.calls.length ).toBe( 0 );
+
+		input.setValue( 'second query' );
+		expect( client.fetchByTitle.mock.results[ 0 ].value.abort.mock.calls.length ).toBe( 1 );
+
+		input.setValue( '' );
+		expect( client.fetchByTitle.mock.results[ 0 ].value.abort.mock.calls.length ).toBe( 1 );
+		expect( client.fetchByTitle.mock.results[ 1 ].value.abort.mock.calls.length ).toBe( 1 );
+	} );
 } );
 
 describe( 'when there are search results', () => {

@@ -95,7 +95,11 @@ import { InputType } from '../input/InputType';
 import WvuiButton from '../button/Button.vue';
 import WvuiInput from '../input/Input.vue';
 import WvuiIcon from '../icon/Icon.vue';
-import { SearchClient, SearchResult } from '../typeahead-search/http/SearchClient';
+import {
+	AbortableSearchFetch,
+	SearchClient,
+	SearchResult
+} from '../typeahead-search/http/SearchClient';
 import { wvuiIconSearch, wvuiIconArticleSearch } from '../../themes/icons';
 import { restSearchClient } from './http/restSearchClient';
 import { createDefaultUrlGenerator, UrlGenerator } from '../typeahead-suggestion/UrlGenerator';
@@ -168,7 +172,8 @@ export default Vue.extend( {
 			searchQuery: '',
 			inputValue: this.initialInputValue,
 			InputType,
-			isExpanded: false
+			isExpanded: false,
+			request: null as AbortableSearchFetch | null
 		};
 	},
 	computed: {
@@ -225,6 +230,13 @@ export default Vue.extend( {
 			try {
 				const query = value.trim();
 
+				if ( this.request ) {
+					// Cancel the last request before making a new one in case it is still
+					// pending. This call is expected to be inert if the request has
+					// already finished.
+					this.request.abort();
+				}
+
 				if ( !query ) {
 					this.suggestionsList = [];
 					this.searchQuery = query;
@@ -234,9 +246,8 @@ export default Vue.extend( {
 
 				this.$emit( 'fetch-start' );
 
-				const {
-					results
-				} = await this.client.fetchByTitle( value, this.domain ).fetch;
+				this.request = this.client.fetchByTitle( value, this.domain );
+				const { results } = await this.request.fetch;
 
 				this.suggestionsList = results;
 				this.suggestionActiveIndex = -1;
