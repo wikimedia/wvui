@@ -16,7 +16,15 @@ export const configurable = (): Vue.Component =>
 		props: {
 			thumbnail: {
 				type: Boolean,
-				default: boolean( 'Thumbnail?', true )
+				default: boolean( 'Has thumbnail?', true )
+			},
+			showThumbnail: {
+				type: Boolean,
+				default: boolean( 'Show thumbnail?', true )
+			},
+			showDescription: {
+				type: Boolean,
+				default: boolean( 'Show description?', true )
 			},
 			active: { type: Boolean, default: boolean( 'Active?', false ) },
 			query: { type: String, default: text( 'Query (for highlighting)', 'Co' ) }
@@ -38,6 +46,8 @@ export const configurable = (): Vue.Component =>
 					:suggestion="suggestion"
 					:active="active"
 					:query="query"
+					:showThumbnail="showThumbnail"
+					:showDescription="showDescription"
 				/>
 			</li>
 		</ol>

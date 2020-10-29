@@ -54,6 +54,8 @@
 							:query="searchQuery"
 							:active="suggestionActiveIndex === index"
 							:suggestion="suggestion"
+							:show-thumbnail="showThumbnail"
+							:show-description="showDescription"
 							@mouseover="onSuggestionMouseOver( index )"
 							@mousedown.native="onSuggestionMouseDown"
 							@click="onSuggestionClick( suggestion )"
@@ -145,6 +147,14 @@ export default Vue.extend( {
 		id: {
 			type: String,
 			required: true
+		},
+		showThumbnail: {
+			type: Boolean,
+			default: true
+		},
+		showDescription: {
+			type: Boolean,
+			default: true
 		}
 	},
 	data() {

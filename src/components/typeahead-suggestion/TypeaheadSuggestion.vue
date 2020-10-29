@@ -8,12 +8,12 @@
 		@click="onClick"
 	>
 		<span
-			v-if="suggestion.thumbnail"
+			v-if="showThumbnail && suggestion.thumbnail"
 			:style="{backgroundImage: thumbnailBackgroundImage}"
 			class="wvui-typeahead-suggestion__thumbnail"
 		/>
 		<span
-			v-else
+			v-else-if="showThumbnail"
 			class="wvui-typeahead-suggestion__thumbnail-placeholder"
 		><wvui-icon
 			:icon="defaultThumbnailIcon"
@@ -25,7 +25,7 @@
 				:title="suggestion.title"
 			/>
 			<span
-				v-if="suggestion.description"
+				v-if="showDescription && suggestion.description"
 				class="wvui-typeahead-suggestion__description"
 			>{{ suggestion.description }}</span>
 		</span>
@@ -60,6 +60,14 @@ export default Vue.extend( {
 		urlGenerator: {
 			type: Object as PropType<UrlGenerator>,
 			default: createDefaultUrlGenerator
+		},
+		showThumbnail: {
+			type: Boolean,
+			default: true
+		},
+		showDescription: {
+			type: Boolean,
+			default: true
 		}
 	},
 	data() {
