@@ -1,10 +1,10 @@
 version: v4
 lives:
   in: /srv/service
-base: docker-registry.wikimedia.org/nodejs10-slim:0.0.4
+base: docker-registry.wikimedia.org/buster-nodejs10-slim:0.0.1
 variants:
   build:
-    base: docker-registry.wikimedia.org/nodejs10-devel:0.0.3
+    base: docker-registry.wikimedia.org/buster-nodejs10-devel:0.0.1
     copies: [local]
     apt:
       packages: [git, build-essential, python-pkgconfig]
