@@ -11,6 +11,7 @@ pipelines:
     blubberfile: blubber.yaml
     stages:
       - name: release
+        build: release
         run:
           credentials:
             - id: WVUI_NPM_TOKEN
