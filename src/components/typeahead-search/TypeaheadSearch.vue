@@ -221,8 +221,7 @@ export default Vue.extend( {
 		}
 	},
 	methods: {
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-		onInput: async function ( this: any, value: string ) {
+		async onInput( value: string ) {
 			try {
 				const query = value.trim();
 
