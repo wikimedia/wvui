@@ -8,3 +8,6 @@
 
 /.eslintcache
 /.stylelintcache
+
+# Blubber generated Dockerfile during Jenkins run.
+/.pipeline/Dockerfile.*
