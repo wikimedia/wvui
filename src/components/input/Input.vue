@@ -154,22 +154,18 @@ export default Vue.extend( {
 	&__end-icon {
 		min-height: @size-icon;
 		height: 100%;
-		// stylelint-disable-next-line plugin/no-unsupported-browser-features
-		display: flex;
 		position: absolute;
 		top: 0;
-		left: @start-input-text-icon;
-		align-items: center;
 		opacity: @opacity-icon-accessory;
 	}
 
 	&__start-icon {
+		left: @start-input-text-icon;
 		pointer-events: none;
 	}
 
 	&__end-icon {
-		right: 0;
-		padding-right: @padding-horizontal-input-text;
+		right: @end-input-text-icon;
 	}
 
 	&--clearable {
