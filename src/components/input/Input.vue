@@ -35,7 +35,7 @@ import { InputType, isInputType } from './InputType';
 import Vue, { PropType } from 'vue';
 import WvuiIcon from '../icon/Icon.vue';
 import { AnyIcon } from '../icon/iconTypes';
-import { wvuiIconClose } from '../../themes/icons';
+import { wvuiIconClear } from '../../themes/icons';
 
 export default Vue.extend( {
 	name: 'WvuiInput',
@@ -82,7 +82,7 @@ export default Vue.extend( {
 	data(): Record<string, string | number | AnyIcon> {
 		return {
 			newValue: this.value,
-			clearIcon: wvuiIconClose
+			clearIcon: wvuiIconClear
 		};
 	},
 	computed: {
@@ -170,7 +170,15 @@ export default Vue.extend( {
 
 	&--clearable {
 		.wvui-input__end-icon {
+			box-sizing: border-box;
+			width: @size-base;
+			right: @border-width-base;
+			padding: 0 @padding-horizontal-input-text;
 			cursor: pointer;
+
+			svg {
+				width: @size-indicator;
+			}
 		}
 	}
 
