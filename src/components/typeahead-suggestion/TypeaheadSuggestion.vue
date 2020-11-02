@@ -144,6 +144,7 @@ export default Vue.extend( {
 			@border-width-base
 			@border-width-base
 			@border-color-typeahead-suggestion-thumb;
+		margin-right: @margin-end-typeahead-suggestion-thumb;
 	}
 
 	&__thumbnail {
@@ -164,16 +165,6 @@ export default Vue.extend( {
 
 	&__text {
 		overflow: hidden;
-		padding-left: @padding-horizontal-typeahead-suggestion;
-		padding-right: @padding-horizontal-typeahead-suggestion;
-
-		// stylelint-disable-next-line plugin/no-unsupported-browser-features
-		@supports ( padding-inline-start: @padding-horizontal-typeahead-suggestion ) {
-			// Reset paddings for all modern browsers.
-			padding-right: 0;
-			padding-left: 0;
-			padding-inline-start: @padding-horizontal-typeahead-suggestion;
-		}
 
 		.wvui-typeahead-suggestion__description {
 			color: @color-placeholder;

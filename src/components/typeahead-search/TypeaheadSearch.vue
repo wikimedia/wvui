@@ -390,11 +390,16 @@ export default Vue.extend( {
 @import ( reference ) '@/themes/wikimedia-ui.less';
 
 .wvui-typeahead-search {
+	// The amount of spacing from the end of the input icon, typeahead suggestion
+	// thumb, and footer icon to the start of their associated text. We need the
+	// figures and text to vertically line up. For pragmatic reasons we use the
+	// spacing from the typeahead suggestion thumb.
+	@spacing-end-typeahead-search-figure: @margin-end-typeahead-suggestion-thumb;
 	// The amount the width of the input increased by when it is focused.
 	// It starts with `@padding-horizontal-input-text * 2 + @size-icon`.
 	// @min-width-typeahead-suggestion-thumb - @min-size-icon is too much.
 	@size-typeahead-search-focus-addition: @min-width-typeahead-suggestion-thumb -
-		@min-size-icon + @padding-horizontal-typeahead-suggestion;
+		@min-size-icon + @spacing-end-typeahead-search-figure;
 
 	// ---
 	max-width: 500px;
@@ -462,22 +467,13 @@ export default Vue.extend( {
 			.wvui-icon {
 				width: @size-typeahead-suggestion-thumb;
 				height: @size-typeahead-suggestion-thumb;
+				margin-right: @spacing-end-typeahead-search-figure;
 				font-size: @font-size-typeahead-suggestion-title;
 				opacity: @opacity-icon-accessory;
 			}
 
 			&__text {
-				padding-left: @padding-horizontal-base;
-				padding-right: @padding-horizontal-base;
 				font-size: @font-size-typeahead-suggestion-title;
-
-				// stylelint-disable-next-line plugin/no-unsupported-browser-features
-				@supports ( padding-inline-start: @padding-horizontal-base ) {
-					// Reset paddings for all modern browsers.
-					padding-right: 0;
-					padding-left: 0;
-					padding-inline-start: @padding-horizontal-base;
-				}
 			}
 		}
 	}
@@ -498,15 +494,18 @@ export default Vue.extend( {
 
 			&:focus {
 				// Keep the cursor in the same place on the screen.
-				padding-left: @padding-horizontal-typeahead-suggestion * 2 +
-					@min-width-typeahead-suggestion-thumb;
+				padding-left: @padding-horizontal-typeahead-suggestion +
+					@min-width-typeahead-suggestion-thumb +
+					@spacing-end-typeahead-search-figure;
 				// stylelint-disable-next-line plugin/no-unsupported-browser-features
 				width: calc( 100% + @size-typeahead-search-focus-addition );
 				// Don't let the input grow over the search button.
 				transform: translateX( -@size-typeahead-search-focus-addition );
 
 				& + .wvui-input__start-icon {
-					transform: translateX( -12px );
+					left: -@size-typeahead-search-focus-addition +
+						@padding-horizontal-typeahead-suggestion;
+					width: @min-width-typeahead-suggestion-thumb;
 				}
 			}
 		}
