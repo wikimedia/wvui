@@ -1,7 +1,11 @@
-@import (reference) "~wikimedia-ui-base/wikimedia-ui-base.less";
+@import ( reference ) '~wikimedia-ui-base/wikimedia-ui-base.less';
 
 body {
+	color: @color-base;
 	font-family: @font-family-system-sans;
 	font-size: 0.875em;
-	color: @wmui-color-base10;
+	// Support IE 11, Trident cuts values 2 digits after decimal point.
+	// `calc` enables to set correct calculation in place again. See T102364.
+	/* autoprefixer: ignore next */
+	font-size: calc( 1em * 0.875 );
 }
