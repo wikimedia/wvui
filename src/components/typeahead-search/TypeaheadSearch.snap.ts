@@ -5,7 +5,7 @@ exports[`matches the snapshot 1`] = `
   aria-expanded="false"
   aria-haspopup="listbox"
   aria-owns="foo-suggestions"
-  class="wvui-typeahead-search"
+  class="wvui-typeahead-search wvui-typeahead-search--show-thumbnail"
   role="combobox"
 >
   <form
@@ -84,7 +84,7 @@ exports[`matches the snapshot 1`] = `
           tabindex="-1"
         >
           <span
-            class="wvui-icon"
+            class="wvui-icon wvui-typeahead-search__suggestions-footer-article-icon"
           >
             <svg
               aria-hidden="true"
@@ -125,7 +125,7 @@ exports[`when there are search results matches the snapshot 1`] = `
   aria-expanded="true"
   aria-haspopup="listbox"
   aria-owns="foo-suggestions"
-  class="wvui-typeahead-search wvui-typeahead-search--active wvui-typeahead-search--has-value wvui-typeahead-search--expanded"
+  class="wvui-typeahead-search wvui-typeahead-search--active wvui-typeahead-search--has-value wvui-typeahead-search--expanded wvui-typeahead-search--show-thumbnail"
   role="combobox"
 >
   <form
@@ -197,7 +197,7 @@ exports[`when there are search results matches the snapshot 1`] = `
         role="option"
       >
         <a
-          class="wvui-typeahead-suggestion"
+          class="wvui-typeahead-suggestion wvui-typeahead-search__suggestion"
           href="/w/index.php?title=Special%3ASearch&search=Co"
           id="wvui-typeahead-search-suggestion-8399891"
         >
@@ -252,7 +252,7 @@ exports[`when there are search results matches the snapshot 1`] = `
         role="option"
       >
         <a
-          class="wvui-typeahead-suggestion"
+          class="wvui-typeahead-suggestion wvui-typeahead-search__suggestion"
           href="/w/index.php?title=Special%3ASearch&search=Color"
           id="wvui-typeahead-search-suggestion-5921"
         >
@@ -290,7 +290,7 @@ exports[`when there are search results matches the snapshot 1`] = `
         role="option"
       >
         <a
-          class="wvui-typeahead-suggestion"
+          class="wvui-typeahead-suggestion wvui-typeahead-search__suggestion"
           href="/w/index.php?title=Special%3ASearch&search=Colorado"
           id="wvui-typeahead-search-suggestion-5399"
         >
@@ -328,7 +328,7 @@ exports[`when there are search results matches the snapshot 1`] = `
         role="option"
       >
         <a
-          class="wvui-typeahead-suggestion"
+          class="wvui-typeahead-suggestion wvui-typeahead-search__suggestion"
           href="/w/index.php?title=Special%3ASearch&search=Colorado%20Springs%2C%20Colorado"
           id="wvui-typeahead-search-suggestion-6250"
         >
@@ -366,7 +366,7 @@ exports[`when there are search results matches the snapshot 1`] = `
         role="option"
       >
         <a
-          class="wvui-typeahead-suggestion"
+          class="wvui-typeahead-suggestion wvui-typeahead-search__suggestion"
           href="/w/index.php?title=Special%3ASearch&search=Colorado%20River"
           id="wvui-typeahead-search-suggestion-180968"
         >
@@ -404,7 +404,7 @@ exports[`when there are search results matches the snapshot 1`] = `
         role="option"
       >
         <a
-          class="wvui-typeahead-suggestion"
+          class="wvui-typeahead-suggestion wvui-typeahead-search__suggestion"
           href="/w/index.php?title=Special%3ASearch&search=Colour%20revolution"
           id="wvui-typeahead-search-suggestion-1645200"
         >
@@ -442,7 +442,7 @@ exports[`when there are search results matches the snapshot 1`] = `
         role="option"
       >
         <a
-          class="wvui-typeahead-suggestion"
+          class="wvui-typeahead-suggestion wvui-typeahead-search__suggestion"
           href="/w/index.php?title=Special%3ASearch&search=Color%20depth"
           id="wvui-typeahead-search-suggestion-331448"
         >
@@ -501,7 +501,7 @@ exports[`when there are search results matches the snapshot 1`] = `
         role="option"
       >
         <a
-          class="wvui-typeahead-suggestion"
+          class="wvui-typeahead-suggestion wvui-typeahead-search__suggestion"
           href="/w/index.php?title=Special%3ASearch&search=Color%20temperature"
           id="wvui-typeahead-search-suggestion-7164"
         >
@@ -539,7 +539,7 @@ exports[`when there are search results matches the snapshot 1`] = `
         role="option"
       >
         <a
-          class="wvui-typeahead-suggestion"
+          class="wvui-typeahead-suggestion wvui-typeahead-search__suggestion"
           href="/w/index.php?title=Special%3ASearch&search=Color%20photography"
           id="wvui-typeahead-search-suggestion-444758"
         >
@@ -577,7 +577,7 @@ exports[`when there are search results matches the snapshot 1`] = `
         role="option"
       >
         <a
-          class="wvui-typeahead-suggestion"
+          class="wvui-typeahead-suggestion wvui-typeahead-search__suggestion"
           href="/w/index.php?title=Special%3ASearch&search=Colorado%20State%20University"
           id="wvui-typeahead-search-suggestion-475386"
         >
@@ -622,7 +622,7 @@ exports[`when there are search results matches the snapshot 1`] = `
           tabindex="-1"
         >
           <span
-            class="wvui-icon"
+            class="wvui-icon wvui-typeahead-search__suggestions-footer-article-icon"
           >
             <svg
               aria-hidden="true"

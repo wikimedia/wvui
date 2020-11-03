@@ -53,6 +53,7 @@
 					<wvui-typeahead-suggestion
 						:id="getSuggestionId( suggestion )"
 						:key="suggestion.id"
+						class="wvui-typeahead-search__suggestion"
 						:query="searchQuery"
 						:active="suggestionActiveIndex === index"
 						:suggestion="suggestion"
@@ -75,7 +76,10 @@
 						@mousedown="onSuggestionMouseDown"
 						@click="onSuggestionClick()"
 					>
-						<wvui-icon :icon="articlesIcon" />
+						<wvui-icon
+							class="wvui-typeahead-search__suggestions-footer-article-icon"
+							:icon="articlesIcon"
+						/>
 						<span
 							class="wvui-typeahead-search__suggestions__footer__text"
 						>{{ footerSearchText }} <strong>"{{ searchQuery }}"</strong></span>
@@ -179,7 +183,8 @@ export default Vue.extend( {
 			return {
 				'wvui-typeahead-search--active': this.isHovered,
 				'wvui-typeahead-search--has-value': !!this.searchQuery,
-				'wvui-typeahead-search--expanded': this.isExpanded
+				'wvui-typeahead-search--expanded': this.isExpanded,
+				'wvui-typeahead-search--show-thumbnail': this.showThumbnail
 			};
 		},
 		footerClasses(): Record<string, boolean> {
@@ -403,16 +408,17 @@ export default Vue.extend( {
 @import ( reference ) '@/themes/wikimedia-ui.less';
 
 .wvui-typeahead-search {
-	// The amount of spacing from the end of the input icon, typeahead suggestion
-	// thumb, and footer icon to the start of their associated text. We need the
-	// figures and text to vertically line up. For pragmatic reasons we use the
-	// spacing from the typeahead suggestion thumb.
+	// The width of the input icon container, suggestion thumb, and footer icon
+	// container. We want these to be the same width so that these figures
+	// vertically line up nicely. For pragmatic reasons, we use the width of the
+	// suggestion thumb.
+	@width-typeahead-search-figure: @min-width-typeahead-suggestion-thumb;
+	// The amount of spacing from the end of the input icon container, typeahead
+	// suggestion thumb, and footer icon container to the start of their
+	// associated text. We need the text to vertically line up nicely.
+	// For pragmatic reasons, we use the spacing from the typeahead suggestion
+	// thumb.
 	@spacing-end-typeahead-search-figure: @margin-end-typeahead-suggestion-thumb;
-	// The amount the width of the input increased by when it is focused.
-	// It starts with `@padding-horizontal-input-text * 2 + @size-icon`.
-	// @min-width-typeahead-suggestion-thumb - @min-size-icon is too much.
-	@size-typeahead-search-focus-addition: @min-width-typeahead-suggestion-thumb -
-		@min-size-icon + @spacing-end-typeahead-search-figure;
 
 	// ---
 	min-width: 350px;
@@ -445,7 +451,7 @@ export default Vue.extend( {
 		position: absolute;
 		top: @size-base;
 		right: 0;
-		left: -@size-typeahead-search-focus-addition;
+		left: 0;
 		border: @border-width-base @border-style-base @border-color-base;
 		border-top-width: 0;
 		border-radius: 0 0 @border-radius-base @border-radius-base;
@@ -461,7 +467,10 @@ export default Vue.extend( {
 			display: flex;
 			align-items: center;
 			border-top: @border-width-base @border-style-base @border-color-heading;
-			padding: @padding-vertical-typeahead-suggestion @padding-horizontal-base;
+			padding: @padding-vertical-typeahead-suggestion
+				@padding-horizontal-typeahead-suggestion
+				@padding-vertical-typeahead-suggestion
+				@width-typeahead-search-figure;
 			text-decoration: none;
 			cursor: pointer;
 
@@ -472,7 +481,11 @@ export default Vue.extend( {
 
 			// stylelint-disable-next-line max-nesting-depth
 			.wvui-icon {
-				width: @size-typeahead-suggestion-thumb;
+				// Because the footer icon should line up vertically with the suggestion
+				// text when `showThumbnail` is false, we set its width to `auto` here
+				// instead of using the more intuitive @width-typeahead-search-figure
+				// variable so that it doesn't have extra horizontal space.
+				width: auto;
 				height: @size-typeahead-suggestion-thumb;
 				margin-right: @spacing-end-typeahead-search-figure;
 				font-size: @font-size-typeahead-suggestion-title;
@@ -489,6 +502,10 @@ export default Vue.extend( {
 		}
 	}
 
+	&__suggestion {
+		padding-left: @width-typeahead-search-figure;
+	}
+
 	&__input {
 		flex-grow: 1;
 
@@ -502,27 +519,17 @@ export default Vue.extend( {
 				border-top-right-radius: 0;
 				border-bottom-right-radius: 0;
 			}
-
-			&:focus {
-				// Keep the cursor in the same place on the screen.
-				padding-left: @padding-horizontal-typeahead-suggestion +
-					@min-width-typeahead-suggestion-thumb +
-					@spacing-end-typeahead-search-figure;
-				// stylelint-disable-next-line plugin/no-unsupported-browser-features
-				width: calc( 100% + @size-typeahead-search-focus-addition );
-				// Don't let the input grow over the search button.
-				transform: translateX( -@size-typeahead-search-focus-addition );
-
-				// stylelint-disable-next-line max-nesting-depth
-				& + .wvui-input__start-icon {
-					left: -@size-typeahead-search-focus-addition +
-						@padding-horizontal-typeahead-suggestion;
-					width: @min-width-typeahead-suggestion-thumb;
-				}
-			}
 		}
 	}
 
+	.wvui-input__start-icon {
+		left: 0;
+		width: @width-typeahead-search-figure;
+	}
+
+	//
+	// Rules that alter elements based on a block-level modifier follow.
+	//
 	&--active,
 	&:hover {
 		.wvui-typeahead-search__submit {
@@ -542,6 +549,55 @@ export default Vue.extend( {
 	&--expanded {
 		.wvui-typeahead-search__suggestions {
 			display: block;
+		}
+	}
+
+	&--show-thumbnail {
+		// The amount of space between the typeahead search figure's parent
+		// component and the typeahead search figure (input icon container,
+		// suggestion thumbnail, and footer icon container). We want this space to
+		// be uniform so that the figures vertically line up nicely. For pragmatic
+		// reasons, we use the horizontal padding of the typeahead suggestion.
+		@spacing-start-typeahead-search-figure: @padding-horizontal-typeahead-suggestion;
+		// The amount the width of the input increased by when it is focused.
+		// It starts with `@padding-horizontal-input-text * 2 + @size-icon`.
+		// @min-width-typeahead-suggestion-thumb - @min-size-icon is too much.
+		@size-typeahead-search-focus-addition: @width-typeahead-search-figure -
+			@min-size-icon + @spacing-end-typeahead-search-figure;
+
+		.wvui-input__input:focus {
+			// Keep the cursor in the same place on the screen.
+			padding-left: @spacing-start-typeahead-search-figure +
+				@width-typeahead-search-figure +
+				@spacing-end-typeahead-search-figure;
+			// stylelint-disable-next-line plugin/no-unsupported-browser-features
+			width: calc( 100% + @size-typeahead-search-focus-addition );
+			// Don't let the input grow over the search button.
+			transform: translateX( -@size-typeahead-search-focus-addition );
+		}
+
+		.wvui-input__input:focus + .wvui-input__start-icon {
+			left: -@size-typeahead-search-focus-addition +
+				@spacing-start-typeahead-search-figure;
+			width: @width-typeahead-search-figure;
+		}
+
+		.wvui-typeahead-search__suggestions {
+			left: -@size-typeahead-search-focus-addition;
+		}
+
+		.wvui-typeahead-search__suggestion {
+			padding-left: @spacing-start-typeahead-search-figure;
+			padding-right: @padding-horizontal-typeahead-suggestion;
+		}
+
+		.wvui-typeahead-search__suggestions__footer {
+			padding-left: @spacing-start-typeahead-search-figure;
+			padding-right: @padding-horizontal-typeahead-suggestion;
+		}
+
+		.wvui-typeahead-search__suggestions-footer-article-icon {
+			width: @width-typeahead-search-figure;
 		}
 	}
 }
