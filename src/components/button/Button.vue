@@ -54,6 +54,8 @@ export default Vue.extend( {
 	min-height: @min-size-base;
 	max-width: @max-width-button;
 	border-radius: @border-radius-base;
+	// Support Firefox, Safari: Remove the margin.
+	margin: 0;
 	padding-left: @padding-horizontal-base;
 	padding-right: @padding-horizontal-base;
 	// Initial value depends on user-agent.
@@ -65,9 +67,10 @@ export default Vue.extend( {
 	white-space: nowrap;
 	transition: border-color @transition-base, background-color @transition-base, color @transition-base, box-shadow @transition-base;
 
+	// Support Firefox: Hide the inner focus border and padding.
 	&::-moz-focus-inner {
-		// [Firefox] hide the focus ring in all variations.
 		border: 0;
+		padding: 0;
 	}
 
 	&:focus {
