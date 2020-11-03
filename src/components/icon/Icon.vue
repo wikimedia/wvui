@@ -106,8 +106,6 @@ export default Vue.extend( {
 	// Maintain an inline outer element while using flexbox to center the SVG
 	// and avoid extra space around the image.
 	display: inline-flex; /* stylelint-disable-line plugin/no-unsupported-browser-features */
-	// Equivalent to @size-icon in ems relative to our base 0.875em font size.
-	font-size: unit( @min-size-icon ) / @font-size-browser / @font-size-base;
 	justify-content: center;
 	// For inline, inline-block, and table layouts.
 	vertical-align: middle;
