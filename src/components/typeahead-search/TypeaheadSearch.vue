@@ -16,74 +16,72 @@
 			class="wvui-typeahead-search__form"
 			:action="formAction"
 		>
-			<div class="wvui-typeahead-search__search">
-				<wvui-input
-					class="wvui-typeahead-search__input"
-					:start-icon="startIcon"
-					:value="inputValue"
-					:type="InputType.Search"
-					name="search"
-					dir="auto"
-					autocapitalize="off"
-					v-bind="$attrs"
-					autocomplete="off"
-					aria-autocomplete="list"
-					:aria-controls="suggestionsId"
-					:aria-activedescendant="activeSuggestionId"
-					@input="onInput"
-					@blur="onInputBlur"
-					@focus="onInputFocus"
-				/>
-				<!-- A slot for passing hidden inputs like
-					<input type="hidden" name="language" value="en"> -->
-				<slot />
-				<ol
-					:id="suggestionsId"
-					class="wvui-typeahead-search__suggestions"
-					role="listbox"
-					:aria-label="suggestionsLabel"
-				>
-					<li
-						v-for="(suggestion, index) in suggestionsList"
-						:key="index"
-						role="option"
-					>
-						<wvui-typeahead-suggestion
-							:id="getSuggestionId( suggestion )"
-							:key="suggestion.id"
-							:query="searchQuery"
-							:active="suggestionActiveIndex === index"
-							:suggestion="suggestion"
-							:show-thumbnail="showThumbnail"
-							:show-description="showDescription"
-							@mouseover="onSuggestionMouseOver( index )"
-							@mousedown.native="onSuggestionMouseDown"
-							@click="onSuggestionClick( suggestion )"
-						/>
-					</li>
-					<li role="option">
-						<a
-							:id="footerId"
-							ref="footer"
-							tabindex="-1"
-							class="wvui-typeahead-search__suggestions__footer"
-							:href="footerUrl"
-							:class="footerClasses"
-							@mouseover="onFooterHover"
-							@mousedown="onSuggestionMouseDown"
-							@click="onSuggestionClick()"
-						>
-							<wvui-icon :icon="articlesIcon" />
-							<span
-								class="wvui-typeahead-search__suggestions__footer__text"
-							>{{ footerSearchText }} <strong>"{{ searchQuery }}"</strong></span>
-						</a>
-					</li>
-				</ol>
-			</div>
+			<wvui-input
+				class="wvui-typeahead-search__input"
+				:start-icon="startIcon"
+				:value="inputValue"
+				:type="InputType.Search"
+				name="search"
+				dir="auto"
+				autocapitalize="off"
+				v-bind="$attrs"
+				autocomplete="off"
+				aria-autocomplete="list"
+				:aria-controls="suggestionsId"
+				:aria-activedescendant="activeSuggestionId"
+				@input="onInput"
+				@blur="onInputBlur"
+				@focus="onInputFocus"
+			/>
+			<!-- A slot for passing hidden inputs like
+				<input type="hidden" name="language" value="en"> -->
+			<slot />
 			<wvui-button class="wvui-typeahead-search__submit">
 				{{ buttonLabel }}
 			</wvui-button>
+			<ol
+				:id="suggestionsId"
+				class="wvui-typeahead-search__suggestions"
+				role="listbox"
+				:aria-label="suggestionsLabel"
+			>
+				<li
+					v-for="(suggestion, index) in suggestionsList"
+					:key="index"
+					role="option"
+				>
+					<wvui-typeahead-suggestion
+						:id="getSuggestionId( suggestion )"
+						:key="suggestion.id"
+						:query="searchQuery"
+						:active="suggestionActiveIndex === index"
+						:suggestion="suggestion"
+						:show-thumbnail="showThumbnail"
+						:show-description="showDescription"
+						@mouseover="onSuggestionMouseOver( index )"
+						@mousedown.native="onSuggestionMouseDown"
+						@click="onSuggestionClick( suggestion )"
+					/>
+				</li>
+				<li role="option">
+					<a
+						:id="footerId"
+						ref="footer"
+						tabindex="-1"
+						class="wvui-typeahead-search__suggestions__footer"
+						:href="footerUrl"
+						:class="footerClasses"
+						@mouseover="onFooterHover"
+						@mousedown="onSuggestionMouseDown"
+						@click="onSuggestionClick()"
+					>
+						<wvui-icon :icon="articlesIcon" />
+						<span
+							class="wvui-typeahead-search__suggestions__footer__text"
+						>{{ footerSearchText }} <strong>"{{ searchQuery }}"</strong></span>
+					</a>
+				</li>
+			</ol>
 		</form>
 	</div>
 </template>
@@ -417,15 +415,12 @@ export default Vue.extend( {
 		@min-size-icon + @spacing-end-typeahead-search-figure;
 
 	// ---
-	max-width: 500px;
 	min-width: 350px;
+	max-width: 500px;
 
 	&__form {
 		// stylelint-disable-next-line plugin/no-unsupported-browser-features
 		display: flex;
-	}
-
-	&__search {
 		position: relative;
 		flex-grow: 1;
 	}
