@@ -226,39 +226,56 @@ export default Vue.extend( {
 		}
 	},
 	methods: {
-		async onInput( value: string ) {
-			try {
-				const query = value.trim();
+		/**
+		 * A convenience method to update those properties that should be updated when new
+		 * suggestions are available.
+		 *
+		 * @param {string} query
+		 * @param {SearchResult[]} suggestions
+		 */
+		updateSuggestions( query: string, suggestions: SearchResult[] ) {
+			this.searchQuery = query;
+			this.suggestionsList = suggestions;
+			this.suggestionActiveIndex = -1;
+			this.isExpanded = suggestions.length > 0;
+		},
 
-				if ( this.request ) {
-					// Cancel the last request before making a new one in case it is still
-					// pending. This call is expected to be inert if the request has
-					// already finished.
-					this.request.abort();
-				}
+		/**
+		 * A convenience method to update those properties that should be update when clearing the
+		 * suggestions.
+		 */
+		clearSuggestions() {
+			this.updateSuggestions( '', [] );
+		},
 
-				if ( !query ) {
-					this.suggestionsList = [];
-					this.searchQuery = query;
-					this.isExpanded = false;
-					return;
-				}
+		onInput( value: string ) {
+			const query = value.trim();
 
-				this.$emit( 'fetch-start' );
+			if ( this.request ) {
+				// Cancel the last request before making a new one in case it is still
+				// pending. This call is expected to be inert if the request has
+				// already finished.
+				this.request.abort();
+			}
 
-				this.request = this.client.fetchByTitle( value, this.domain );
-				const { results } = await this.request.fetch;
+			if ( !query ) {
+				this.clearSuggestions();
 
-				this.suggestionsList = results;
-				this.suggestionActiveIndex = -1;
-				this.isExpanded = true;
+				return;
+			}
 
-				this.searchQuery = query;
+			this.$emit( 'fetch-start' );
+
+			this.request = this.client.fetchByTitle( value, this.domain );
+
+			this.request.fetch.then( ( { results } ) => {
+				this.updateSuggestions( query, results );
 
 				this.$emit( 'fetch-end' );
-			} catch ( e ) {
-				// Error handling?
-			}
+			} )
+				.catch( () => {
+					// Error handling?
+				} );
 		},
 		onSuggestionMouseOver( index: number ) {
 			this.suggestionActiveIndex = index;
@@ -305,10 +322,8 @@ export default Vue.extend( {
 
 		onSuggestionClick( suggestion?: SearchResult ) {
 			this.isFocused = true;
-			this.isExpanded = false;
 
-			this.suggestionsList = [];
-			this.suggestionActiveIndex = -1;
+			this.clearSuggestions();
 
 			if ( suggestion ) {
 				this.inputValue = suggestion.title;
