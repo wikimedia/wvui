@@ -33,7 +33,7 @@ Vue.js shared user-interface components for Wikipedia, MediaWiki, and beyond. Se
   - [TypeScript](#typescript)
     - [Conventions](#conventions-2)
     - [Imports](#imports)
-  - [Less & CSS](#less-amp-css)
+  - [Less & CSS](#less-css)
     - [Conventions](#conventions-3)
     - [Imports](#imports-1)
   - [Testing](#testing)
@@ -388,7 +388,9 @@ Less is used for all runtime styles. The [Less playground] is useful for debuggi
 
 -   [BEM](http://getbem.com) naming conventions are adhered to where possible.
 -   Components are consistently rendered across browsers, orienting on [normalize.css] and
-    documented with “Support [affected browsers]: Normalize by …”.
+    documented with “Support [affected browsers]: Normalize by …”. We can't expect component
+    normalization being available in all places using the library. This may lead to minimal rule
+    duplication, depending on application, but that's the lesser evil.
 -   All components use a [box-sizing] of `border-box`.
 -   Each component should be entirely independent and usable in any context. Parents can specify the
     presentation of their children (for example, `display: flex`) but no component should expect to

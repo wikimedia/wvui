@@ -231,14 +231,23 @@ export default Vue.extend( {
 			opacity: 1;
 		}
 
-		// Non standard pseudo-element
-		// Support: Internet Explorer 10, Internet Explorer 11, and Microsoft Edge.
-		// For details see https://developer.mozilla.org/en-US/docs/Web/CSS/::-ms-clear
+		// Support IE 10-11, and Edge 12+: Hide proprietary pseudo-element.
+		// See https://developer.mozilla.org/en-US/docs/Web/CSS/::-ms-clear
 		&::-ms-clear {
 			display: none;
 		}
 
 		&[ type='search' ] {
+			// Support Safari/iOS: Normalize by applying `none`,
+			// Chrome would accept `textfield` as well.
+			/* stylelint-disable plugin/no-unsupported-browser-features */
+			/* autoprefixer: ignore next */
+			-webkit-appearance: none;
+			// Support Firefox.
+			/* autoprefixer: ignore next */
+			-moz-appearance: textfield;
+			/* stylelint-enable plugin/no-unsupported-browser-features */
+
 			// Support: Safari, Chrome (Blink).
 			&::-webkit-search-decoration,
 			&::-webkit-search-cancel-button {
