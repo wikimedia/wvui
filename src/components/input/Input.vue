@@ -176,6 +176,7 @@ export default Vue.extend( {
 			padding: 0 @padding-horizontal-input-text;
 			cursor: pointer;
 
+			// stylelint-disable-next-line max-nesting-depth
 			svg {
 				width: @size-indicator;
 			}
@@ -219,6 +220,7 @@ export default Vue.extend( {
 			text-shadow: @text-shadow-base--disabled;
 			border-color: @border-color-base--disabled;
 
+			// stylelint-disable-next-line max-nesting-depth
 			& ~ .wvui-input__start-icon,
 			& ~ .wvui-input__end-icon {
 				pointer-events: none;
@@ -249,6 +251,8 @@ export default Vue.extend( {
 			/* stylelint-enable plugin/no-unsupported-browser-features */
 
 			// Support: Safari, Chrome (Blink).
+
+			// stylelint-disable-next-line max-nesting-depth
 			&::-webkit-search-decoration,
 			&::-webkit-search-cancel-button {
 				display: none;

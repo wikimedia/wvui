@@ -470,10 +470,7 @@ export default Vue.extend( {
 				color: @color-base;
 			}
 
-			&--active {
-				background-color: @background-color-primary;
-			}
-
+			// stylelint-disable-next-line max-nesting-depth
 			.wvui-icon {
 				width: @size-typeahead-suggestion-thumb;
 				height: @size-typeahead-suggestion-thumb;
@@ -481,10 +478,14 @@ export default Vue.extend( {
 				font-size: @font-size-typeahead-suggestion-title;
 				opacity: @opacity-icon-accessory;
 			}
+		}
 
-			&__text {
-				font-size: @font-size-typeahead-suggestion-title;
-			}
+		&__footer--active {
+			background-color: @background-color-primary;
+		}
+
+		&__footer__text {
+			font-size: @font-size-typeahead-suggestion-title;
 		}
 	}
 
@@ -512,6 +513,7 @@ export default Vue.extend( {
 				// Don't let the input grow over the search button.
 				transform: translateX( -@size-typeahead-search-focus-addition );
 
+				// stylelint-disable-next-line max-nesting-depth
 				& + .wvui-input__start-icon {
 					left: -@size-typeahead-search-focus-addition +
 						@padding-horizontal-typeahead-suggestion;
@@ -530,6 +532,7 @@ export default Vue.extend( {
 
 	&--has-value {
 		.wvui-typeahead-search__input {
+			// stylelint-disable-next-line max-nesting-depth
 			.wvui-input__input {
 				border-bottom-left-radius: 0;
 			}
