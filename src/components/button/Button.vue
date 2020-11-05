@@ -54,20 +54,25 @@ export default Vue.extend( {
 	min-height: @min-size-base;
 	max-width: @max-width-button;
 	border-radius: @border-radius-base;
-	// Support Firefox, Safari: Remove the margin.
+	// Support Firefox, Safari: Normalize by removing the `margin`.
 	margin: 0;
 	padding-left: @padding-horizontal-base;
 	padding-right: @padding-horizontal-base;
+	// Support all browsers: Normalize by inheriting `font-family`.
 	// Initial value depends on user-agent.
 	font-family: inherit;
-	// Initial value is none.
+	// Support all browsers: Normalize by inheriting `font-size` over initial value of `none`.
 	font-size: inherit;
 	font-weight: bold;
+	// Support Edge, Firefox, and IE: Normalize by removing the inheritance of `text-transform`.
+	text-transform: none;
 	// Contents are single line.
 	white-space: nowrap;
+	// Support IE 11: Normalize by showing `overflow`.
+	overflow: visible;
 	transition: border-color @transition-base, background-color @transition-base, color @transition-base, box-shadow @transition-base;
 
-	// Support Firefox: Hide the inner focus border and padding.
+	// Support Firefox: Normalize by hiding the inner focus `border` and `padding`.
 	&::-moz-focus-inner {
 		border: 0;
 		padding: 0;

@@ -33,7 +33,7 @@ Vue.js shared user-interface components for Wikipedia, MediaWiki, and beyond. Se
   - [TypeScript](#typescript)
     - [Conventions](#conventions-2)
     - [Imports](#imports)
-  - [Less](#less)
+  - [Less & CSS](#less-amp-css)
     - [Conventions](#conventions-3)
     - [Imports](#imports-1)
   - [Testing](#testing)
@@ -380,13 +380,15 @@ TypeScript is used for all runtime sources. The [TypeScript playground] is usefu
 
 [typescript playground]: https://www.typescriptlang.org/play/
 
-### Less
+### Less & CSS
 
 Less is used for all runtime styles. The [Less playground] is useful for debugging.
 
 #### Conventions
 
 -   [BEM](http://getbem.com) naming conventions are adhered to where possible.
+-   Components are consistently rendered across browsers, orienting on [normalize.css] and
+    documented with “Support [affected browsers]: Normalize by …”.
 -   All components use a [box-sizing] of `border-box`.
 -   Each component should be entirely independent and usable in any context. Parents can specify the
     presentation of their children (for example, `display: flex`) but no component should expect to
@@ -394,6 +396,7 @@ Less is used for all runtime styles. The [Less playground] is useful for debuggi
 -   Storybook-specific styles are prefixed with sb-.
 -   Storybook-specific styles have their own Less files that end in .stories.less.
 
+[normalize.css]: https://github.com/necolas/normalize.css
 [box-sizing]: https://developer.mozilla.org/docs/Web/CSS/box-sizing
 
 #### Imports
