@@ -78,7 +78,7 @@
 					>
 						<wvui-icon
 							class="wvui-typeahead-search__suggestions-footer-article-icon"
-							:icon="articlesIcon"
+							:icon="articleIcon"
 						/>
 						<span
 							class="wvui-typeahead-search__suggestions__footer__text"
@@ -166,7 +166,7 @@ export default Vue.extend( {
 	data() {
 		return {
 			startIcon: wvuiIconSearch,
-			articlesIcon: wvuiIconArticleSearch,
+			articleIcon: wvuiIconArticleSearch,
 			isHovered: false,
 			suggestionActiveIndex: -1,
 			suggestionsList: [] as SearchResult[],
