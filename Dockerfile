@@ -1,4 +1,4 @@
-FROM docker-registry.wikimedia.org/nodejs10-devel:0.0.3
+FROM docker-registry.wikimedia.org/buster-nodejs10-devel:0.0.1
 RUN apt-get update && \
 	apt-get install -y \
 		build-essential \
