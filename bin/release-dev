@@ -18,6 +18,11 @@ PRE_ID="${PRE_ID:-next.$(TZ=utc date +%F-%H-%M)}"
 
 "$(dirname "$0")/node-test-version"
 
+# Make sure our npm credentials are saved into .npmrc
+if [ ! -f ~/.npmrc ]; then
+     echo "Execute 'npm login' on the host machine to login"; exit
+fi
+
 # Development tags are not wanted on the master branch. Checkout `HEAD` detached.
 git fetch origin master
 git checkout origin/master

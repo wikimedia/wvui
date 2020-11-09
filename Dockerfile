@@ -3,6 +3,7 @@ RUN apt-get update && \
 	apt-get install -y \
 		build-essential \
 		python-pkgconfig \
+		openssh-server \
 		git
 
 RUN apt-get -t buster-backports install "npm" "node-ssri" -y
@@ -15,5 +16,8 @@ ARG HOST
 # Note: Adding existing group from host causes error on MacOS
 RUN if [ "$HOST" = "Linux" ] ; then addgroup --gid $GID runuser ; fi
 RUN adduser --uid $UID --gid $GID --disabled-password --gecos "" runuser
+
+RUN mkdir -p /home/runuser/.ssh
+RUN echo "Host gerrit.wikimedia.org \n\t IdentityFile /run/secrets/ssh_key" > /home/runuser/.ssh/config
 
 USER runuser

@@ -95,14 +95,16 @@ npm install
 4. Startup containers
 
 ```bash
-docker-compose up
+docker-compose up node storybook
 ```
 
 ### Container Configuration
 
-WVUI's docker compose configuration will produce 2 separate docker containers each with their own
-service: `node` and `storybook`. The rationale behind 2 containers is for separation of concerns, so
-each container is responsible for one service only.
+WVUI's docker compose configuration produces 3 services. The startup command above produces two
+separate docker containers each with their own service: `node` and `storybook`. The rationale behind
+2 containers is for separation of concerns, so that each container is responsible for one service
+only. A third docker container `release` exists strictly for publishing WVUI
+[releases](#rolling-development-release).
 
 `storybook`<br> On container startup, `storybook` will be accessible on localhost:3003. This
 container is intended for local development with [Storybook](#storybook-workflow).
@@ -580,13 +582,26 @@ can be seen by executing `npx --no-install autoprefixer --info`.
 
 ### Production release
 
+It is highly recommended to perform all releases from the `release` Docker image. See the
+**[docker](#docker)** section if you have not already built the image.
+
+<details markdown>
+<summary>You will also need to create
+a new ssh key pair specifcially for WVUI deploys. Expand for details...</summary>
+
+1. Execute `ssh-keygen` and save your keys to `~/.ssh/wvui-deploy`. This creates a set of ssh keys
+   specific for WVUI releases.
+2. Add your ssh public key at `~/.ssh/wvui-deploy.pub` to your Gerrit account.
+ </details>
+
 To publish a new release:
 
 1. Checkout the latest master branch: `git checkout master && git pull`.
 2. Update the [changelog](changelog.md) with release notes.
 3. Commit the changelog.
-4. Execute `TYPE=<patch|minor|major> bin/release-prod`.
-5. Perform a [rolling development release](#rolling-development-release).
+4. Remove existing node modules and re-install through Docker
+5. Execute `docker-compose run --rm release TYPE=<patch|minor|major> bin/release-prod`.
+6. Perform a [rolling development release](#rolling-development-release).
 
 Example commands:
 
@@ -607,8 +622,12 @@ git add changelog.md
 # Commit the changelog.
 git commit -m '[docs][changelog] prepare release notes'
 
+# Remove existing node modules and re-install
+rm -rf node_modules
+docker-compose run --rm release npm install
+
 # Version, build, and test a release.
-TYPE=patch bin/release-prod
+docker-compose run --rm release TYPE=patch bin/release-prod
 ```
 
 The NPM scripts are configured to help ensure that only tested artifacts are published on gerrit and
@@ -659,8 +678,8 @@ npmjs.com.
 ### Pre-release (alpha, beta, or release candidate)
 
 To publish a new alpha, beta, or release candidate, execute
-`TYPE=<prerelease|prepatch|preminor|premajor> PRE_ID=<alpha|beta|rc> bin/release-pre`. This will
-create a new version commit on the current branch.
+`docker-compose run --rm release TYPE=<prerelease|prepatch|preminor|premajor> PRE_ID=<alpha|beta|rc> bin/release-pre`.
+This will create a new version commit on the current branch.
 
 > `prerelease` is the safest choice. It always bumps the metadata number and _only_ bumps the patch
 > number if a stable version exists. For example, given the current version is a stable v1.2.3,
@@ -676,8 +695,12 @@ create a new version commit on the current branch.
 
 ### Rolling development release
 
-To publish the current `master` `HEAD`, execute `bin/release-dev`. If using the Docker setup,
-execute these scripts from outside your Docker container.
+To publish the current `master` `HEAD`, execute `docker-compose run --rm release ./bin/release-dev`.
+
+-   You may need to create a project-specific git config, e.g. your username and email address. If
+    executing `docker-compose run --rm release cat /app/.git/.config` returns nothing,
+    [set config values](https://git-scm.com/docs/git-config) from inside the root `wvui` repo
+    directory on your host machine
 
 Development releases can be installed by consumers via `npm install @wikimedia/wvui@next`. These
 releases are useful for integration testing and development as well as for early adopters who don't
