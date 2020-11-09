@@ -1,4 +1,4 @@
-version: "3"
+version: "3.8"
 services:
     node:
         container_name: wvui-node
@@ -7,6 +7,17 @@ services:
         volumes:
             - ./:/app
         working_dir: /app
+    release:
+        container_name: wvui-release
+        build: .
+        image: wikimedia/wvui
+        volumes:
+            - ./:/app
+            - ~/.npmrc:/home/runuser/.npmrc
+        working_dir: /app
+        secrets:
+            - ssh_key
+            - ssh_public_key
     storybook:
         container_name: wvui-storybook
         build: .
@@ -17,3 +28,8 @@ services:
         ports:
             - "3003:3003" # matches storybook port in npm start script
         command: npm start
+secrets:
+    ssh_key:
+        file: ~/.ssh/wvui-deploy
+    ssh_public_key:
+        file: ~/.ssh/wvui-deploy.pub
