@@ -87,9 +87,6 @@ export default Vue.extend( {
 		// Hide the border but keep the sizing.
 		border: @border-width-base @border-style-base transparent;
 		background-color: @background-color-filled--disabled;
-		// Show the default pointer cursor icongraphy to visually indicate the button is
-		// unresponsive.
-		cursor: @cursor-base--disabled;
 
 		&.wvui-button--framed {
 			color: @color-filled--disabled;
@@ -101,7 +98,7 @@ export default Vue.extend( {
 	}
 
 	&:not( [ disabled ] ) {
-		// Use hand cursor icongraphy. This is nonstandard for a button but allows for a visible
+		// Use hand cursor. This is nonstandard for a button but allows for a visible
 		// interactivity distinction from the disabled state.
 		cursor: pointer;
 
