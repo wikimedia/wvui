@@ -53,6 +53,8 @@ export default Vue.extend( {
 	min-width: @min-size-base;
 	min-height: @min-size-base;
 	max-width: @max-width-button;
+	border-width: @border-width-base;
+	border-style: @border-style-base;
 	border-radius: @border-radius-base;
 	// Support Firefox, Safari: Normalize by removing the `margin`.
 	margin: 0;
@@ -83,141 +85,169 @@ export default Vue.extend( {
 		outline: 0;
 	}
 
-	&[ disabled ] {
-		// Hide the border but keep the sizing.
-		border: @border-width-base @border-style-base transparent;
-		background-color: @background-color-filled--disabled;
-
-		&.wvui-button--framed {
-			color: @color-filled--disabled;
-		}
-
-		&.wvui-button--quiet {
-			background-color: @color-filled--disabled;
-		}
-	}
-
 	&:not( [ disabled ] ) {
+		color: @color-base;
 		// Use hand cursor. This is nonstandard for a button but allows for a visible
 		// interactivity distinction from the disabled state.
 		cursor: pointer;
 
-		&.wvui-button--framed {
-			border: @border-base;
+		&:focus {
+			box-shadow: @box-shadow-base--focus;
+			border-color: @color-primary--focus;
+			// In Windows high contrast mode the outline becomes visible.
+			outline: @outline-base--focus;
 		}
 
-		&.wvui-button--quiet {
-			// Hide the border but keep the sizing.
-			border: @border-width-base @border-style-base transparent;
-
-			&:active {
-				&:focus {
-					border-color: transparent;
-					box-shadow: none;
-				}
-			}
-		}
-
-		&.wvui-button--default {
+		&:active {
+			background-color: @background-color-framed--active;
 			color: @color-base--emphasized;
+			box-shadow: none;
+		}
+	}
 
-			&.wvui-button--framed {
-				background-color: @background-color-framed;
-			}
+	&[ disabled ] {
+		border-color: transparent;
+	}
+}
 
-			&.wvui-button--quiet {
-				background-color: @background-color-quiet;
-			}
+// Normal “framed” buttons.
+.wvui-button--framed {
+	&:not( [ disabled ] ) {
+		background-color: @background-color-framed;
+		border-color: @border-color-base;
 
-			&:hover {
-				&.wvui-button--framed {
-					background-color: @background-color-framed--hover;
-					color: @color-base--hover;
-				}
-
-				&.wvui-button--quiet {
-					background-color: @background-color-quiet--hover;
-				}
-			}
-
-			&:focus {
-				box-shadow: @box-shadow-base--focus;
-				border-color: @color-primary--focus;
-			}
-
-			&:active {
-				&.wvui-button--framed {
-					border-color: @border-color-base--active;
-				}
-
-				&:focus {
-					box-shadow: none;
-					background-color: @background-color-framed--active;
-					color: @color-base--emphasized;
-				}
-			}
+		&:hover {
+			background-color: @background-color-framed--hover;
+			color: @color-base--hover;
 		}
 
-		&.wvui-button--progressive {
-			background-color: @color-primary;
-			color: @color-base--inverted;
+		&:active {
+			background-color: @background-color-framed--active;
+			color: @color-base--active;
+			border-color: @border-color-base--active;
+		}
+	}
 
-			&:hover {
-				background-color: @color-primary--hover;
-				color: @color-base--inverted;
-			}
+	// Progressive normal buttons.
+	&.wvui-button--progressive:not( [ disabled ] ) {
+		color: @color-primary;
 
-			&:focus {
-				background-color: @wmui-color-accent30;
-				box-shadow: @box-shadow-primary--focus;
-				color: @color-base--inverted;
-			}
-
-			&.wvui-button--framed {
-				border-color: @border-color-primary;
-
-				&:hover {
-					border-color: @border-color-primary--hover;
-				}
-
-				&:active {
-					border-color: @border-color-primary--active;
-					box-shadow: none;
-				}
-			}
+		&:hover {
+			color: @color-primary--hover;
+			border-color: @border-color-primary--hover;
 		}
 
-		&.wvui-button--destructive {
-			background-color: @color-destructive;
-			color: @color-base--inverted;
-
-			&:hover {
-				background-color: @color-destructive--hover;
-				color: @color-base--inverted;
-			}
-
-			&:focus {
-				box-shadow: @box-shadow-inset--inverted;
-				color: @color-base--inverted;
-			}
-
-			&.wvui-button--framed {
-				border-color: @border-color-destructive;
-
-				&:hover {
-					border-color: @border-color-destructive--hover;
-				}
-
-				&:focus {
-					background-color: @border-color-destructive--focus;
-					box-shadow: none;
-				}
-
-				&:active {
-					border-color: @border-color-destructive--active;
-				}
-			}
+		&:focus {
+			color: @color-primary--focus;
+			border-color: @border-color-primary--focus;
+			box-shadow: @box-shadow-primary--focus;
 		}
+
+		&:active {
+			background-color: lighten( @color-primary--active, 60% );
+			color: @color-primary--active;
+			border-color: @border-color-primary--active;
+			// Reset `:focus` box shadow to amplify 'interaction' feeling when pressed.
+			box-shadow: none;
+		}
+	}
+
+	// Destructive normal buttons.
+	&.wvui-button--destructive:not( [ disabled ] ) {
+		color: @color-destructive;
+
+		&:hover {
+			color: @color-destructive--hover;
+			border-color: @border-color-destructive--hover;
+		}
+
+		&:focus {
+			color: @color-destructive--focus;
+			border-color: @border-color-destructive--focus;
+			box-shadow: @box-shadow-destructive--focus;
+		}
+
+		&:active {
+			background-color: lighten( @color-destructive--active, 60% );
+			color: @color-destructive--active;
+			border-color: @border-color-destructive--active;
+			// Reset `:focus` box shadow to amplify 'interaction' feeling when pressed.
+			box-shadow: none;
+		}
+	}
+
+	&[ disabled ] {
+		background-color: @background-color-filled--disabled;
+		color: @color-filled--disabled;
+	}
+}
+
+// Quiet buttons.
+.wvui-button--quiet {
+	background-color: transparent;
+	color: @color-base;
+	border-color: transparent;
+
+	&:not( [ disabled ] ) {
+		&:hover {
+			background-color: @background-color-quiet--hover;
+			color: @color-quiet--hover;
+		}
+
+		&:focus {
+			border-color: @border-color-primary--focus;
+			box-shadow: @box-shadow-primary--focus;
+		}
+
+		&:active {
+			background-color: @background-color-quiet--active;
+			border-color: @border-color-base--active;
+			box-shadow: none;
+		}
+	}
+
+	// Progressive quiet buttons.
+	&.wvui-button--progressive:not( [ disabled ] ) {
+		color: @color-primary;
+
+		&:hover {
+			color: @color-primary--hover;
+		}
+
+		&:focus {
+			color: @color-primary--focus;
+			border-color: @border-color-primary--focus;
+			box-shadow: @box-shadow-primary--focus;
+		}
+
+		&:active {
+			color: @color-primary--active;
+			box-shadow: none;
+		}
+	}
+
+	// Destructive quiet buttons.
+	&.wvui-button--destructive:not( [ disabled ] ) {
+		color: @color-destructive;
+
+		&:hover {
+			color: @color-destructive--hover;
+		}
+
+		&:focus {
+			color: @color-destructive--focus;
+			border-color: @border-color-destructive--focus;
+			box-shadow: @box-shadow-destructive--focus;
+		}
+
+		&:active {
+			color: @color-destructive--active;
+			box-shadow: none;
+		}
+	}
+
+	&[ disabled ] {
+		color: @color-base--disabled;
 	}
 }
 </style>

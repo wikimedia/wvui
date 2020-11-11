@@ -7,8 +7,12 @@
 @size-base: 32 / @font-size-browser / @font-size-base; // equals `2.5em`≈`32px`
 @size-indicator: 12 / @font-size-browser / @font-size-base;
 
-@background-color-quiet: @wmui-color-base90;
-@background-color-quiet--hover: @wmui-color-base80;
+@background-color-quiet--hover: rgba( 0, 24, 73, 7/255 ); // Equals `@wmui-color-base90` on white.
+@background-color-quiet--active: rgba( 0, 36, 73, 21/255 ); // Equals `@wmui-color-base80` on white
+
+@color-quiet--hover: @wmui-color-base0;
+
+@box-shadow-destructive--focus: inset 0 0 0 1px @color-destructive, inset 0 0 0 2px @color-base--inverted;
 
 @opacity-icon-accessory: 0.67;
 
