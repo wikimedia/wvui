@@ -29,9 +29,10 @@ const Chunk = {
  * @param {Parameters<webpack.ConfigurationFactory>[1]} argv
  * @param {string} name
  * @param {string|string[]|Record<string, string>} entry
+ * @param {import('webpack').LibraryTarget} libraryTarget
  * @return {webpack.Configuration}
  */
-function config( argv, name, entry ) {
+function config( argv, name, entry, libraryTarget ) {
 	return {
 		name,
 
@@ -56,10 +57,9 @@ function config( argv, name, entry ) {
 			assetFilter: ( filename ) => !filename.endsWith( jsSourceMapExtension )
 		},
 
-		// Accurate source maps come at the expense of build time. The source map is intentionally
-		// exposed to users via sourceMapFilename for prod debugging. This goes against convention
-		//  this source code is publicly distributed.
-		devtool: argv.mode === 'production' ? 'source-map' : 'cheap-module-eval-source-map',
+		// Disabling sourcemaps in production because the comment at the end of the file 
+		// causes an "unexpected end of input" error with MediaWiki's ResourceLoader.
+		devtool: argv.mode === 'development' ? 'cheap-module-eval-source-map' : false,
 
 		optimization: {
 			// Enable CSS minification.
@@ -88,11 +88,13 @@ function config( argv, name, entry ) {
 		},
 
 		output: {
+			filename: `${name}.js`,
+			path: ( libraryTarget === 'umd' ) ? path.resolve( __dirname, '../dist' ) : path.resolve( __dirname, `../dist/${libraryTarget}` ),
 			sourceMapFilename: `[file]${jsSourceMapExtension}`,
 			// Set the name to avoid possible Webpack runtime collisions of globals with other
 			// Webpack runtimes. See https://webpack.js.org/configuration/output/#outputuniquename.
 			library: 'wvui',
-			libraryTarget: 'umd',
+			libraryTarget: libraryTarget,
 			// https://github.com/webpack/webpack/issues/6525
 			globalObject: 'this'
 		},
@@ -134,6 +136,8 @@ clean.removeFiles( [ 'dist/**/*', '!dist/.eslintrc.json' ] );
  * @return {ReturnType<webpack.ConfigurationFactory>[]}
  */
 module.exports = ( _env, argv ) => [
-	config( argv, 'wvui', { [ Chunk.Wvui ]: path.resolve( __dirname, '../src/entries/wvui.ts' ) } ),
-	config( argv, 'wvui-icons', { [ Chunk.WvuiIcons ]: path.resolve( __dirname, '../src/entries/wvui-icons.ts' ) } )
+	config( argv, 'wvui', { [ Chunk.Wvui ]: path.resolve( __dirname, '../src/entries/wvui.ts' ) }, 'umd' ),
+	config( argv, 'wvui-icons', { [ Chunk.WvuiIcons ]: path.resolve( __dirname, '../src/entries/wvui-icons.ts' ) }, 'umd' ),
+	config( argv, 'wvui.commonjs2', { [ Chunk.Wvui ]: path.resolve( __dirname, '../src/entries/wvui.ts' ) }, 'commonjs2' ),
+	config( argv, 'wvui-icons.commonjs2', { [ Chunk.WvuiIcons ]: path.resolve( __dirname, '../src/entries/wvui-icons.ts' ) }, 'commonjs2' )
 ];
