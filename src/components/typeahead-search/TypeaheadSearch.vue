@@ -326,11 +326,8 @@ export default Vue.extend( {
 		onSuggestionClick( suggestion?: SearchResult ) {
 			this.isFocused = true;
 
-			this.clearSuggestions();
-
-			if ( suggestion ) {
-				this.inputValue = suggestion.title;
-			}
+			this.inputValue = suggestion ? suggestion.title : this.searchQuery;
+			this.updateSuggestions( this.inputValue, [] );
 		},
 
 		onKeyDownUp( event: KeyboardEvent ) { this.handleKeyUpDown( event, -1 ); },

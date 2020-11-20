@@ -340,6 +340,27 @@ describe( 'when there are search results', () => {
 		expect( inputElement.value ).toBe( suggestion.title ); // 2
 	} );
 
+	it( 'responds when the user clicks suggestions footer', async () => {
+		const suggestionComponent = wrapper.find( '.wvui-typeahead-search__suggestions__footer' );
+
+		await suggestionComponent.trigger( 'click' );
+
+		// We expect:
+
+		// 1. The list of suggestions to be hidden
+		expect( wrapper.vm.$data.isExpanded ).toBeFalsy();
+		expect( wrapper.classes() ).not.toContain( 'wvui-typeahead-search--expanded' );
+
+		// ---
+
+		// 2. The input's value set to the search query
+		expect( inputElement.value ).toBe( 'test' );
+
+		// 3. The link's href needs to be maintained after the component's click
+		// callbacks have executed so the browser can navigate to it.
+		expect( suggestionComponent.attributes( 'href' ) ).toContain( 'search=test' );
+	} );
+
 	it( 'hides the suggestions list when the user presses the escape key', async () => {
 		await wrapper.trigger( 'keydown', { key: 'Escape' } );
 
