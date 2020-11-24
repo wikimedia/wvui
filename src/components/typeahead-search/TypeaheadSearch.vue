@@ -240,7 +240,7 @@ export default Vue.extend( {
 			this.searchQuery = query;
 			this.suggestionsList = suggestions;
 			this.suggestionActiveIndex = -1;
-			this.isExpanded = suggestions.length > 0;
+			this.isExpanded = !!this.searchQuery;
 		},
 
 		/**
@@ -324,10 +324,11 @@ export default Vue.extend( {
 		},
 
 		onSuggestionClick( suggestion?: SearchResult ) {
-			this.isFocused = true;
-
 			this.inputValue = suggestion ? suggestion.title : this.searchQuery;
 			this.updateSuggestions( this.inputValue, [] );
+
+			this.isFocused = true;
+			this.isExpanded = false;
 		},
 
 		onKeyDownUp( event: KeyboardEvent ) { this.handleKeyUpDown( event, -1 ); },
