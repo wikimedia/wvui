@@ -79,7 +79,7 @@ exports[`matches the snapshot 1`] = `
       >
         <a
           class="wvui-typeahead-search__suggestions__footer"
-          href="/w/index.php?title=Special%3ASearch&search="
+          href="/w/index.php?title=Special%3ASearch&fulltext=1&search="
           id="foo-suggestions-footer"
           tabindex="-1"
         >
@@ -617,7 +617,7 @@ exports[`when there are search results matches the snapshot 1`] = `
       >
         <a
           class="wvui-typeahead-search__suggestions__footer"
-          href="/w/index.php?title=Special%3ASearch&search=test"
+          href="/w/index.php?title=Special%3ASearch&fulltext=1&search=test"
           id="foo-suggestions-footer"
           tabindex="-1"
         >

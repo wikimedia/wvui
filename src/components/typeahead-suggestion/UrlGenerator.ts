@@ -29,6 +29,11 @@ export function createDefaultUrlGenerator(): UrlGenerator {
 		): string {
 			if ( typeof suggestion !== 'string' ) {
 				suggestion = suggestion.title;
+			} else {
+				// Add `fulltext` query param to search within pages and for navigation
+				// to the search results page (prevents being redirected to a certain
+				// article).
+				params.fulltext = '1';
 			}
 
 			return `/w/index.php?${buildQueryString( { ...params, search: suggestion } )}`;

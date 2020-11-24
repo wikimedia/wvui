@@ -359,6 +359,7 @@ describe( 'when there are search results', () => {
 		// 3. The link's href needs to be maintained after the component's click
 		// callbacks have executed so the browser can navigate to it.
 		expect( suggestionComponent.attributes( 'href' ) ).toContain( 'search=test' );
+		expect( suggestionComponent.attributes( 'href' ) ).toContain( 'fulltext=1' );
 	} );
 
 	it( 'hides the suggestions list when the user presses the escape key', async () => {
