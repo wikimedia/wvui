@@ -14,9 +14,7 @@ variants:
       use-npm-ci: true
     builder:
       command: [npm, run, build]
-      # Required files for the build to run.
-      # If any part of the build process changes these need to be revised.
-      requirements: [dist/, src/, docs/, .webpack/, tsconfig.json, .postcssrc.json]
+      requirements: [.]
   test:
     includes: [build]
     entrypoint: [npm, test]
