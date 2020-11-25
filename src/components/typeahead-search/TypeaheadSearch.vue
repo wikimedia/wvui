@@ -107,6 +107,7 @@ import { wvuiIconSearch, wvuiIconArticleSearch } from '../../themes/icons';
 import { restSearchClient } from './http/restSearchClient';
 import { createDefaultUrlGenerator, UrlGenerator } from '../typeahead-suggestion/UrlGenerator';
 import { FetchEndEvent, SuggestionClickEvent, SubmitEvent } from './lifecycle-events';
+import { DEBOUNCE_INTERVAL } from './TypeaheadSearch.constants';
 
 export default Vue.extend( {
 	name: 'WvuiTypeaheadSearch',
@@ -177,7 +178,8 @@ export default Vue.extend( {
 			inputValue: this.initialInputValue,
 			InputType,
 			isExpanded: false,
-			request: null as AbortableSearchFetch | null
+			request: null as AbortableSearchFetch | null,
+			debounceId: null as NodeJS.Timeout | null
 		};
 	},
 	computed: {
@@ -254,39 +256,46 @@ export default Vue.extend( {
 		},
 
 		onInput( value: string ) {
-			const query = value.trim();
+			if ( this.debounceId ) {
+				// Cancel the last setTimeout callback in case it hasn't executed yet.
+				clearTimeout( this.debounceId );
+			}
 
-			if ( this.request ) {
+			this.debounceId = setTimeout( () => {
+				const query = value.trim();
+
+				if ( this.request ) {
 				// Cancel the last request before making a new one in case it is still
 				// pending. This call is expected to be inert if the request has
 				// already finished.
-				this.request.abort();
-			}
+					this.request.abort();
+				}
 
-			if ( !query ) {
-				this.clearSuggestions();
+				if ( !query ) {
+					this.clearSuggestions();
 
-				return;
-			}
+					return;
+				}
 
-			this.$emit( 'fetch-start' );
+				this.$emit( 'fetch-start' );
 
-			this.request = this.client.fetchByTitle( value, this.domain );
+				this.request = this.client.fetchByTitle( value, this.domain );
 
-			this.request.fetch.then( ( { results } ) => {
-				this.updateSuggestions( query, results );
+				this.request.fetch.then( ( { results } ) => {
+					this.updateSuggestions( query, results );
 
-				// Event
-				const event: FetchEndEvent = {
-					numberOfResults: results.length,
-					query
-				};
+					// Event
+					const event: FetchEndEvent = {
+						numberOfResults: results.length,
+						query
+					};
 
-				this.$emit( 'fetch-end', event );
-			} )
-				.catch( () => {
+					this.$emit( 'fetch-end', event );
+				} )
+					.catch( () => {
 					// Error handling?
-				} );
+					} );
+			}, DEBOUNCE_INTERVAL );
 		},
 		onSuggestionMouseOver( index: number ) {
 			this.suggestionActiveIndex = index;

@@ -118,6 +118,12 @@ describe( 'typing into input', () => {
 			}
 		} );
 		input = wrapper.find( '.wvui-input__input' );
+
+		jest.useFakeTimers( 'modern' );
+	} );
+
+	afterEach( () => {
+		jest.useRealTimers();
 	} );
 
 	it( 'emits `fetch-start` and `fetch-end` events when successful response', async () => {
@@ -130,6 +136,7 @@ describe( 'typing into input', () => {
 		expect( onFetchEnd.mock.calls.length ).toBe( 0 );
 
 		input.setValue( 'test' );
+		jest.advanceTimersByTime( DEBOUNCE_INTERVAL );
 
 		expect( onFetchStart.mock.calls.length ).toBe( 1 );
 		expect( onFetchEnd.mock.calls.length ).toBe( 0 );
@@ -144,6 +151,7 @@ describe( 'typing into input', () => {
 		fetchPromise = Promise.reject( new Error( 'Network Error Test' ) );
 
 		input.setValue( 'test' );
+		jest.advanceTimersByTime( DEBOUNCE_INTERVAL );
 
 		expect( onFetchStart.mock.calls.length ).toBe( 1 );
 		expect( onFetchEnd.mock.calls.length ).toBe( 0 );
@@ -157,6 +165,7 @@ describe( 'typing into input', () => {
 
 	it( 'does not call search client or emit events when blank input', async () => {
 		input.setValue( '  ' );
+		jest.advanceTimersByTime( DEBOUNCE_INTERVAL );
 
 		expect( onFetchStart.mock.calls.length ).toBe( 0 );
 		expect( onFetchEnd.mock.calls.length ).toBe( 0 );
@@ -171,12 +180,18 @@ describe( 'typing into input', () => {
 		} );
 
 		input.setValue( 'first query' );
+		jest.advanceTimersByTime( DEBOUNCE_INTERVAL );
+
 		expect( client.fetchByTitle.mock.results[ 0 ].value.abort.mock.calls.length ).toBe( 0 );
 
 		input.setValue( 'second query' );
+		jest.advanceTimersByTime( DEBOUNCE_INTERVAL );
+
 		expect( client.fetchByTitle.mock.results[ 0 ].value.abort.mock.calls.length ).toBe( 1 );
 
 		input.setValue( '' );
+		jest.advanceTimersByTime( DEBOUNCE_INTERVAL );
+
 		expect( client.fetchByTitle.mock.results[ 0 ].value.abort.mock.calls.length ).toBe( 1 );
 		expect( client.fetchByTitle.mock.results[ 1 ].value.abort.mock.calls.length ).toBe( 1 );
 	} );
