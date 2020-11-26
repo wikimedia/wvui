@@ -24,7 +24,9 @@ export const TypeaheadSearch = (): Vue.Component =>
 		},
 		methods: {
 			onFetchStart: action( 'fetch-start' ),
-			onFetchEnd: action( 'fetch-end' )
+			onFetchEnd: action( 'fetch-end' ),
+			onSuggestionClick: action( 'suggestion-click' ),
+			onSubmit: action( 'submit' )
 		},
 		template: `
 			<div class="sb-typeahead-search">
@@ -42,6 +44,8 @@ export const TypeaheadSearch = (): Vue.Component =>
 					:showDescription="showDescription"
 					@fetch-start="onFetchStart"
 					@fetch-end="onFetchEnd"
+					@suggestion-click="onSuggestionClick"
+					@submit="onSubmit"
 				>
 					<input type="hidden" name="title" value="Special:Search">
 				</wvui-typeahead-search>
