@@ -437,6 +437,17 @@ export default Vue.extend( {
 		}
 	}
 } );
+
+// ESLint will also check the styles below (and in other Single File
+// Components). Because there are numerous max-len error-causing lines from
+// long `calc` styles/variables below, conflicts with competing stylelint
+// rules, and because ESLint ignores `eslint-disable` comments placed in the
+// styles themselves, we regrettably set it here instead.
+//
+// See "Known Limitations" from vue-eslint-parser:
+// https://github.com/vuejs/vue-eslint-parser#%EF%B8%8F-known-limitations
+//
+/* eslint-disable max-len */
 </script>
 
 <style lang="less">
@@ -447,7 +458,7 @@ export default Vue.extend( {
 	// container. We want these to be the same width so that these figures
 	// vertically line up nicely. For pragmatic reasons, we use the width of the
 	// suggestion thumb.
-	@width-typeahead-search-figure: @min-width-typeahead-suggestion-thumb;
+	@width-typeahead-search-figure: @size-typeahead-suggestion-thumb;
 	// The amount of spacing from the end of the input icon container, typeahead
 	// suggestion thumb, and footer icon container to the start of their
 	// associated text. We need the text to vertically line up nicely.
@@ -550,6 +561,7 @@ export default Vue.extend( {
 		.wvui-input__input {
 			border: @border-width-base @border-style-base @border-color-base;
 			border-radius: @border-radius-base;
+			padding-left: @width-typeahead-search-figure;
 
 			// Button becomes visible on `:hover` so we don't want rounded borders with it.
 			&:hover,
@@ -600,28 +612,24 @@ export default Vue.extend( {
 		// The amount the width of the input increased by when it is focused.
 		// It starts with `@padding-horizontal-input-text * 2 + @size-icon`.
 		// @min-width-typeahead-suggestion-thumb - @min-size-icon is too much.
-		@size-typeahead-search-focus-addition: @width-typeahead-search-figure -
-			@min-size-icon + @spacing-end-typeahead-search-figure;
+		@size-typeahead-search-focus-addition: ~'( @{width-typeahead-search-figure} - @{min-size-icon} + @{spacing-end-typeahead-search-figure} )';
 
 		.wvui-input__input:focus {
+			position: relative;
 			// Keep the cursor in the same place on the screen.
-			padding-left: @spacing-start-typeahead-search-figure +
-				@width-typeahead-search-figure +
-				@spacing-end-typeahead-search-figure;
-			// stylelint-disable-next-line plugin/no-unsupported-browser-features
+			padding-left: calc( @spacing-start-typeahead-search-figure + @width-typeahead-search-figure + @spacing-end-typeahead-search-figure );
 			width: calc( 100% + @size-typeahead-search-focus-addition );
 			// Don't let the input grow over the search button.
-			transform: translateX( -@size-typeahead-search-focus-addition );
+			left: calc( -1 * @size-typeahead-search-focus-addition );
 		}
 
 		.wvui-input__input:focus + .wvui-input__start-icon {
-			left: -@size-typeahead-search-focus-addition +
-				@spacing-start-typeahead-search-figure;
+			left: calc( -1 * @size-typeahead-search-focus-addition + @spacing-start-typeahead-search-figure );
 			width: @width-typeahead-search-figure;
 		}
 
 		.wvui-typeahead-search__suggestions {
-			left: -@size-typeahead-search-focus-addition;
+			left: calc( -1 * @size-typeahead-search-focus-addition );
 		}
 
 		.wvui-typeahead-search__suggestion {

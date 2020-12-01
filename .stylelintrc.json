@@ -3,6 +3,6 @@
 	"plugins": ["stylelint-no-unsupported-browser-features"],
 	"rules": {
 		"max-nesting-depth": [2, { "ignore": ["pseudo-classes"] }],
-		"plugin/no-unsupported-browser-features": ["error", { "ignore": ["outline"] }]
+		"plugin/no-unsupported-browser-features": ["error", { "ignore": ["outline", "calc"] }]
 	}
 }
