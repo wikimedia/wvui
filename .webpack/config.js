@@ -84,7 +84,8 @@ function config( argv, name, entry, libraryTarget ) {
 						map: { annotation: true }
 					}
 				} )
-			] : []
+			] : [],
+			minimize: libraryTarget !== 'commonjs2'
 		},
 
 		output: {
