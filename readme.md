@@ -246,7 +246,7 @@ be modified if you use Blubber in your CI pipeline. Otherwise, it can be ignored
 -   `run test:unit`: run the unit tests. Pass `-u` to update all Jest snapshots.
 -   `run format`: apply lint fixes automatically where available.
 -   `run build`: compile source inputs to bundle outputs under `dist/`.
--   `run docs`: generate all documentation under `docs/`.
+-   `run doc`: generate all documentation under `doc/`.
 -   `version`: increment the version. See [versioning](#versioning).
 -   `publish`: publish the version to NPM. See [versioning](#versioning).
 
