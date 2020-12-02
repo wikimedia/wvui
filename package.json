@@ -35,6 +35,7 @@
     "test:lint:js": "npm -s run linter:js -- .",
     "test:lint:etc": "npm -s run linter:etc -- -l",
     "test:size": "bundlesize",
+    "doc": "npm -s run docs",
     "docs": "npm -s run docs:ui && npm -s run docs:size && npm -s run docs:sourceMap:wvuiMin && npm -s run docs:sourceMap:wvuiMinGzip",
     "docs:ui": "build-storybook --quiet --loglevel warn -o docs/ui",
     "docs:size": "npm -s run test:size > docs/minGzipBundleSize.txt",
