@@ -17,76 +17,78 @@
 			:action="formAction"
 			@submit="onSubmit"
 		>
-			<wvui-input
-				class="wvui-typeahead-search__input"
-				:start-icon="startIcon"
-				:value="inputValue"
-				:type="InputType.Search"
-				name="search"
-				dir="auto"
-				autocapitalize="off"
-				v-bind="$attrs"
-				autocomplete="off"
-				aria-autocomplete="list"
-				:aria-controls="suggestionsId"
-				:aria-activedescendant="activeSuggestionId"
-				@input="onInput"
-				@blur="onInputBlur"
-				@focus="onInputFocus"
-			/>
-			<!-- A slot for passing hidden inputs like
+			<div class="wvui-typeahead-search__wrapper">
+				<wvui-input
+					class="wvui-typeahead-search__input"
+					:start-icon="startIcon"
+					:value="inputValue"
+					:type="InputType.Search"
+					name="search"
+					dir="auto"
+					autocapitalize="off"
+					v-bind="$attrs"
+					autocomplete="off"
+					aria-autocomplete="list"
+					:aria-controls="suggestionsId"
+					:aria-activedescendant="activeSuggestionId"
+					@input="onInput"
+					@blur="onInputBlur"
+					@focus="onInputFocus"
+				/>
+				<!-- A slot for passing hidden inputs like
 				<input type="hidden" name="language" value="en"> -->
-			<slot />
+				<slot />
+				<ol
+					:id="suggestionsId"
+					class="wvui-typeahead-search__suggestions"
+					role="listbox"
+					:aria-label="suggestionsLabel"
+				>
+					<li
+						v-for="(suggestion, index) in suggestionsList"
+						:key="index"
+						role="option"
+					>
+						<wvui-typeahead-suggestion
+							:id="getSuggestionId( suggestion )"
+							:key="suggestion.id"
+							class="wvui-typeahead-search__suggestion"
+							:query="searchQuery"
+							:active="suggestionActiveIndex === index"
+							:suggestion="suggestion"
+							:show-thumbnail="showThumbnail"
+							:show-description="showDescription"
+							@mouseover="onSuggestionMouseOver( index )"
+							@mousedown.native="onSuggestionMouseDown"
+							@click="onSuggestionClick( suggestion )"
+						/>
+					</li>
+					<li role="option">
+						<a
+							:id="footerId"
+							ref="footer"
+							tabindex="-1"
+							class="wvui-typeahead-search__suggestions__footer"
+							:href="footerUrl"
+							:class="footerClasses"
+							@mouseover="onFooterHover"
+							@mousedown="onSuggestionMouseDown"
+							@click="onSuggestionClick()"
+						>
+							<wvui-icon
+								class="wvui-typeahead-search__suggestions-footer-article-icon"
+								:icon="articleIcon"
+							/>
+							<span
+								class="wvui-typeahead-search__suggestions__footer__text"
+							>{{ footerSearchText }} <strong>"{{ searchQuery }}"</strong></span>
+						</a>
+					</li>
+				</ol>
+			</div>
 			<wvui-button class="wvui-typeahead-search__submit">
 				{{ buttonLabel }}
 			</wvui-button>
-			<ol
-				:id="suggestionsId"
-				class="wvui-typeahead-search__suggestions"
-				role="listbox"
-				:aria-label="suggestionsLabel"
-			>
-				<li
-					v-for="(suggestion, index) in suggestionsList"
-					:key="index"
-					role="option"
-				>
-					<wvui-typeahead-suggestion
-						:id="getSuggestionId( suggestion )"
-						:key="suggestion.id"
-						class="wvui-typeahead-search__suggestion"
-						:query="searchQuery"
-						:active="suggestionActiveIndex === index"
-						:suggestion="suggestion"
-						:show-thumbnail="showThumbnail"
-						:show-description="showDescription"
-						@mouseover="onSuggestionMouseOver( index )"
-						@mousedown.native="onSuggestionMouseDown"
-						@click="onSuggestionClick( suggestion )"
-					/>
-				</li>
-				<li role="option">
-					<a
-						:id="footerId"
-						ref="footer"
-						tabindex="-1"
-						class="wvui-typeahead-search__suggestions__footer"
-						:href="footerUrl"
-						:class="footerClasses"
-						@mouseover="onFooterHover"
-						@mousedown="onSuggestionMouseDown"
-						@click="onSuggestionClick()"
-					>
-						<wvui-icon
-							class="wvui-typeahead-search__suggestions-footer-article-icon"
-							:icon="articleIcon"
-						/>
-						<span
-							class="wvui-typeahead-search__suggestions__footer__text"
-						>{{ footerSearchText }} <strong>"{{ searchQuery }}"</strong></span>
-					</a>
-				</li>
-			</ol>
 		</form>
 	</div>
 </template>
@@ -460,6 +462,9 @@ export default Vue.extend( {
 	&__form {
 		// stylelint-disable-next-line plugin/no-unsupported-browser-features
 		display: flex;
+	}
+
+	&__container {
 		position: relative;
 		flex-grow: 1;
 	}
