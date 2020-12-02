@@ -464,7 +464,7 @@ export default Vue.extend( {
 		display: flex;
 	}
 
-	&__container {
+	&__wrapper {
 		position: relative;
 		flex-grow: 1;
 	}
