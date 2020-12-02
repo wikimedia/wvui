@@ -37,7 +37,7 @@
     "test:size": "bundlesize",
     "doc": "npm -s run doc:ui && npm -s run doc:size",
     "doc:ui": "build-storybook --quiet --loglevel warn -o docs/ui",
-    "doc:size": "npm -s run test:size > docs/minGzipBundleSize.txt",
+    "doc:size": "npm -s run build && npm -s run test:size > docs/minGzipBundleSize.txt",
     "doc:sourceMap:wvuiMin": "source-map-explorer            --html docs/sourceMaps/wvuiMin.html     dist/wvui.{js,css}",
     "doc:sourceMap:wvuiMinGzip": "source-map-explorer --gzip --html docs/sourceMaps/wvuiMinGzip.html dist/wvui.{js,css}",
     "version": "npm t",
