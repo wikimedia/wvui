@@ -131,9 +131,8 @@ export default Vue.extend( {
 		background-repeat: no-repeat;
 		// stylelint-disable-next-line plugin/no-unsupported-browser-features
 		background-size: cover;
-		// min-width is used to prevent a thumbnail from gets
-		// squished if a description is lengthy.
-		min-width: @min-width-typeahead-suggestion-thumb;
+		// Prevent thumbnail width from shrinking when descriptions are long.
+		flex-shrink: 0;
 		width: @size-typeahead-suggestion-thumb;
 		height: @size-typeahead-suggestion-thumb;
 		border-radius: @border-radius-base;
