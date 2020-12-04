@@ -57,9 +57,15 @@ function config( argv, name, entry, libraryTarget ) {
 			assetFilter: ( filename ) => !filename.endsWith( jsSourceMapExtension )
 		},
 
-		// Disabling sourcemaps in production because the comment at the end of the file 
-		// causes an "unexpected end of input" error with MediaWiki's ResourceLoader.
-		devtool: argv.mode === 'development' ? 'cheap-module-eval-source-map' : false,
+		// Disable source map generation for the CommonJS bundle as MediaWiki ResourceLoader's
+		// JavaScript minifier fails to parse parts of the output.
+		devtool: ( () => {
+			if ( libraryTarget === 'commonjs2' ) {
+				return false;
+			}
+
+			return argv.mode === 'production' ? 'source-map' : 'cheap-module-eval-source-map';
+		} )(),
 
 		optimization: {
 			// Enable CSS minification.
@@ -85,6 +91,8 @@ function config( argv, name, entry, libraryTarget ) {
 					}
 				} )
 			] : [],
+
+			// Defer to MediaWiki ResourceLoader's minifier.
 			minimize: libraryTarget !== 'commonjs2'
 		},
 
