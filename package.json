@@ -2,7 +2,7 @@
   "name": "@wikimedia/wvui",
   "author": "Wikimedia",
   "description": "🧩 Wikimedia Vue UI components. Wikimedia Foundation's Vue.js shared user-interface components for Wikipedia, MediaWiki, and beyond.",
-  "version": "0.0.2-next.2020-11-19-21-55.0",
+  "version": "0.0.2-next.2020-11-19-21-55.1",
   "keywords": [
     "Vue.js",
     "components",
