@@ -18,12 +18,19 @@ PRE_ID="${PRE_ID:-next.$(TZ=utc date +%F-%H-%M)}"
 
 "$(dirname "$0")/node-test-version"
 
-# This will create a new version commit on the detached `HEAD` like
-# `v1.2.4-next.2020-07-09-20-40.0`.
-npm version prerelease --preid="$PRE_ID"
+# Development tags are not wanted on the master branch. Checkout `HEAD` detached.
+git fetch origin master
+git checkout origin/master
+
+# Validate the installation. See `npm help ci`.
+npm ci
 
 # Add token in .npmrc for authenticating with npm
 echo "//registry.npmjs.org/:_authToken=${WVUI_NPM_TOKEN}" > ".npmrc"
+
+# This will create a new version commit on the detached `HEAD` like
+# `v1.2.4-next.2020-07-09-20-40.0`.
+npm version prerelease --preid="$PRE_ID"
 
 # Scoped packages (like `@wikimedia/*`) are private by default. Specify that public is wanted.
 # Point the next tag to this release.
