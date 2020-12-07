@@ -11,6 +11,7 @@ exports[`matches the snapshot 1`] = `
   <form
     action="/w/index.php"
     class="wvui-typeahead-search__form"
+    id="foo"
   >
     <div
       class="wvui-typeahead-search__wrapper"
@@ -135,6 +136,7 @@ exports[`when there are search results matches the snapshot 1`] = `
   <form
     action="/w/index.php"
     class="wvui-typeahead-search__form"
+    id="foo"
   >
     <div
       class="wvui-typeahead-search__wrapper"

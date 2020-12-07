@@ -13,6 +13,7 @@
 		@keydown.escape="onKeyDownEscape"
 	>
 		<form
+			:id="id"
 			class="wvui-typeahead-search__form"
 			:action="formAction"
 			@submit="onSubmit"
