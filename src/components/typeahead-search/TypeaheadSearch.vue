@@ -609,10 +609,10 @@ export default Vue.extend( {
 		// be uniform so that the figures vertically line up nicely. For pragmatic
 		// reasons, we use the horizontal padding of the typeahead suggestion.
 		@spacing-start-typeahead-search-figure: @padding-horizontal-typeahead-suggestion;
-		// The amount the width of the input increased by when it is focused.
-		// It starts with `@padding-horizontal-input-text * 2 + @size-icon`.
-		// @min-width-typeahead-suggestion-thumb - @min-size-icon is too much.
-		@size-typeahead-search-focus-addition: ~'( @{width-typeahead-search-figure} - @{min-size-icon} + @{spacing-end-typeahead-search-figure} )';
+		// The amount the width of the input increases when it is focused to allow
+		// for the extra spacing around the search figures. The caret position
+		// should remain in place for the smoothest transition.
+		@size-typeahead-search-focus-addition: ~'( @{spacing-start-typeahead-search-figure} + @{spacing-end-typeahead-search-figure} )';
 
 		.wvui-input__input:focus {
 			position: relative;
