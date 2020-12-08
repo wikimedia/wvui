@@ -137,8 +137,8 @@ export default Vue.extend( {
 		background-size: cover;
 		// Prevent thumbnail width from shrinking when descriptions are long.
 		flex-shrink: 0;
-		width: @size-typeahead-suggestion-thumb;
-		height: @size-typeahead-suggestion-thumb;
+		width: @size-search-figure;
+		height: @size-search-figure;
 		border-radius: @border-radius-base;
 		// Borders tend to cut into the border-radius and it makes the
 		// border-radius look smaller on the inside of the box than the outside.

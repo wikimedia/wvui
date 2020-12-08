@@ -160,7 +160,7 @@ export default Vue.extend( {
 	}
 
 	&__start-icon {
-		left: @start-input-text-icon;
+		width: @size-search-figure;
 		pointer-events: none;
 	}
 
@@ -263,7 +263,7 @@ export default Vue.extend( {
 	&--has-start-icon {
 		// stylelint-disable-next-line no-descending-specificity
 		.wvui-input__input {
-			padding-left: @padding-horizontal-input-text * 2 + @size-icon;
+			padding-left: @size-search-figure;
 		}
 	}
 

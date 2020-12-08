@@ -13,8 +13,12 @@
 
 @border-color-input--hover: @border-color-base--active;
 
-// Typeahead Suggestion.
-@size-typeahead-suggestion-thumb: unit( 36 / @font-size-browser / @font-size-base, @wvui-unit );
+// The size of the input icon container in the Input component, suggestion
+// thumb in the TypeaheadSuggestion component, and footer icon container in the
+// TypeaheadSearch component. We want these to be the same size so that these
+// figures vertically line up nicely when they are used together in the
+// TypeaheadSearch component.
+@size-search-figure: unit( 36 / @font-size-browser / @font-size-base, @wvui-unit );
 
 @background-color-typeahead-suggestion--active: @wmui-color-accent90;
 @background-color-typeahead-suggestion-placeholder: @wmui-color-base90;

@@ -456,11 +456,6 @@ export default Vue.extend( {
 @import ( reference ) '@/themes/wikimedia-ui.less';
 
 .wvui-typeahead-search {
-	// The width of the input icon container, suggestion thumb, and footer icon
-	// container. We want these to be the same width so that these figures
-	// vertically line up nicely. For pragmatic reasons, we use the width of the
-	// suggestion thumb.
-	@width-typeahead-search-figure: @size-typeahead-suggestion-thumb;
 	// The amount of spacing from the end of the input icon container, typeahead
 	// suggestion thumb, and footer icon container to the start of their
 	// associated text. We need the text to vertically line up nicely.
@@ -521,7 +516,7 @@ export default Vue.extend( {
 			padding: @padding-vertical-typeahead-suggestion
 				@padding-horizontal-typeahead-suggestion
 				@padding-vertical-typeahead-suggestion
-				@width-typeahead-search-figure;
+				@size-search-figure;
 			text-decoration: none;
 			cursor: pointer;
 
@@ -532,12 +527,12 @@ export default Vue.extend( {
 
 			// stylelint-disable-next-line max-nesting-depth
 			.wvui-icon {
-				// Because the footer icon should line up vertically with the suggestion
-				// text when `showThumbnail` is false, we set its width to `auto` here
-				// instead of using the more intuitive @width-typeahead-search-figure
+				// Because the footer icon should line up vertically with the
+				// suggestion text when `showThumbnail` is false, we set its width to
+				// `auto` here instead of using the more intuitive @size-search-figure
 				// variable so that it doesn't have extra horizontal space.
 				width: auto;
-				height: @size-typeahead-suggestion-thumb;
+				height: @size-search-figure;
 				margin-right: @spacing-end-typeahead-search-figure;
 				font-size: @font-size-typeahead-suggestion-title;
 				opacity: @opacity-icon-accessory;
@@ -554,7 +549,7 @@ export default Vue.extend( {
 	}
 
 	&__suggestion {
-		padding-left: @width-typeahead-search-figure;
+		padding-left: @size-search-figure;
 	}
 
 	&__input {
@@ -563,7 +558,6 @@ export default Vue.extend( {
 		.wvui-input__input {
 			border: @border-width-base @border-style-base @border-color-base;
 			border-radius: @border-radius-base;
-			padding-left: @width-typeahead-search-figure;
 
 			// Button becomes visible on `:hover` so we don't want rounded borders with it.
 			&:hover,
@@ -576,7 +570,6 @@ export default Vue.extend( {
 
 	.wvui-input__start-icon {
 		left: 0;
-		width: @width-typeahead-search-figure;
 	}
 
 	//
@@ -619,7 +612,7 @@ export default Vue.extend( {
 		.wvui-input__input:focus {
 			position: relative;
 			// Keep the cursor in the same place on the screen.
-			padding-left: calc( @spacing-start-typeahead-search-figure + @width-typeahead-search-figure + @spacing-end-typeahead-search-figure );
+			padding-left: calc( @spacing-start-typeahead-search-figure + @size-search-figure + @spacing-end-typeahead-search-figure );
 			width: calc( 100% + @size-typeahead-search-focus-addition );
 			// Don't let the input grow over the search button.
 			left: calc( -1 * @size-typeahead-search-focus-addition );
@@ -627,7 +620,6 @@ export default Vue.extend( {
 
 		.wvui-input__input:focus + .wvui-input__start-icon {
 			left: calc( -1 * @size-typeahead-search-focus-addition + @spacing-start-typeahead-search-figure );
-			width: @width-typeahead-search-figure;
 		}
 
 		.wvui-typeahead-search__suggestions {
@@ -645,7 +637,7 @@ export default Vue.extend( {
 		}
 
 		.wvui-typeahead-search__suggestions-footer-article-icon {
-			width: @width-typeahead-search-figure;
+			width: @size-search-figure;
 		}
 	}
 }
