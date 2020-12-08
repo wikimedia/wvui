@@ -49,6 +49,10 @@ export default Vue.extend( {
 			type: Boolean,
 			default: false
 		},
+		articlePath: {
+			type: String,
+			default: '/w/index.php'
+		},
 		query: {
 			type: String as PropType<string>,
 			default: ''
@@ -87,7 +91,7 @@ export default Vue.extend( {
 		 * @return {string}
 		 * */
 		suggestionWikiLink(): string {
-			return this.urlGenerator.generateUrl( this.suggestion );
+			return this.urlGenerator.generateUrl( this.suggestion, undefined, this.articlePath );
 		},
 		/**
 		 * Generates a proper value for background-image.

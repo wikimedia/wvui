@@ -53,6 +53,7 @@
 						<wvui-typeahead-suggestion
 							:id="getSuggestionId( suggestion )"
 							:key="suggestion.id"
+							:article-path="formAction"
 							class="wvui-typeahead-search__suggestion"
 							:query="searchQuery"
 							:active="suggestionActiveIndex === index"

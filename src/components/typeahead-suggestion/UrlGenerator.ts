@@ -9,9 +9,14 @@ export interface UrlGenerator {
 	 *
 	 * @param suggestion
 	 * @param params Additional parameters to include in the URL's query string
+	 * @param articlePath which defaults to /w/index.php
 	 * @return
 	 */
-	generateUrl( suggestion: SearchResult | string, params?: Record<string, string> ): string;
+	generateUrl(
+		suggestion: SearchResult | string,
+		params?: Record<string, string>,
+		articlePath?: string
+	): string;
 }
 
 /**
@@ -25,7 +30,8 @@ export function createDefaultUrlGenerator(): UrlGenerator {
 			suggestion: SearchResult | string,
 			params = {
 				title: 'Special:Search'
-			}
+			},
+			articlePath = '/w/index.php'
 		): string {
 			if ( typeof suggestion !== 'string' ) {
 				suggestion = suggestion.title;
@@ -36,7 +42,7 @@ export function createDefaultUrlGenerator(): UrlGenerator {
 				params.fulltext = '1';
 			}
 
-			return `/w/index.php?${buildQueryString( { ...params, search: suggestion } )}`;
+			return `${articlePath}?${buildQueryString( { ...params, search: suggestion } )}`;
 		}
 	};
 }
