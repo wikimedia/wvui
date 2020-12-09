@@ -236,6 +236,13 @@ export default Vue.extend( {
 			return this.isExpanded ? 'true' : 'false';
 		}
 	},
+	mounted: function () {
+		if ( this.initialInputValue ) {
+			// Programmatic changes to the input don't trigger the input event so we
+			// manually call the onInput method here.
+			this.onInput( this.initialInputValue );
+		}
+	},
 	methods: {
 		/**
 		 * A convenience method to update those properties that should be updated when new

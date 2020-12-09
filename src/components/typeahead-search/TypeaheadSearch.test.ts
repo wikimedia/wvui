@@ -83,6 +83,58 @@ it( 'should set the button label', () => {
 	expect( button.text() ).toStrictEqual( propsData.buttonLabel );
 } );
 
+describe( 'when mounted', () => {
+	const client = {
+		fetchByTitle: jest.fn( () => {
+			return {
+				fetch: new Promise( () => {
+					// No-op
+				} ),
+				abort: () => {
+					// No-op
+				}
+			};
+		} )
+	};
+
+	beforeEach( () => {
+		jest.useFakeTimers( 'modern' );
+	} );
+
+	afterEach( () => {
+		jest.useRealTimers();
+	} );
+
+	it( 'does not make a network request when `initialInputValue` is blank', () => {
+		mount( WvuiTypeaheadSearch, {
+			propsData: {
+				...propsData,
+				initialInputValue: '',
+				client
+			}
+		} );
+
+		jest.advanceTimersByTime( DEBOUNCE_INTERVAL );
+
+		expect( client.fetchByTitle.mock.calls.length ).toBe( 0 );
+	} );
+
+	it( 'makes a network request when `initialInputValue` is NOT blank', () => {
+		mount( WvuiTypeaheadSearch, {
+			propsData: {
+				...propsData,
+				initialInputValue: 'initial text',
+				client
+			}
+		} );
+
+		jest.advanceTimersByTime( DEBOUNCE_INTERVAL );
+
+		expect( client.fetchByTitle.mock.calls.length ).toBe( 1 );
+	} );
+
+} );
+
 describe( 'typing into input', () => {
 	let onFetchStart: jest.Mock;
 	let onFetchEnd: jest.Mock;
