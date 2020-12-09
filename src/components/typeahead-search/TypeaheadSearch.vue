@@ -607,7 +607,7 @@ export default Vue.extend( {
 		// The amount the width of the input increases when it is focused to allow
 		// for the extra spacing around the search figures. The caret position
 		// should remain in place for the smoothest transition.
-		@size-typeahead-search-focus-addition: ~'( @{spacing-start-typeahead-search-figure} + @{spacing-end-typeahead-search-figure} )';
+		@size-typeahead-search-focus-addition: @spacing-start-typeahead-search-figure + @spacing-end-typeahead-search-figure;
 
 		.wvui-input__input:focus {
 			position: relative;
@@ -615,15 +615,15 @@ export default Vue.extend( {
 			padding-left: calc( @spacing-start-typeahead-search-figure + @size-search-figure + @spacing-end-typeahead-search-figure );
 			width: calc( 100% + @size-typeahead-search-focus-addition );
 			// Don't let the input grow over the search button.
-			left: calc( -1 * @size-typeahead-search-focus-addition );
+			left: -@size-typeahead-search-focus-addition;
 		}
 
 		.wvui-input__input:focus + .wvui-input__start-icon {
-			left: calc( -1 * @size-typeahead-search-focus-addition + @spacing-start-typeahead-search-figure );
+			left: -@size-typeahead-search-focus-addition + @spacing-start-typeahead-search-figure;
 		}
 
 		.wvui-typeahead-search__suggestions {
-			left: calc( -1 * @size-typeahead-search-focus-addition );
+			left: -@size-typeahead-search-focus-addition;
 		}
 
 		.wvui-typeahead-search__suggestion {
