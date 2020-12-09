@@ -91,21 +91,16 @@ We recommend pinning WVUI to an exact patch version. For example:
   …,
 ```
 
-<details>
-<summary>Expand for details…</summary>
+> WVUI is semantically versioned but bugs occasionally slip through. They're easier for consumers to
+> identify when upgrades are tracked deliberately via package.json. If
+> [semver ranges](https://docs.npmjs.com/misc/semver) are used instead, like `"^1.2.3"`, only the
+> verbose and noisy package-lock.json will change on an upgrade which may go unnoticed.
+> Additionally, new features are easier to consider and socialize at upgrade time when minor / major
+> version upgrades are intentional and reflected in package.json.
 
-WVUI is semantically versioned but bugs occasionally slip through. They're easier for consumers to
-identify when upgrades are tracked deliberately via package.json. If
-[semver ranges](https://docs.npmjs.com/misc/semver) are used instead, like `"^1.2.3"`, only the
-verbose and noisy package-lock.json will change on an upgrade which may go unnoticed. Additionally,
-new features are easier to consider and socialize at upgrade time when minor / major version
-upgrades are intentional and reflected in package.json.
-
-The recommendation to use exact patch versions like `"1.2.3"` may seem pedantic but if a project
-specifies dependencies with looser versioning instead, that project will be at the mercy of its
-dependencies instead of in control of them.
-
-</details>
+> The recommendation to use exact patch versions like `"1.2.3"` may seem pedantic but if a project
+> specifies dependencies with looser versioning instead, that project will be at the mercy of its
+> dependencies instead of in control of them.
 
 ### Integration
 
@@ -176,14 +171,10 @@ npm start
 
 WVUI comes with a docker configuration for local development.
 
-<details>
-<summary>Expand for details...</summary>
-
-However, using Docker is not necessary. See **[quick start](#quick-start)** for developing without
-Docker. Containerizing WVUI with Docker makes it easy to have a standard, shared environment for
-local devlopment among developers, as well as integration with automated CI pipelines.
-
-</details>
+> Using Docker is not necessary, but strongly suggested. See **[quick start](#quick-start)** for
+> developing without Docker. Containerizing WVUI with Docker makes it easy to have a standard,
+> shared environment for local devlopment among developers, as well as integration with automated CI
+> pipelines.
 
 To get started:
 
@@ -261,9 +252,7 @@ Undocumented scripts are considered internal utilities and not expressly support
     update snapshots or `npm run build -- -dw` to automatically rebuild a development output.
 -   Add `-s` to omit verbose command echoing. For example, `npm -s i` or `npm -s run format`.
 
-<details markdown>
-<summary><a href="http://nvm.sh">NVM</a> is recommended to configure the Node.js version used
-whenever executing these scripts from your host machine. If developing with Docker, this is not necessary as the image comes with the appropriate version of node. Expand for example…</summary>
+<a href="http://nvm.sh">NVM</a> is recommended to configure the Node.js version used.
 
 ```bash
 # Install the project's recommended Node.js version. This is a one-time installation command and
@@ -283,8 +272,6 @@ npm install
 
 # All dependencies are now available. Execute any project scripts as wanted.
 ```
-
-</details>
 
 ### Storybook workflow
 
@@ -560,8 +547,7 @@ To publish a new release:
 4. Execute `TYPE=<patch|minor|major> bin/release-prod`.
 5. Perform a [rolling development release](#rolling-development-release).
 
-<details markdown>
-<summary>Expand for example…</summary>
+Example commands:
 
 ```bash
 # Checkout the latest master branch.
@@ -584,55 +570,51 @@ git commit -m '[docs][changelog] prepare release notes'
 TYPE=patch bin/release-prod
 ```
 
-</details>
+The NPM scripts are configured to help ensure that only tested artifacts are published on
 
-<details markdown>
-
-<summary>The NPM scripts are configured to help ensure that only tested artifacts are published on
-Git and npmjs.com. Expand for details…</summary>
-
-By executing `npm version`, the following scripts are invoked in this order:
-
-1. `preversion`: test that the workspace contains no uncommitted changes.
-2. **`version`**: increment the version, clean, build, and test the candidate, commit, and tag the
-   change.
-
-In detail, `version` is a built-in NPM script that increases the package.json's `version` property
-(`patch`, `minor`, or `major`) as specified, commits the result to version control, and adds a Git
-tag. Prior to committing the version bump, clean, build, and test the candidate artifact. See
-`npm help version` for further details.
-
-The `preversion` NPM script, which runs prior to `version`, is defined to test that Git's version
-control state is clean before that happens. No uncommitted changes are allowed! For example, imagine
-if a superfluous file containing a password was unintentionally in the workspace and published to
-npmjs.com.
-
-By executing `npm publish`, the following scripts are invoked in this order:
-
-1. `prepublishOnly`: push the Git tag to the remote.
-2. **`publish`**: push the artifacts to npmjs.com as per usual.
-
-Before `publish` is executed, `prepublishOnly` pushes the current commit and tag to the Git remote.
-If the push or publish fail due to connectivity, you should probably call `npm publish` directly
-which will re-push the tag and archive as needed.
-
-Finally, the `publish` script is executed which releases the raw files built into the wild at the
-[npm registry](https://www.npmjs.com). See `npm help publish` for further details.
-
-The intended result is:
-
--   Uncommitted changes (both modifications and untracked files) are forbidden.
--   Only clean and tested packages are published.
--   Git tags are available for all releases.
--   Git tags pushed and NPM artifacts publishes are always in sync.
--   NPM's `@latest` tag points to the current stable release and `@next` points to the latest
-    commit.
-
-See also:
-
--   [NPM scripts](https://docs.npmjs.com/misc/scripts)
--   [NPM version](https://docs.npmjs.com/cli/version)
-</details>
+> Git and npmjs.com.
+>
+> By executing `npm version`, the following scripts are invoked in this order:
+>
+> 1. `preversion`: test that the workspace contains no uncommitted changes.
+> 2. **`version`**: increment the version, clean, build, and test the candidate, commit, and tag the
+>    change.
+>
+> In detail, `version` is a built-in NPM script that increases the package.json's `version` property
+> (`patch`, `minor`, or `major`) as specified, commits the result to version control, and adds a Git
+> tag. Prior to committing the version bump, clean, build, and test the candidate artifact. See
+> `npm help version` for further details.
+>
+> The `preversion` NPM script, which runs prior to `version`, is defined to test that Git's version
+> control state is clean before that happens. No uncommitted changes are allowed! For example,
+> imagine if a superfluous file containing a password was unintentionally in the workspace and
+> published to npmjs.com.
+>
+> By executing `npm publish`, the following scripts are invoked in this order:
+>
+> 1. `prepublishOnly`: push the Git tag to the remote.
+> 2. **`publish`**: push the artifacts to npmjs.com as per usual.
+>
+> Before `publish` is executed, `prepublishOnly` pushes the current commit and tag to the Git
+> remote. If the push or publish fail due to connectivity, you should probably call `npm publish`
+> directly which will re-push the tag and archive as needed.
+>
+> Finally, the `publish` script is executed which releases the raw files built into the wild at the
+> [npm registry](https://www.npmjs.com). See `npm help publish` for further details.
+>
+> The intended result is:
+>
+> -   Uncommitted changes (both modifications and untracked files) are forbidden.
+> -   Only clean and tested packages are published.
+> -   Git tags are available for all releases.
+> -   Git tags pushed and NPM artifacts publishes are always in sync.
+> -   NPM's `@latest` tag points to the current stable release and `@next` points to the latest
+>     commit.
+>
+> See also:
+>
+> -   [NPM scripts](https://docs.npmjs.com/misc/scripts)
+> -   [NPM version](https://docs.npmjs.com/cli/version)
 
 #### Pre-release (alpha, beta, or release candidate)
 
@@ -640,22 +622,17 @@ To publish a new alpha, beta, or release candidate, execute
 `TYPE=<prerelease|prepatch|preminor|premajor> PRE_ID=<alpha|beta|rc> bin/release-pre`. This will
 create a new version commit on the current branch.
 
-<details markdown>
-<summary>Expand for details on which version to use…</summary>
-
-`prerelease` is the safest choice. It always bumps the metadata number and _only_ bumps the patch
-number if a stable version exists. For example, given the current version is a stable v1.2.3,
-`TYPE=prerelease PRE_ID=alpha bin/release-pre` will create `v1.2.4-alpha.0`. Note that both the
-patch is bumped and metadata is added. If executed _again_, note that only the metadata number is
-bumped and the patch number stays the same: `v1.2.4-alpha.1`.
-
-`prerelease` can be slightly incorrect if the next release is known to be a minor or major release.
-In those cases, the correct initial alpha release would be
-`TYPE=preminor PRE_ID=alpha bin/release-pre` (or `premajor`) which would create `v1.3.0-alpha.0`.
-The subsequent alpha release would then be `TYPE=prerelease PRE_ID=alpha bin/release-pre` (note the
-command `TYPE` changes to `prerelease`) which creates `v1.3.0-alpha.1`.
-
-</details>
+> `prerelease` is the safest choice. It always bumps the metadata number and _only_ bumps the patch
+> number if a stable version exists. For example, given the current version is a stable v1.2.3,
+> `TYPE=prerelease PRE_ID=alpha bin/release-pre` will create `v1.2.4-alpha.0`. Note that both the
+> patch is bumped and metadata is added. If executed _again_, note that only the metadata number is
+> bumped and the patch number stays the same: `v1.2.4-alpha.1`.
+>
+> `prerelease` can be slightly incorrect if the next release is known to be a minor or major
+> release. In those cases, the correct initial alpha release would be
+> `TYPE=preminor PRE_ID=alpha bin/release-pre` (or `premajor`) which would create `v1.3.0-alpha.0`.
+> The subsequent alpha release would then be `TYPE=prerelease PRE_ID=alpha bin/release-pre` (note
+> the command `TYPE` changes to `prerelease`) which creates `v1.3.0-alpha.1`.
 
 #### Rolling development release
 
@@ -696,51 +673,46 @@ describes how to optimize your editor or IDE for optimal usage.
 -   The Git configuration should be precise and accurate like any other part of the codebase. The
     .gitignore file, for instance, should not become cluttered or vague.
 
-<details markdown>
-<summary><sup><a name="squash-and-merge">0</a></sup>Expand for details on squash-and-merge…</summary>
+<sup><a name="squash-and-merge">0</a></sup>Squash and merge
 
-Development of a change worth merging is often messy. A merge-worthy change usually occurs over
-multiple patchsets in a Gerrit patch or commits in a GitHub pull request. These interim changes can
-often be quite noisy in themselves and not useful or even detrimental to preserve distinctly in the
-Git log. Example improvements during review often include whitespace changes, bug fixes, refactoring
-of introduced code, and renaming of new symbols.
+> Development of a change worth merging is often messy. A merge-worthy change usually occurs over
+> multiple patchsets in a Gerrit patch or commits in a GitHub pull request. These interim changes
+> can often be quite noisy in themselves and not useful or even detrimental to preserve distinctly
+> in the Git log. Example improvements during review often include whitespace changes, bug fixes,
+> refactoring of introduced code, and renaming of new symbols.
+>
+> Therefor, distinct interim commits are collapsed into a single logical commit at merge time that
+> often satisfies the intent of the original commit. The tradeoffs are that only a single polished
+> commit representative of all of that back-and-forth discourse during code review is made at the
+> expense that less noteworthy history is lost.
 
-Therefor, distinct interim commits are collapsed into a single logical commit at merge time that
-often satisfies the intent of the original commit. The tradeoffs are that only a single polished
-commit representative of all of that back-and-forth discourse during code review is made at the
-expense that less noteworthy history is lost.
+<sup><a name="git-ignore">0</a></sup>OS and editor-specific files
 
-</details>
-
-<details markdown>
-<summary><sup><a name="git-ignore">1</a></sup>Expand for details on OS and editor-specific files…</summary>
-
-Different programmers use different editors and IDEs. WVUI will attempt to facilitate different
-workflows, especially in the form of documentation, but will avoid making changes specific to them
-such as ignoring Vim swap files.
-
-OS-specific files such as [.DS_Store](https://wikipedia.org/wiki/.DS_Store) and
-[Thumbs.db](https://wikipedia.org/wiki/Windows_thumbnail_cache) should be excluded by the user's
-global Git configuration as they're unwanted in every repository and not specific to WVUI. See
-[gitignore documentation](https://git-scm.com/docs/gitignore) for details.
-
-_Example:_
-
-1. Add a global exclusions file by executing `git config --global core.excludesfile '~/.gitignore'`
-   or updating your `~/.gitconfig` manually:
-
-```gitconfig
-excludesfile = ~/.gitignore
-```
-
-2. Always ignore `.DS_Store` files by executing `echo .DS_Store >> ~/.gitignore` or updating your
-   `~/.gitignore` manually:
-
-```gitignore
-.DS_Store
-```
-
-</details>
+> Different programmers use different editors and IDEs. WVUI will attempt to facilitate different
+> workflows, especially in the form of documentation, but will avoid making changes specific to them
+> such as ignoring Vim swap files.
+>
+> OS-specific files such as [.DS_Store](https://wikipedia.org/wiki/.DS_Store) and
+> [Thumbs.db](https://wikipedia.org/wiki/Windows_thumbnail_cache) should be excluded by the user's
+> global Git configuration as they're unwanted in every repository and not specific to WVUI. See
+> [gitignore documentation](https://git-scm.com/docs/gitignore) for details.
+>
+> _Example:_
+>
+> 1. Add a global exclusions file by executing
+>    `git config --global core.excludesfile '~/.gitignore'` or updating your `~/.gitconfig`
+>    manually:
+>
+> ```gitconfig
+> excludesfile = ~/.gitignore
+> ```
+>
+> 2. Always ignore `.DS_Store` files by executing `echo .DS_Store >> ~/.gitignore` or updating your
+>    `~/.gitignore` manually:
+>
+> ```gitignore
+> .DS_Store
+> ```
 
 #### Author guidelines
 
@@ -841,33 +813,30 @@ identical rules. This creates a large uncompressed CSS bundle when compiled. How
 size may be negligible. Use the bundlesize tests to evaluate gzipped sizes before making
 optimizations that impede readability.
 
-<details markdown>
-<summary>Expand for manual evaluation details…</summary>
+#### Manual evaluation:
 
-If a second opinion is wanted, consider using the gzip CLI:
-
-```bash
-# Individual chunk sizes (min / min+gz).
-ls -1 dist/*.{js,css}|
-sort|
-while IFS= read filename; do
-	printf \
-		'%s: %sB / %sB\n' \
-		"$filename" \
-		"$(wc -c < "$filename"|numfmt --to=iec-i)" \
-		"$(gzip -c "$filename"|wc -c|numfmt --to=iec-i)"
-done
-
-# All chunks concatenated (allows maximum possible compression). This makes sense if a request to
-# ResourceLoader will depend on multiple chunks.
-printf \
-	'%s: %sB / %sB\n' \
-	"Total" \
-	"$(cat dist/*.{js,css}|wc -c|numfmt --to=iec-i)" \
-	"$(cat dist/*.{js,css}|gzip -c|wc -c|numfmt --to=iec-i)"
-```
-
-</details>
+> If a second opinion is wanted, consider using the gzip CLI:
+>
+> ```bash
+> # Individual chunk sizes (min / min+gz).
+> ls -1 dist/*.{js,css}|
+> sort|
+> while IFS= read filename; do
+> 	printf \
+> 		'%s: %sB / %sB\n' \
+> 		"$filename" \
+> 		"$(wc -c < "$filename"|numfmt --to=iec-i)" \
+> 		"$(gzip -c "$filename"|wc -c|numfmt --to=iec-i)"
+> done
+>
+> # All chunks concatenated (allows maximum possible compression). This makes sense if a request to
+> # ResourceLoader will depend on multiple chunks.
+> printf \
+> 	'%s: %sB / %sB\n' \
+> 	"Total" \
+> 	"$(cat dist/*.{js,css}|wc -c|numfmt --to=iec-i)" \
+> 	"$(cat dist/*.{js,css}|gzip -c|wc -c|numfmt --to=iec-i)"
+> ```
 
 [docs/mingzipbundlesize.txt]: docs/minGzipBundleSize.txt
 [bundlesize]: https://github.com/siddharthkp/bundlesize
