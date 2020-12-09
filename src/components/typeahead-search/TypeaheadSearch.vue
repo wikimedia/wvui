@@ -345,6 +345,11 @@ export default Vue.extend( {
 		},
 
 		onSuggestionClick( suggestion?: SearchResult ) {
+			const event: SuggestionClickEvent = {
+				index: this.suggestionActiveIndex,
+				numberOfResults: this.suggestionsList.length
+			};
+
 			// State updates
 			this.inputValue = suggestion ? suggestion.title : this.searchQuery;
 			this.updateSuggestions( this.inputValue, [] );
@@ -353,11 +358,6 @@ export default Vue.extend( {
 			this.isExpanded = false;
 
 			// Event
-			const event: SuggestionClickEvent = {
-				index: this.suggestionActiveIndex,
-				numberOfResults: this.suggestionsList.length
-			};
-
 			this.$emit( 'suggestion-click', event );
 		},
 
