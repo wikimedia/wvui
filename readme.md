@@ -173,8 +173,8 @@ WVUI comes with a docker configuration for local development.
 
 > Using Docker is not necessary, but strongly suggested. See **[quick start](#quick-start)** for
 > developing without Docker. Containerizing WVUI with Docker makes it easy to have a standard,
-> shared environment for local devlopment among developers, as well as integration with automated CI
-> pipelines.
+> shared environment for local development among developers, as well as integration with automated
+> CI pipelines.
 
 To get started:
 
@@ -252,7 +252,7 @@ Undocumented scripts are considered internal utilities and not expressly support
     update snapshots or `npm run build -- -dw` to automatically rebuild a development output.
 -   Add `-s` to omit verbose command echoing. For example, `npm -s i` or `npm -s run format`.
 
-<a href="http://nvm.sh">NVM</a> is recommended to configure the Node.js version used.
+[NVM](http://nvm.sh) is recommended to configure the Node.js version used.
 
 ```bash
 # Install the project's recommended Node.js version. This is a one-time installation command and
@@ -570,10 +570,9 @@ git commit -m '[docs][changelog] prepare release notes'
 TYPE=patch bin/release-prod
 ```
 
-The NPM scripts are configured to help ensure that only tested artifacts are published on
+The NPM scripts are configured to help ensure that only tested artifacts are published on gerrit and
+npmjs.com.
 
-> Git and npmjs.com.
->
 > By executing `npm version`, the following scripts are invoked in this order:
 >
 > 1. `preversion`: test that the workspace contains no uncommitted changes.
@@ -668,12 +667,12 @@ describes how to optimize your editor or IDE for optimal usage.
 ### Git strategy
 
 -   Authors should revise the changelog each commit so this work is not postponed to release.
--   WVUI uses a "squash-and-merge" convention for changes.<sup>[0](#squash-and-merge)</sup>
--   Operating system and editor-specific files are not considered.<sup>[1](#git-ignore)</sup>
+-   WVUI uses a squash and merge convention for changes.
+-   Operating system and editor-specific files are not considered.
 -   The Git configuration should be precise and accurate like any other part of the codebase. The
     .gitignore file, for instance, should not become cluttered or vague.
 
-<sup><a name="squash-and-merge">0</a></sup>Squash and merge
+#### Squash and merge
 
 > Development of a change worth merging is often messy. A merge-worthy change usually occurs over
 > multiple patchsets in a Gerrit patch or commits in a GitHub pull request. These interim changes
@@ -681,12 +680,12 @@ describes how to optimize your editor or IDE for optimal usage.
 > in the Git log. Example improvements during review often include whitespace changes, bug fixes,
 > refactoring of introduced code, and renaming of new symbols.
 >
-> Therefor, distinct interim commits are collapsed into a single logical commit at merge time that
+> Therefore, distinct interim commits are collapsed into a single logical commit at merge time that
 > often satisfies the intent of the original commit. The tradeoffs are that only a single polished
 > commit representative of all of that back-and-forth discourse during code review is made at the
 > expense that less noteworthy history is lost.
 
-<sup><a name="git-ignore">0</a></sup>OS and editor-specific files
+#### OS and editor-specific files
 
 > Different programmers use different editors and IDEs. WVUI will attempt to facilitate different
 > workflows, especially in the form of documentation, but will avoid making changes specific to them
