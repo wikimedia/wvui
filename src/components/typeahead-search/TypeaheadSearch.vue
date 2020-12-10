@@ -255,7 +255,7 @@ export default Vue.extend( {
 			this.searchQuery = query;
 			this.suggestionsList = suggestions;
 			this.suggestionActiveIndex = -1;
-			this.isExpanded = !!this.searchQuery;
+			this.isExpanded = !!this.searchQuery && this.isFocused;
 		},
 
 		/**

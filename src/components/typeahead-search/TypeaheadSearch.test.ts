@@ -178,6 +178,23 @@ describe( 'typing into input', () => {
 		jest.useRealTimers();
 	} );
 
+	it( 'does not show search results if the input does not have focus', async () => {
+		fetchPromise = Promise.resolve( {
+			query: 'test',
+			results: []
+		} );
+
+		input.setValue( 'test' );
+		jest.advanceTimersByTime( DEBOUNCE_INTERVAL );
+
+		await fetchPromise;
+
+		// Wait for Vue to flush DOM changes.
+		await wrapper.vm.$nextTick();
+
+		expect( wrapper.classes() ).not.toContain( 'wvui-typeahead-search--expanded' );
+	} );
+
 	it( 'emits `fetch-start` and `fetch-end` events when successful response', async () => {
 		fetchPromise = Promise.resolve( {
 			query: 'test',
