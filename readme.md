@@ -605,8 +605,8 @@ npmjs.com.
 >
 > -   Uncommitted changes (both modifications and untracked files) are forbidden.
 > -   Only clean and tested packages are published.
-> -   Git tags are available for all releases.
-> -   Git tags pushed and NPM artifacts publishes are always in sync.
+> -   Git tags are available for prerelease and production releases.
+> -   Git tags pushed and NPM artifacts published are always in sync.
 > -   NPM's `@latest` tag points to the current stable release and `@next` points to the latest
 >     commit.
 >
