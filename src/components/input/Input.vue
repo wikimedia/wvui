@@ -211,6 +211,11 @@ export default Vue.extend( {
 				border-color: @border-color-base--focus;
 				box-shadow: @box-shadow-base--focus;
 			}
+
+			&:focus ~ .wvui-input__start-icon,
+			&:focus ~ .wvui-input__end-icon {
+				opacity: 1;
+			}
 		}
 
 		&[ disabled ] {
@@ -220,12 +225,13 @@ export default Vue.extend( {
 			text-shadow: @text-shadow-base--disabled;
 			border-color: @border-color-base--disabled;
 
-			// stylelint-disable-next-line max-nesting-depth
+			// stylelint-disable max-nesting-depth, no-descending-specificity
 			& ~ .wvui-input__start-icon,
 			& ~ .wvui-input__end-icon {
 				pointer-events: none;
 				opacity: @opacity-base--disabled;
 			}
+			// stylelint-enable, max-nesting-depth, no-descending-specificity
 		}
 
 		&::placeholder {
