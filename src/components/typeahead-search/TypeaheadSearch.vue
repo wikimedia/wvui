@@ -469,6 +469,10 @@ export default Vue.extend( {
 	// For pragmatic reasons, we use the spacing from the typeahead suggestion
 	// thumb.
 	@spacing-end-typeahead-search-figure: @margin-end-typeahead-suggestion-thumb;
+	// Border is styled the same as the input border to visually encapsulate
+	// search submit button.
+	border: @border-width-base @border-style-base @border-color-base;
+	border-radius: @border-radius-base;
 
 	&__form {
 		// stylelint-disable-next-line plugin/no-unsupported-browser-features
@@ -476,18 +480,37 @@ export default Vue.extend( {
 	}
 
 	&__wrapper {
-		position: relative;
 		flex-grow: 1;
+		// Makes search results start at the same horizontal position as input.
+		position: relative;
+		// Set negative margin to make button border overlap with
+		// `.wvui-typeahead-search`'s border.
+		margin: -@border-width-base;
 	}
 
 	&__submit {
+		position: relative;
+		// Set negative margin to make button border overlap with
+		// `.wvui-typeahead-search`'s border.
+		margin: -@border-width-base;
+		// No need to put a negative start margin on the button since the input
+		// already has a negative margin which causes part of the button's border
+		// and input's border to intentionally overlap.
+		margin-left: 0;
 		border-bottom-left-radius: 0;
 		border-top-left-radius: 0;
-		margin-left: -@border-width-base;
-		transition: opacity @transition-duration-base;
 		opacity: 0;
+		transition: opacity @transition-duration-base;
+
+		&:hover {
+			// Make the button be on top of the input border when the button is hovered.
+			z-index: 1;
+		}
 
 		&:focus {
+			// Make the button be on top of the input border when the input is
+			// hovered while the button is focused.
+			z-index: 1;
 			opacity: @opacity-base;
 		}
 	}
@@ -495,12 +518,11 @@ export default Vue.extend( {
 	&__suggestions {
 		background-color: @background-color-base;
 		display: none;
-		box-sizing: border-box;
-		max-width: none;
 		position: absolute;
 		top: @size-base;
 		right: 0;
 		left: 0;
+		box-sizing: border-box;
 		border: @border-width-base @border-style-base @border-color-base;
 		border-top-width: 0;
 		border-radius: 0 0 @border-radius-base @border-radius-base;
@@ -554,20 +576,8 @@ export default Vue.extend( {
 		padding-left: @size-search-figure;
 	}
 
-	&__input {
-		flex-grow: 1;
-
-		.wvui-input__input {
-			border: @border-width-base @border-style-base @border-color-base;
-			border-radius: @border-radius-base;
-
-			// Button becomes visible on `:hover` so we don't want rounded borders with it.
-			&:hover,
-			&:focus {
-				border-top-right-radius: 0;
-				border-bottom-right-radius: 0;
-			}
-		}
+	.wvui-input__input {
+		border-right-color: transparent;
 	}
 
 	.wvui-input__start-icon {
@@ -577,19 +587,27 @@ export default Vue.extend( {
 	//
 	// Rules that alter elements based on a block-level modifier follow.
 	//
+	&--has-value {
+		.wvui-input__input {
+			border-bottom-left-radius: 0;
+		}
+	}
+
 	&--active,
 	&:hover {
 		.wvui-typeahead-search__submit {
 			opacity: @opacity-base;
 		}
-	}
 
-	&--has-value {
 		.wvui-typeahead-search__input {
-			// stylelint-disable-next-line max-nesting-depth
-			.wvui-input__input {
-				border-bottom-left-radius: 0;
-			}
+			// Allow the input's border to be on top of the parent's border when
+			// focused or hovered.
+			z-index: 1;
+		}
+
+		.wvui-input__input {
+			border-top-right-radius: 0;
+			border-bottom-right-radius: 0;
 		}
 	}
 
