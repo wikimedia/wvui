@@ -463,12 +463,6 @@ export default Vue.extend( {
 @import ( reference ) '@/themes/wikimedia-ui.less';
 
 .wvui-typeahead-search {
-	// The amount of spacing from the end of the input icon container, typeahead
-	// suggestion thumb, and footer icon container to the start of their
-	// associated text. We need the text to vertically line up nicely.
-	// For pragmatic reasons, we use the spacing from the typeahead suggestion
-	// thumb.
-	@spacing-end-typeahead-search-figure: @margin-end-typeahead-suggestion-thumb;
 	// Border is styled the same as the input border to visually encapsulate
 	// search submit button.
 	border: @border-width-base @border-style-base @border-color-base;
@@ -540,7 +534,7 @@ export default Vue.extend( {
 			padding: @padding-vertical-typeahead-suggestion
 				@padding-horizontal-typeahead-suggestion
 				@padding-vertical-typeahead-suggestion
-				@size-search-figure;
+				@size-input-icon-container;
 			text-decoration: none;
 			cursor: pointer;
 
@@ -557,7 +551,7 @@ export default Vue.extend( {
 				// variable so that it doesn't have extra horizontal space.
 				width: auto;
 				height: @size-search-figure;
-				margin-right: @spacing-end-typeahead-search-figure;
+				margin-right: @padding-horizontal-base;
 				font-size: @font-size-typeahead-suggestion-title;
 				opacity: @opacity-icon-accessory;
 			}
@@ -573,15 +567,11 @@ export default Vue.extend( {
 	}
 
 	&__suggestion {
-		padding-left: @size-search-figure;
+		padding-left: @size-input-icon-container;
 	}
 
 	.wvui-input__input {
 		border-right-color: transparent;
-	}
-
-	.wvui-input__start-icon {
-		left: 0;
 	}
 
 	//
@@ -624,10 +614,24 @@ export default Vue.extend( {
 		// be uniform so that the figures vertically line up nicely. For pragmatic
 		// reasons, we use the horizontal padding of the typeahead suggestion.
 		@spacing-start-typeahead-search-figure: @padding-horizontal-typeahead-suggestion;
+		// The amount of spacing from the end of the input icon container, typeahead
+		// suggestion thumb, and footer icon container to the start of their
+		// associated text. We need the text to vertically line up nicely.
+		// For pragmatic reasons, we use the spacing from the typeahead suggestion
+		// thumb.
+		@spacing-end-typeahead-search-figure: @margin-end-typeahead-suggestion-thumb;
 		// The amount the width of the input increases when it is focused to allow
 		// for the extra spacing around the search figures. The caret position
 		// should remain in place for the smoothest transition.
 		@size-typeahead-search-focus-addition: @spacing-start-typeahead-search-figure + @spacing-end-typeahead-search-figure;
+
+		.wvui-input__input {
+			padding-left: @size-search-figure;
+		}
+
+		.wvui-input__start-icon {
+			width: @size-search-figure;
+		}
 
 		.wvui-input__input:focus {
 			position: relative;
@@ -639,7 +643,10 @@ export default Vue.extend( {
 		}
 
 		.wvui-input__input:focus + .wvui-input__start-icon {
-			left: -@size-typeahead-search-focus-addition + @spacing-start-typeahead-search-figure;
+			// We use @border-width-base here since the input's start icon position
+			// is relative to the input's container (which is outside the input's
+			// border) when the input has focus.
+			left: -@size-typeahead-search-focus-addition + @spacing-start-typeahead-search-figure + @border-width-base;
 		}
 
 		.wvui-typeahead-search__suggestions {

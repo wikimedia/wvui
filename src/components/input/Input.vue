@@ -160,20 +160,19 @@ export default Vue.extend( {
 	}
 
 	&__start-icon {
-		width: @size-search-figure;
+		left: @border-width-base;
+		width: @size-input-icon-container;
 		pointer-events: none;
 	}
 
 	&__end-icon {
-		right: @end-input-text-icon;
+		right: @border-width-base;
+		width: @size-input-icon-container;
 	}
 
 	&--clearable {
 		.wvui-input__end-icon {
-			box-sizing: border-box;
-			width: @size-base;
-			right: @border-width-base;
-			padding: 0 @padding-horizontal-input-text;
+			width: calc( @padding-horizontal-input-text * 2 + @size-indicator );
 			cursor: pointer;
 
 			// stylelint-disable-next-line max-nesting-depth
@@ -269,14 +268,14 @@ export default Vue.extend( {
 	&--has-start-icon {
 		// stylelint-disable-next-line no-descending-specificity
 		.wvui-input__input {
-			padding-left: @size-search-figure;
+			padding-left: @size-input-icon-container;
 		}
 	}
 
 	&--has-end-icon {
 		// stylelint-disable-next-line no-descending-specificity
 		.wvui-input__input {
-			padding-right: @padding-horizontal-input-text * 2 + @size-icon;
+			padding-right: @size-input-icon-container;
 		}
 	}
 }
