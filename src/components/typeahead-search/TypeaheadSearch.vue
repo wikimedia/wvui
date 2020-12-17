@@ -547,7 +547,7 @@ export default Vue.extend( {
 		}
 
 		&__footer--active {
-			background-color: @background-color-primary;
+			background-color: @background-color-base--hover;
 		}
 
 		&__footer__text {
