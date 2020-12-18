@@ -11,3 +11,5 @@
 
 # Blubber generated Dockerfile during Jenkins run.
 /.pipeline/Dockerfile.*
+
+docker-compose.override.yaml

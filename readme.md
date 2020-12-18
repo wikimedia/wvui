@@ -218,6 +218,42 @@ docker-compose run --rm [node|storybook] npm run [script name]
 If you need to install additional dependencies after container creation (e.g. adding any modules to
 package.json), make sure you run `docker-compose up` again for the changes to take affect.
 
+#### I/O performance on macOS
+
+Docker containers run via Docker Desktop for Mac interact with the host's filesystem via a Hyperkit
+hypervisor running in a LinuxKit Virtual Machine. The hypervisor and VM are hidden from the user but
+they quickly become visible when performing I/O intensive operations like `npm i`. For example, an
+unscientific benchmark has `docker run --rm node npm install` taking over **19 minutes**.
+
+Fortunately, Docker Desktop for Mac supports NFS volumes.
+[Jeff Geerling wrote an excellent summary of this issue](https://www.jeffgeerling.com/blog/2020/revisiting-docker-macs-performance-nfs-volumes)
+along with a guide to sharing folders via NFS for use with Docker Desktop for Mac. Briefly:
+
+1. `echo "nfs.server.mount.require_resv_port = 0" | sudo tee --append /etc/nfs.conf`
+2. `echo "${PWD} -alldirs -mapall=$(id -u):$(id -g) 127.0.0.1" | sudo tee --append /etc/exports`
+3. Create `docker-compose.override.yaml` and add the following:
+
+```yaml
+version: "3.8"
+
+services:
+    node:
+        volumes:
+            - "nfsmount:/app"
+
+volumes:
+    nfsmount:
+        driver: local
+        driver_opts:
+            type: nfs
+            o: addr=host.docker.internal,rw,nolock,hard,nointr,nfsvers=3
+            device: ":${PWD}"
+```
+
+4. Rebuild the `node` container (see [Docker](#Docker))
+
+With the above done, the unscientific benchmark above takes a little over **five minutes**.
+
 #### Blubber
 
 WVUI contains a [blubber.yaml](.pipeline/blubber.yaml) file, for use by the tool
