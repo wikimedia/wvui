@@ -703,7 +703,7 @@ describes how to optimize your editor or IDE for optimal usage.
 ### Git strategy
 
 -   Authors should revise the changelog each commit so this work is not postponed to release.
--   WVUI uses a squash and merge convention for changes.
+-   WVUI uses a {#Squash-and-Merge} convention for changes.
 -   Operating system and editor-specific files are not considered.
 -   The Git configuration should be precise and accurate like any other part of the codebase. The
     .gitignore file, for instance, should not become cluttered or vague.
