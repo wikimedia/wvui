@@ -511,7 +511,6 @@ export default Vue.extend( {
 
 		&__footer {
 			color: @color-base;
-			height: 34px;
 			// stylelint-disable-next-line plugin/no-unsupported-browser-features
 			display: flex;
 			align-items: center;
