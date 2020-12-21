@@ -703,11 +703,11 @@ describes how to optimize your editor or IDE for optimal usage.
 ### Git strategy
 
 -   Authors should revise the changelog each commit so this work is not postponed to release.
--   Operating system and editor-specific files are not considered.
+-   Operating system and editor-specific [files](#files) are not considered.
 -   The Git configuration should be precise and accurate like any other part of the codebase. The
     .gitignore file, for instance, should not become cluttered or vague.
 
-#### OS and editor-specific files
+#### OS and editor-specific files {#files}
 
 > Different programmers use different editors and IDEs. WVUI will attempt to facilitate different
 > workflows, especially in the form of documentation, but will avoid making changes specific to them
