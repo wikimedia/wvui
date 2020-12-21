@@ -470,10 +470,6 @@ export default Vue.extend( {
 	// thumb.
 	@spacing-end-typeahead-search-figure: @margin-end-typeahead-suggestion-thumb;
 
-	// ---
-	min-width: 350px;
-	max-width: 500px;
-
 	&__form {
 		// stylelint-disable-next-line plugin/no-unsupported-browser-features
 		display: flex;
