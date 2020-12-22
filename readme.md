@@ -703,23 +703,9 @@ describes how to optimize your editor or IDE for optimal usage.
 ### Git strategy
 
 -   Authors should revise the changelog each commit so this work is not postponed to release.
--   WVUI uses a {#Squash-and-Merge} convention for changes.
 -   Operating system and editor-specific files are not considered.
 -   The Git configuration should be precise and accurate like any other part of the codebase. The
     .gitignore file, for instance, should not become cluttered or vague.
-
-#### Squash and merge
-
-> Development of a change worth merging is often messy. A merge-worthy change usually occurs over
-> multiple patchsets in a Gerrit patch or commits in a GitHub pull request. These interim changes
-> can often be quite noisy in themselves and not useful or even detrimental to preserve distinctly
-> in the Git log. Example improvements during review often include whitespace changes, bug fixes,
-> refactoring of introduced code, and renaming of new symbols.
->
-> Therefore, distinct interim commits are collapsed into a single logical commit at merge time that
-> often satisfies the intent of the original commit. The tradeoffs are that only a single polished
-> commit representative of all of that back-and-forth discourse during code review is made at the
-> expense that less noteworthy history is lost.
 
 #### OS and editor-specific files
 
