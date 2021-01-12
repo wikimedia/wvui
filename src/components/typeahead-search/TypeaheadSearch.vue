@@ -485,12 +485,10 @@ export default Vue.extend( {
 	&__submit {
 		position: relative;
 		// Set negative margin to make button border overlap with
-		// `.wvui-typeahead-search`'s border.
-		margin: -@border-width-base;
-		// No need to put a negative start margin on the button since the input
-		// already has a negative margin which causes part of the button's border
-		// and input's border to intentionally overlap.
-		margin-left: 0;
+		// `.wvui-typeahead-search`'s border on all but start margin.
+		// The input already has a negative margin which causes part of the button's
+		// border and input's border to intentionally overlap.
+		margin: -@border-width-base -@border-width-base -@border-width-base 0;
 		border-bottom-left-radius: 0;
 		border-top-left-radius: 0;
 		opacity: 0;
