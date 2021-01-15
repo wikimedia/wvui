@@ -550,7 +550,6 @@ export default Vue.extend( {
 				width: auto;
 				height: @size-search-figure;
 				margin-right: @padding-horizontal-base;
-				font-size: @font-size-typeahead-suggestion-title;
 				opacity: @opacity-icon-accessory;
 			}
 		}
