@@ -2,6 +2,7 @@ import WvuiButton from '@/components/button/Button.vue';
 import WvuiIcon from '@/components/icon/Icon.vue';
 import WvuiInput from '@/components/input/Input.vue';
 import WvuiTypeaheadSearch from '@/components/typeahead-search/TypeaheadSearch.vue';
+import WvuiTypeaheadSuggestion from '@/components/typeahead-suggestion/TypeaheadSuggestion.vue';
 
 // Export version as a named export so that the default export can be
 // passed to the Vue app instance's components directly.
@@ -14,5 +15,6 @@ export default {
 	WvuiButton,
 	WvuiInput,
 	WvuiIcon,
-	WvuiTypeaheadSearch
+	WvuiTypeaheadSearch,
+	WvuiTypeaheadSuggestion
 };
