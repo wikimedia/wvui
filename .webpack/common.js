@@ -68,7 +68,7 @@ module.exports.rules = ( mode ) => {
  *
  * @param {'development' | 'production' | 'none'} [mode]
  * @return {webpack.Plugin[]}
- * */
+ */
 module.exports.plugins = ( mode ) => [
 	...( mode === 'development' ? [ new ForkTsCheckerWebpackPlugin() ] : [] ),
 	new MiniCssExtractPlugin(),
