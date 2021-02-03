@@ -5,6 +5,7 @@ RUN apt-get update && \
 		python-pkgconfig \
 		git
 
+RUN apt-get -t buster-backports install "npm" "node-ssri" -y
 
 # Create user with same ID as our host machine so Docker generated files are owned by us
 ARG UID=1000

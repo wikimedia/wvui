@@ -7,7 +7,9 @@ variants:
     base: docker-registry.wikimedia.org/buster-nodejs10-devel:0.0.1
     copies: [local]
     apt:
-      packages: [git, build-essential, python-pkgconfig]
+      packages:
+        default: [git, build-essential, python-pkgconfig]
+        buster-backports: [npm, node-ssri]
     node:
       requirements: [package.json, package-lock.json]
       env: development
