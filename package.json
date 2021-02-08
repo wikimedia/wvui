@@ -49,7 +49,7 @@
     "format:styles": "npm -s run linter:styles -- --fix .",
     "linter:etc": "prettier .",
     "linter:js": "eslint --cache --max-warnings 0 --ext .js,.json,.ts,.vue",
-    "linter:styles": "stylelint --cache --rd --mw 0",
+    "linter:styles": "stylelint --cache --report-needless-disables --max-warnings 0",
     "preversion": "[ -z \"$(git status -z)\" ]",
     "prepublishOnly": "! git symbolic-ref -q HEAD || git push --follow-tags origin \"$(git rev-parse --abbrev-ref HEAD)\""
   },
