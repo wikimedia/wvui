@@ -1,23 +1,74 @@
 # Changelog
 
-Versions and bullets are arranged chronologically from latest to oldest.
+Versions and bullets are arranged contextually chronologically from latest to oldest.
 
 ## v0.0.2 (unreleased)
 
 -   [fix][http][IE11] Don't assume native Promise support
+-   [components] Use `@size-search-figure` variable across Input, TypeaheadSuggestion,
+    TypeaheadSearch
+-   [icon] Add component, styles, and icon data
+-   [input] Add button control for input
 -   [search] Make SearchClient submit parameters optional
 -   [search] Allow consumer fetch implementation to be passed
+-   [typeahead-search] Add debouncer to onInput method
+-   [typeahead-search] Amend submit `margin` property
+-   [typeahead-search] Correct `@size-typeahead-search-focus-addition` value
+-   [typeahead-search] Correct suggestions width
+-   [typeahead-search] Display 'id' prop as id attribute of search form.
+-   [typeahead-search] Don't show search results if input has lost focus before promise resolves
+-   [typeahead-search] Drop unnecessary usages of calc
+-   [typeahead-search] Add `fulltext=1` query param to suggestions footer
+-   [typeahead-search] Fix footer suggestions click bug
+-   [typeahead-search] Make footer suggestion background color on hover the same as other
+    suggestions
+-   [typeahead-search] Make non-blank `initialInputValue` prop call `onInput`
+-   [typeahead-search] Make search button appear as part of input box
+-   [typeahead-search] Remove explicit height on suggestion footer
+-   [typeahead-search] Remove max-width/min-width
+-   [typeahead-search] Singularize footer article icon prop/class
+-   [typeahead-search] Use calc for calculations involving em and px units
+-   [typeahead-search][bug] Correct CSS class name to fix suggestion width issues
+-   [typeahead-search][input] Correct spacing around input start icon and end icon
+-   [typeahead-search] Emit suggestion-click and submit events
+-   [typeahead-search] Fix suggestion-click event data
+-   [typeahead-search] Show footer when there aren't suggestions
+-   [typeahead-search][typeahead-suggestion] UrlGenerator uses formAction
+-   [typeahead-search][typeahead-suggestion] Style `showThumbnail` prop
+-   [typeahead-search] Add network client
+-   [typeahead-search] Export the typeahead suggestion component
+-   [typeahead-suggestion] Add keyboard support for suggestions list
+-   [typeahead-suggestion-title] Add highlighting component
+-   [typeahead-suggestion] Add initial styles and props
+-   [wikimedia-ui] Adjust font-size of suggestion title/description
+-   [build] Disable minification for CommonJS bundle
+-   [build] Expand the 'stylelint' options shorthands for readability
+-   [build] Re-enable source maps for non-CJS bundles
+-   [build] Update 'prettier' linter devDependency
+-   [build] Update 'stylelint' linter devDependency
+-   [build] Update 'wikimedia-ui-base' to latest
+-   [build] .webpack/common.js - clean up doc block
+-   [build] `npm run doc:size` needs to generate built assets first
+-   [build] Add note about using NFS volumes on macOS
+-   [build] Improve performance of `npm t`
+-   [build] merge npm doc and docs command
+-   [build] Temporarily drop source map documentation generation from `npm doc`
+-   [build] Remove unset env variable
 -   [build] Upgrade dependencies
 -   [build] Fix audited NPM packages
--   [component][typeahead-suggestion] Add keyboard support fot suggestions list
--   [component][typeahead-suggestion-title] Add highlighting component
--   [component][typeahead-suggestion] Add initial styles and props
 -   [build] Split icons into a distinct entry
--   [component][input] Add button control for input
--   [component][icon] Add component, styles, and icon data
--   [component][typeahead-search] Add network client
--   [docs][dev] Document way to clear Jest cache
 -   [build][dev] Add production and pre-release scripts
+-   [build] Add `npm doc` command
+-   [build] Add back git fetch and checkout master in release-dev
+-   [build] Add .dockerignore...(again)
+-   [docs] Publish source map explorer as part of documentation
+-   [docs] Remove squash and merge section from README
+-   [docs] Add explicit named anchor in readme
+-   [docs] Correct readme for git tags
+-   [docs] Fix formatting bugs in readme.
+-   [docs] Make readme.md gitiles markdown compliant
+-   [docs] Add named anchor to WVUI readme
+-   [docs][dev] Document way to clear Jest cache
 
 ## v0.0.1
 
