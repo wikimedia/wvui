@@ -2,6 +2,10 @@
 
 Versions and bullets are arranged contextually chronologically from latest to oldest.
 
+## v0.1.1 / YYYY-MM-DD (to be released)
+
+-   Placeholder
+
 ## v0.1.0 / 2021-02-11
 
 -   [fix][http][IE11] Don't assume native Promise support
@@ -70,7 +74,7 @@ Versions and bullets are arranged contextually chronologically from latest to ol
 -   [docs] Add named anchor to WVUI readme
 -   [docs][dev] Document way to clear Jest cache
 
-## v0.0.1
+## v0.0.1 / 2020-07-24
 
 -   [dev] Decrease test coverage to 80%
 -   [component][input] Add clear action for input
