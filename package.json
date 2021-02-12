@@ -1,14 +1,15 @@
 {
   "name": "@wikimedia/wvui",
   "author": "Wikimedia",
-  "description": "🧩 Wikimedia Vue UI components. Wikimedia Foundation's Vue.js shared user-interface components for Wikipedia, MediaWiki, and beyond.",
-  "version": "0.0.2-next.2020-11-19-21-55.0",
+  "description": "Wikimedia Vue UI (WVUI) – Wikimedia Foundation's Vue.js shared user-interface components for Wikipedia, MediaWiki, and beyond.",
+  "version": "0.1.0",
   "keywords": [
     "Vue.js",
     "components",
+    "user-interface",
+    "Wikimedia",
     "Wikipedia",
     "MediaWiki",
-    "Wikimedia",
     "TypeScript"
   ],
   "homepage": "https://gerrit.wikimedia.org/r/plugins/gitiles/wvui",

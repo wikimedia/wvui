@@ -2,7 +2,7 @@
 
 Versions and bullets are arranged contextually chronologically from latest to oldest.
 
-## v0.0.2 (unreleased)
+## v0.1.0 / 2021-02-11
 
 -   [fix][http][IE11] Don't assume native Promise support
 -   [components] Use `@size-search-figure` variable across Input, TypeaheadSuggestion,
