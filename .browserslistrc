@@ -9,6 +9,6 @@ last 2 edge versions
 
 # Pinned versions.
 ie >= 11
-safari >= 5.1
-ios >= 6.1
-android >= 4.1
+safari >= 9.1
+ios >= 9
+android >= 4.3
