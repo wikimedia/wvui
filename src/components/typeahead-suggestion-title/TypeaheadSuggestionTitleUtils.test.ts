@@ -23,3 +23,30 @@ it( 'returns string chunks if there are matches', () => {
 
 	expect( result ).toStrictEqual( [ 'Ti', 'tl', 'e' ] );
 } );
+
+test.each( [
+	'foo',
+	'ইতাল'
+] )( '%# returns the title if the query is the same as the title (%s)', ( title ) => {
+	const result = splitStringAtMatch( title, title );
+
+	expect( result ).toStrictEqual( [ '', title, '' ] );
+} );
+
+test.each( [
+	[
+		'ইতাল',
+		'ইতালীয় ভাষা',
+		[ '', 'ইতালী', 'য় ভাষা' ]
+	],
+	[
+		'ইতাল',
+		'ইতালির বিশ্ব ঐতিহ্যবাহী স্থানসমূহের তালিকা',
+		[ '', 'ইতালি', 'র বিশ্ব ঐতিহ্যবাহী স্থানসমূহের তালিকা' ]
+	]
+] )(
+	'%# returns string chunks with preserved graphemes if there are matches (%s, %s)',
+	( query, title, parts ) => {
+		expect( splitStringAtMatch( query, title ) ).toStrictEqual( parts );
+	}
+);

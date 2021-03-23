@@ -1,0 +1,154 @@
+{
+	"pages": [
+		{
+			"id": 8430,
+			"key": "ইতালি",
+			"title": "ইতালি",
+			"excerpt": "ইতালি",
+			"description": "দক্ষিণাঞ্চলীয় ইউরোপের দেশ",
+			"thumbnail": {
+				"mimetype": "image/svg+xml",
+				"size": 356,
+				"width": 200,
+				"height": 133,
+				"duration": null,
+				"url": "//upload.wikimedia.org/wikipedia/commons/thumb/0/03/Flag_of_Italy.svg/200px-Flag_of_Italy.svg.png"
+			}
+		},
+		{
+			"id": 570479,
+			"key": "ইতালির_বিশ্ব_ঐতিহ্যবাহী_স্থানসমূহের_তালিকা",
+			"title": "ইতালির বিশ্ব ঐতিহ্যবাহী স্থানসমূহের তালিকা",
+			"excerpt": "ইতালির বিশ্ব ঐতিহ্যবাহী স্থানসমূহের তালিকা",
+			"description": null,
+			"thumbnail": {
+				"mimetype": "image/svg+xml",
+				"size": 16479,
+				"width": 169,
+				"height": 200,
+				"duration": null,
+				"url": "//upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Italy_UNESCO_WHC_Regions.svg/169px-Italy_UNESCO_WHC_Regions.svg.png"
+			}
+		},
+		{
+			"id": 12090,
+			"key": "ইতালীয়_ভাষা",
+			"title": "ইতালীয় ভাষা",
+			"excerpt": "ইতালীয় ভাষা",
+			"description": null,
+			"thumbnail": {
+				"mimetype": "image/png",
+				"size": null,
+				"width": 200,
+				"height": 93,
+				"duration": null,
+				"url": "//upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Map_Italophone_World_-_updated.png/200px-Map_Italophone_World_-_updated.png"
+			}
+		},
+		{
+			"id": 111060,
+			"key": "ইতালি_জাতীয়_ফুটবল_দল",
+			"title": "ইতালি জাতীয় ফুটবল দল",
+			"excerpt": "ইতালি জাতীয় ফুটবল দল",
+			"description": null,
+			"thumbnail": {
+				"mimetype": "image/svg+xml",
+				"size": 13420,
+				"width": 119,
+				"height": 200,
+				"duration": null,
+				"url": "//upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Federazione_Italiana_Giuoco_Calcio%2C_Logo_2017%2C_4_stars.svg/119px-Federazione_Italiana_Giuoco_Calcio%2C_Logo_2017%2C_4_stars.svg.png"
+			}
+		},
+		{
+			"id": 553341,
+			"key": "ইতালির_সড়ক_সংকেতসমূহ",
+			"title": "ইতালির সড়ক সংকেতসমূহ",
+			"excerpt": "ইতালির সড়ক সংকেতসমূহ",
+			"description": null,
+			"thumbnail": {
+				"mimetype": "image/jpeg",
+				"size": null,
+				"width": 200,
+				"height": 199,
+				"duration": null,
+				"url": "//upload.wikimedia.org/wikipedia/commons/thumb/8/88/Transport_Typeface_in_Italy.jpg/200px-Transport_Typeface_in_Italy.jpg"
+			}
+		},
+		{
+			"id": 853736,
+			"key": "ইতালিতে_কোভিড-১৯_এর_বৈশ্বিক_মহামারী",
+			"title": "ইতালিতে কোভিড-১৯ এর বৈশ্বিক মহামারী",
+			"excerpt": "ইতালিতে কোভিড-১৯ এর বৈশ্বিক মহামারী",
+			"description": "ইতালিতে ভাইরাসঘটিত চলমান কোভিড-১৯ এর বৈশ্বিক মহামারী",
+			"thumbnail": {
+				"mimetype": "image/svg+xml",
+				"size": 20171,
+				"width": 153,
+				"height": 200,
+				"duration": null,
+				"url": "//upload.wikimedia.org/wikipedia/commons/thumb/2/26/COVID-19_Outbreak_Cases_in_Italy_%28Density%29.svg/153px-COVID-19_Outbreak_Cases_in_Italy_%28Density%29.svg.png"
+			}
+		},
+		{
+			"id": 813652,
+			"key": "ইতালীয়_ফুটবল_ফেডারেশন",
+			"title": "ইতালীয় ফুটবল ফেডারেশন",
+			"excerpt": "ইতালীয় ফুটবল ফেডারেশন",
+			"description": null,
+			"thumbnail": {
+				"mimetype": "image/svg+xml",
+				"size": 13420,
+				"width": 119,
+				"height": 200,
+				"duration": null,
+				"url": "//upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Federazione_Italiana_Giuoco_Calcio%2C_Logo_2017%2C_4_stars.svg/119px-Federazione_Italiana_Giuoco_Calcio%2C_Logo_2017%2C_4_stars.svg.png"
+			}
+		},
+		{
+			"id": 523173,
+			"key": "ইতালি–ফিলিপাইন_সম্পর্ক",
+			"title": "ইতালি–ফিলিপাইন সম্পর্ক",
+			"excerpt": "ইতালি–ফিলিপাইন সম্পর্ক",
+			"description": "ইতালি ও ফিলিপাইন রাষ্ট্রদ্বয়ের মধ্যকার দ্বিপাক্ষিক সম্পর্ক",
+			"thumbnail": {
+				"mimetype": "image/png",
+				"size": null,
+				"width": 200,
+				"height": 103,
+				"duration": null,
+				"url": "//upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Italy_Philippines_Locator.png/200px-Italy_Philippines_Locator.png"
+			}
+		},
+		{
+			"id": 13140,
+			"key": "ইতালীয়_নব্যবাস্তববাদ",
+			"title": "ইতালীয় নব্যবাস্তববাদ",
+			"excerpt": "ইতালীয় নব্যবাস্তববাদ",
+			"description": null,
+			"thumbnail": {
+				"mimetype": "image/jpeg",
+				"size": null,
+				"width": 200,
+				"height": 144,
+				"duration": null,
+				"url": "//upload.wikimedia.org/wikipedia/commons/thumb/9/93/Enzo_Staiola_in_Bicycle_Thieves.jpg/200px-Enzo_Staiola_in_Bicycle_Thieves.jpg"
+			}
+		},
+		{
+			"id": 798052,
+			"key": "ইতালিতে_উন্মুক্ত_প্রবেশাধিকার",
+			"title": "ইতালিতে উন্মুক্ত প্রবেশাধিকার",
+			"excerpt": "ইতালিতে উন্মুক্ত প্রবেশাধিকার",
+			"description": null,
+			"thumbnail": {
+				"mimetype": "image/png",
+				"size": null,
+				"width": 200,
+				"height": 143,
+				"duration": null,
+				"url": "//upload.wikimedia.org/wikipedia/commons/thumb/d/de/Open_access_publications_in_Italy_1990_to_2018_OpenAIRE.png/200px-Open_access_publications_in_Italy_1990_to_2018_OpenAIRE.png"
+			}
+		}
+	]
+}
