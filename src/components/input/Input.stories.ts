@@ -1,184 +1,192 @@
-import { boolean, text, select } from '@storybook/addon-knobs';
-import { action } from '@storybook/addon-actions';
-import Vue, { PropType } from 'vue';
+import Vue from 'vue';
+import { Args, StoryContext } from '@storybook/addons';
 import WvuiInput from './Input.vue';
 import WvuiButton from '../button/Button.vue';
 import { InputType } from './InputType';
-import { wvuiIconSearch, wvuiIconInfoFilled } from '@/themes/icons';
+import { wvuiIconInfoFilled, wvuiIconSearch } from '../../themes/icons';
+import { makeActionArgTypes, makeActionListeners } from '../../utils/StoryUtils';
+import { makeOptionalIconArgType, lookupIcon } from '../icon/Icon.stories';
 import './Input.stories.less';
 
 export default {
 	title: 'Components/Input',
 	component: WvuiInput,
-	parameters: { layout: 'centered' }
+	parameters: {
+		layout: 'centered'
+	},
+	argTypes: {
+		value: {
+			control: 'text'
+		},
+		type: {
+			control: {
+				type: 'inline-radio',
+				// eslint-disable-next-line es/no-object-values
+				options: Object.values( InputType )
+			},
+			defaultValue: InputType.Text
+		},
+		startIcon: makeOptionalIconArgType(),
+		endIcon: makeOptionalIconArgType(),
+		placeholder: {
+			control: 'text',
+			defaultValue: 'Type something',
+			table: {
+				category: 'Attributes'
+			}
+		},
+		...makeActionArgTypes( [ 'input', 'focus', 'blur', 'change' ] )
+	}
 };
 
-export const configurable = (): Vue.Component =>
+export const Configurable = ( args: Args, { argTypes } : StoryContext ) : Vue.Component =>
 	Vue.extend( {
 		components: { WvuiInput },
-		props: {
-			disabled: { type: Boolean, default: boolean( 'Disabled', false ) },
-			type: {
-				type: String as PropType<keyof typeof InputType>,
-				default: select( 'Input Type', Object.keys( InputType ), 'Search' )
+		props: Object.keys( argTypes ),
+		computed: {
+			startIconData() {
+				return lookupIcon( this.startIcon );
 			},
-			placeholder: { type: String, default: text( 'Placeholder', 'Search…' ) }
-		},
-		data() {
-			return {
-				InputType
-			};
-		},
-		methods: {
-			input: action( 'input' ),
-			change: action( 'change' ),
-			focus: action( 'focus' ),
-			blur: action( 'blur' )
+			endIconData() {
+				return lookupIcon( this.endIcon );
+			},
+			actionListeners() {
+				return makeActionListeners( args, argTypes );
+			}
 		},
 		template: `
-		<div class="sb-input">
-			<wvui-input
-				:placeholder="placeholder"
-				:disabled="disabled"
-				:type="InputType[type]"
-				@input="input"
-				@change="change"
-				@focus="focus"
-				@blur="blur"
-			/>
-		</div>
+			<div class="sb-input">
+				<wvui-input
+					:startIcon="startIconData"
+					:endIcon="endIconData"
+					v-bind="$props"
+					v-on="actionListeners"
+				/>
+			</div>
 		`
 	} );
 
-export const withStartIcon = (): Vue.Component =>
+export const CommonUses = ( _args: Args, { argTypes } : StoryContext ) : Vue.Component =>
 	Vue.extend( {
 		components: { WvuiInput },
-		props: {
-			disabled: { type: Boolean, default: boolean( 'Disabled', false ) }
-		},
-		data() {
-			return {
-				InputType,
-				searchIcon: wvuiIconSearch
-			};
-		},
-
+		props: Object.keys( argTypes ),
+		data: () => ( {
+			searchIcon: wvuiIconSearch,
+			infoFilledIcon: wvuiIconInfoFilled,
+			InputType
+		} ),
 		template: `
-		<div class="sb-input">
-			<wvui-input
-				placeholder="Search…"
-				:type="InputType.Search"
-				:start-icon="searchIcon"
-				:disabled="disabled"
-			/>
-		</div>
-	`
+			<div class="sb-input">
+				<p>
+					With start icon:
+					<wvui-input
+						:disabled="disabled"
+						:type="InputType.Search"
+						:start-icon="searchIcon"
+						placeholder="Search…"
+					/>
+				</p>
+				<p>
+					With end icon:
+					<wvui-input
+						:disabled="disabled"
+						:type="InputType.Search"
+						:end-icon="infoFilledIcon"
+						placeholder="Search…"
+					/>
+				</p>
+				<p>
+					With clear action:
+					<wvui-input
+						:disabled="disabled"
+						:type="InputType.Search"
+						placeholder="Type something…"
+						clearable
+						value="Some text"
+					/>
+				</p>
+			</div>
+		`
 	} );
 
-export const withEndIcon = (): Vue.Component =>
-	Vue.extend( {
-		components: { WvuiInput },
-		props: {
-			disabled: { type: Boolean, default: boolean( 'Disabled', false ) }
-		},
-		data() {
-			return {
-				InputType,
-				endIcon: wvuiIconInfoFilled
-			};
-		},
-		template: `
-		<div class="sb-input">
-			<wvui-input
-				placeholder="Search…"
-				:type="InputType.Search"
-				:end-icon="endIcon"
-				:disabled="disabled"
-			/>
-		</div>
-	`
-	} );
-
-export const withClearAction = (): Vue.Component =>
-	Vue.extend( {
-		components: { WvuiInput },
-		props: {
-			disabled: { type: Boolean, default: boolean( 'Disabled', false ) }
-		},
-		data() {
-			return {
-				InputType
-			};
-		},
-		methods: {
-			input: action( 'input' )
-		},
-		template: `
-		<div class="sb-input">
-			<wvui-input
-				placeholder="Type something…"
-				:type="InputType.Search"
-				:clearable="true"
-				:disabled="disabled"
-				value="Some value"
-				@input="input"
-			/>
-		</div>
-	`
-	} );
-
-export const withButton = (): Vue.Component =>
-	Vue.extend( {
-		components: { WvuiInput, WvuiButton },
-		props: {
-			disabled: { type: Boolean, default: boolean( 'Disabled', false ) }
-		},
-		template: `
-		<div class="sb-input sb-input--has-button">
-			<wvui-input
-				placeholder="Search…"
-				:disabled="disabled"
-			/>
-			<wvui-button :disabled="disabled">Search</wvui-button>
-		</div>
-	`
-	} );
-
-const searchLanguageMap = {
-	English: 'Search',
-	Russian: 'Искать',
-	Vietnamese: 'Tìm kiếm',
-	Japanese: '探す',
-	Greek: 'Αναζήτηση',
-	Swedish: 'Söka',
-	Mazandeerani: 'جستجو کردن'
+// Disable everything except "disabled"
+// TODO there has to be a better way to do this
+CommonUses.argTypes = {
+	type: {
+		table: {
+			disable: true
+		}
+	},
+	value: {
+		table: {
+			disable: true
+		}
+	},
+	startIcon: {
+		table: {
+			disable: true
+		}
+	},
+	endIcon: {
+		table: {
+			disable: true
+		}
+	},
+	clearable: {
+		table: {
+			disable: true
+		}
+	},
+	placeholder: {
+		table: {
+			disable: true
+		}
+	},
+	input: {
+		table: {
+			disable: true
+		}
+	},
+	focus: {
+		table: {
+			disable: true
+		}
+	},
+	blur: {
+		table: {
+			disable: true
+		}
+	},
+	change: {
+		table: {
+			disable: true
+		}
+	}
 };
 
-export const wikipediaSearchInput = (): Vue.Component =>
+export const WithButton = ( args: Args, context: StoryContext ) : Vue.Component =>
 	Vue.extend( {
-		components: { WvuiInput, WvuiButton },
-		props: {
-			disabled: { type: Boolean, default: boolean( 'Disabled', false ) },
-			buttonLabel: {
-				type: String,
-				default: select( 'Label language', searchLanguageMap, 'Search' )
-			}
+		components: {
+			StoryConfigurable: Configurable( args, context ),
+			WvuiButton
 		},
-		data() {
-			return {
-				startIcon: wvuiIconSearch
-			};
-		},
+		props: Object.keys( context.argTypes ),
 		template: `
-		<div class="sb-input sb-input--has-button">
-			<wvui-input
-				placeholder="Search…"
-				icon="search"
-				:disabled="disabled"
-				:start-icon="startIcon"
-				:clearable="true"
-			/>
-			<wvui-button :disabled="disabled">{{ buttonLabel }}</wvui-button>
-		</div>
-	`
+			<div class="sb-input--has-button">
+				<story-configurable v-bind="$props" />
+				<wvui-button :disabled="disabled">Search</wvui-button>
+			</div>
+		`
 	} );
+
+WithButton.argTypes = {
+	startIcon: {
+		defaultValue: 'wvuiIconSearch'
+	},
+	clearable: {
+		defaultValue: true
+	},
+	placeholder: {
+		defaultValue: 'Search…'
+	}
+};

@@ -1,84 +1,123 @@
-import { action } from '@storybook/addon-actions';
-import { boolean, select, text } from '@storybook/addon-knobs';
-import { PrimaryAction } from '../../actions/PrimaryAction';
-import Vue, { PropType } from 'vue';
+import Vue from 'vue';
+import { Args, StoryContext } from '@storybook/addons';
 import WvuiButton from './Button.vue';
+import { PrimaryAction } from '../../actions/PrimaryAction';
+import { makeActionArgTypes, makeActionListeners } from '../../utils/StoryUtils';
 
 export default {
 	title: 'Components/Button',
-	parameters: { layout: 'centered' }
+	component: WvuiButton,
+	argTypes: {
+		action: {
+			// eslint-disable-next-line es/no-object-values
+			options: Object.values( PrimaryAction ),
+			control: 'inline-radio',
+			defaultValue: PrimaryAction.Default
+		},
+		default: {
+			control: 'text',
+			defaultValue: 'Click me'
+		},
+		disabled: {
+			control: 'boolean',
+			table: {
+				category: 'Attributes'
+			}
+		},
+		...makeActionArgTypes( [ 'click' ] )
+	},
+	parameters: {
+		layout: 'centered'
+	}
 };
 
-export const configurable = (): Vue.Component =>
+export const Configurable = ( args : Args, { argTypes } : StoryContext ): Vue.Component =>
 	Vue.extend( {
 		components: { WvuiButton },
-		props: {
-			enabled: { type: Boolean, default: boolean( 'Enabled', true ) },
-			action: {
-				type: String as PropType<keyof typeof PrimaryAction>,
-				default: select( 'Action', Object.keys( PrimaryAction ), 'Default' )
+		props: Object.keys( argTypes ),
+		computed: {
+			slotContents() {
+				return this.default;
 			},
-			quiet: { type: Boolean, default: boolean( 'Quiet', false ) },
-			slotProp: { type: String, default: text( 'Slot', 'Label' ) }
+			actionListeners() {
+				return makeActionListeners( args, argTypes );
+			}
 		},
-		data() {
-			return { PrimaryAction };
-		},
-		methods: { click: action( 'click' ) },
 		template: `
-		<wvui-button
-			:disabled="!enabled"
-			:action="PrimaryAction[ action ]"
-			:quiet="quiet"
-			@click="click"
-		>
-			{{slotProp}}
-		</wvui-button>
-	`
+			<wvui-button v-bind="$props" v-on="actionListeners">{{ slotContents }}</wvui-button>
+		`
 	} );
 
-export const combinations = (): Vue.Component =>
+export const AllCombinations = (
+	_args : Record<string, unknown>,
+	{ argTypes } : { argTypes: Record<string, unknown> }
+): Vue.Component =>
 	Vue.extend( {
 		components: { WvuiButton },
+		props: Object.keys( argTypes ),
 		data() {
 			return {
-				PrimaryAction,
-				combinations: [
-					{ enabled: true, quiet: false },
-					{ enabled: false, quiet: false },
-					{ enabled: true, quiet: true },
-					{ enabled: false, quiet: true }
-				]
+				actions: [ 'default', 'progressive', 'destructive' ],
+				combinations: {
+					Normal: { disabled: false, quiet: false },
+					Disabled: { disabled: true, quiet: false },
+					Quiet: { disabled: false, quiet: true },
+					'Quiet disabled': { disabled: true, quiet: true }
+				}
 			};
 		},
-		methods: { click: action( 'click' ) },
+		computed: {
+			slotContents() {
+				return this.default;
+			}
+		},
 		template: `
-		<table
-			style="border-spacing: 16px;">
-			<thead>
-				<tr>
-					<th scope="col">Action</th>
-					<th scope="col">Normal</th>
-					<th scope="col">Disabled</th>
-					<th scope="col">Quiet</th>
-					<th scope="col">Quiet disabled</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr v-for="action in Object.keys( PrimaryAction )" :key="action">
-					<th scope="row">{{action}}</th>
-					<td v-for="combo, index in combinations" :key="index">
-						<wvui-button
-							:disabled="!combo.enabled"
-							:action="PrimaryAction[ action ]"
-							:quiet="combo.quiet"
-							@click="click"
+			<table style="border-spacing: 16px;">
+				<thead>
+					<tr>
+						<th scope="col">Action</th>
+						<th
+							v-for="(props, name) in combinations"
+							:key="name"
+							scope="col"
 						>
-							Label
-						</wvui-button>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-	`
+							{{ name }}
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr v-for="action in actions" :key="action">
+						<th scope="row">
+							{{ action[0].toUpperCase() + action.slice( 1 ) }}
+						</th>
+						<td v-for="(props, name) in combinations" :key="name">
+							<wvui-button
+								:action="action"
+								v-bind="props"
+							>
+								{{ slotContents }}
+							</wvui-button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		`
 	} );
+
+AllCombinations.argTypes = {
+	action: {
+		table: {
+			disable: true
+		}
+	},
+	disabled: {
+		table: {
+			disable: true
+		}
+	},
+	quiet: {
+		table: {
+			disable: true
+		}
+	}
+};

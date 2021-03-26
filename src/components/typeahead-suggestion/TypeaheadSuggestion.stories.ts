@@ -1,91 +1,159 @@
-import { boolean, text } from '@storybook/addon-knobs';
 import Vue from 'vue';
+import { Args, StoryContext } from '@storybook/addons';
 import WvuiTypeaheadSuggestion from './TypeaheadSuggestion.vue';
 import { SearchResult } from '../typeahead-search/http/SearchClient';
+import { makeActionArgTypes, makeActionListeners } from '../../utils/StoryUtils';
 import './TypeaheadSuggestion.stories.less';
 import defaultSuggestionsList from '../typeahead-search/mocks/restApi.suggestions.json';
 import T277256SuggestionsList from '../typeahead-search/mocks/T277256.suggestions.json';
 
+const firstSuggestion = defaultSuggestionsList.pages[ 1 ] as SearchResult;
+
 export default {
 	title: 'Components/TypeaheadSuggestion',
-	component: WvuiTypeaheadSuggestion
+	component: WvuiTypeaheadSuggestion,
+	argTypes: {
+		query: {
+			defaultValue: 'co'
+		},
+		suggestion: {
+			table: {
+				disable: true
+			}
+		},
+		urlGenerator: {
+			table: {
+				disable: true
+			}
+		},
+		...makeActionArgTypes( [ 'click', 'mouseover' ] )
+	}
 };
 
-export const configurable = (): Vue.Component =>
+export const Configurable = ( args: Args, { argTypes } : StoryContext ) : Vue.Component =>
 	Vue.extend( {
 		components: { WvuiTypeaheadSuggestion },
-		props: {
-			thumbnail: {
-				type: Boolean,
-				default: boolean( 'Has thumbnail?', true )
-			},
-			showThumbnail: {
-				type: Boolean,
-				default: boolean( 'Show thumbnail?', true )
-			},
-			showDescription: {
-				type: Boolean,
-				default: boolean( 'Show description?', true )
-			},
-			active: { type: Boolean, default: boolean( 'Active?', false ) },
-			query: { type: String, default: text( 'Query (for highlighting)', 'Co' ) }
-		},
+		props: Object.keys( argTypes )
+			// eslint-disable-next-line no-restricted-syntax
+			.filter( ( prop ) => ![ 'urlGenerator', 'suggestion' ].includes( prop ) ),
 		computed: {
 			suggestion(): SearchResult {
-				const suggestion = defaultSuggestionsList.pages[ 1 ] as SearchResult;
-
 				return {
-					...suggestion,
-					thumbnail: this.thumbnail ? suggestion.thumbnail : undefined
+					id: 42,
+					key: this.suggestionTitle,
+					title: this.suggestionTitle,
+					description: this.suggestionDescription,
+					thumbnail: this.suggestionHasThumbnail ?
+						{ url: this.suggestionThumbnailUrl } : undefined
 				};
+			},
+			actionListeners() {
+				return makeActionListeners( args, argTypes );
 			}
 		},
 		template: `
-		<ol class="sb-search__suggestions" role="listbox">
-			<li role="option">
-				<wvui-typeahead-suggestion
-					:suggestion="suggestion"
-					:active="active"
-					:query="query"
-					:showThumbnail="showThumbnail"
-					:showDescription="showDescription"
-				/>
-			</li>
-		</ol>
+			<ol class="sb-search__suggestions" role="listbox">
+				<li role="option">
+					<wvui-typeahead-suggestion
+						:suggestion="suggestion"
+						v-bind="$props"
+						v-on="actionListeners"
+					/>
+				</li>
+			</ol>
 		`
 	} );
 
-export const exampleList = (): Vue.Component =>
-	Vue.extend( {
-		components: { WvuiTypeaheadSuggestion },
-		props: {
-			query: { type: String, default: text( 'Query (for highlighting)', 'Co' ) }
-		},
-		data() {
-			return {
-				suggestionsList: defaultSuggestionsList.pages,
-				activeIndex: -1
-			};
-		},
-		methods: {
-			onSuggestionMouseOver( index: number ) {
-				this.activeIndex = index;
+Configurable.argTypes = {
+	suggestionTitle: {
+		control: 'text',
+		defaultValue: firstSuggestion.title,
+		description: 'Page title in the suggestion data',
+		table: {
+			category: 'Suggestion data'
+		}
+	},
+	suggestionDescription: {
+		control: 'text',
+		defaultValue: firstSuggestion.description,
+		description: 'Page description in the suggestion data',
+		table: {
+			category: 'Suggestion data'
+		}
+	},
+	suggestionHasThumbnail: {
+		control: 'boolean',
+		defaultValue: true,
+		description: 'Whether the suggestion data contains a thumbnail',
+		table: {
+			category: 'Suggestion data'
+		}
+	},
+	suggestionThumbnailUrl: {
+		control: 'text',
+		defaultValue: firstSuggestion.thumbnail?.url,
+		description: 'Thumbnail URL in the suggestion data',
+		table: {
+			category: 'Suggestion data'
+		}
+	}
+};
+
+type SuggestionsList = { pages: Record<string, unknown>[] };
+
+function makeExampleListStory( suggestionsList : SuggestionsList, defaultQuery: string ) :
+	( ( args: Args, context: StoryContext ) => Vue.Component ) {
+	const story = ( args: Args, { argTypes } : StoryContext ) : Vue.Component =>
+		Vue.extend( {
+			components: { WvuiTypeaheadSuggestion },
+			props: Object.keys( argTypes )
+				// eslint-disable-next-line no-restricted-syntax
+				.filter( ( prop ) => ![ 'urlGenerator', 'suggestion' ].includes( prop ) ),
+			data() {
+				return {
+					suggestionsList: suggestionsList.pages,
+					activeIndex: -1
+				};
+			},
+			computed: {
+				actionListeners() {
+					return makeActionListeners( args, argTypes );
+				}
+			},
+			methods: {
+				onSuggestionMouseOver( index: number ) {
+					this.activeIndex = index;
+				}
+			},
+			template: `
+			<ol class="sb-search__suggestions">
+				<li v-for="(suggestion, index) in suggestionsList" >
+					<wvui-typeahead-suggestion
+						v-bind="$props"
+						v-on="actionListeners"
+						@mouseover="onSuggestionMouseOver( index )"
+						:active="activeIndex === index"
+						:suggestion="suggestion"
+						:key="suggestion.id"
+					/>
+				</li>
+			</ol>
+			`
+		} );
+	story.argTypes = {
+		active: {
+			table: {
+				disable: true
 			}
 		},
-		template: `
-		<ol class="sb-search__suggestions">
-			<li v-for="(suggestion, index) in suggestionsList" >
-				<wvui-typeahead-suggestion
-					@mouseover="onSuggestionMouseOver( index )"
-					query="co"
-					:active="activeIndex === index"
-					:suggestion="suggestion"
-					:key="suggestion.id"
-				/>
-			</li>
-		</ol>
-		`
-	} );
+		query: {
+			defaultValue: defaultQuery
+		}
+	};
+	return story;
+}
+
+export const ExampleList = makeExampleListStory( defaultSuggestionsList, 'co' );
 
 // This story serves to demonstrate how the highlighting mechanism in the
 // typeahead-suggestion/typeahead-suggestion-title component handles languages with characters
@@ -93,34 +161,4 @@ export const exampleList = (): Vue.Component =>
 //
 // See https://phabricator.wikimedia.org/T277256 and https://phabricator.wikimedia.org/T35242 for
 // detail.
-export const exampleListWithGraphemes = (): Vue.Component =>
-	Vue.extend( {
-		components: { WvuiTypeaheadSuggestion },
-		props: {
-			query: { type: String, default: text( 'Query (for highlighting)', 'ইতাল' ) }
-		},
-		data() {
-			return {
-				suggestionsList: T277256SuggestionsList.pages,
-				activeIndex: -1
-			};
-		},
-		methods: {
-			onSuggestionMouseOver( index: number ) {
-				this.activeIndex = index;
-			}
-		},
-		template: `
-		<ol class="sb-search__suggestions">
-			<li v-for="(suggestion, index) in suggestionsList" >
-				<wvui-typeahead-suggestion
-					@mouseover="onSuggestionMouseOver( index )"
-					:query="query"
-					:active="activeIndex === index"
-					:suggestion="suggestion"
-					:key="suggestion.id"
-				/>
-			</li>
-		</ol>
-		`
-	} );
+export const ExampleListWithGraphemes = makeExampleListStory( T277256SuggestionsList, 'ইতাল' );

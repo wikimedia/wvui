@@ -1,54 +1,64 @@
-import { boolean } from '@storybook/addon-knobs';
 import Vue from 'vue';
-import { action } from '@storybook/addon-actions';
+import { Args, StoryContext } from '@storybook/addons';
 import WvuiTypeaheadSearch from './TypeaheadSearch.vue';
+import { makeActionArgTypes, makeActionListeners } from '../../utils/StoryUtils';
 import './TypeaheadSearch.stories.less';
 
 export default {
 	title: 'Components/TypeaheadSearch',
-	component: WvuiTypeaheadSearch
+	component: WvuiTypeaheadSearch,
+	argTypes: {
+		buttonLabel: {
+			defaultValue: 'Search'
+		},
+		formAction: {
+			defaultValue: '/w/index.php'
+		},
+		footerSearchText: {
+			defaultValue: 'Search for pages containing'
+		},
+		suggestionsLabel: {
+			defaultValue: 'search suggestions'
+		},
+		id: {
+			defaultValue: 'typeahead-search'
+		},
+		client: {
+			control: false
+		},
+		urlGenerator: {
+			control: false
+		},
+		placeholder: {
+			control: {
+				type: 'text'
+			},
+			table: {
+				category: 'Attributes'
+			},
+			defaultValue: 'Search Wikipedia'
+		},
+		...makeActionArgTypes( [ 'fetch-start', 'fetch-end', 'suggestion-click', 'submit' ] )
+	}
 };
 
-export const TypeaheadSearch = (): Vue.Component =>
+export const Configurable = ( args: Args, { argTypes } : StoryContext ) : Vue.Component =>
 	Vue.extend( {
 		components: { WvuiTypeaheadSearch },
-		props: {
-			showThumbnail: {
-				type: Boolean,
-				default: boolean( 'Show thumbnail?', true )
-			},
-			showDescription: {
-				type: Boolean,
-				default: boolean( 'Show description?', true )
+		props: Object.keys( argTypes )
+			// eslint-disable-next-line no-restricted-syntax
+			.filter( ( propName ) => ![ 'client', 'urlGenerator' ].includes( propName ) ),
+		computed: {
+			actionListeners() {
+				return makeActionListeners( args, argTypes );
 			}
-		},
-		methods: {
-			onFetchStart: action( 'fetch-start' ),
-			onFetchEnd: action( 'fetch-end' ),
-			onSuggestionClick: action( 'suggestion-click' ),
-			onSubmit: action( 'submit' )
 		},
 		template: `
 			<div class="sb-typeahead-search">
 				<wvui-typeahead-search
-					id="typeahead-search"
-					accesskey="f"
-					aria-label="Search Wikipedia"
-					form-action="/w/index.php"
-					title="Search Wikipedia [Alt+Shift+f]"
-					placeholder="Search Wikipedia"
-					button-label="Search"
-					footer-search-text="Search for pages containing"
-					suggestions-label="search suggestions"
-					:showThumbnail="showThumbnail"
-					:showDescription="showDescription"
-					@fetch-start="onFetchStart"
-					@fetch-end="onFetchEnd"
-					@suggestion-click="onSuggestionClick"
-					@submit="onSubmit"
-				>
-					<input type="hidden" name="title" value="Special:Search">
-				</wvui-typeahead-search>
+					v-bind="$props"
+					v-on="actionListeners"
+				/>
 			</div>
 		`
 	} );

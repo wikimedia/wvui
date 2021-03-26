@@ -87,6 +87,7 @@ export default Vue.extend( {
 		}
 	},
 	mounted() {
+		// Now that the component is mounted, check its computed style and update dir
 		const computedStyle = window.getComputedStyle( this.$el );
 		this.dir = computedStyle?.direction || this.dir;
 	},

@@ -36,8 +36,10 @@
 					@blur="onInputBlur"
 					@focus="onInputFocus"
 				/>
-				<!-- A slot for passing hidden inputs like
-				<input type="hidden" name="language" value="en"> -->
+				<!--
+					@slot A slot for passing hidden inputs like
+					<input type="hidden" name="language" value="en">
+				-->
 				<slot />
 				<ol
 					:id="suggestionsId"

@@ -47,4 +47,10 @@ const backgrounds = {
 	]
 };
 
-addParameters( { viewport: { viewports }, backgrounds } );
+addParameters( {
+	viewport: { viewports },
+	backgrounds,
+	controls: {
+		expanded: true
+	}
+} );

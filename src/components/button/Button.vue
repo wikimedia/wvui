@@ -1,5 +1,8 @@
 <template>
 	<button class="wvui-button" :class="rootClasses" @click="onClick">
+		<!--
+			@slot Button content
+		-->
 		<slot />
 	</button>
 </template>
