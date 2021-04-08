@@ -660,8 +660,15 @@ export default Vue.extend( {
 			padding-right: @padding-horizontal-typeahead-suggestion;
 		}
 
+		.wvui-typeahead-search__suggestions__footer__text {
+			text-overflow: ellipsis;
+			overflow: hidden;
+		}
+
 		.wvui-typeahead-search__suggestions-footer-article-icon {
 			width: @size-search-figure;
+			// Prevent the icon container from shrinking when large text is present
+			flex-shrink: 0;
 		}
 	}
 }
