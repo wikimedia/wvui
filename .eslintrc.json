@@ -1,18 +1,10 @@
 {
 	"root": true,
-
 	"parser": "@typescript-eslint/parser",
 	"parserOptions": {
 		"parser": "@typescript-eslint/parser"
 	},
-
-	// Overrides are processed in order from first (lowest precedence) match to last (highest
-	// precedence). Extending may overwrite rules from the root or previous matches so it's best
-	// to put `extends` in the lowest possible precedence and **keep `extends` separate from
-	// `rules`** so that rules can be shared without having to re-override them. See
-	// https://eslint.org/docs/user-guide/configuring#how-it-works.
 	"overrides": [
-		// Extends: all JavaScript, TypeScript, and Vue files everywhere.
 		{
 			"files": ["*.[jt]s", "*.vue"],
 			"extends": [
@@ -23,8 +15,6 @@
 			],
 			"plugins": ["@typescript-eslint", "no-jquery"]
 		},
-		// Extends: all **client** JavaScript, TypeScript, and Vue files (_excluding_ TypeScript
-		// tests).
 		{
 			"files": ["src/**/*.[jt]s", "src/**/*.vue"],
 			"excludedFiles": ["*.test.ts"],
@@ -33,7 +23,6 @@
 				"sourceType": "module"
 			}
 		},
-		// Extends: all TypeScript test files everywhere.
 		{
 			"files": ["*.test.ts"],
 			"extends": ["wikimedia/language/es2020", "plugin:jest/recommended"],
@@ -41,16 +30,10 @@
 				"sourceType": "module"
 			}
 		},
-
-		// Rules: all files everywhere. If a rule can be common, put it here.
 		{
 			"files": ["*"],
 			"rules": {
-				// Not all Wikimedia rule sets forbid console statements but everything should be quiet
-				// unless an error occurs.
 				"no-console": "warn",
-				// Where const and let are supported, which is the case for all files in this repo, one-var
-				// is anti-pattern.
 				"one-var": "off",
 				"max-len": [
 					"warn",
@@ -58,47 +41,26 @@
 						"code": 100,
 						"tabWidth": 4,
 						"ignoreUrls": true,
-						// Exclude all eslint- directives except for max-len itself since
-						// `// eslint-disable-line max-len` would cause this line to be ignored AND this rule
-						// to be disabled which would trigger --report-unused-disable-directives. By excluding
-						// max-len, the  effect is to consider the line but disable this rule.
-						//
-						// ESLint also runs on Single File Component Less styles. Since transitions are usually
-						// lengthy, and breaking them across multiple lines would require disabling other
-						// stylelint rules, allow transitions only to be of any length.
 						"ignorePattern": "// (?!eslint-.+max-len)eslint-.+|^\\s*transition: "
 					}
 				],
-
-				// TypeScript (and type-checked JavaScript) rules.
-				// Deprecated and interferes with JSDoc typing.
 				"valid-jsdoc": "off",
-				// Covered by TypeScript. Doesn't understand many types like `Required`. These rules
-				// should be mostly disabled by setting `mode` to TypeScript but it doesn't seem to
-				// be working.
 				"jsdoc/no-undefined-types": "off",
 				"jsdoc/valid-types": "off",
-				// Adequately covered by tsconfig.json which allows unused variables with a leading
-				// underscore.
 				"no-unused-vars": "off",
 				"@typescript-eslint/no-unused-vars": "off",
-				// Programs read from top to bottom without var.
 				"@typescript-eslint/no-use-before-define": "off"
 			}
 		},
-		// Rules: All JavaScript files everywhere.
 		{
 			"files": ["*.js"],
 			"rules": {
-				// Imports are unsupported.
 				"@typescript-eslint/no-var-requires": "off"
 			}
 		},
-		// Rules: all TypeScript and Vue files everywhere.
 		{
 			"files": ["*.ts", "*.vue"],
 			"rules": {
-				// Covered by TypeScript.
 				"no-undef": "off",
 				"jsdoc/require-param-type": "off",
 				"jsdoc/require-returns-type": "off",
@@ -109,17 +71,13 @@
 					}
 				],
 				"no-use-before-define": "off",
-				// This appears to break on TypeScript enums.
 				"no-shadow": "off"
 			}
 		},
-		// Rules: all Vue files everywhere.
 		{
 			"files": ["*.vue"],
 			"rules": {
-				// Use tabs.
 				"vue/html-indent": ["warn", "tab"],
-				// Treat attributes like object properties.
 				"vue/max-attributes-per-line": "off"
 			}
 		}

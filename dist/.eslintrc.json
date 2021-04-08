@@ -3,7 +3,6 @@
 	"extends": "wikimedia/language/es5",
 	"parser": "@typescript-eslint/parser",
 	"rules": {
-		// Disable polyfilled violations.
-		"es/no-object-assign": "off" // Object.assign()
+		"es/no-object-assign": "off"
 	}
 }
