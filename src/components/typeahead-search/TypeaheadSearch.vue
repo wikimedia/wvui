@@ -485,6 +485,9 @@ export default Vue.extend( {
 	}
 
 	&__submit {
+		// Prevent submit button from shrinking on smaller viewports, which causes
+		// the button label to overflow.
+		flex-shrink: 0;
 		position: relative;
 		// Set negative margin to make button border overlap with
 		// `.wvui-typeahead-search`'s border on all but start margin.
