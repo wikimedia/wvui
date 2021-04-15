@@ -33,9 +33,9 @@
     "test:all": "npm -s run test:unit && npm -s run test:lint && npm -s run test:size",
     "test:unit": "jest -c .jest/jest.config.json",
     "test:lint": "npm -s run test:lint:etc && npm run -s test:lint:styles && npm run -s test:lint:js",
-    "test:lint:styles": "npm -s run linter:styles -- .",
+    "test:lint:etc": "npm -s run linter:etc -- . --check",
     "test:lint:js": "npm -s run linter:js -- .",
-    "test:lint:etc": "npm -s run linter:etc -- -l",
+    "test:lint:styles": "npm -s run linter:styles -- .",
     "test:size": "bundlesize",
     "doc": "npm -s run build && npm -s run doc:all",
     "doc:all": "npm -s run doc:ui && npm -s run doc:size && npm -s run doc:sourceMap:wvuiMin && npm -s run doc:sourceMap:wvuiMinGzip",
@@ -45,18 +45,20 @@
     "doc:sourceMap:wvuiMinGzip": "source-map-explorer --gzip --html docs/sourceMaps/wvuiMinGzip.html dist/wvui.{js,css}",
     "version": "npm t",
     "format": "npm -s run format:etc && npm -s run format:js && npm -s run format:styles",
-    "format:etc": "npm -s run linter:etc -- --write",
+    "format:etc": "npm -s run linter:etc -- . --write",
     "format:js": "npm -s run linter:js -- --fix .",
     "format:styles": "npm -s run linter:styles -- --fix .",
-    "linter:etc": "prettier .",
+    "linter:etc": "prettier",
     "linter:js": "eslint --cache --max-warnings 0 --ext .js,.json,.ts,.vue",
     "linter:styles": "stylelint --cache --report-needless-disables --max-warnings 0",
     "preversion": "[ -z \"$(git status -z)\" ]",
-    "prepublishOnly": "! git symbolic-ref -q HEAD || git push --follow-tags origin \"$(git rev-parse --abbrev-ref HEAD)\""
+    "prepublishOnly": "! git symbolic-ref -q HEAD || git push --follow-tags origin \"$(git rev-parse --abbrev-ref HEAD)\"",
+    "prepare": "husky install"
   },
   "peerDependencies": {
     "vue": "^2.6.11"
   },
+  "pre-commit": "precommit",
   "devDependencies": {
     "@babel/core": "7.11.6",
     "@storybook/addon-a11y": "6.2.8",
@@ -88,10 +90,12 @@
     "eslint-plugin-jest": "24.0.2",
     "eslint-plugin-no-jquery": "2.5.0",
     "fork-ts-checker-webpack-plugin": "5.2.0",
+    "husky": "^6.0.0",
     "jest": "26.4.2",
     "jest-fetch-mock": "3.0.3",
     "less": "3.12.2",
     "less-loader": "7.0.1",
+    "lint-staged": "^10.5.4",
     "mini-css-extract-plugin": "0.11.2",
     "node-gyp": "7.1.2",
     "optimize-css-assets-webpack-plugin": "5.0.4",
@@ -115,5 +119,8 @@
     "webpack-bundle-analyzer": "3.9.0",
     "webpack-cli": "3.3.12",
     "wikimedia-ui-base": "0.18.1"
+  },
+  "lint-staged": {
+    "*.{json,md,yaml}": "npm -s run format:etc"
   }
 }
