@@ -1,5 +1,5 @@
 .sb-input {
-	width: 400px;
+	width: 100%;
 
 	&--has-button {
 		// stylelint-disable-next-line plugin/no-unsupported-browser-features
@@ -20,5 +20,11 @@
 			border-top-left-radius: 0;
 			border-bottom-left-radius: 0;
 		}
+	}
+}
+
+@media all and ( min-width: 400px ) {
+	.sb-input {
+		width: 400px;
 	}
 }

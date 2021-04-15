@@ -3,6 +3,7 @@ import { Args, StoryContext } from '@storybook/addons';
 import WvuiButton from './Button.vue';
 import { PrimaryAction } from '../../actions/PrimaryAction';
 import { makeActionArgTypes, makeActionListeners } from '../../utils/StoryUtils';
+import './Button.stories.less';
 
 export default {
 	title: 'Components/Button',
@@ -100,6 +101,11 @@ export const AllCombinations = (
 						</td>
 					</tr>
 				</tbody>
+				<tfoot class="button-combinations-hint-mobile">
+					<tr>
+						<td colspan="5">Please scroll horizontally to see all combinations.</td>
+					</tr>
+				</tfoot>
 			</table>
 		`
 	} );
