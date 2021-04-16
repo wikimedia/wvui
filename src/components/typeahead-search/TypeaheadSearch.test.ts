@@ -475,4 +475,40 @@ describe( 'when there are search results', () => {
 		expect( wrapper.vm.$data.suggestionActiveIndex ).toBe( -1 );
 		expect( wrapper.find( '.wvui-typeahead-suggestion--active' ).exists() ).toBeFalsy();
 	} );
+
+	describe( 'when the form is submitted', () => {
+		const { location } = window;
+		const assignMock = jest.fn();
+
+		beforeAll( () => {
+			// eslint-disable-next-line
+			delete (window as any).location;
+			// eslint-disable-next-line
+			(window as any).location = { assign: assignMock };
+		} );
+
+		afterAll( () => {
+			window.location = location;
+		} );
+
+		it( 'navigates to default url when nothing is selected', async () => {
+			wrapper.find( 'form' ).trigger( 'submit' );
+
+			expect( assignMock ).toHaveBeenCalledTimes( 0 );
+		} );
+
+		it( 'navigates to default url when suggestion is selected', async () => {
+			await wrapper.trigger( 'keydown', { key: 'ArrowDown' } );
+			wrapper.find( 'form' ).trigger( 'submit' );
+
+			expect( assignMock ).toHaveBeenCalledTimes( 0 );
+		} );
+
+		it( 'manually navigates to search results when the footer is selected', async () => {
+			await wrapper.trigger( 'keydown', { key: 'ArrowUp' } );
+			wrapper.find( 'form' ).trigger( 'submit' );
+
+			expect( assignMock ).toHaveBeenCalledTimes( 1 );
+		} );
+	} );
 } );

@@ -438,13 +438,22 @@ export default Vue.extend( {
 			return `wvui-typeahead-search-suggestion-${suggestion.id}`;
 		},
 
-		onSubmit() {
-			const event: SubmitEvent = {
+		onSubmit( event: Event ) {
+			// When the user presses the enter key, we prevent form
+			// submission when the suggestion footer is active.
+			// Instead, we directly navigate to `footerUrl` to ensure
+			// the link is the same on both mouse and keyboard
+			if ( this.suggestionActiveIndex === this.suggestionsList.length ) {
+				event.preventDefault();
+				window.location.assign( this.footerUrl );
+			}
+
+			const submitEvent: SubmitEvent = {
 				index: this.suggestionActiveIndex,
 				numberOfResults: this.suggestionsList.length
 			};
 
-			this.$emit( 'submit', event );
+			this.$emit( 'submit', submitEvent );
 		}
 	}
 } );
