@@ -214,6 +214,8 @@ export default Vue.extend( {
 		color: @color-primary;
 
 		&:hover {
+			// FIXME @background-color-primary--hover exists but is a little lighter
+			background-color: fade( #347bff, 20% );
 			color: @color-primary--hover;
 		}
 
@@ -224,7 +226,9 @@ export default Vue.extend( {
 		}
 
 		&:active {
-			color: @color-primary--active;
+			background-color: @color-primary--active;
+			color: @color-base--inverted;
+			border-color: @color-primary--active;
 			box-shadow: none;
 		}
 	}
@@ -234,6 +238,8 @@ export default Vue.extend( {
 		color: @color-destructive;
 
 		&:hover {
+			// FIXME @background-color-destructive--hover should exist but doesn't
+			background-color: fade( #d11d13, 20% );
 			color: @color-destructive--hover;
 		}
 
@@ -244,7 +250,9 @@ export default Vue.extend( {
 		}
 
 		&:active {
-			color: @color-destructive--active;
+			background-color: @color-destructive--active;
+			color: @color-base--inverted;
+			border-color: @color-destructive--active;
 			box-shadow: none;
 		}
 	}
