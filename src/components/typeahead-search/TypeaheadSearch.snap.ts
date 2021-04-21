@@ -115,7 +115,7 @@ exports[`matches the snapshot 1`] = `
     </div>
      
     <button
-      class="wvui-button wvui-typeahead-search__submit wvui-button--default wvui-button--framed"
+      class="wvui-button wvui-typeahead-search__submit wvui-button--action-default wvui-button--type-normal wvui-button--framed"
     >
       
 			Search
@@ -658,7 +658,7 @@ exports[`when there are search results matches the snapshot 1`] = `
     </div>
      
     <button
-      class="wvui-button wvui-typeahead-search__submit wvui-button--default wvui-button--framed"
+      class="wvui-button wvui-typeahead-search__submit wvui-button--action-default wvui-button--type-normal wvui-button--framed"
     >
       
 			Search

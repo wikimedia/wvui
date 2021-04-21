@@ -1,5 +1,25 @@
+.sb-button-combinations {
+	border-spacing: 16px;
+
+	// Type table headers
+	tbody {
+		th {
+			text-align: right;
+		}
+
+		// 'Disabled' types
+		tr:nth-child( even ) th {
+			color: #72777d;
+		}
+	}
+
+	td {
+		text-align: center;
+	}
+}
+
 @media all and ( min-width: 400px ) {
-	.button-combinations-hint-mobile {
+	.sb-button-combinations-hint-mobile {
 		display: none;
 	}
 }

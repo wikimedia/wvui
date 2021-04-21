@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import { Args, StoryContext } from '@storybook/addons';
 import WvuiButton from './Button.vue';
+import { ButtonType } from './ButtonType';
 import { PrimaryAction } from '../../actions/PrimaryAction';
 import { filterKeys, makeActionArgTypes, makeActionListeners } from '../../utils/StoryUtils';
 import './Button.stories.less';
@@ -14,6 +15,12 @@ export default {
 			options: Object.values( PrimaryAction ),
 			control: 'inline-radio',
 			defaultValue: PrimaryAction.Default
+		},
+		type: {
+			// eslint-disable-next-line es/no-object-values
+			options: Object.values( ButtonType ),
+			control: 'inline-radio',
+			defaultValue: ButtonType.Normal
 		},
 		default: {
 			control: 'text',
@@ -60,13 +67,8 @@ export const AllCombinations = ( _args: Args, { argTypes } : StoryContext ): Vue
 		props: Object.keys( argTypes ),
 		data() {
 			return {
-				actions: [ 'default', 'progressive', 'destructive' ],
-				combinations: {
-					Normal: { disabled: false, quiet: false },
-					Disabled: { disabled: true, quiet: false },
-					Quiet: { disabled: false, quiet: true },
-					'Quiet disabled': { disabled: true, quiet: true }
-				}
+				types: ButtonType,
+				actions: PrimaryAction
 			};
 		},
 		computed: {
@@ -75,37 +77,38 @@ export const AllCombinations = ( _args: Args, { argTypes } : StoryContext ): Vue
 			}
 		},
 		template: `
-			<table style="border-spacing: 16px;">
+			<table class="sb-button-combinations">
 				<thead>
-					<tr>
-						<th scope="col">Action</th>
-						<th
-							v-for="(props, name) in combinations"
-							:key="name"
-							scope="col"
-						>
-							{{ name }}
-						</th>
-					</tr>
+					<th></th>
+					<th v-for="(action, actionName) in actions" :key="action" scope="col">
+						{{ actionName }}
+					</th>
 				</thead>
 				<tbody>
-					<tr v-for="action in actions" :key="action">
-						<th scope="row">
-							{{ action[0].toUpperCase() + action.slice( 1 ) }}
-						</th>
-						<td v-for="(props, name) in combinations" :key="name">
-							<wvui-button
-								:action="action"
-								v-bind="props"
-							>
-								{{ slotContents }}
-							</wvui-button>
-						</td>
-					</tr>
+					<template v-for="(type, typeName) in types">
+						<tr v-for="disabled in [ false, true ]" :key="type + disabled">
+							<th scope="row">
+								{{ typeName }} {{ disabled ? 'disabled' : '' }}
+							</th>
+							<td v-for="(action, actionName) in actions" :key="action">
+								<wvui-button
+									:action="action"
+									:type="type"
+									:disabled="disabled"
+								>
+									{{ slotContents }}
+								</wvui-button>
+							</td>
+						</tr>
+					</template>
 				</tbody>
-				<tfoot class="button-combinations-hint-mobile">
+				<tfoot class="sb-button-combinations-hint-mobile">
 					<tr>
-						<td colspan="5">Please scroll horizontally to see all combinations.</td>
+						<td
+							:colspan="Object.keys( actions ).length + 1"
+						>
+							Please scroll horizontally to see all combinations.
+						</td>
 					</tr>
 				</tfoot>
 			</table>
@@ -123,7 +126,7 @@ AllCombinations.argTypes = {
 			disable: true
 		}
 	},
-	quiet: {
+	type: {
 		table: {
 			disable: true
 		}

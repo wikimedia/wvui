@@ -8,6 +8,7 @@
 </template>
 
 <script lang="ts">
+import { ButtonType, isButtonType } from './ButtonType';
 import { PrimaryAction, isPrimaryAction } from '../../actions/PrimaryAction';
 import Vue, { PropType } from 'vue';
 
@@ -19,26 +20,34 @@ import Vue, { PropType } from 'vue';
 export default Vue.extend( {
 	name: 'WvuiButton',
 	props: {
-		/** See PrimaryAction. */
+		/**
+		 * What type of action the button will cause to be taken when clicked.
+		 * See PrimaryAction for what each value means.
+		 */
 		action: {
 			type: String as PropType<PrimaryAction>,
 			default: PrimaryAction.Default,
 			validator: isPrimaryAction
 		},
-		/** True if button should be visually less prominent. */
-		quiet: {
-			type: Boolean,
-			default: false
+		/**
+		 * Button type. See ButtonType for what each value means.
+		 */
+		type: {
+			type: String as PropType<ButtonType>,
+			default: ButtonType.Normal,
+			validator: isButtonType
 		}
 	},
 	computed: {
 		rootClasses(): Record<string, boolean> {
 			return {
-				'wvui-button--default': this.action === PrimaryAction.Default,
-				'wvui-button--progressive': this.action === PrimaryAction.Progressive,
-				'wvui-button--destructive': this.action === PrimaryAction.Destructive,
-				'wvui-button--framed': !this.quiet,
-				'wvui-button--quiet': this.quiet
+				'wvui-button--action-default': this.action === PrimaryAction.Default,
+				'wvui-button--action-progressive': this.action === PrimaryAction.Progressive,
+				'wvui-button--action-destructive': this.action === PrimaryAction.Destructive,
+				'wvui-button--type-primary': this.type === ButtonType.Primary,
+				'wvui-button--type-normal': this.type === ButtonType.Normal,
+				'wvui-button--type-quiet': this.type === ButtonType.Quiet,
+				'wvui-button--framed': this.type !== ButtonType.Quiet
 			};
 		}
 	},
@@ -116,7 +125,7 @@ export default Vue.extend( {
 	}
 }
 
-// Normal “framed” buttons.
+// Non-quiet “framed” buttons (normal and primary types)
 .wvui-button--framed {
 	&:not( [ disabled ] ) {
 		background-color: @background-color-framed;
@@ -134,13 +143,72 @@ export default Vue.extend( {
 		}
 	}
 
-	// Progressive normal buttons.
-	&.wvui-button--progressive:not( [ disabled ] ) {
+	&[ disabled ] {
+		background-color: @background-color-filled--disabled;
+		color: @color-filled--disabled;
+	}
+}
+
+.wvui-button--type-primary {
+	// Progressive primary buttons
+	&.wvui-button--action-progressive:not( [ disabled ] ) {
+		background-color: @color-primary;
+		border-color: @color-primary;
+		color: @color-base--inverted;
+
+		&:hover {
+			background-color: @color-primary--hover;
+			border-color: @color-primary--hover;
+		}
+
+		&:focus {
+			background-color: @color-primary--focus;
+			border-color: @color-primary--focus;
+			box-shadow: @box-shadow-primary--focus;
+		}
+
+		&:active {
+			background-color: @color-primary--active;
+			border-color: @color-primary--active;
+			// Reset `:focus` box shadow to amplify 'interaction' feeling when pressed.
+			box-shadow: none;
+		}
+	}
+
+	// Destructive primary buttons
+	&.wvui-button--action-destructive:not( [ disabled ] ) {
+		background-color: @color-destructive;
+		border-color: @color-destructive;
+		color: @color-base--inverted;
+
+		&:hover {
+			background-color: @color-destructive--hover;
+			border-color: @color-destructive--hover;
+		}
+
+		&:focus {
+			background-color: @color-destructive--focus;
+			border-color: @color-destructive--focus;
+			box-shadow: @box-shadow-destructive--focus;
+		}
+
+		&:active {
+			background-color: @color-destructive--active;
+			border-color: @color-destructive--active;
+			// Reset `:focus` box shadow to amplify 'interaction' feeling when pressed.
+			box-shadow: none;
+		}
+	}
+}
+
+.wvui-button--type-normal {
+	// Normal progressive buttons
+	&.wvui-button--action-progressive:not( [ disabled ] ) {
 		color: @color-primary;
 
 		&:hover {
-			color: @color-primary--hover;
 			border-color: @border-color-primary--hover;
+			color: @color-primary--hover;
 		}
 
 		&:focus {
@@ -158,8 +226,8 @@ export default Vue.extend( {
 		}
 	}
 
-	// Destructive normal buttons.
-	&.wvui-button--destructive:not( [ disabled ] ) {
+	// Normal destructive buttons
+	&.wvui-button--action-destructive:not( [ disabled ] ) {
 		color: @color-destructive;
 
 		&:hover {
@@ -181,15 +249,10 @@ export default Vue.extend( {
 			box-shadow: none;
 		}
 	}
-
-	&[ disabled ] {
-		background-color: @background-color-filled--disabled;
-		color: @color-filled--disabled;
-	}
 }
 
 // Quiet buttons.
-.wvui-button--quiet {
+.wvui-button--type-quiet {
 	background-color: transparent;
 	color: @color-base;
 	border-color: transparent;
@@ -213,7 +276,7 @@ export default Vue.extend( {
 	}
 
 	// Progressive quiet buttons.
-	&.wvui-button--progressive:not( [ disabled ] ) {
+	&.wvui-button--action-progressive:not( [ disabled ] ) {
 		color: @color-primary;
 
 		&:hover {
@@ -237,7 +300,7 @@ export default Vue.extend( {
 	}
 
 	// Destructive quiet buttons.
-	&.wvui-button--destructive:not( [ disabled ] ) {
+	&.wvui-button--action-destructive:not( [ disabled ] ) {
 		color: @color-destructive;
 
 		&:hover {

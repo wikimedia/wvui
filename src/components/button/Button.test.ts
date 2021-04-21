@@ -1,3 +1,4 @@
+import { ButtonType } from './ButtonType';
 import { PrimaryAction } from '../../actions/PrimaryAction';
 import { shallowMount } from '@vue/test-utils';
 import WvuiButton from './Button.vue';
@@ -12,7 +13,11 @@ describe( 'matches the snapshot', () => {
 			{ action },
 			''
 		] ) as Case[] ),
-		[ 'Quiet', { quiet: true }, '' ],
+		...( Object.values( ButtonType ).map( ( type ) => [
+			`${type} type`,
+			{ type },
+			''
+		] ) as Case [] ),
 		[ 'Slotted', {}, '<span>Label</span>' ]
 	];
 
