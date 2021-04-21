@@ -2,9 +2,25 @@
 
 Versions and bullets are arranged contextually chronologically from latest to oldest.
 
-## v0.1.1 / YYYY-MM-DD (to be released)
+## v0.1.2 / YYYY-MM-DD (to be released)
 
--   Placeholder
+## v0.1.1 / 2021-04-21
+
+-   [button][styles] Fix hover and active for p/d quiet buttons (Roan Kattouw)
+-   [typeahead-search] Ensure the suggestion footer works the same on keyboard and mouse. (bwang)
+-   [typeahead-search] Handle text overflow in search suggestion footer by using ellipsis (bwang)
+-   [typeahead-search] Prevent search button text from overflowing on small screens (bwang)
+-   [typeahead-search] Update debounce interval (Clare Ming)
+-   [typeahead-suggestion-title] Preserve graphemes during splitting (Sam Smith)
+-   [build] Make Prettier prettier and add `format:etc` script for staged files (Volker E)
+-   [build] Update .browserslistrc to reflect current modern supported browsers (Volker E)
+-   [build][storybook] Optimize button and input stories for mobile usage (jdlrobson)
+-   [build] Upgrade 'storybook' to 6.2.8 (Roan Kattouw)
+-   [build][docs] Migrate Storybook stories from knobs to controls; add docs addon (Roan Kattouw)
+-   [build] Install NPM from buster backports (Nikki Nikkhoui)
+-   [build] Remove comments from .eslintrc.json (Umherirrender)
+-   [docs] Uppercase README.md & CHANGELOG.md file names to align to pseudo-standard (Kunal Mehta)
+-   [docs][changelog] Create next section (DannyS712)
 
 ## v0.1.0 / 2021-02-11
 
