@@ -1,10 +1,12 @@
 import Vue from 'vue';
 import { Args, StoryContext } from '@storybook/addons';
 import WvuiButton from './Button.vue';
+import WvuiIcon from '../icon/Icon.vue';
 import { ButtonType } from './ButtonType';
 import { PrimaryAction } from '../../actions/PrimaryAction';
 import { filterKeys, makeActionArgTypes, makeActionListeners } from '../../utils/StoryUtils';
 import './Button.stories.less';
+import { lookupIcon, makeOptionalIconArgType } from '../icon/Icon.stories';
 
 export default {
 	title: 'Components/Button',
@@ -32,6 +34,10 @@ export default {
 				category: 'Attributes'
 			}
 		},
+		icon: {
+			...makeOptionalIconArgType(),
+			description: 'Icon to prepend to the button content'
+		},
 		...makeActionArgTypes( [ 'click' ] )
 	},
 	parameters: {
@@ -41,11 +47,14 @@ export default {
 
 export const Configurable = ( args : Args, { argTypes } : StoryContext ): Vue.Component =>
 	Vue.extend( {
-		components: { WvuiButton },
+		components: { WvuiButton, WvuiIcon },
 		props: Object.keys( argTypes ),
 		computed: {
 			slotContents() {
 				return this.default;
+			},
+			iconData() {
+				return lookupIcon( this.icon );
 			},
 			actionListeners() {
 				return makeActionListeners( args, argTypes );
@@ -56,6 +65,7 @@ export const Configurable = ( args : Args, { argTypes } : StoryContext ): Vue.Co
 		},
 		template: `
 			<wvui-button v-bind="filteredProps" v-on="actionListeners">
+				<wvui-icon v-if="iconData" :icon="iconData" iconColor="currentColor" />
 				{{ slotContents }}
 			</wvui-button>
 		`
@@ -63,7 +73,7 @@ export const Configurable = ( args : Args, { argTypes } : StoryContext ): Vue.Co
 
 export const AllCombinations = ( _args: Args, { argTypes } : StoryContext ): Vue.Component =>
 	Vue.extend( {
-		components: { WvuiButton },
+		components: { WvuiButton, WvuiIcon },
 		props: Object.keys( argTypes ),
 		data() {
 			return {
@@ -74,6 +84,9 @@ export const AllCombinations = ( _args: Args, { argTypes } : StoryContext ): Vue
 		computed: {
 			slotContents() {
 				return this.default;
+			},
+			iconData() {
+				return lookupIcon( this.icon );
 			}
 		},
 		template: `
@@ -96,6 +109,11 @@ export const AllCombinations = ( _args: Args, { argTypes } : StoryContext ): Vue
 									:type="type"
 									:disabled="disabled"
 								>
+									<wvui-icon
+										v-if="iconData"
+										:icon="iconData"
+										iconColor="currentColor"
+									/>
 									{{ slotContents }}
 								</wvui-button>
 							</td>
