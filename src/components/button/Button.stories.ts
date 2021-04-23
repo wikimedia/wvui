@@ -65,7 +65,7 @@ export const Configurable = ( args : Args, { argTypes } : StoryContext ): Vue.Co
 		},
 		template: `
 			<wvui-button v-bind="filteredProps" v-on="actionListeners">
-				<wvui-icon v-if="iconData" :icon="iconData" iconColor="currentColor" />
+				<wvui-icon v-if="iconData" :icon="iconData" />
 				{{ slotContents }}
 			</wvui-button>
 		`
@@ -112,7 +112,6 @@ export const AllCombinations = ( _args: Args, { argTypes } : StoryContext ): Vue
 									<wvui-icon
 										v-if="iconData"
 										:icon="iconData"
-										iconColor="currentColor"
 									/>
 									{{ slotContents }}
 								</wvui-button>

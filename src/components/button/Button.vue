@@ -123,6 +123,13 @@ export default Vue.extend( {
 	&[ disabled ] {
 		border-color: transparent;
 	}
+
+	.wvui-icon {
+		// Any icons used in the button content should have the color of the surrounding text
+		// This overrides the color rule in Icon.vue, and ensures that the rules below changing the
+		// text color for progressive and destructive buttons also apply to icons.
+		color: inherit;
+	}
 }
 
 // Non-quiet “framed” buttons (normal and primary types)

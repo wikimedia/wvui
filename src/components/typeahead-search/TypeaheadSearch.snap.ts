@@ -44,13 +44,10 @@ exports[`matches the snapshot 1`] = `
           >
             <!---->
              
-            <g
-              fill="#000"
-            >
-              <path
-                d="M7 0a7 7 0 017 7 6.92 6.92 0 01-1.4 4.19l5.4 5.4L16.58 18l-5.39-5.39A7 7 0 117 0zm0 2a5 5 0 105 5 5 5 0 00-5-5z"
-              />
-            </g>
+            <path
+              d="M7 0a7 7 0 017 7 6.92 6.92 0 01-1.4 4.19l5.4 5.4L16.58 18l-5.39-5.39A7 7 0 117 0zm0 2a5 5 0 105 5 5 5 0 00-5-5z"
+              fill="currentColor"
+            />
           </svg>
         </span>
          
@@ -91,13 +88,10 @@ exports[`matches the snapshot 1`] = `
               >
                 <!---->
                  
-                <g
-                  fill="#000"
-                >
-                  <path
-                    d="M12.43 14.34A5 5 0 0110 15a5 5 0 113.95-2L17 16.09V3a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 001.45-.63z M13 10 A3 3 0 0 1 10 13 A3 3 0 0 1 7 10 A3 3 0 0 1 13 10 z"
-                  />
-                </g>
+                <path
+                  d="M12.43 14.34A5 5 0 0110 15a5 5 0 113.95-2L17 16.09V3a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 001.45-.63z M13 10 A3 3 0 0 1 10 13 A3 3 0 0 1 7 10 A3 3 0 0 1 13 10 z"
+                  fill="currentColor"
+                />
               </svg>
             </span>
              
@@ -169,13 +163,10 @@ exports[`when there are search results matches the snapshot 1`] = `
           >
             <!---->
              
-            <g
-              fill="#000"
-            >
-              <path
-                d="M7 0a7 7 0 017 7 6.92 6.92 0 01-1.4 4.19l5.4 5.4L16.58 18l-5.39-5.39A7 7 0 117 0zm0 2a5 5 0 105 5 5 5 0 00-5-5z"
-              />
-            </g>
+            <path
+              d="M7 0a7 7 0 017 7 6.92 6.92 0 01-1.4 4.19l5.4 5.4L16.58 18l-5.39-5.39A7 7 0 117 0zm0 2a5 5 0 105 5 5 5 0 00-5-5z"
+              fill="currentColor"
+            />
           </svg>
         </span>
          
@@ -217,13 +208,10 @@ exports[`when there are search results matches the snapshot 1`] = `
                 >
                   <!---->
                    
-                  <g
-                    fill="#000"
-                  >
-                    <path
-                      d="M19 3H1v14h18zM3 14l3.5-4.5 2.5 3L12.5 8l4.5 6z"
-                    />
-                  </g>
+                  <path
+                    d="M19 3H1v14h18zM3 14l3.5-4.5 2.5 3L12.5 8l4.5 6z"
+                    fill="currentColor"
+                  />
                 </svg>
               </span>
             </span>
@@ -462,13 +450,10 @@ exports[`when there are search results matches the snapshot 1`] = `
                 >
                   <!---->
                    
-                  <g
-                    fill="#000"
-                  >
-                    <path
-                      d="M19 3H1v14h18zM3 14l3.5-4.5 2.5 3L12.5 8l4.5 6z"
-                    />
-                  </g>
+                  <path
+                    d="M19 3H1v14h18zM3 14l3.5-4.5 2.5 3L12.5 8l4.5 6z"
+                    fill="currentColor"
+                  />
                 </svg>
               </span>
             </span>
@@ -634,13 +619,10 @@ exports[`when there are search results matches the snapshot 1`] = `
               >
                 <!---->
                  
-                <g
-                  fill="#000"
-                >
-                  <path
-                    d="M12.43 14.34A5 5 0 0110 15a5 5 0 113.95-2L17 16.09V3a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 001.45-.63z M13 10 A3 3 0 0 1 10 13 A3 3 0 0 1 7 10 A3 3 0 0 1 13 10 z"
-                  />
-                </g>
+                <path
+                  d="M12.43 14.34A5 5 0 0110 15a5 5 0 113.95-2L17 16.09V3a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 001.45-.63z M13 10 A3 3 0 0 1 10 13 A3 3 0 0 1 7 10 A3 3 0 0 1 13 10 z"
+                  fill="currentColor"
+                />
               </svg>
             </span>
              

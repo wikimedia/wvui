@@ -75,15 +75,6 @@ export default {
 			...makeIconArgType(),
 			defaultValue: 'wvuiIconBook'
 		},
-		iconColor: {
-			control: {
-				type: 'color',
-				presetColors: [
-					{ color: '#36c', title: 'Progressive' },
-					{ color: '#d33', title: 'Destructive' }
-				]
-			}
-		},
 		iconTitle: {
 			control: 'text'
 		},

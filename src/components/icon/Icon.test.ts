@@ -13,7 +13,6 @@ describe( 'matches the snapshot', () => {
 
 	const cases: Case[] = [
 		[ 'With icon', { icon: iconString } ],
-		[ 'With icon and hex color', { icon: iconString, iconColor: '#ff6347' } ],
 		[ 'With icon and title', { icon: iconString, iconTitle: 'Add something' } ],
 		[ 'With icon that should flip for RTL', { icon: iconShouldFlip } ]
 	];

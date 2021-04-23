@@ -169,7 +169,7 @@ export default Vue.extend( {
 		}
 
 		&-icon {
-			opacity: @opacity-icon-accessory;
+			color: @color-accessory;
 		}
 	}
 

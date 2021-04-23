@@ -193,13 +193,10 @@ exports[`matches the snapshots when thumbnail is present/absent Case 1 Without t
       >
         <!---->
          
-        <g
-          fill="#000"
-        >
-          <path
-            d="M19 3H1v14h18zM3 14l3.5-4.5 2.5 3L12.5 8l4.5 6z"
-          />
-        </g>
+        <path
+          d="M19 3H1v14h18zM3 14l3.5-4.5 2.5 3L12.5 8l4.5 6z"
+          fill="currentColor"
+        />
       </svg>
     </span>
   </span>

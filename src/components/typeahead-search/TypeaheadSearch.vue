@@ -559,7 +559,7 @@ export default Vue.extend( {
 
 			// stylelint-disable-next-line max-nesting-depth
 			.wvui-icon {
-				opacity: @opacity-icon-accessory;
+				color: @color-accessory;
 				// Because the footer icon should line up vertically with the
 				// suggestion text when `showThumbnail` is false, we set its width to
 				// `auto` here instead of using the more intuitive @size-search-figure

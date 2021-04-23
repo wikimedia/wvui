@@ -8,9 +8,7 @@
 			:aria-hidden="lacksTitle"
 		>
 			<title v-if="iconTitle">{{ iconTitle }}</title>
-			<g :fill="iconColor">
-				<path :d="iconPath" />
-			</g>
+			<path fill="currentColor" :d="iconPath" />
 		</svg>
 	</span>
 </template>
@@ -37,16 +35,6 @@ export default Vue.extend( {
 		icon: {
 			type: [ String, Object ] as PropType<AnyIcon>,
 			required: true
-		},
-		/**
-		 * Paint value. Numerical color value (e.g. hex code, rgba), color
-		 * keywords, and paint keywords are allowed. See
-		 * https://www.w3.org/TR/SVG/painting.html#SpecifyingPaint for all
-		 * options.
-		 */
-		iconColor: {
-			type: String,
-			default: '#000'
 		},
 		/**
 		 * Accessible title for SVG. String or message object. If not included,
@@ -103,6 +91,8 @@ export default Vue.extend( {
 @import ( reference ) '@/themes/wikimedia-ui.less';
 
 .wvui-icon {
+	// Set the default icon color; callers that want a different color should override this rule
+	color: @color-base;
 	// Maintain an inline outer element while using flexbox to center the SVG
 	// and avoid extra space around the image.
 	display: inline-flex; /* stylelint-disable-line plugin/no-unsupported-browser-features */

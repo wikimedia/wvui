@@ -152,7 +152,7 @@ export default Vue.extend( {
 
 	&__start-icon,
 	&__end-icon {
-		opacity: @opacity-icon-accessory;
+		color: @color-accessory;
 		position: absolute;
 		top: 0;
 		min-height: @size-icon;
