@@ -22,6 +22,7 @@ const jsSourceMapExtension = '.map.json';
 // under src/entries and others are generated automatically.
 const Chunk = {
 	Wvui: 'wvui',
+	WvuiSearch: 'wvui-search',
 	WvuiIcons: 'wvui-icons'
 };
 
@@ -145,8 +146,18 @@ clean.removeFiles( [ 'dist/**/*', '!dist/.eslintrc.json' ] );
  * @return {ReturnType<webpack.ConfigurationFactory>[]}
  */
 module.exports = ( _env, argv ) => [
+	// 1. Full build of WVUI in UMD format, suitable for consumption outside of MediaWiki
 	config( argv, 'wvui', { [ Chunk.Wvui ]: path.resolve( __dirname, '../src/entries/wvui.ts' ) }, 'umd' ),
+
+	// 2. UMD build of all icon paths, suitable for consumption outside of MediaWiki
 	config( argv, 'wvui-icons', { [ Chunk.WvuiIcons ]: path.resolve( __dirname, '../src/entries/wvui-icons.ts' ) }, 'umd' ),
+
+	// 3. Full build of WVUI in CommonJS format, suitable for use with ResourceLoader; not minified
 	config( argv, 'wvui.commonjs2', { [ Chunk.Wvui ]: path.resolve( __dirname, '../src/entries/wvui.ts' ) }, 'commonjs2' ),
-	config( argv, 'wvui-icons.commonjs2', { [ Chunk.WvuiIcons ]: path.resolve( __dirname, '../src/entries/wvui-icons.ts' ) }, 'commonjs2' )
+
+	// 4. All icon paths in CommonJS format, suitable for use with ResourceLoader
+	config( argv, 'wvui-icons.commonjs2', { [ Chunk.WvuiIcons ]: path.resolve( __dirname, '../src/entries/wvui-icons.ts' ) }, 'commonjs2' ),
+
+	// 5. CommonJS build of only the files needed for Vector search. This bundle is MW-specific so a UMD build is not provided
+	config( argv, 'wvui-search.commonjs2', { [ Chunk.WvuiSearch ]: path.resolve( __dirname, '../src/entries/wvui-search.ts' ) }, 'commonjs2' )
 ];
