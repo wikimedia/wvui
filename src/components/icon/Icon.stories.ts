@@ -88,22 +88,20 @@ export default {
 			control: 'text'
 		},
 		langCode: {
-			control: {
-				type: 'select',
-				options: Object.keys( icons )
-					// Gather all language codes that appear in a langCodeMap
-					.map( ( iconName ) => {
-						const icon = ( icons as Record<string, AnyIcon> )[ iconName ];
-						return typeof icon !== 'string' && 'langCodeMap' in icon ?
-							Object.keys( icon.langCodeMap ) : [];
-					} )
-					// Flatten this array and add 'en'
-					.reduce( ( a, b ) => a.concat( b ), [ 'en' ] )
-					// Remove duplicates
-					.sort()
-					.reduce( ( a, b ) => b === a[ a.length - 1 ] ? a : a.concat( [ b ] ),
-						[] as string[] )
-			},
+			control: 'select',
+			options: Object.keys( icons )
+				// Gather all language codes that appear in a langCodeMap
+				.map( ( iconName ) => {
+					const icon = ( icons as Record<string, AnyIcon> )[ iconName ];
+					return typeof icon !== 'string' && 'langCodeMap' in icon ?
+						Object.keys( icon.langCodeMap ) : [];
+				} )
+				// Flatten this array and add 'en'
+				.reduce( ( a, b ) => a.concat( b ), [ 'en' ] )
+				// Remove duplicates
+				.sort()
+				.reduce( ( a, b ) => b === a[ a.length - 1 ] ? a : a.concat( [ b ] ),
+					[] as string[] ),
 			defaultValue: 'en'
 		},
 		dir: {
