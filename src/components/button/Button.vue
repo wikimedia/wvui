@@ -26,7 +26,10 @@ export default Vue.extend( {
 			validator: isPrimaryAction
 		},
 		/** True if button should be visually less prominent. */
-		quiet: Boolean
+		quiet: {
+			type: Boolean,
+			default: false
+		}
 	},
 	computed: {
 		rootClasses(): Record<string, boolean> {

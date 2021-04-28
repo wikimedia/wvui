@@ -2,7 +2,7 @@ import Vue from 'vue';
 import { Args, StoryContext } from '@storybook/addons';
 import WvuiButton from './Button.vue';
 import { PrimaryAction } from '../../actions/PrimaryAction';
-import { makeActionArgTypes, makeActionListeners } from '../../utils/StoryUtils';
+import { filterKeys, makeActionArgTypes, makeActionListeners } from '../../utils/StoryUtils';
 import './Button.stories.less';
 
 export default {
@@ -42,10 +42,15 @@ export const Configurable = ( args : Args, { argTypes } : StoryContext ): Vue.Co
 			},
 			actionListeners() {
 				return makeActionListeners( args, argTypes );
+			},
+			filteredProps() {
+				return filterKeys( this.$props, [ 'default', 'icon' ] );
 			}
 		},
 		template: `
-			<wvui-button v-bind="$props" v-on="actionListeners">{{ slotContents }}</wvui-button>
+			<wvui-button v-bind="filteredProps" v-on="actionListeners">
+				{{ slotContents }}
+			</wvui-button>
 		`
 	} );
 

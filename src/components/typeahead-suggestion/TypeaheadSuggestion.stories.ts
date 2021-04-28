@@ -2,7 +2,7 @@ import Vue from 'vue';
 import { Args, StoryContext } from '@storybook/addons';
 import WvuiTypeaheadSuggestion from './TypeaheadSuggestion.vue';
 import { SearchResult } from '../typeahead-search/http/SearchClient';
-import { makeActionArgTypes, makeActionListeners } from '../../utils/StoryUtils';
+import { filterKeys, makeActionArgTypes, makeActionListeners } from '../../utils/StoryUtils';
 import './TypeaheadSuggestion.stories.less';
 import defaultSuggestionsList from '../typeahead-search/mocks/restApi.suggestions.json';
 import T277256SuggestionsList from '../typeahead-search/mocks/T277256.suggestions.json';
@@ -40,15 +40,23 @@ export const Configurable = ( args: Args, { argTypes } : StoryContext ) : Vue.Co
 			suggestion(): SearchResult {
 				return {
 					id: 42,
-					key: this.suggestionTitle,
-					title: this.suggestionTitle,
-					description: this.suggestionDescription,
-					thumbnail: this.suggestionHasThumbnail ?
-						{ url: this.suggestionThumbnailUrl } : undefined
+					key: this.suggestionTitle as string,
+					title: this.suggestionTitle as string,
+					description: this.suggestionDescription as string,
+					thumbnail: this.suggestionHasThumbnail as boolean ?
+						{ url: this.suggestionThumbnailUrl as string } : undefined
 				};
 			},
 			actionListeners() {
 				return makeActionListeners( args, argTypes );
+			},
+			filteredProps() {
+				return filterKeys( this.$props, [
+					'suggestionTitle',
+					'suggestionDescription',
+					'suggestionHasThumbnail',
+					'suggestionThumbnailUrl'
+				] );
 			}
 		},
 		template: `
@@ -56,7 +64,7 @@ export const Configurable = ( args: Args, { argTypes } : StoryContext ) : Vue.Co
 				<li role="option">
 					<wvui-typeahead-suggestion
 						:suggestion="suggestion"
-						v-bind="$props"
+						v-bind="filteredProps"
 						v-on="actionListeners"
 					/>
 				</li>

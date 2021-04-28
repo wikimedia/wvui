@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import { Args, StoryContext } from '@storybook/addons';
 import WvuiTypeaheadSearch from './TypeaheadSearch.vue';
-import { makeActionArgTypes, makeActionListeners } from '../../utils/StoryUtils';
+import { filterKeys, makeActionArgTypes, makeActionListeners } from '../../utils/StoryUtils';
 import './TypeaheadSearch.stories.less';
 
 export default {
@@ -51,12 +51,15 @@ export const Configurable = ( args: Args, { argTypes } : StoryContext ) : Vue.Co
 		computed: {
 			actionListeners() {
 				return makeActionListeners( args, argTypes );
+			},
+			filteredProps() {
+				return filterKeys( this.$props, [ 'default' ] );
 			}
 		},
 		template: `
 			<div class="sb-typeahead-search">
 				<wvui-typeahead-search
-					v-bind="$props"
+					v-bind="filteredProps"
 					v-on="actionListeners"
 				/>
 			</div>

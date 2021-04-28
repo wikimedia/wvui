@@ -3,7 +3,7 @@ import { Args, ArgType, StoryContext } from '@storybook/addons';
 import WvuiIcon from './Icon.vue';
 import { AnyIcon } from './iconTypes';
 import * as icons from '../../themes/icons';
-import { makeActionArgTypes, makeActionListeners } from '../../utils/StoryUtils';
+import { filterKeys, makeActionArgTypes, makeActionListeners } from '../../utils/StoryUtils';
 
 // Utilities
 
@@ -131,10 +131,13 @@ export const Configurable = ( args: Args, { argTypes } : StoryContext ) : Vue.Co
 		props: Object.keys( argTypes ),
 		computed: {
 			iconData() : AnyIcon {
-				return lookupIcon( this.icon );
+				return lookupIcon( this.icon as string );
 			},
 			actionListeners() {
 				return makeActionListeners( args, argTypes );
+			},
+			filteredProps() {
+				return filterKeys( this.$props, [ 'dir' ] );
 			}
 		},
 		// HACK: the Icon component computes its dir at mount time, so changing the dir value
@@ -144,7 +147,12 @@ export const Configurable = ( args: Args, { argTypes } : StoryContext ) : Vue.Co
 		// to rerender the component and rerun the mounted() lifecycle hook.
 		template: `
 			<div :dir="dir">
-				<wvui-icon :icon="iconData" :key="dir" v-bind="$props" v-on="actionListeners" />
+				<wvui-icon
+					:key="dir"
+					:icon="iconData"
+					v-bind="filteredProps"
+					v-on="actionListeners"
+				/>
 			</div>
 		`
 	} );
@@ -155,6 +163,7 @@ export const AllIcons = ( _args: Args, { argTypes } : StoryContext ) : Vue.Compo
 		props: Object.keys( argTypes ),
 		computed: {
 			flattenedIcons() {
+				const filteredProps = filterKeys( this.$props, [ 'dir' ] );
 				const flattened = [];
 				for ( const iconName in icons ) {
 					const icon = lookupIcon( iconName );
@@ -162,17 +171,17 @@ export const AllIcons = ( _args: Args, { argTypes } : StoryContext ) : Vue.Compo
 						for ( const langCode in icon.langCodeMap ) {
 							flattened.push( {
 								label: `${iconName} (${langCode})`,
-								props: { ...this.$props, icon, langCode }
+								props: { ...filteredProps, icon, langCode }
 							} );
 						}
 						flattened.push( {
 							label: `${iconName} (other languages)`,
-							props: { ...this.$props, icon, langCode: '' }
+							props: { ...filteredProps, icon, langCode: '' }
 						} );
 					} else {
 						flattened.push( {
 							label: iconName,
-							props: { ...this.$props, icon }
+							props: { ...filteredProps, icon }
 						} );
 					}
 				}
@@ -213,6 +222,14 @@ AllIcons.argTypes = {
 	dir: {
 		table: {
 			disable: true
+		}
+	}
+};
+
+AllIcons.parameters = {
+	docs: {
+		source: {
+			type: 'code'
 		}
 	}
 };
