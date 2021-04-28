@@ -65,13 +65,19 @@ Patch authors are required to do the following:
 
 -   Update the [CHANGELOG](CHANGELOG.md) to describe the new work
 -   For components:
-    -   Include a story for each visual state of the component.
+    -   Include a Storybook story for each variant of the component. The main story should usually
+        contain the most basic state of the component with all props and slots editable via
+        controls.
     -   Include a Jest snapshot for each visual state of the component.
     -   Add unit tests. Attempt to meet the established coverage threshold.
     -   Add documentation. Storybook automatically generates a docs tab that includes the
         component's documentation block, prop and event documentation, and stories. If there is
         anything else the end user should know, consider including it in the component documentation
         block.
+
+Keep in mind that it's easier to add stories, write tests, and update documentation as you add or
+change code rather than going back and doing it after the fact. Being consistent about this will
+help us keep our documentation and tests complete and up-to-date.
 
 ## Reviewer guidelines
 
