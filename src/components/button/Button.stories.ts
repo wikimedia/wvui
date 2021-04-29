@@ -54,10 +54,7 @@ export const Configurable = ( args : Args, { argTypes } : StoryContext ): Vue.Co
 		`
 	} );
 
-export const AllCombinations = (
-	_args : Record<string, unknown>,
-	{ argTypes } : { argTypes: Record<string, unknown> }
-): Vue.Component =>
+export const AllCombinations = ( _args: Args, { argTypes } : StoryContext ): Vue.Component =>
 	Vue.extend( {
 		components: { WvuiButton },
 		props: Object.keys( argTypes ),
