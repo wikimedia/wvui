@@ -121,7 +121,14 @@ export default Vue.extend( {
 	display: flex;
 	align-items: center;
 	padding: @padding-vertical-typeahead-suggestion @padding-horizontal-typeahead-suggestion;
+	// stylelint-disable-next-line plugin/no-unsupported-browser-features
+	hyphens: auto;
 	text-decoration: none;
+	// Legacy `word-wrap`; IE 6-11, Edge 12+, Firefox 3.5+, Chrome 4+, Safari 3.1+,
+	//   Opera 11.5+, iOS 3.2+, Android 2.1+
+	// `overflow-wrap` is W3 standard, but it doesn't seem as if browser vendors
+	//   will abandon `word-wrap` (it has wider support), therefore no duplication.
+	word-wrap: break-word;
 
 	// &--active is supposed to be used both when hover
 	// and when navigating with keyboard.

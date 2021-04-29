@@ -675,8 +675,13 @@ export default Vue.extend( {
 		}
 
 		.wvui-typeahead-search__suggestions__footer__text {
-			text-overflow: ellipsis;
-			overflow: hidden;
+			// stylelint-disable-next-line plugin/no-unsupported-browser-features
+			hyphens: auto;
+			// Legacy `word-wrap`; IE 6-11, Edge 12+, Firefox 3.5+, Chrome 4+, Safari 3.1+,
+			//   Opera 11.5+, iOS 3.2+, Android 2.1+
+			// `overflow-wrap` is W3 standard, but it doesn't seem as if browser vendors
+			//   will abandon `word-wrap` (it has wider support), therefore no duplication.
+			word-wrap: break-word;
 		}
 
 		.wvui-typeahead-search__suggestions-footer-article-icon {

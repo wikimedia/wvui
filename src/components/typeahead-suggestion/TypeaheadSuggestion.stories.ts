@@ -6,6 +6,7 @@ import { filterKeys, makeActionArgTypes, makeActionListeners } from '../../utils
 import './TypeaheadSuggestion.stories.less';
 import defaultSuggestionsList from '../typeahead-search/mocks/restApi.suggestions.json';
 import T277256SuggestionsList from '../typeahead-search/mocks/T277256.suggestions.json';
+import T280982SuggestionsList from '../typeahead-search/mocks/T280982.suggestions.json';
 
 const firstSuggestion = defaultSuggestionsList.pages[ 1 ] as SearchResult;
 
@@ -170,3 +171,7 @@ export const ExampleList = makeExampleListStory( defaultSuggestionsList, 'co' );
 // See https://phabricator.wikimedia.org/T277256 and https://phabricator.wikimedia.org/T35242 for
 // detail.
 export const ExampleListWithGraphemes = makeExampleListStory( T277256SuggestionsList, 'ইতাল' );
+
+export const ExampleListWithOverlongWords = makeExampleListStory(
+	T280982SuggestionsList, 'Donaudampfschiffahrtselektrizit'
+);
