@@ -1,16 +1,16 @@
 /**
  * Signals the consequence of proceeding in a given view. Do not use more than one non-default
- * action per layout as they should guide the user to the most important action ("call to action").
+ * action per layout as they should guide the user to the most important action (“call to action”).
  */
-export enum PrimaryAction {
+export enum ButtonAction {
 	/**
-	 * A generic or secondary action that is neither progressive nor destructive. For example,
+	 * A generic action that is neither progressive nor destructive. For example,
 	 * notice dismissal.
 	 */
 	Default = 'default',
 	/**
 	 * The consequence of this action is to proceed to the next step in or conclude the current
-	 * process. For example, creation of a page or confirmation that .
+	 * process. For example, creation of a page or submitting data.
 	 */
 	Progressive = 'progressive',
 	/**
@@ -23,10 +23,10 @@ export enum PrimaryAction {
 
 /**
  * @param val
- * @return whether an input is a PrimaryAction.
+ * @return whether an input is a ButtonAction.
  */
-export function isPrimaryAction( val: unknown ): val is PrimaryAction {
-	return Object.keys( PrimaryAction ).some(
-		( key ) => PrimaryAction[ key as keyof typeof PrimaryAction ] === val
+export function isButtonAction( val: unknown ): val is ButtonAction {
+	return Object.keys( ButtonAction ).some(
+		( key ) => ButtonAction[ key as keyof typeof ButtonAction ] === val
 	);
 }

@@ -1,10 +1,10 @@
-import { PrimaryAction, isPrimaryAction } from './PrimaryAction';
+import { ButtonAction, isButtonAction } from './ButtonAction';
 
-describe( 'isPrimaryAction()', () => {
+describe( 'isButtonAction()', () => {
 	type Case = [msg: string, input: string, expected: boolean];
 
 	const cases: Case[] = [
-		...Object.values( PrimaryAction ).map(
+		...Object.values( ButtonAction ).map(
 			( action ) => [ action, action, true ]
 		) as Case[],
 		[ 'invalid', 'invalid', false ]
@@ -13,6 +13,6 @@ describe( 'isPrimaryAction()', () => {
 	test.each( cases )(
 		'Case %# %s: (%p) => %p',
 		( _, action, expected ) =>
-			expect( isPrimaryAction( action ) ).toStrictEqual( expected )
+			expect( isButtonAction( action ) ).toStrictEqual( expected )
 	);
 } );

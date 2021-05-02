@@ -9,7 +9,7 @@
 
 <script lang="ts">
 import { ButtonType, isButtonType } from './ButtonType';
-import { PrimaryAction, isPrimaryAction } from '../../actions/PrimaryAction';
+import { ButtonAction, isButtonAction } from './ButtonAction';
 import Vue, { PropType } from 'vue';
 
 /**
@@ -22,12 +22,12 @@ export default Vue.extend( {
 	props: {
 		/**
 		 * What type of action the button will cause to be taken when clicked.
-		 * See PrimaryAction for what each value means.
+		 * See ButtonAction for what each value means.
 		 */
 		action: {
-			type: String as PropType<PrimaryAction>,
-			default: PrimaryAction.Default,
-			validator: isPrimaryAction
+			type: String as PropType<ButtonAction>,
+			default: ButtonAction.Default,
+			validator: isButtonAction
 		},
 		/**
 		 * Button type. See ButtonType for what each value means.
@@ -41,9 +41,9 @@ export default Vue.extend( {
 	computed: {
 		rootClasses(): Record<string, boolean> {
 			return {
-				'wvui-button--action-default': this.action === PrimaryAction.Default,
-				'wvui-button--action-progressive': this.action === PrimaryAction.Progressive,
-				'wvui-button--action-destructive': this.action === PrimaryAction.Destructive,
+				'wvui-button--action-default': this.action === ButtonAction.Default,
+				'wvui-button--action-progressive': this.action === ButtonAction.Progressive,
+				'wvui-button--action-destructive': this.action === ButtonAction.Destructive,
 				'wvui-button--type-primary': this.type === ButtonType.Primary,
 				'wvui-button--type-normal': this.type === ButtonType.Normal,
 				'wvui-button--type-quiet': this.type === ButtonType.Quiet,

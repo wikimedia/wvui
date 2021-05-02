@@ -3,7 +3,7 @@ import { Args, StoryContext } from '@storybook/addons';
 import WvuiButton from './Button.vue';
 import WvuiIcon from '../icon/Icon.vue';
 import { ButtonType } from './ButtonType';
-import { PrimaryAction } from '../../actions/PrimaryAction';
+import { ButtonAction } from './ButtonAction';
 import { filterKeys, makeActionArgTypes, makeActionListeners } from '../../utils/StoryUtils';
 import './Button.stories.less';
 import { lookupIcon, makeOptionalIconArgType } from '../icon/Icon.stories';
@@ -14,9 +14,9 @@ export default {
 	argTypes: {
 		action: {
 			// eslint-disable-next-line es/no-object-values
-			options: Object.values( PrimaryAction ),
+			options: Object.values( ButtonAction ),
 			control: 'inline-radio',
-			defaultValue: PrimaryAction.Default
+			defaultValue: ButtonAction.Default
 		},
 		type: {
 			// eslint-disable-next-line es/no-object-values
@@ -78,7 +78,7 @@ export const AllCombinations = ( _args: Args, { argTypes } : StoryContext ): Vue
 		data() {
 			return {
 				types: ButtonType,
-				actions: PrimaryAction
+				actions: ButtonAction
 			};
 		},
 		computed: {

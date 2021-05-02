@@ -1,5 +1,5 @@
 import { ButtonType } from './ButtonType';
-import { PrimaryAction } from '../../actions/PrimaryAction';
+import { ButtonAction } from './ButtonAction';
 import { shallowMount } from '@vue/test-utils';
 import WvuiButton from './Button.vue';
 
@@ -8,7 +8,7 @@ describe( 'matches the snapshot', () => {
 
 	const cases: Case[] = [
 		[ 'No props and no slot', {}, '' ],
-		...( Object.values( PrimaryAction ).map( ( action ) => [
+		...( Object.values( ButtonAction ).map( ( action ) => [
 			`${action} action`,
 			{ action },
 			''
