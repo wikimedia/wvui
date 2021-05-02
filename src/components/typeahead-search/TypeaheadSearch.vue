@@ -474,6 +474,8 @@ export default Vue.extend( {
 @import ( reference ) '@/themes/wikimedia-ui.less';
 
 .wvui-typeahead-search {
+	// Add `background-color` as `border` is around input including button.
+	background-color: @background-color-base;
 	// Border is styled the same as the input border to visually encapsulate
 	// search submit button.
 	border: @border-width-base @border-style-base @border-color-base;
