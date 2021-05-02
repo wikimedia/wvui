@@ -496,18 +496,18 @@ export default Vue.extend( {
 	}
 
 	&__submit {
+		opacity: 0;
+		position: relative;
 		// Prevent submit button from shrinking on smaller viewports, which causes
 		// the button label to overflow.
 		flex-shrink: 0;
-		position: relative;
 		// Set negative margin to make button border overlap with
 		// `.wvui-typeahead-search`'s border on all but start margin.
 		// The input already has a negative margin which causes part of the button's
 		// border and input's border to intentionally overlap.
 		margin: -@border-width-base -@border-width-base -@border-width-base 0;
-		border-bottom-left-radius: 0;
 		border-top-left-radius: 0;
-		opacity: 0;
+		border-bottom-left-radius: 0;
 		transition: opacity @transition-duration-base;
 
 		&:hover {
@@ -516,28 +516,28 @@ export default Vue.extend( {
 		}
 
 		&:focus {
+			opacity: @opacity-base;
 			// Make the button be on top of the input border when the input is
 			// hovered while the button is focused.
 			z-index: 1;
-			opacity: @opacity-base;
 		}
 	}
 
 	&__suggestions {
 		background-color: @background-color-base;
+		list-style: none;
 		display: none;
 		position: absolute;
 		top: @size-base;
 		right: 0;
 		left: 0;
 		box-sizing: border-box;
+		margin: 0;
 		border: @border-width-base @border-style-base @border-color-base;
 		border-top-width: 0;
 		border-radius: 0 0 @border-radius-base @border-radius-base;
-		margin: 0;
 		padding: 0;
 		box-shadow: @box-shadow-menu;
-		list-style: none;
 
 		&__footer {
 			color: @color-base;
@@ -559,6 +559,7 @@ export default Vue.extend( {
 
 			// stylelint-disable-next-line max-nesting-depth
 			.wvui-icon {
+				opacity: @opacity-icon-accessory;
 				// Because the footer icon should line up vertically with the
 				// suggestion text when `showThumbnail` is false, we set its width to
 				// `auto` here instead of using the more intuitive @size-search-figure
@@ -566,7 +567,6 @@ export default Vue.extend( {
 				width: auto;
 				height: @size-search-figure;
 				margin-right: @padding-horizontal-base;
-				opacity: @opacity-icon-accessory;
 			}
 		}
 
@@ -648,11 +648,11 @@ export default Vue.extend( {
 
 		.wvui-input__input:focus {
 			position: relative;
-			// Keep the cursor in the same place on the screen.
-			padding-left: calc( @spacing-start-typeahead-search-figure + @size-search-figure + @spacing-end-typeahead-search-figure );
-			width: calc( 100% + @size-typeahead-search-focus-addition );
 			// Don't let the input grow over the search button.
 			left: -@size-typeahead-search-focus-addition;
+			width: calc( 100% + @size-typeahead-search-focus-addition );
+			// Keep the cursor in the same place on the screen.
+			padding-left: calc( @spacing-start-typeahead-search-figure + @size-search-figure + @spacing-end-typeahead-search-figure );
 		}
 
 		.wvui-input__input:focus + .wvui-input__start-icon {
@@ -667,13 +667,13 @@ export default Vue.extend( {
 		}
 
 		.wvui-typeahead-search__suggestion {
-			padding-left: @spacing-start-typeahead-search-figure;
 			padding-right: @padding-horizontal-typeahead-suggestion;
+			padding-left: @spacing-start-typeahead-search-figure;
 		}
 
 		.wvui-typeahead-search__suggestions__footer {
-			padding-left: @spacing-start-typeahead-search-figure;
 			padding-right: @padding-horizontal-typeahead-suggestion;
+			padding-left: @spacing-start-typeahead-search-figure;
 		}
 
 		.wvui-typeahead-search__suggestions__footer__text {
@@ -687,9 +687,9 @@ export default Vue.extend( {
 		}
 
 		.wvui-typeahead-search__suggestions-footer-article-icon {
-			width: @size-search-figure;
 			// Prevent the icon container from shrinking when large text is present
 			flex-shrink: 0;
+			width: @size-search-figure;
 		}
 	}
 }

@@ -152,11 +152,11 @@ export default Vue.extend( {
 
 	&__start-icon,
 	&__end-icon {
-		min-height: @size-icon;
-		height: 100%;
+		opacity: @opacity-icon-accessory;
 		position: absolute;
 		top: 0;
-		opacity: @opacity-icon-accessory;
+		min-height: @size-icon;
+		height: 100%;
 	}
 
 	&__start-icon {
@@ -184,19 +184,19 @@ export default Vue.extend( {
 
 	&__input {
 		background-color: @background-color-base;
-		box-shadow: @box-shadow-base;
 		color: @color-base--emphasized;
+		display: block;
+		box-sizing: border-box;
+		width: 100%;
+		height: @size-base;
 		margin: 0;
 		border: @border-width-base @border-style-base @border-color-base;
 		border-radius: @border-radius-base;
 		padding: @padding-input-text;
-		font-size: inherit;
+		box-shadow: @box-shadow-base;
 		font-family: inherit;
+		font-size: inherit;
 		line-height: @line-height-component;
-		display: block;
-		width: 100%;
-		box-sizing: border-box;
-		height: @size-base;
 
 		&:not( [ disabled ] ) {
 			transition: border-color @transition-duration-medium, box-shadow @transition-duration-medium;
@@ -206,9 +206,9 @@ export default Vue.extend( {
 			}
 
 			&:focus {
-				outline: 0;
 				border-color: @border-color-base--focus;
 				box-shadow: @box-shadow-base--focus;
+				outline: 0;
 			}
 
 			&:focus ~ .wvui-input__start-icon,
@@ -219,16 +219,16 @@ export default Vue.extend( {
 
 		&[ disabled ] {
 			background-color: @background-color-base--disabled;
-			-webkit-text-fill-color: @color-placeholder;
 			color: @color-placeholder;
-			text-shadow: @text-shadow-base--disabled;
+			-webkit-text-fill-color: @color-placeholder;
 			border-color: @border-color-base--disabled;
+			text-shadow: @text-shadow-base--disabled;
 
 			// stylelint-disable max-nesting-depth, no-descending-specificity
 			& ~ .wvui-input__start-icon,
 			& ~ .wvui-input__end-icon {
-				pointer-events: none;
 				opacity: @opacity-base--disabled;
+				pointer-events: none;
 			}
 			// stylelint-enable, max-nesting-depth, no-descending-specificity
 		}

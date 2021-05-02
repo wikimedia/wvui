@@ -108,6 +108,7 @@
 		"stylelint": "13.9.0",
 		"stylelint-config-wikimedia": "0.10.3",
 		"stylelint-no-unsupported-browser-features": "4.1.4",
+		"stylelint-order": "4.1.0",
 		"terser-webpack-plugin": "4.2.2",
 		"ts-jest": "26.4.0",
 		"ts-loader": "8.0.4",

@@ -330,6 +330,8 @@ Less is used for all runtime styles. The [Less playground] is useful for debuggi
 -   Each component should be entirely independent and usable in any context. Parents can specify the
     presentation of their children (for example, `display: flex`) but no component should expect to
     only exist in a given container.
+-   WVUI uses [stylelint-order](https://github.com/hudochenkov/stylelint-order/) to order CSS/Less
+    properties for quicker orientation in all style rules.
 -   Storybook-specific styles are prefixed with sb-.
 -   Storybook-specific styles have their own Less files that end in .stories.less.
 
@@ -342,10 +344,10 @@ Several [import options] are available. The two most relevant are:
 
 -   `once`: the default. If no option is specified, the `once` option is implied. Use with care as
     this bundles one full copy of the specified file into the bundle. References are always
-    preferred. For example, `@import "foo.less";`.
+    preferred. For example, `@import "./foo.less";`.
 -   `reference`: When only symbols or mixins are necessary for Less to CSS compilation, use a
     `reference` import. Only the compiled output ships, not the definitions themselves or dead code.
-    For example, `@import (reference) "foo.less";`.
+    For example, `@import ( reference ) "./foo.less";`.
 
 Import paths are resolved using [less-loader]:
 

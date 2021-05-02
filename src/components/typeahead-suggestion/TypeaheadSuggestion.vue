@@ -121,9 +121,9 @@ export default Vue.extend( {
 	display: flex;
 	align-items: center;
 	padding: @padding-vertical-typeahead-suggestion @padding-horizontal-typeahead-suggestion;
+	text-decoration: none;
 	// stylelint-disable-next-line plugin/no-unsupported-browser-features
 	hyphens: auto;
-	text-decoration: none;
 	// Legacy `word-wrap`; IE 6-11, Edge 12+, Firefox 3.5+, Chrome 4+, Safari 3.1+,
 	//   Opera 11.5+, iOS 3.2+, Android 2.1+
 	// `overflow-wrap` is W3 standard, but it doesn't seem as if browser vendors
@@ -179,10 +179,10 @@ export default Vue.extend( {
 		.wvui-typeahead-suggestion__description {
 			color: @color-placeholder;
 			display: block;
+			overflow: hidden;
 			font-size: @font-size-typeahead-suggestion-description;
 			text-overflow: ellipsis;
 			white-space: nowrap;
-			overflow: hidden;
 		}
 	}
 }

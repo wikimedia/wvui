@@ -68,13 +68,15 @@ export default Vue.extend( {
 	min-width: @min-size-base;
 	min-height: @min-size-base;
 	max-width: @max-width-button;
+	// Support Firefox, Safari: Normalize by removing the `margin`.
+	margin: 0;
 	border-width: @border-width-base;
 	border-style: @border-style-base;
 	border-radius: @border-radius-base;
-	// Support Firefox, Safari: Normalize by removing the `margin`.
-	margin: 0;
-	padding-left: @padding-horizontal-base;
 	padding-right: @padding-horizontal-base;
+	padding-left: @padding-horizontal-base;
+	// Support IE 11: Normalize by showing `overflow`.
+	overflow: visible;
 	// Support all browsers: Normalize by inheriting `font-family`.
 	// Initial value depends on user-agent.
 	font-family: inherit;
@@ -85,8 +87,6 @@ export default Vue.extend( {
 	text-transform: none;
 	// Contents are single line.
 	white-space: nowrap;
-	// Support IE 11: Normalize by showing `overflow`.
-	overflow: visible;
 	transition: border-color @transition-base, background-color @transition-base, color @transition-base, box-shadow @transition-base;
 
 	// Support Firefox: Normalize by hiding the inner focus `border` and `padding`.
@@ -107,8 +107,8 @@ export default Vue.extend( {
 		cursor: pointer;
 
 		&:focus {
-			box-shadow: @box-shadow-base--focus;
 			border-color: @color-primary--focus;
+			box-shadow: @box-shadow-base--focus;
 			// In Windows high contrast mode the outline becomes visible.
 			outline: @outline-base--focus;
 		}
@@ -153,8 +153,8 @@ export default Vue.extend( {
 	// Progressive primary buttons
 	&.wvui-button--action-progressive:not( [ disabled ] ) {
 		background-color: @color-primary;
-		border-color: @color-primary;
 		color: @color-base--inverted;
+		border-color: @color-primary;
 
 		&:hover {
 			background-color: @color-primary--hover;
@@ -178,8 +178,8 @@ export default Vue.extend( {
 	// Destructive primary buttons
 	&.wvui-button--action-destructive:not( [ disabled ] ) {
 		background-color: @color-destructive;
-		border-color: @color-destructive;
 		color: @color-base--inverted;
+		border-color: @color-destructive;
 
 		&:hover {
 			background-color: @color-destructive--hover;
@@ -207,8 +207,8 @@ export default Vue.extend( {
 		color: @color-primary;
 
 		&:hover {
-			border-color: @border-color-primary--hover;
 			color: @color-primary--hover;
+			border-color: @border-color-primary--hover;
 		}
 
 		&:focus {

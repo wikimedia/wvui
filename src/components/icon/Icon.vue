@@ -103,10 +103,10 @@ export default Vue.extend( {
 @import ( reference ) '@/themes/wikimedia-ui.less';
 
 .wvui-icon {
-	align-items: center;
 	// Maintain an inline outer element while using flexbox to center the SVG
 	// and avoid extra space around the image.
 	display: inline-flex; /* stylelint-disable-line plugin/no-unsupported-browser-features */
+	align-items: center;
 	justify-content: center;
 	// For inline, inline-block, and table layouts.
 	vertical-align: middle;
