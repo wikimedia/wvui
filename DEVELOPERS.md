@@ -188,9 +188,9 @@ Undocumented scripts are considered internal utilities and not expressly support
 
 -   Add `--` to pass arguments to the script command. For example, `npm run test:unit -- -u` to
     update snapshots or `npm run build -- -dw` to automatically rebuild a development output.
--   Add `-s` to omit verbose command echoing. For example, `npm -s i` or `npm -s run format`.
+-   Add `-s` to silence verbose command echoing. For example, `npm -s i` or `npm -s run format`.
 
-[NVM](http://nvm.sh) is recommended to configure the Node.js version used.
+[NVM](https://nvm.sh) is recommended to configure the Node.js version used.
 
 ```bash
 # Install the project's recommended Node.js version. This is a one-time installation command and
