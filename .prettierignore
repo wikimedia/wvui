@@ -1,4 +1,3 @@
-/package.json
 /package-lock.json
 
 # Omit build products but make the ES5 linter configuration prettier.
