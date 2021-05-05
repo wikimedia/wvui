@@ -256,6 +256,14 @@ To start developing with Storybook, simply run `npm start` command (see
 Vue.js Single File Components are used for all runtime components. The [Vue.js template explorer] is
 useful for debugging.
 
+### Reusable code
+
+WVUI is using the Composition API plugin for Vue 2, in order to take advantage of this new feature
+before the library is migrated to Vue 3. Component-agnostic, reusable code can be stored as
+"composables," written in TypeScript, in `src/composables`.
+
+See the [plugin documentation](https://github.com/vuejs/composition-api) for usage details.
+
 ### Conventions
 
 The [Vue.js Style Guide](https://vuejs.org/v2/style-guide) is adhered to where possible.
