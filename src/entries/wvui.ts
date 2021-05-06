@@ -1,6 +1,7 @@
 import WvuiButton from '@/components/button/Button.vue';
 import WvuiIcon from '@/components/icon/Icon.vue';
 import WvuiInput from '@/components/input/Input.vue';
+import WvuiRadio from '@/components/radio/Radio.vue';
 import WvuiTypeaheadSearch from '@/components/typeahead-search/TypeaheadSearch.vue';
 import WvuiTypeaheadSuggestion from '@/components/typeahead-suggestion/TypeaheadSuggestion.vue';
 
@@ -15,6 +16,7 @@ export default {
 	WvuiButton,
 	WvuiInput,
 	WvuiIcon,
+	WvuiRadio,
 	WvuiTypeaheadSearch,
 	WvuiTypeaheadSuggestion
 };

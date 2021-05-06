@@ -1,0 +1,48 @@
+@import ( reference ) '@/themes/wikimedia-ui.less';
+
+// Common styles for checkboxes and radios.
+.wvui-mixin-binary-input() {
+	position: relative;
+	line-height: @size-input-binary;
+	cursor: pointer;
+	// Create a stacking context.
+	z-index: 0;
+
+	&[ aria-disabled='true' ] {
+		cursor: @cursor-base--disabled;
+	}
+
+	// Custom-styled input that's visible to the user.
+	&__icon {
+		background-color: @background-color-base;
+		position: absolute;
+		left: 0;
+		box-sizing: border-box;
+		width: @size-input-binary;
+		height: @size-input-binary;
+		border: @border-width-base @border-style-base @border-color-input-binary;
+	}
+
+	// HTML input element.
+	&__input {
+		// The actual input is visually hidden.
+		opacity: 0;
+		position: absolute;
+		left: 0;
+		width: @size-input-binary;
+		height: @size-input-binary;
+		font-size: inherit;
+		cursor: pointer;
+		// Render "on top of" the span, so that it's still clickable.
+		z-index: 1;
+
+		&:disabled {
+			cursor: @cursor-base--disabled;
+		}
+	}
+
+	&__label-content {
+		display: inline-block;
+		padding-left: @padding-left-input-binary-text;
+	}
+}

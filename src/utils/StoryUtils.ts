@@ -58,13 +58,30 @@ export function makeActionListeners( args: Args, argTypes: ArgTypes ) : Record<s
  * Transform an array like [ 'click', 'focus' ] to an object for use in argTypes.
  * For usage see makeActionListeners().
  *
+ * Returns an object that looks like:
+ * {
+ *     click: {
+ *         action: 'click',
+ *         table: { category: 'Events' }
+ *     },
+ *     focus: {
+ *         action: 'focus',
+ *         table: { category: 'Events' }
+ *     }
+ * }
+ *
  * @param eventNames Array of event names
- * @return An object that looks like { click: { action: 'click' }, 'focus': { action: 'focus' } }
+ * @return An object describing event args
  */
 export function makeActionArgTypes( eventNames: string[] ) : ArgTypes {
 	const result = {} as ArgTypes;
 	for ( const eventName of eventNames ) {
-		result[ eventName ] = { action: eventName };
+		result[ eventName ] = {
+			action: eventName,
+			table: {
+				category: 'Events'
+			}
+		};
 	}
 	return result;
 }
