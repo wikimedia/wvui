@@ -85,7 +85,7 @@
 							/>
 							<span
 								class="wvui-typeahead-search__suggestions__footer__text"
-							>{{ footerSearchText }} <strong>"{{ searchQuery }}"</strong></span>
+							>{{ footerSearchText }} <strong>{{ searchQuery }}</strong></span>
 						</a>
 					</li>
 				</ol>

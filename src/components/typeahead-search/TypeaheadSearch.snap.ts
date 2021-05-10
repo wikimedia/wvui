@@ -106,7 +106,7 @@ exports[`matches the snapshot 1`] = `
             >
               Search for pages containing 
               <strong>
-                ""
+                
               </strong>
             </span>
           </a>
@@ -649,7 +649,7 @@ exports[`when there are search results matches the snapshot 1`] = `
             >
               Search for pages containing 
               <strong>
-                "test"
+                test
               </strong>
             </span>
           </a>
