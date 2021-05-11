@@ -260,7 +260,6 @@ export default Vue.extend( {
 	&:not( [ disabled ] ) {
 		&:hover {
 			background-color: @background-color-quiet--hover;
-			color: @color-quiet--hover;
 		}
 
 		&:focus {
