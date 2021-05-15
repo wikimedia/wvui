@@ -564,11 +564,16 @@ describes how to optimize your editor or IDE for optimal usage.
 
 ### Compatibility
 
+#### Browserslist
+
 WVUI uses [Browserslist] to help support and enforce browser compatibility. Supported targets are
-configured in [.browserslistrc](.browserslistrc) according to [MediaWiki modern browsers
-compatibility]. To see the current list, execute `npx --no-install browserslist`.
+configured in [.browserslistrc](.browserslistrc) and extends [browserslist-config-wikimedia/modern]
+according to [MediaWiki modern browsers compatibility]. To see the current list, execute
+`npx --no-install browserslist`.
 
 [browserslist]: https://github.com/browserslist/browserslist
+[browserslist-config-wikimedia/modern]:
+	https://github.com/wikimedia/browserslist-config-wikimedia/blob/main/modern.js
 [mediawiki modern browsers compatibility]:
 	https://www.mediawiki.org/wiki/Compatibility#Browser_support_matrix
 

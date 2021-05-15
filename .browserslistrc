@@ -1,14 +1,6 @@
-# Please see the compatibility section of the readme before revising.
+# Browserslist configuration of modern browsers with highest level of support.
+# Please see https://www.mediawiki.org/wiki/Compatibility#Browsers and
+# https://github.com/wikimedia/browserslist-config-wikimedia/
+# Also see the compatibility section of DEVELOPERS.md before revising.
 
-# Rolling versions. These are expected to only ever become less restrictive as time goes on and not
-# break the build.
-last 2 chrome versions
-last 2 firefox versions
-last 2 opera versions
-last 2 edge versions
-
-# Pinned versions.
-ie >= 11
-safari >= 9.1
-ios >= 9
-android >= 4.3
+extends browserslist-config-wikimedia/modern
