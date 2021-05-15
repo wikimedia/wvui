@@ -64,7 +64,7 @@ export function makeOptionalIconArgType() : ArgType {
  */
 export function lookupIcon( iconName: string ) : AnyIcon {
 	// TODO remove this as obsolete once https://github.com/storybookjs/storybook/issues/14420 is fixed
-	return ( icons as Record<string, AnyIcon> )[ iconName ] || '';
+	return icons[ iconName as keyof typeof icons ] || '';
 }
 
 export default {
@@ -80,13 +80,15 @@ export default {
 		},
 		langCode: {
 			control: 'select',
-			options: Object.keys( icons )
-				// Gather all language codes that appear in a langCodeMap
-				.map( ( iconName ) => {
-					const icon = ( icons as Record<string, AnyIcon> )[ iconName ];
-					return typeof icon !== 'string' && 'langCodeMap' in icon ?
-						Object.keys( icon.langCodeMap ) : [];
-				} )
+			// eslint-disable-next-line es/no-object-values
+			options: Object.values( icons )
+				// Gather all language codes that appear in a langCodeMap or shouldFlipExceptions
+				.map( ( icon ) =>
+					typeof icon !== 'string' && (
+						( 'langCodeMap' in icon && Object.keys( icon.langCodeMap ) ) ||
+						( 'shouldFlipExceptions' in icon && icon.shouldFlipExceptions )
+					) || []
+				)
 				// Flatten this array and add 'en'
 				.reduce( ( a, b ) => a.concat( b ), [ 'en' ] )
 				// Remove duplicates
@@ -158,8 +160,13 @@ export const AllIcons = ( _args: Args, { argTypes } : StoryContext ) : Vue.Compo
 				const flattened = [];
 				for ( const iconName in icons ) {
 					const icon = lookupIcon( iconName );
-					if ( typeof icon !== 'string' && 'langCodeMap' in icon ) {
-						for ( const langCode in icon.langCodeMap ) {
+					if (
+						typeof icon !== 'string' &&
+						( 'langCodeMap' in icon || 'shouldFlipExceptions' in icon )
+					) {
+						const langCodes = 'langCodeMap' in icon ? Object.keys( icon.langCodeMap ) :
+							icon.shouldFlipExceptions || [];
+						for ( const langCode of langCodes ) {
 							flattened.push( {
 								label: `${iconName} (${langCode})`,
 								props: { ...filteredProps, icon, langCode }
