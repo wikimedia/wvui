@@ -53,7 +53,8 @@ export default Vue.extend( {
 		type: {
 			type: String as PropType<InputType>,
 			default: InputType.Text,
-			validator: isInputType
+			// use arrow function for type inference of property
+			validator: ( value ) => isInputType( value )
 		},
 		disabled: {
 			type: Boolean,

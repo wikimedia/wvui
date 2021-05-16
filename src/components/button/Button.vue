@@ -27,7 +27,8 @@ export default Vue.extend( {
 		action: {
 			type: String as PropType<ButtonAction>,
 			default: ButtonAction.Default,
-			validator: isButtonAction
+			// use arrow function for type inference of property
+			validator: ( value ) => isButtonAction( value )
 		},
 		/**
 		 * Button type. See ButtonType for what each value means.
@@ -35,7 +36,8 @@ export default Vue.extend( {
 		type: {
 			type: String as PropType<ButtonType>,
 			default: ButtonType.Normal,
-			validator: isButtonType
+			// use arrow function for type inference of property
+			validator: ( value ) => isButtonType( value )
 		}
 	},
 	computed: {
