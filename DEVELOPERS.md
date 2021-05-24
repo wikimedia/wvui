@@ -607,7 +607,7 @@ a new ssh key pair specifcially for WVUI deploys. Expand for details...</summary
 To publish a new release:
 
 1. Checkout the latest master branch: `git checkout master && git pull`.
-2. Update the [changelog](changelog.md) with release notes.
+2. Update the [changelog](CHANGELOG.md) with release notes.
 3. Commit the changelog.
 4. Remove existing node modules and re-install through Docker
 5. Execute `docker-compose run --rm release TYPE=<patch|minor|major> bin/release-prod`.
@@ -624,10 +624,10 @@ git checkout master && git pull
 
 # Document a new feature and a couple bug fixes since the last release. (Emacs can also be used to
 # edit the changelog.)
-vim changelog.md
+vim CHANGELOG.md
 
 # Stage the changelog.
-git add changelog.md
+git add CHANGELOG.md
 
 # Commit the changelog.
 git commit -m '[docs][changelog] prepare release notes'
@@ -640,7 +640,7 @@ docker-compose run --rm release npm install
 docker-compose run --rm release TYPE=patch bin/release-prod
 ```
 
-The NPM scripts are configured to help ensure that only tested artifacts are published on gerrit and
+The NPM scripts are configured to help ensure that only tested artifacts are published on Gerrit and
 npmjs.com.
 
 > By executing `npm version`, the following scripts are invoked in this order:
