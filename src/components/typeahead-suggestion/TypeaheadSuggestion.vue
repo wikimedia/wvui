@@ -23,6 +23,7 @@
 			<wvui-typeahead-suggestion-title
 				:query="query"
 				:title="suggestion.title"
+				:highlight-query="highlightQuery"
 			/>
 			<span
 				v-if="showDescription && suggestion.description"
@@ -70,6 +71,10 @@ export default Vue.extend( {
 			default: true
 		},
 		showDescription: {
+			type: Boolean,
+			default: true
+		},
+		highlightQuery: {
 			type: Boolean,
 			default: true
 		}

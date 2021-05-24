@@ -19,16 +19,26 @@ export default Vue.extend( {
 		title: {
 			type: String as PropType<string>,
 			required: true
+		},
+		highlightQuery: {
+			type: Boolean as PropType<boolean>,
+			default: true
 		}
 	},
 	computed: {
 		/**
-		 * Formats title adding highlighted query if it matches.
+		 * If highlighting is enabled, returns the title with the part that matches the query
+		 * highlighted. If highlighting is disabled, returns the unmodified title in a form
+		 * compatible with the template above.
 		 *
 		 * @return [ string, string, string ]
 		 */
 		titleChunks(): [ string, string, string ] {
-			return splitStringAtMatch( this.query, this.title );
+			if ( this.highlightQuery ) {
+				return splitStringAtMatch( this.query, this.title );
+			}
+
+			return [ '', this.title, '' ];
 		}
 	}
 } );

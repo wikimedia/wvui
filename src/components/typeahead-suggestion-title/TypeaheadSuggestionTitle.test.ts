@@ -3,7 +3,7 @@ import WvuiTypeaheadSuggestionTitle from './TypeaheadSuggestionTitle.vue';
 import * as suggestionsList from '../typeahead-search/mocks/restApi.suggestions.json';
 
 describe( 'matches the snapshot', () => {
-	type Case = [msg: string, props: Record<string, string>];
+	type Case = [msg: string, props: Record<string, unknown>];
 
 	const { title } = suggestionsList.pages[ 1 ];
 	const cases: Case[] = [
@@ -21,6 +21,14 @@ describe( 'matches the snapshot', () => {
 		[
 			'Without highlight (query doesn\'t match)',
 			{ title: suggestionsList.pages[ 1 ].title, query: '123' }
+		],
+		[
+			'Without highlight (query matches but highlighting is disabled)',
+			{
+				title,
+				query: title.substring( 0, 2 ),
+				highlightQuery: false
+			}
 		]
 	];
 

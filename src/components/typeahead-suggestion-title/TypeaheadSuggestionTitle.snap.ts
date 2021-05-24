@@ -47,3 +47,19 @@ exports[`matches the snapshot Case 2 Without highlight (query doesn't match): ({
 
 </span>
 `;
+
+exports[`matches the snapshot Case 3 Without highlight (query matches but highlighting is disabled): ({"highlightQuery": false, "query": "Co", "title": "Color"}) => HTML 1`] = `
+<span
+  class="wvui-typeahead-suggestion__title"
+>
+  
+	
+  <span
+    class="wvui-typeahead-suggestion__match"
+  >
+    Color
+  </span>
+  
+
+</span>
+`;

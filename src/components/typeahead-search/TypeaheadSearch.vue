@@ -62,6 +62,7 @@
 							:suggestion="suggestion"
 							:show-thumbnail="showThumbnail"
 							:show-description="showDescription"
+							:highlight-query="highlightQuery"
 							@mouseover="onSuggestionMouseOver( index )"
 							@mousedown.native="onSuggestionMouseDown"
 							@click="onSuggestionClick( suggestion )"
@@ -168,6 +169,10 @@ export default Vue.extend( {
 			default: true
 		},
 		showDescription: {
+			type: Boolean,
+			default: true
+		},
+		highlightQuery: {
 			type: Boolean,
 			default: true
 		}
