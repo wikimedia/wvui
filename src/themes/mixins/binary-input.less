@@ -31,6 +31,8 @@
 		left: 0;
 		width: @size-input-binary;
 		height: @size-input-binary;
+		// Support Blink, Firefox, Safari: Normalize by removing user-agent stylesheet `margin`.
+		margin: 0;
 		font-size: inherit;
 		cursor: pointer;
 		// Render "on top of" the span, so that it's still clickable.
