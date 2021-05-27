@@ -151,6 +151,7 @@ export default Vue.extend( {
 		flex-shrink: 0;
 		width: @size-search-figure;
 		height: @size-search-figure;
+		margin-right: @margin-end-typeahead-suggestion-thumb;
 		border-radius: @border-radius-base;
 		// Borders tend to cut into the border-radius and it makes the
 		// border-radius look smaller on the inside of the box than the outside.
@@ -159,7 +160,6 @@ export default Vue.extend( {
 			@border-width-base
 			@border-width-base
 			@border-color-typeahead-suggestion-thumb;
-		margin-right: @margin-end-typeahead-suggestion-thumb;
 	}
 
 	&__thumbnail {
