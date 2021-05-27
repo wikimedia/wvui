@@ -1,4 +1,5 @@
 import WvuiButton from '@/components/button/Button.vue';
+import WvuiCheckbox from '@/components/checkbox/Checkbox.vue';
 import WvuiIcon from '@/components/icon/Icon.vue';
 import WvuiInput from '@/components/input/Input.vue';
 import WvuiRadio from '@/components/radio/Radio.vue';
@@ -14,6 +15,7 @@ export { restSearchClient } from '@/components/typeahead-search/http/restSearchC
 // Export all components available in the library.
 export default {
 	WvuiButton,
+	WvuiCheckbox,
 	WvuiInput,
 	WvuiIcon,
 	WvuiRadio,

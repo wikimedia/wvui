@@ -6,6 +6,7 @@
 
 @size-base: 32 / @font-size-browser / @font-size-base; // equals `2.5em`≈`32px`
 @size-indicator: 12 / @font-size-browser / @font-size-base;
+@size-icon-small: 14 / @font-size-browser / @font-size-base;
 
 // This was added to wikimedia-ui-base in Ia91f24a336a8532a99bf007c40af99b8babf63ee
 // TODO remove this once we upgrade to the next version of wikimedia-ui-base
@@ -41,11 +42,18 @@
 // Checkbox and radio variables.
 @size-input-binary: 20 / @font-size-browser / @font-size-base;
 @padding-left-input-binary-text: @size-input-binary + 0.5em;
+@start-input-binary-icon: 3 / @font-size-browser / @font-size-base;
 
 @background-color-input-binary--active: @color-primary--active;
+@background-color-input-binary--checked: @color-primary;
 
 @border-color-input-binary: @border-color-base--active;
 @border-color-input-binary--checked: @color-primary;
 @border-color-input-binary--hover: @color-primary--hover;
 @border-color-input-binary--active: @color-primary--active;
+@border-color-input-binary--focus: @color-primary--focus;
 @border-width-input-radio--checked: 6 / @font-size-browser / @font-size-base;
+
+@box-shadow-input-binary--focus: inset 0 0 0 1px @color-primary--focus;
+@box-shadow-input-checkbox--focus-checked: @box-shadow-primary--focus;
+@box-shadow-input-binary--active: inset 0 0 0 1px @color-primary--active;
