@@ -15,7 +15,8 @@ export default {
 			control: 'text',
 			defaultValue: 'Configurable radio input'
 		},
-		value: {
+		'v-model': {
+			name: 'modelValue',
 			control: null
 		},
 		inputValue: {
@@ -48,7 +49,7 @@ export const Configurable = ( args : Args, { argTypes } : StoryContext ): Vue.Co
 				return makeActionListeners( args, argTypes );
 			},
 			filteredProps() {
-				return filterKeys( this.$props, [ 'default', 'value' ] );
+				return filterKeys( this.$props, [ 'default', 'vModel' ] );
 			},
 			slotContents() {
 				return this.default;
