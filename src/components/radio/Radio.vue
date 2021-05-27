@@ -14,7 +14,7 @@
 			:value="inputValue"
 			:disabled="disabled"
 		>
-		<span class="wvui-radio__icon" :aria-disabled="disabled" />
+		<span class="wvui-radio__icon" />
 		<span class="wvui-radio__label-content">
 			<!-- @slot Input label content -->
 			<slot />
@@ -131,6 +131,7 @@ export default defineComponent( {
 @import ( reference ) '@/themes/wikimedia-ui.less';
 @import ( reference ) '@/themes/mixins/binary-input.less';
 
+// Wrapper `label`.
 .wvui-radio {
 	// Common binary input styles.
 	.wvui-mixin-binary-input();
@@ -158,11 +159,26 @@ export default defineComponent( {
 	// HTML `<input type="radio">`.
 	// Based on the HTML attributes of the radio input, we can change the style
 	// of the adjacent `span`, which will look like a custom-styled radio.
+	/* stylelint-disable no-descending-specificity */
 	&__input {
-		// Note: there is no focus behavior for the input in its unchecked
-		// state because you can't focus on it without selecting it.
-		&:hover + .wvui-radio__icon {
-			border-color: @border-color-input-binary--hover;
+		&:enabled {
+			// Note: there is no focus behavior for the input in its unchecked
+			// state because you can't focus on it without selecting it.
+			&:hover + .wvui-radio__icon,
+			&:checked:hover + .wvui-radio__icon {
+				border-color: @border-color-input-binary--hover;
+			}
+
+			&:checked + .wvui-radio__icon {
+				border-width: @border-width-input-radio--checked;
+				border-color: @border-color-input-binary--checked;
+			}
+
+			&:checked:focus + .wvui-radio__icon {
+				&:before {
+					border-color: @border-color-inset--focus;
+				}
+			}
 		}
 
 		&:disabled {
@@ -180,24 +196,8 @@ export default defineComponent( {
 				border-width: @border-width-input-radio--checked;
 			}
 		}
-
-		&:checked:enabled {
-			& + .wvui-radio__icon {
-				border-width: @border-width-input-radio--checked;
-				border-color: @border-color-input-binary--checked;
-			}
-
-			&:focus + .wvui-radio__icon {
-				&:before {
-					border-color: @background-color-base;
-				}
-			}
-
-			&:hover + .wvui-radio__icon {
-				border-color: @border-color-input-binary--hover;
-			}
-		}
 	}
+	/* stylelint-enable no-descending-specificity */
 
 	// Styles for when `label` is active (being pressed).
 	&:active &__input:enabled {

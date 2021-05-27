@@ -83,7 +83,6 @@ exports[`matches the snapshot Case 3 Disabled: ({"disabled": true, "inputValue":
   />
    
   <span
-    aria-disabled="true"
     class="wvui-radio__icon"
   />
    
