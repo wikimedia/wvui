@@ -1,8 +1,47 @@
 # Changelog
 
-Versions and bullets are arranged contextually chronologically from latest to oldest.
+Versions and bullets are arranged contextually chronologically from latest to oldest. Breaking
+changes are listed on top, and marked with "BREAKING CHANGE".
 
-## v0.1.2 / YYYY-MM-DD (to be released)
+## v0.2.1 / YYYY-MM-DD (to be released)
+
+## v0.2.0 / 2021-06-01
+
+-   [button] BREAKING CHANGE: Add 'type' prop to replace 'quiet', add 'primary' (Roan Kattouw)
+-   [button][actions] BREAKING CHANGE: Rename 'PrimaryAction' to 'ButtonAction' (Volker E)
+-   [icon] BREAKING CHANGE: Remove iconColor prop, control color with CSS instead (Roan Kattouw)
+-   [radio] Add the Radio component (Anne Tomasevich)
+-   [radio] Improve handling of modelValue prop in Radio stories (Anne Tomasevich)
+-   [button] Remove `color-quiet-hover` (Volker E)
+-   [icons] Add 'wvuiIconShare' share icon (Volker E)
+-   [icons] Update outdated 'wvuiIconSearch' search icon (Volker E)
+-   [typeahead-search][typeahead-suggestion] Wrap overlong words in title and footer (Volker E)
+-   [typeahead-search] Fix combobox background for non-white background themes (Volker E)
+-   [typeahead-search] Remove quotation marks from footer (Sam Smith)
+-   [typeahead-search]Optionally disable query match highlighting (Sam Smith)
+-   [input] InputType: fix TSDoc (Simon Legner)
+-   [button][input] Fix prop type inference when used with validator (Simon Legner)
+-   [binary input] Normalize by setting `margin` to `0` (Volker E)
+-   [docs] Add contributing guidelines & refactor the existing README (Anne Tomasevich)
+-   [docs] Amend phrasing and link (Volker E)
+-   [docs] Update Storybook info in the contributing guidelines (Anne Tomasevich)
+-   [docs][developers] Fix changelog file name and fix Gerrit name (Volker E)
+-   [storybook] Fix control.options deprecation warning (Roan Kattouw)
+-   [storybook] Make dynamic source code display look a little nicer (Roan Kattouw)
+-   [storybook] Fix story parameter typing in Button story (Roan Kattouw)
+-   [storybook] Add icon dropdown to button story (Roan Kattouw)
+-   [storybook][icon] List languages from shouldFlipExceptions (Roan Kattouw)
+-   [build] Switch back to npm's lockfileversion 1 (Volker E)
+-   [build] Add Gerrit change-id hook to Husky (Eric Gardner)
+-   [build] Upgrade Storybook to v6.2.9 (Roan Kattouw)
+-   [build] Publish new wvui development versions through Docker container (Nikki Nikkhoui)
+-   [build] Create a dedicated "wvui-search" entry point and bundle (Eric Gardner)
+-   [build] Add the Vue Composition API plugin (Anne Tomasevich)
+-   [build] Change 'package.json' indentation to tabs (Volker E)
+-   [build][stylelint] Add 'stylelint-order' plugin (Volker E)
+-   [build] Add 'browserslist-config-wikimedia' (Volker E)
+-   [build][styles] Expand 'stylelint-order' rules and format (Volker E)
+-   [build] Pin devDependencies (Volker E)
 
 ## v0.1.1 / 2021-04-21
 
