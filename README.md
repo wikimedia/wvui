@@ -37,7 +37,7 @@ Install the library and Vue.js v2:
 npm i --save-prefix= vue@2 @wikimedia/wvui
 ```
 
-WVUI is [semantically versioned](https://semver.org). See the [changelog](changelog.md) for release
+WVUI is [semantically versioned](https://semver.org). See the [changelog](CHANGELOG.md) for release
 notes.
 
 We recommend pinning WVUI to an exact patch version. For example:
