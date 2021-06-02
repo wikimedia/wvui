@@ -59,3 +59,9 @@
 @box-shadow-input-binary--focus: inset 0 0 0 1px @color-primary--focus;
 @box-shadow-input-checkbox--focus-checked: @box-shadow-primary--focus;
 @box-shadow-input-binary--active: inset 0 0 0 1px @color-primary--active;
+
+// Menu
+// Menu items don't have a border.
+// FIXME: Remove with next wikimedia-ui-base version 0.19.0.
+@padding-menu: @padding-vertical-menu @padding-horizontal-base;
+@padding-vertical-menu: @padding-vertical-base + @border-width-base;
