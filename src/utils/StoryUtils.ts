@@ -2,7 +2,6 @@ import { Args, ArgTypes } from '@storybook/addons';
 
 export function filterKeys( obj: Record<string, unknown>, keysToRemove: string[] )
 : Record<string, unknown> {
-	// eslint-disable-next-line es/no-object-assign
 	const filtered = Object.assign( {}, obj );
 	for ( const key of keysToRemove ) {
 		delete filtered[ key ];

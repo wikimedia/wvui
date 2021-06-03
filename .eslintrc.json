@@ -18,9 +18,12 @@
 		{
 			"files": ["src/**/*.[jt]s", "src/**/*.vue"],
 			"excludedFiles": ["*.test.ts"],
-			"extends": ["wikimedia/client", "wikimedia/language/es6"],
+			"extends": ["wikimedia/client", "wikimedia/language/es6", "wikimedia/language/not-es5"],
 			"parserOptions": {
 				"sourceType": "module"
+			},
+			"rules": {
+				"es/no-object-assign": "off"
 			}
 		},
 		{
