@@ -111,8 +111,8 @@ development, roadmaps, and releases, the Vue Migration Team will:
 
 -   Include release notes with every release and send minor+ release summaries out to the following
     mailing lists:
-    -   [wikitech-l](https://lists.wikimedia.org/mailman/listinfo/wikitech-l)
-    -   [design.public](https://lists.wikimedia.org/mailman/listinfo/design)
+    -   [wikitech-l](https://lists.wikimedia.org/postorius/lists/wikitech-l.lists.wikimedia.org/)
+    -   [design.public](https://lists.wikimedia.org/postorius/lists/design.lists.wikimedia.org/)
 -   Use the [WVUI workboard](https://phabricator.wikimedia.org/project/view/4898/) in Phabricator to
     publicly track the work, giving others the opportunity to subscribe to tasks, add comments, or
     claim tasks.
