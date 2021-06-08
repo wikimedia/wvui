@@ -2,6 +2,7 @@
 	<label
 		ref="label"
 		class="wvui-checkbox"
+		:class="rootClasses"
 		:aria-disabled="disabled"
 		@click="focusInput"
 		@keydown.prevent.enter="clickLabel"
@@ -25,7 +26,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import VueCompositionAPI, { defineComponent, ref, toRef } from '@vue/composition-api';
+import VueCompositionAPI, { defineComponent, ref, toRef, computed } from '@vue/composition-api';
 import useModelWrapper, { modelValueProp } from '../../composables/useModelWrapper';
 
 Vue.use( VueCompositionAPI );
@@ -99,9 +100,25 @@ export default defineComponent( {
 		indeterminate: {
 			type: Boolean,
 			default: false
+		},
+		/**
+		 * Whether the component should display inline.
+		 *
+		 * By default, `display: block` is set and a margin exists between
+		 * sibling components, for a stacked layout.
+		 */
+		inline: {
+			type: Boolean,
+			default: false
 		}
 	},
 	setup( props, { emit } ) {
+		const rootClasses = computed( (): Record<string, boolean> => {
+			return {
+				'wvui-checkbox--inline': !!props.inline
+			};
+		} );
+
 		// Declare template refs.
 		const input = ref<HTMLInputElement | undefined>();
 		const label = ref<HTMLLabelElement | undefined>();
@@ -129,6 +146,7 @@ export default defineComponent( {
 		const wrappedModel = useModelWrapper( modelValueRef, emit );
 
 		return {
+			rootClasses,
 			input,
 			label,
 			wrappedModel,

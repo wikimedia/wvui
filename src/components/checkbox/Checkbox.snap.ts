@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`matches the snapshot Case 0 Enabled: ({"inputValue": "checkbox-1", "modelValue": true}) => HTML 1`] = `
+exports[`matches the snapshot Case 0 Enabled: ({"inputValue": "checkbox-1", "modelValue": [Array]}) => HTML 1`] = `
 <label
   class="wvui-checkbox"
 >
@@ -22,7 +22,7 @@ exports[`matches the snapshot Case 0 Enabled: ({"inputValue": "checkbox-1", "mod
 </label>
 `;
 
-exports[`matches the snapshot Case 1 Disabled: ({"disabled": true, "inputValue": "checkbox-1", "modelValue": false}) => HTML 1`] = `
+exports[`matches the snapshot Case 1 Disabled: ({"disabled": true, "inputValue": "checkbox-1", "modelValue": [Array]}) => HTML 1`] = `
 <label
   aria-disabled="true"
   class="wvui-checkbox"
@@ -42,6 +42,28 @@ exports[`matches the snapshot Case 1 Disabled: ({"disabled": true, "inputValue":
     class="wvui-checkbox__label-content"
   >
     Disabled checkbox
+  </span>
+</label>
+`;
+
+exports[`matches the snapshot Case 2 Inline: ({"inline": true, "inputValue": "checkbox-1", "modelValue": [Array]}) => HTML 1`] = `
+<label
+  class="wvui-checkbox wvui-checkbox--inline"
+>
+  <input
+    class="wvui-checkbox__input"
+    type="checkbox"
+    value="checkbox-1"
+  />
+   
+  <span
+    class="wvui-checkbox__icon"
+  />
+   
+  <span
+    class="wvui-checkbox__label-content"
+  >
+    Inline checkbox
   </span>
 </label>
 `;

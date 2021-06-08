@@ -94,3 +94,26 @@ exports[`matches the snapshot Case 3 Disabled: ({"disabled": true, "inputValue":
   </span>
 </label>
 `;
+
+exports[`matches the snapshot Case 4 Inline: ({"inline": true, "inputValue": "radio-1", "modelValue": "radio-1", "name": "radios-string"}) => HTML 1`] = `
+<label
+  class="wvui-radio wvui-radio--inline"
+>
+  <input
+    class="wvui-radio__input"
+    name="radios-string"
+    type="radio"
+    value="radio-1"
+  />
+   
+  <span
+    class="wvui-radio__icon"
+  />
+   
+  <span
+    class="wvui-radio__label-content"
+  >
+    Inline radio
+  </span>
+</label>
+`;

@@ -78,14 +78,26 @@ export const RadioGroup = ( args : Args, { argTypes } : StoryContext ): Vue.Comp
 			return {
 				radioValue: 'radio-2',
 				radios: [
-					{ label: 'Radio 1', value: 'radio-1', disabled: false },
-					{ label: 'Radio 2 (initially selected)', value: 'radio-2', disabled: false },
+					{
+						label: 'Radio 1',
+						value: 'radio-1',
+						disabled: false
+					},
+					{
+						label: 'Radio 2 (initially selected)',
+						value: 'radio-2',
+						disabled: false
+					},
 					{
 						label: 'Radio 3, which has a very long label that spans onto a second line',
 						value: 'radio-3',
 						disabled: false
 					},
-					{ label: 'Radio 4 (disabled)', value: 'radio-4', disabled: true }
+					{
+						label: 'Radio 4 (disabled)',
+						value: 'radio-4',
+						disabled: true
+					}
 				]
 			};
 		},
@@ -111,7 +123,7 @@ export const RadioGroup = ( args : Args, { argTypes } : StoryContext ): Vue.Comp
 		`
 	} );
 
-RadioGroup.argTypes = {
+const groupArgTypes = {
 	default: {
 		table: {
 			disable: true
@@ -126,5 +138,54 @@ RadioGroup.argTypes = {
 		table: {
 			disable: true
 		}
+	},
+	inline: {
+		table: {
+			disable: true
+		}
 	}
 };
+RadioGroup.argTypes = groupArgTypes;
+
+export const InlineRadios = ( args : Args, { argTypes } : StoryContext ): Vue.Component =>
+	Vue.extend( {
+		components: { WvuiRadio },
+		props: Object.keys( argTypes ),
+		data() {
+			return {
+				radioValue: 'radio-1',
+				radios: [
+					{
+						label: 'Radio 1',
+						value: 'radio-1'
+					},
+					{
+						label: 'Radio 2',
+						value: 'radio-2'
+					}
+				]
+			};
+		},
+		computed: {
+			actionListeners() {
+				return makeActionListeners( args, argTypes );
+			}
+		},
+		template: `
+			<div class="sb-radio-wrapper">
+				<wvui-radio
+					v-for="radio in radios"
+					:key="'radio-' + radio.value"
+					v-model="radioValue"
+					:input-value="radio.value"
+					:name="$props.name"
+					:inline="true"
+					v-on="actionListeners"
+				>
+					{{ radio.label }}
+				</wvui-radio>
+			</div>
+		`
+	} );
+
+InlineRadios.argTypes = groupArgTypes;

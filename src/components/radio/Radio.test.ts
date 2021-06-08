@@ -26,7 +26,11 @@ describe( 'matches the snapshot', () => {
 		[ 'Disabled', {
 			disabled: true,
 			...generateProps( 'radio-1', 'radio-disabled', 'radios-string' )
-		}, 'Disabled radio' ]
+		}, 'Disabled radio' ],
+		[ 'Inline', {
+			inline: true,
+			...generateProps( 'radio-1', 'radio-1', 'radios-string' )
+		}, 'Inline radio' ]
 	];
 
 	test.each( cases )( 'Case %# %s: (%p) => HTML', ( _, props, slot ) => {

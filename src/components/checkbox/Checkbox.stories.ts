@@ -128,7 +128,7 @@ export const CheckboxGroup = ( args : Args, { argTypes } : StoryContext ): Vue.C
 		`
 	} );
 
-CheckboxGroup.argTypes = {
+const groupArgTypes = {
 	default: {
 		table: {
 			disable: true
@@ -148,5 +148,52 @@ CheckboxGroup.argTypes = {
 		table: {
 			disable: true
 		}
+	},
+	inline: {
+		table: {
+			disable: true
+		}
 	}
 };
+CheckboxGroup.argTypes = groupArgTypes;
+
+export const InlineCheckboxes = ( args : Args, { argTypes } : StoryContext ): Vue.Component =>
+	Vue.extend( {
+		components: { WvuiCheckbox },
+		props: Object.keys( argTypes ),
+		data() {
+			return {
+				checkboxesValue: [ 'checkbox-1' ],
+				checkboxes: [
+					{
+						label: 'Checkbox 1',
+						value: 'checkbox-1'
+					},
+					{
+						label: 'Checkbox 2',
+						value: 'checkbox-2'
+					}
+				]
+			};
+		},
+		computed: {
+			actionListeners() {
+				return makeActionListeners( args, argTypes );
+			}
+		},
+		template: `
+			<div class="sb-checkbox-wrapper">
+				<wvui-checkbox
+					v-for="checkbox in checkboxes"
+					:key="checkbox.value"
+					v-model="checkboxesValue"
+					:input-value="checkbox.value"
+					:inline="true"
+					v-on="actionListeners"
+				>
+					{{ checkbox.label }}
+				</wvui-checkbox>
+			</div>
+		`
+	} );
+InlineCheckboxes.argTypes = groupArgTypes;

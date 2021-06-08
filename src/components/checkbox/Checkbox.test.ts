@@ -15,11 +15,15 @@ describe( 'matches the snapshot', () => {
 	};
 
 	const cases: Case[] = [
-		[ 'Enabled', generateProps( true, 'checkbox-1' ), 'Checkbox 1' ],
+		[ 'Enabled', generateProps( [], 'checkbox-1' ), 'Checkbox 1' ],
 		[ 'Disabled', {
 			disabled: true,
-			...generateProps( false, 'checkbox-1' )
-		}, 'Disabled checkbox' ]
+			...generateProps( [], 'checkbox-1' )
+		}, 'Disabled checkbox' ],
+		[ 'Inline', {
+			inline: true,
+			...generateProps( [], 'checkbox-1' )
+		}, 'Inline checkbox' ]
 	];
 
 	test.each( cases )( 'Case %# %s: (%p) => HTML', ( _, props, slot ) => {

@@ -8,6 +8,41 @@
 	line-height: @size-input-binary;
 	cursor: pointer;
 
+	&__label-content {
+		// Necessary to ensure label is indented properly if it spans multiple lines.
+		display: inline-block;
+		padding-left: @padding-left-input-binary-text;
+	}
+
+	&:not( &--inline ) {
+		display: block;
+		// Since we have to use margin-right for inline inputs, use margin-bottom for stacked inputs
+		// for consistency's sake.
+		margin-bottom: @margin-bottom-binary-input--stacked;
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+
+	&--inline {
+		// Use margin-right instead of left to avoid extra space at the beginning of a new line if
+		// the inputs span multiple lines.
+		margin-right: @margin-right-binary-input--inline;
+		// Avoid line break between icon and label text.
+		white-space: nowrap;
+
+		&:last-child {
+			margin-right: 0;
+		}
+
+		// Target span with class ending in '__label-content'.
+		span[ class$='__label-content' ] {
+			// Reset to inline to avoid extra space between input and label.
+			display: inline;
+		}
+	}
+
 	&[ aria-disabled='true' ] {
 		cursor: @cursor-base--disabled;
 	}
@@ -41,10 +76,5 @@
 		&:disabled {
 			cursor: @cursor-base--disabled;
 		}
-	}
-
-	&__label-content {
-		display: inline-block;
-		padding-left: @padding-left-input-binary-text;
 	}
 }
