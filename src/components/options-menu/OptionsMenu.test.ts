@@ -131,12 +131,15 @@ describe( 'OptionsMenu', () => {
 		};
 
 		expect( wrapper.findAll( '.wvui-options-menu__item--highlighted' ).length ).toEqual( 0 );
+		expect( wrapper.attributes( 'aria-activedescendant' ) ).toBeUndefined();
 
 		vueComponent.handleKeyboardEvent( makeKeyEvent( 'ArrowDown' ) );
 		await vueComponent.$nextTick();
 		expect( wrapper.findAll( '.wvui-options-menu__item--highlighted' ).length ).toEqual( 1 );
 		expect( wrapper.findAll( 'li' ).at( 0 ).classes() )
 			.toContain( 'wvui-options-menu__item--highlighted' );
+		expect( wrapper.attributes( 'aria-activedescendant' ) )
+			.toEqual( wrapper.findAll( 'li' ).at( 0 ).attributes( 'id' ) );
 
 		// Skips over the disabled item at index 1
 		vueComponent.handleKeyboardEvent( makeKeyEvent( 'ArrowDown' ) );
@@ -144,12 +147,16 @@ describe( 'OptionsMenu', () => {
 		expect( wrapper.findAll( '.wvui-options-menu__item--highlighted' ).length ).toEqual( 1 );
 		expect( wrapper.findAll( 'li' ).at( 2 ).classes() )
 			.toContain( 'wvui-options-menu__item--highlighted' );
+		expect( wrapper.attributes( 'aria-activedescendant' ) )
+			.toEqual( wrapper.findAll( 'li' ).at( 2 ).attributes( 'id' ) );
 
 		vueComponent.handleKeyboardEvent( makeKeyEvent( 'ArrowDown' ) );
 		await vueComponent.$nextTick();
 		expect( wrapper.findAll( '.wvui-options-menu__item--highlighted' ).length ).toEqual( 1 );
 		expect( wrapper.findAll( 'li' ).at( 3 ).classes() )
 			.toContain( 'wvui-options-menu__item--highlighted' );
+		expect( wrapper.attributes( 'aria-activedescendant' ) )
+			.toEqual( wrapper.findAll( 'li' ).at( 3 ).attributes( 'id' ) );
 
 		// Loop back to the start
 		vueComponent.handleKeyboardEvent( makeKeyEvent( 'ArrowDown' ) );
@@ -157,6 +164,8 @@ describe( 'OptionsMenu', () => {
 		expect( wrapper.findAll( '.wvui-options-menu__item--highlighted' ).length ).toEqual( 1 );
 		expect( wrapper.findAll( 'li' ).at( 0 ).classes() )
 			.toContain( 'wvui-options-menu__item--highlighted' );
+		expect( wrapper.attributes( 'aria-activedescendant' ) )
+			.toEqual( wrapper.findAll( 'li' ).at( 0 ).attributes( 'id' ) );
 	} );
 
 	it( 'moves highlight when pressing up arrow with no selection', async () => {
@@ -168,24 +177,31 @@ describe( 'OptionsMenu', () => {
 		};
 
 		expect( wrapper.findAll( '.wvui-options-menu__item--highlighted' ).length ).toEqual( 0 );
+		expect( wrapper.attributes( 'aria-activedescendant' ) ).toBeUndefined();
 
 		vueComponent.handleKeyboardEvent( makeKeyEvent( 'ArrowUp' ) );
 		await vueComponent.$nextTick();
 		expect( wrapper.findAll( '.wvui-options-menu__item--highlighted' ).length ).toEqual( 1 );
 		expect( wrapper.findAll( 'li' ).at( 0 ).classes() )
 			.toContain( 'wvui-options-menu__item--highlighted' );
+		expect( wrapper.attributes( 'aria-activedescendant' ) )
+			.toEqual( wrapper.findAll( 'li' ).at( 0 ).attributes( 'id' ) );
 
 		vueComponent.handleKeyboardEvent( makeKeyEvent( 'ArrowUp' ) );
 		await vueComponent.$nextTick();
 		expect( wrapper.findAll( '.wvui-options-menu__item--highlighted' ).length ).toEqual( 1 );
 		expect( wrapper.findAll( 'li' ).at( 3 ).classes() )
 			.toContain( 'wvui-options-menu__item--highlighted' );
+		expect( wrapper.attributes( 'aria-activedescendant' ) )
+			.toEqual( wrapper.findAll( 'li' ).at( 3 ).attributes( 'id' ) );
 
 		vueComponent.handleKeyboardEvent( makeKeyEvent( 'ArrowUp' ) );
 		await vueComponent.$nextTick();
 		expect( wrapper.findAll( '.wvui-options-menu__item--highlighted' ).length ).toEqual( 1 );
 		expect( wrapper.findAll( 'li' ).at( 2 ).classes() )
 			.toContain( 'wvui-options-menu__item--highlighted' );
+		expect( wrapper.attributes( 'aria-activedescendant' ) )
+			.toEqual( wrapper.findAll( 'li' ).at( 2 ).attributes( 'id' ) );
 
 		// Loop back to the start, skipping over the disabled item at index 1
 		vueComponent.handleKeyboardEvent( makeKeyEvent( 'ArrowUp' ) );
@@ -193,24 +209,31 @@ describe( 'OptionsMenu', () => {
 		expect( wrapper.findAll( '.wvui-options-menu__item--highlighted' ).length ).toEqual( 1 );
 		expect( wrapper.findAll( 'li' ).at( 0 ).classes() )
 			.toContain( 'wvui-options-menu__item--highlighted' );
+		expect( wrapper.attributes( 'aria-activedescendant' ) )
+			.toEqual( wrapper.findAll( 'li' ).at( 0 ).attributes( 'id' ) );
 	} );
 
 	it( 'moves highlight when pressing down arrow with existing selection', async () => {
 		const wrapper = shallowMount( WvuiOptionsMenu, {
 			propsData: {
 				...basicProps,
-				selectedItemId: '3'
+				selectedItemId: baseItems[ 2 ].id
 			}
 		} );
 		const vueComponent = wrapper.vm as Vue & {
 			handleKeyboardEvent: ( event: KeyboardEvent ) => void
 		};
 
+		expect( wrapper.attributes( 'aria-activedescendant' ) )
+			.toEqual( wrapper.findAll( 'li' ).at( 2 ).attributes( 'id' ) );
+
 		vueComponent.handleKeyboardEvent( makeKeyEvent( 'ArrowDown' ) );
 		await vueComponent.$nextTick();
 		expect( wrapper.findAll( '.wvui-options-menu__item--highlighted' ).length ).toEqual( 1 );
 		expect( wrapper.findAll( 'li' ).at( 3 ).classes() )
 			.toContain( 'wvui-options-menu__item--highlighted' );
+		expect( wrapper.attributes( 'aria-activedescendant' ) )
+			.toEqual( wrapper.findAll( 'li' ).at( 3 ).attributes( 'id' ) );
 	} );
 
 	it( 'skips over two disabled items in a row', async () => {
@@ -233,12 +256,16 @@ describe( 'OptionsMenu', () => {
 		expect( wrapper.findAll( '.wvui-options-menu__item--highlighted' ).length ).toEqual( 1 );
 		expect( wrapper.findAll( 'li' ).at( 0 ).classes() )
 			.toContain( 'wvui-options-menu__item--highlighted' );
+		expect( wrapper.attributes( 'aria-activedescendant' ) )
+			.toEqual( wrapper.findAll( 'li' ).at( 0 ).attributes( 'id' ) );
 
 		vueComponent.handleKeyboardEvent( makeKeyEvent( 'ArrowDown' ) );
 		await vueComponent.$nextTick();
 		expect( wrapper.findAll( '.wvui-options-menu__item--highlighted' ).length ).toEqual( 1 );
 		expect( wrapper.findAll( 'li' ).at( 3 ).classes() )
 			.toContain( 'wvui-options-menu__item--highlighted' );
+		expect( wrapper.attributes( 'aria-activedescendant' ) )
+			.toEqual( wrapper.findAll( 'li' ).at( 3 ).attributes( 'id' ) );
 
 	} );
 
@@ -259,13 +286,14 @@ describe( 'OptionsMenu', () => {
 
 		vueComponent.handleKeyboardEvent( makeKeyEvent( 'ArrowDown' ) );
 		expect( wrapper.findAll( '.wvui-options-menu__item--highlighted' ).length ).toEqual( 0 );
+		expect( wrapper.attributes( 'aria-activedescendant' ) ).toBeUndefined();
 	} );
 
 	it( 'selects the highlighted item when pressing enter, and unsets highlight', async () => {
 		const wrapper = shallowMount( WvuiOptionsMenu, {
 			propsData: {
 				...basicProps,
-				selectedItemId: '3'
+				selectedItemId: baseItems[ 2 ].id
 			}
 		} );
 		const vueComponent = wrapper.vm as Vue & {
@@ -280,15 +308,12 @@ describe( 'OptionsMenu', () => {
 		expect( wrapper.emitted( 'select' ) ).toBeTruthy();
 		expect( wrapper.emitted( 'select' )?.[ 0 ] ).toEqual( [ baseItems[ 3 ].id ] );
 		expect( wrapper.findAll( '.wvui-options-menu__item--highlighted' ).length ).toEqual( 0 );
+		expect( wrapper.attributes( 'aria-activedescendant' ) )
+			.toEqual( wrapper.findAll( 'li' ).at( 2 ).attributes( 'id' ) );
 	} );
 
 	it( 'unsets the highlight when selecting an item using the mouse', async () => {
-		const wrapper = shallowMount( WvuiOptionsMenu, {
-			propsData: {
-				...basicProps,
-				selectedItemId: '3'
-			}
-		} );
+		const wrapper = shallowMount( WvuiOptionsMenu, { propsData: basicProps } );
 		const vueComponent = wrapper.vm as Vue & {
 			handleKeyboardEvent: ( event: KeyboardEvent ) => void
 		};
@@ -303,7 +328,7 @@ describe( 'OptionsMenu', () => {
 		const wrapper = shallowMount( WvuiOptionsMenu, {
 			propsData: {
 				...basicProps,
-				selectedItemId: '3'
+				selectedItemId: baseItems[ 2 ].id
 			}
 		} );
 		const vueComponent = wrapper.vm as Vue & {
@@ -316,6 +341,8 @@ describe( 'OptionsMenu', () => {
 		await wrapper.setProps( { items: [ ...basicProps.items, { id: '5', label: 'Five' } ] } );
 		expect( wrapper.findAll( '.wvui-options-menu__item--highlighted' ).length ).toEqual( 0 );
 		expect( wrapper.findAll( '.wvui-options-menu__item--active' ).length ).toEqual( 0 );
+		expect( wrapper.attributes( 'aria-activedescendant' ) )
+			.toEqual( wrapper.findAll( 'li' ).at( 2 ).attributes( 'id' ) );
 	} );
 
 	it( 'checks for duplicate item IDs', async () => {

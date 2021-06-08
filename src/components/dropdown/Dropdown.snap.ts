@@ -8,6 +8,7 @@ exports[`matches the snapshot Case 0 No default label, nothing selected: ({"item
     aria-autocomplete="list"
     aria-expanded="false"
     aria-haspopup="listbox"
+    aria-owns="wvui-dropdown-0-menu"
     class="wvui-dropdown__handle"
     role="combobox"
     tabindex="0"
@@ -25,6 +26,7 @@ exports[`matches the snapshot Case 0 No default label, nothing selected: ({"item
    
   <wvui-options-menu-stub
     class="wvui-dropdown__menu"
+    id="wvui-dropdown-0-menu"
     items="[object Object],[object Object],[object Object]"
     style="display: none;"
   />
@@ -39,6 +41,7 @@ exports[`matches the snapshot Case 1 With default label, nothing selected: ({"de
     aria-autocomplete="list"
     aria-expanded="false"
     aria-haspopup="listbox"
+    aria-owns="wvui-dropdown-1-menu"
     class="wvui-dropdown__handle"
     role="combobox"
     tabindex="0"
@@ -56,6 +59,7 @@ exports[`matches the snapshot Case 1 With default label, nothing selected: ({"de
    
   <wvui-options-menu-stub
     class="wvui-dropdown__menu"
+    id="wvui-dropdown-1-menu"
     items="[object Object],[object Object],[object Object]"
     style="display: none;"
   />
@@ -70,6 +74,7 @@ exports[`matches the snapshot Case 2 Item selected: ({"defaultLabel": "Choose so
     aria-autocomplete="list"
     aria-expanded="false"
     aria-haspopup="listbox"
+    aria-owns="wvui-dropdown-2-menu"
     class="wvui-dropdown__handle"
     role="combobox"
     tabindex="0"
@@ -87,6 +92,7 @@ exports[`matches the snapshot Case 2 Item selected: ({"defaultLabel": "Choose so
    
   <wvui-options-menu-stub
     class="wvui-dropdown__menu"
+    id="wvui-dropdown-2-menu"
     items="[object Object],[object Object],[object Object]"
     selecteditemid="3"
     style="display: none;"
@@ -102,6 +108,7 @@ exports[`matches the snapshot Case 3 Nonexistent item selected: ({"defaultLabel"
     aria-autocomplete="list"
     aria-expanded="false"
     aria-haspopup="listbox"
+    aria-owns="wvui-dropdown-3-menu"
     class="wvui-dropdown__handle"
     role="combobox"
     tabindex="0"
@@ -119,6 +126,7 @@ exports[`matches the snapshot Case 3 Nonexistent item selected: ({"defaultLabel"
    
   <wvui-options-menu-stub
     class="wvui-dropdown__menu"
+    id="wvui-dropdown-3-menu"
     items="[object Object],[object Object],[object Object]"
     selecteditemid="42"
     style="display: none;"
@@ -134,6 +142,7 @@ exports[`matches the snapshot Case 4 Disabled item selected: ({"defaultLabel": "
     aria-autocomplete="list"
     aria-expanded="false"
     aria-haspopup="listbox"
+    aria-owns="wvui-dropdown-4-menu"
     class="wvui-dropdown__handle"
     role="combobox"
     tabindex="0"
@@ -151,6 +160,7 @@ exports[`matches the snapshot Case 4 Disabled item selected: ({"defaultLabel": "
    
   <wvui-options-menu-stub
     class="wvui-dropdown__menu"
+    id="wvui-dropdown-4-menu"
     items="[object Object],[object Object],[object Object]"
     selecteditemid="2"
     style="display: none;"
@@ -166,6 +176,7 @@ exports[`matches the snapshot Case 5 Custom selectedItem slot, no item selected:
     aria-autocomplete="list"
     aria-expanded="false"
     aria-haspopup="listbox"
+    aria-owns="wvui-dropdown-5-menu"
     class="wvui-dropdown__handle"
     role="combobox"
     tabindex="0"
@@ -186,6 +197,7 @@ exports[`matches the snapshot Case 5 Custom selectedItem slot, no item selected:
    
   <wvui-options-menu-stub
     class="wvui-dropdown__menu"
+    id="wvui-dropdown-5-menu"
     items="[object Object],[object Object],[object Object]"
     style="display: none;"
   />
@@ -200,6 +212,7 @@ exports[`matches the snapshot Case 6 Custom selectedItem slot, item selected: ({
     aria-autocomplete="list"
     aria-expanded="false"
     aria-haspopup="listbox"
+    aria-owns="wvui-dropdown-6-menu"
     class="wvui-dropdown__handle"
     role="combobox"
     tabindex="0"
@@ -221,6 +234,7 @@ exports[`matches the snapshot Case 6 Custom selectedItem slot, item selected: ({
    
   <wvui-options-menu-stub
     class="wvui-dropdown__menu"
+    id="wvui-dropdown-6-menu"
     items="[object Object],[object Object],[object Object]"
     selecteditemid="1"
     style="display: none;"
@@ -236,6 +250,7 @@ exports[`matches the snapshot Case 7 Custom selectedItem slot, nonexistent item 
     aria-autocomplete="list"
     aria-expanded="false"
     aria-haspopup="listbox"
+    aria-owns="wvui-dropdown-7-menu"
     class="wvui-dropdown__handle"
     role="combobox"
     tabindex="0"
@@ -256,6 +271,7 @@ exports[`matches the snapshot Case 7 Custom selectedItem slot, nonexistent item 
    
   <wvui-options-menu-stub
     class="wvui-dropdown__menu"
+    id="wvui-dropdown-7-menu"
     items="[object Object],[object Object],[object Object]"
     selecteditemid="42"
     style="display: none;"
@@ -271,6 +287,7 @@ exports[`matches the snapshot Case 8 Custom selectedItem slot, disabled item sel
     aria-autocomplete="list"
     aria-expanded="false"
     aria-haspopup="listbox"
+    aria-owns="wvui-dropdown-8-menu"
     class="wvui-dropdown__handle"
     role="combobox"
     tabindex="0"
@@ -291,6 +308,7 @@ exports[`matches the snapshot Case 8 Custom selectedItem slot, disabled item sel
    
   <wvui-options-menu-stub
     class="wvui-dropdown__menu"
+    id="wvui-dropdown-8-menu"
     items="[object Object],[object Object],[object Object]"
     selecteditemid="2"
     style="display: none;"

@@ -6,6 +6,7 @@
 			tabindex="0"
 			role="combobox"
 			aria-autocomplete="list"
+			:aria-owns="menuId"
 			aria-haspopup="listbox"
 			:aria-disabled="disabled ? 'true' : null"
 			:aria-expanded="showMenu ? 'true' : 'false'"
@@ -27,6 +28,7 @@
 		</div>
 		<wvui-options-menu
 			v-show="showMenu"
+			:id="menuId"
 			ref="menu"
 			#default="{ item }"
 			v-model="wrappedModel"
@@ -44,11 +46,15 @@
 </template>
 
 <script lang="ts">
-import Vue, { PropType } from 'vue';
+import Vue from 'vue';
+import VueCompositionAPI, { defineComponent, PropType } from '@vue/composition-api';
 import WvuiIcon from '../icon/Icon.vue';
 import WvuiOptionsMenu from '../options-menu/OptionsMenu.vue';
 import { OptionsMenuItem } from '../options-menu/OptionsMenuItem';
 import { wvuiIconExpand } from '../../themes/icons';
+import useGeneratedId from '../../composables/useGeneratedId';
+
+Vue.use( VueCompositionAPI );
 
 /**
  * Dropdown menu, like HTML `<select>`. Displays the selected item (or a default label, if no item
@@ -81,7 +87,7 @@ import { wvuiIconExpand } from '../../themes/icons';
  *         </template>
  *     </wvui-dropdown>
  */
-export default Vue.extend( {
+export default defineComponent( {
 	name: 'WvuiDropdown',
 	components: { WvuiIcon, WvuiOptionsMenu },
 	model: {
@@ -122,6 +128,13 @@ export default Vue.extend( {
 			default: false
 		}
 	},
+	setup() {
+		const { prefixId } = useGeneratedId( 'dropdown' );
+
+		return {
+			prefixId
+		};
+	},
 	data: () => ( {
 		wvuiIconExpand,
 		// Whether the menu is visible
@@ -148,6 +161,9 @@ export default Vue.extend( {
 				'wvui-dropdown--value-selected': this.selectedItemId !== null,
 				'wvui-dropdown--no-selections': this.selectedItemId === null
 			};
+		},
+		menuId() : string {
+			return this.prefixId( 'menu' );
 		},
 		itemsById() : Record<string, OptionsMenuItem> {
 			const result : Record<string, OptionsMenuItem> = {};

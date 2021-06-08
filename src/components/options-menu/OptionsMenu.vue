@@ -2,9 +2,11 @@
 	<ul
 		class="wvui-options-menu"
 		role="listbox"
+		:aria-activedescendant="activeDescendantId"
 	>
 		<li
 			v-for="( item, index ) in items"
+			:id="prefixId( item.id )"
 			:key="item.id"
 			class="wvui-options-menu__item"
 			:class="itemClasses( item, index )"
@@ -26,8 +28,12 @@
 </template>
 
 <script lang="ts">
-import Vue, { PropType } from 'vue';
+import Vue from 'vue';
+import VueCompositionAPI, { defineComponent, PropType } from '@vue/composition-api';
 import { OptionsMenuItem } from './OptionsMenuItem';
+import useGeneratedId from '../../composables/useGeneratedId';
+
+Vue.use( VueCompositionAPI );
 
 /**
  * Menu that displays a set of options, and lets the user select one.
@@ -58,11 +64,18 @@ import { OptionsMenuItem } from './OptionsMenuItem';
  *         {{ item.label }} (id: {{ item.id }})
  *     </wvui-options-menu>
  */
-export default Vue.extend( {
+export default defineComponent( {
 	name: 'WvuiOptionsMenu',
 	model: {
 		prop: 'selectedItemId',
 		event: 'select'
+	},
+	setup() {
+		const { prefixId } = useGeneratedId( 'options-menu' );
+
+		return {
+			prefixId
+		};
 	},
 	props: {
 		/**
@@ -103,6 +116,17 @@ export default Vue.extend( {
 			// Index of the item currently highlighted with keyboard navigation, or null if none
 			highlightedItemIndex: null as number|null
 		};
+	},
+	computed: {
+		activeDescendantId() : string|null {
+			if ( this.highlightedItemIndex !== null ) {
+				return this.prefixId( this.items[ this.highlightedItemIndex ].id );
+			}
+			if ( this.selectedItemId ) {
+				return this.prefixId( this.selectedItemId );
+			}
+			return null;
+		}
 	},
 	watch: {
 		items() {

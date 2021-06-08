@@ -133,11 +133,17 @@ describe( 'Dropdown', () => {
 	it( 'opens menu and focuses handle when clicked', async () => {
 		const wrapper = mount( WvuiDropdown, { propsData: basicProps, attachTo: document.body } );
 		expect( wrapper.find( '.wvui-dropdown__menu' ).isVisible() ).toBeFalsy();
+		expect( wrapper.find( '.wvui-dropdown__handle' ).attributes( 'aria-expanded' ) )
+			.toEqual( 'false' );
 		await wrapper.find( '.wvui-dropdown__handle' ).trigger( 'click' );
 		expect( wrapper.find( '.wvui-dropdown__menu' ).isVisible() ).toBeTruthy();
+		expect( wrapper.find( '.wvui-dropdown__handle' ).attributes( 'aria-expanded' ) )
+			.toEqual( 'true' );
 		expect( wrapper.find( '.wvui-dropdown__handle' ).element ).toBe( document.activeElement );
 		await wrapper.find( '.wvui-dropdown__handle' ).trigger( 'click' );
 		expect( wrapper.find( '.wvui-dropdown__menu' ).isVisible() ).toBeFalsy();
+		expect( wrapper.find( '.wvui-dropdown__handle' ).attributes( 'aria-expanded' ) )
+			.toEqual( 'false' );
 	} );
 
 	it( 'opens menu when arrow key is pressed', async () => {
