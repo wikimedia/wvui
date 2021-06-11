@@ -17,9 +17,10 @@
 	"bugs": "https://phabricator.wikimedia.org/tag/wvui",
 	"license": "GPL-2.0+",
 	"main": "dist/wvui.js",
-	"types": "dist/src/entries/wvui.d.ts",
+	"types": "types/src/entries/wvui.d.ts",
 	"files": [
 		"dist",
+		"types",
 		"!dist/.eslintrc.json"
 	],
 	"directories": {

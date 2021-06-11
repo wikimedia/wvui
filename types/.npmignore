@@ -1,0 +1,6 @@
+# Only include d.ts files for library code,
+# not from tests, stories, or snapshots
+
+**/*.snap.d.ts
+**/*.stories.d.ts
+**/*.test.d.ts

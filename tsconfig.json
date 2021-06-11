@@ -28,7 +28,7 @@
 		"incremental": true,
 		"target": "es5",
 		"sourceMap": true,
-		"outDir": "dist",
+		"outDir": "types",
 
 		// Emit type definitions (.d.ts) for consumers to test their integration typing.
 		"declaration": true,

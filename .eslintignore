@@ -25,3 +25,6 @@
 
 # Ignore JSON files with mock data.
 /src/components/typeahead-search/mocks/*.json
+
+# Ignore the generated type definition files
+/types/
