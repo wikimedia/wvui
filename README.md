@@ -113,7 +113,7 @@ There is currently one bundle available:
 Each chunk is side-effect free. All chunks are fully compiled ES5 / CSS and require a Vue.js
 runtime. See [peerDependencies](package.json).
 
-See the [performance section](#performance) for related topics.
+See the [performance section](DEVELOPERS.md#performance) for related topics.
 
 ## Development
 
