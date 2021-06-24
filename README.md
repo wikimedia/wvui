@@ -4,6 +4,9 @@ Wikimedia Vue UI (WVUI) components – [Wikimedia Foundation's](https://wikimedi
 Vue.js shared user-interface components for Wikipedia, MediaWiki, and beyond. See
 **[quick start to contribute](#quick-start)**.
 
+Find WVUI's up-to-date code output in Storybook components demo at
+[doc.wikimedia.org](https://doc.wikimedia.org/wvui/master/ui/)
+
 ## Table of contents {ignore=true}
 
 <!--
