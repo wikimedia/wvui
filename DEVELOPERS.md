@@ -251,6 +251,9 @@ WVUI uses different Storybook [addons](https://storybook.js.org/addons/), namely
 To start developing with Storybook, simply run `npm start` command (see
 [NPM scripts](#npm-scripts)). This command will open Storybook in your browser.
 
+Find WVUI's up-to-date code output in Storybook components demo at
+[doc.wikimedia.org](https://doc.wikimedia.org/wvui/master/ui/).
+
 ## Vue.js
 
 Vue.js Single File Components are used for all runtime components. The [Vue.js template explorer] is
