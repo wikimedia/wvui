@@ -247,7 +247,7 @@ export default defineComponent( {
 		position: relative;
 		box-sizing: border-box;
 		min-height: @size-base;
-		width: 100%;
+		width: @size-full;
 		border: @border-base;
 		border-radius: @border-radius-base;
 		// Add extra padding-right to make space for the handle indicator
@@ -285,7 +285,7 @@ export default defineComponent( {
 		position: absolute;
 		left: 0;
 		z-index: 4;
-		width: 100%;
+		width: @size-full;
 		margin-top: -@border-width-base;
 	}
 

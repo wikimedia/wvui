@@ -655,7 +655,7 @@ export default Vue.extend( {
 			position: relative;
 			// Don't let the input grow over the search button.
 			left: -@size-typeahead-search-focus-addition;
-			width: calc( 100% + @size-typeahead-search-focus-addition );
+			width: calc( @size-full + @size-typeahead-search-focus-addition );
 			// Keep the cursor in the same place on the screen.
 			padding-left: calc( @spacing-start-typeahead-search-figure + @size-search-figure + @spacing-end-typeahead-search-figure );
 		}

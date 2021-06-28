@@ -138,7 +138,7 @@ export default defineComponent( {
 
 	// Custom-styled radio that's visible to the user.
 	&__icon {
-		border-radius: @border-radius-circle;
+		border-radius: @border-radius-input-radio;
 		transition: background-color @transition-base, border-color @transition-base, border-width @transition-base;
 
 		// Add `:focus` state's inner circle.
@@ -147,12 +147,12 @@ export default defineComponent( {
 			position: absolute;
 			// `px` unit due to pixel rounding error when using
 			// `@size-input-binary / 4`
-			top: -4px;
-			right: -4px;
-			bottom: -4px;
-			left: -4px;
+			top: @position-offset-input-radio-focus;
+			right: @position-offset-input-radio-focus;
+			bottom: @position-offset-input-radio-focus;
+			left: @position-offset-input-radio-focus;
 			border: @border-width-base @border-style-base transparent;
-			border-radius: @border-radius-circle;
+			border-radius: @border-radius-input-radio;
 		}
 	}
 

@@ -157,7 +157,7 @@ export default Vue.extend( {
 		position: absolute;
 		top: 0;
 		min-height: @size-icon;
-		height: 100%;
+		height: @size-full;
 	}
 
 	&__start-icon {
@@ -188,7 +188,7 @@ export default Vue.extend( {
 		color: @color-base--emphasized;
 		display: block;
 		box-sizing: border-box;
-		width: 100%;
+		width: @size-full;
 		height: @size-base;
 		margin: 0;
 		border: @border-width-base @border-style-base @border-color-base;
