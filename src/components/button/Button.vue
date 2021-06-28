@@ -263,7 +263,6 @@ export default Vue.extend( {
 // Quiet buttons.
 .wvui-button--type-quiet {
 	background-color: transparent;
-	color: @color-base;
 	border-color: transparent;
 
 	&:not( [ disabled ] ) {
