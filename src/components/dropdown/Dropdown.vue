@@ -256,6 +256,7 @@ export default defineComponent( {
 			calc( 2 * @padding-horizontal-base ~'+' @size-indicator )
 			@padding-vertical-base
 			@padding-horizontal-base;
+		line-height: @line-height-component;
 		transition: background-color @transition-base, color @transition-base, border-color @transition-base, box-shadow @transition-base;
 		cursor: pointer;
 
