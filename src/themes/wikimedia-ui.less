@@ -7,6 +7,7 @@
 @size-base: 32 / @font-size-browser / @font-size-base; // equals `2.5em`≈`32px`
 @size-indicator: 12 / @font-size-browser / @font-size-base;
 @size-icon-small: 14 / @font-size-browser / @font-size-base;
+@size-small: ( @size-base / 2 ); // Equals `1.14285714em`≈`16px`.
 
 @line-height-component: unit( 20 / @font-size-browser / @font-size-base, @wvui-unit );
 
@@ -60,3 +61,8 @@
 // Menu items don't have a border.
 // FIXME: Remove with next wikimedia-ui-base version 0.19.0.
 @padding-menu: @padding-vertical-menu @padding-horizontal-base;
+
+// Progress bar component, T286685
+@border-radius-progress-bar: 16px;
+@box-shadow-progress-bar: 0 1px 1px 0 rgba( 0, 0, 0, 0.15 );
+@background-color-progress-bar-bar: @color-primary;

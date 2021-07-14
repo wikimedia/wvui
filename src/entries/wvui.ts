@@ -4,6 +4,7 @@ import WvuiDropdown from '@/components/dropdown/Dropdown.vue';
 import WvuiIcon from '@/components/icon/Icon.vue';
 import WvuiInput from '@/components/input/Input.vue';
 import WvuiOptionsMenu from '@/components/options-menu/OptionsMenu.vue';
+import WvuiProgressBar from '@/components/progress-bar/ProgressBar.vue';
 import WvuiRadio from '@/components/radio/Radio.vue';
 import WvuiTypeaheadSearch from '@/components/typeahead-search/TypeaheadSearch.vue';
 import WvuiTypeaheadSuggestion from '@/components/typeahead-suggestion/TypeaheadSuggestion.vue';
@@ -22,6 +23,7 @@ export default {
 	WvuiInput,
 	WvuiIcon,
 	WvuiOptionsMenu,
+	WvuiProgressBar,
 	WvuiRadio,
 	WvuiTypeaheadSearch,
 	WvuiTypeaheadSuggestion
