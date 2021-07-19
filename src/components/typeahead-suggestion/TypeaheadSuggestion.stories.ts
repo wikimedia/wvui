@@ -35,7 +35,6 @@ export const Configurable = ( args: Args, { argTypes } : StoryContext ) : Vue.Co
 	Vue.extend( {
 		components: { WvuiTypeaheadSuggestion },
 		props: Object.keys( argTypes )
-			// eslint-disable-next-line no-restricted-syntax
 			.filter( ( prop ) => ![ 'urlGenerator', 'suggestion' ].includes( prop ) ),
 		computed: {
 			suggestion(): SearchResult {
@@ -116,7 +115,6 @@ function makeExampleListStory( suggestionsList : SuggestionsList, defaultQuery: 
 		Vue.extend( {
 			components: { WvuiTypeaheadSuggestion },
 			props: Object.keys( argTypes )
-				// eslint-disable-next-line no-restricted-syntax
 				.filter( ( prop ) => ![ 'urlGenerator', 'suggestion' ].includes( prop ) ),
 			data() {
 				return {

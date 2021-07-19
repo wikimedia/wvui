@@ -24,7 +24,7 @@ const nullAbortController: Readonly<NullableAbortController> = {
 // A wrapper which combines native fetch() in browsers and the following json() call.
 export function fetchJson(
 	resource: string,
-	init?: RequestInit,
+	init?: RequestInit
 ): AbortableFetch {
 
 	// As of 2020, browser support for AbortController is limited:

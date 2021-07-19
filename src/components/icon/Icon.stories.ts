@@ -80,7 +80,6 @@ export default {
 		},
 		langCode: {
 			control: 'select',
-			// eslint-disable-next-line es/no-object-values
 			options: Object.values( icons )
 				// Gather all language codes that appear in a langCodeMap or shouldFlipExceptions
 				.map( ( icon ) =>

@@ -13,13 +13,11 @@ export default {
 	component: WvuiButton,
 	argTypes: {
 		action: {
-			// eslint-disable-next-line es/no-object-values
 			options: Object.values( ButtonAction ),
 			control: 'inline-radio',
 			defaultValue: ButtonAction.Default
 		},
 		type: {
-			// eslint-disable-next-line es/no-object-values
 			options: Object.values( ButtonType ),
 			control: 'inline-radio',
 			defaultValue: ButtonType.Normal

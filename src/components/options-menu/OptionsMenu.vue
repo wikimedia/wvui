@@ -70,13 +70,6 @@ export default defineComponent( {
 		prop: 'selectedItemId',
 		event: 'select'
 	},
-	setup() {
-		const { prefixId } = useGeneratedId( 'options-menu' );
-
-		return {
-			prefixId
-		};
-	},
 	props: {
 		/**
 		 * Items to list in the menu. Item IDs must be unique within each menu.
@@ -108,6 +101,13 @@ export default defineComponent( {
 			type: String as PropType<string|null>,
 			default: null
 		}
+	},
+	setup() {
+		const { prefixId } = useGeneratedId( 'options-menu' );
+
+		return {
+			prefixId
+		};
 	},
 	data() {
 		return {

@@ -46,7 +46,6 @@ export const Configurable = ( args: Args, { argTypes } : StoryContext ) : Vue.Co
 	Vue.extend( {
 		components: { WvuiTypeaheadSearch },
 		props: Object.keys( argTypes )
-			// eslint-disable-next-line no-restricted-syntax
 			.filter( ( propName ) => ![ 'client', 'urlGenerator' ].includes( propName ) ),
 		computed: {
 			actionListeners() {

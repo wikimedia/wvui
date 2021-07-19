@@ -30,7 +30,7 @@
 			v-show="showMenu"
 			:id="menuId"
 			ref="menu"
-			#default="{ item }"
+			v-slot="{ item }"
 			v-model="wrappedModel"
 			class="wvui-dropdown__menu"
 			:items="items"

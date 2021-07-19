@@ -23,7 +23,7 @@ export default function useModelWrapper(
 	modelValueRef: Ref<ModelValue>,
 	// This is Vue's emit function; we don't need to type it more specifically.
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	emit: ( event: string, ...args: any[] ) => void,
+	emit: ( event: string, ...args: any[] ) => void
 ): WritableComputedRef<ModelValue> {
 	return computed( {
 		get: () => modelValueRef.value,

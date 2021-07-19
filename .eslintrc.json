@@ -16,14 +16,27 @@
 			"plugins": ["@typescript-eslint", "no-jquery"]
 		},
 		{
+			"files": ["dist/**/*.[jt]s", "dist/**/*.vue"],
+			"extends": [
+				"wikimedia/client",
+				"plugin:@typescript-eslint/recommended",
+				"plugin:no-jquery/all",
+				"plugin:vue/recommended"
+			],
+			"plugins": ["@typescript-eslint", "no-jquery"]
+		},
+		{
 			"files": ["src/**/*.[jt]s", "src/**/*.vue"],
 			"excludedFiles": ["*.test.ts"],
-			"extends": ["wikimedia/client", "wikimedia/language/es6", "wikimedia/language/not-es5"],
+			"extends": ["wikimedia/server"],
 			"parserOptions": {
 				"sourceType": "module"
 			},
 			"rules": {
-				"es/no-object-assign": "off"
+				"es/no-modules": "off",
+				"es/no-object-assign": "off",
+				"node/no-missing-import": "off",
+				"vue/one-component-per-file": "off"
 			}
 		},
 		{
@@ -37,7 +50,6 @@
 			"files": ["*"],
 			"rules": {
 				"no-console": "warn",
-				"one-var": "off",
 				"max-len": [
 					"warn",
 					{

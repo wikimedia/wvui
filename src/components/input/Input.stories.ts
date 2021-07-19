@@ -21,7 +21,6 @@ export default {
 		type: {
 			control: {
 				type: 'inline-radio',
-				// eslint-disable-next-line es/no-object-values
 				options: Object.values( InputType )
 			},
 			defaultValue: InputType.Text
