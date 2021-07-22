@@ -6,6 +6,7 @@ import WvuiInput from '@/components/input/Input.vue';
 import WvuiOptionsMenu from '@/components/options-menu/OptionsMenu.vue';
 import WvuiProgressBar from '@/components/progress-bar/ProgressBar.vue';
 import WvuiRadio from '@/components/radio/Radio.vue';
+import WvuiToggleButton from '@/components/toggle-button/ToggleButton.vue';
 import WvuiTypeaheadSearch from '@/components/typeahead-search/TypeaheadSearch.vue';
 import WvuiTypeaheadSuggestion from '@/components/typeahead-suggestion/TypeaheadSuggestion.vue';
 
@@ -25,6 +26,7 @@ export default {
 	WvuiOptionsMenu,
 	WvuiProgressBar,
 	WvuiRadio,
+	WvuiToggleButton,
 	WvuiTypeaheadSearch,
 	WvuiTypeaheadSuggestion
 };
