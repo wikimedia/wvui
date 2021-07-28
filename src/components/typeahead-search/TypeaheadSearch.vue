@@ -55,6 +55,7 @@
 						<wvui-typeahead-suggestion
 							:id="getSuggestionId( suggestion )"
 							:key="suggestion.id"
+							:search-page-title="searchPageTitle"
 							:article-path="formAction"
 							class="wvui-typeahead-search__suggestion"
 							:query="searchQuery"
@@ -148,6 +149,14 @@ export default Vue.extend( {
 			type: String,
 			default: 'en.wikipedia.org'
 		},
+		/**
+		 * Used on projects where search does not match the MediaWiki default
+		 * e.g. Wikimedia Commons
+		 */
+		searchPageTitle: {
+			type: String,
+			default: 'Special:Search'
+		},
 		footerSearchText: {
 			type: String,
 			required: true
@@ -209,7 +218,9 @@ export default Vue.extend( {
 			};
 		},
 		footerUrl(): string {
-			return this.urlGenerator.generateUrl( this.searchQuery );
+			return this.urlGenerator.generateUrl( this.searchQuery, {
+				title: this.searchPageTitle
+			} );
 		},
 		isFooterSelected(): boolean {
 			return this.suggestionActiveIndex === this.suggestionsList.length;

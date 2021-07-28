@@ -62,6 +62,10 @@ export default Vue.extend( {
 			type: Object as PropType<SearchResult>,
 			required: true
 		},
+		searchPageTitle: {
+			type: String,
+			default: 'Special:Search'
+		},
 		urlGenerator: {
 			type: Object as PropType<UrlGenerator>,
 			default: createDefaultUrlGenerator
@@ -96,7 +100,9 @@ export default Vue.extend( {
 		 * @return {string}
 		 * */
 		suggestionWikiLink(): string {
-			return this.urlGenerator.generateUrl( this.suggestion, undefined, this.articlePath );
+			return this.urlGenerator.generateUrl( this.suggestion, {
+				title: this.searchPageTitle
+			}, this.articlePath );
 		},
 		/**
 		 * Generates a proper value for background-image.
