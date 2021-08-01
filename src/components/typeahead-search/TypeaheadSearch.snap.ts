@@ -99,7 +99,9 @@ exports[`matches the snapshot 1`] = `
               class="wvui-typeahead-search__suggestions__footer__text"
             >
               Search for pages containing 
-              <strong>
+              <strong
+                class="wvui-typeahead-search__suggestions__footer__text__query"
+              >
                 
               </strong>
             </span>
@@ -630,7 +632,9 @@ exports[`when there are search results matches the snapshot 1`] = `
               class="wvui-typeahead-search__suggestions__footer__text"
             >
               Search for pages containing 
-              <strong>
+              <strong
+                class="wvui-typeahead-search__suggestions__footer__text__query"
+              >
                 test
               </strong>
             </span>
