@@ -1,15 +1,14 @@
 version: v4
 lives:
   in: /srv/service
-base: docker-registry.wikimedia.org/buster-nodejs10-slim:0.0.1
+base: docker-registry.wikimedia.org/nodejs12-slim:0.0.1
 variants:
   build:
-    base: docker-registry.wikimedia.org/buster-nodejs10-devel:0.0.1
+    base: docker-registry.wikimedia.org/nodejs12-devel:0.0.1
     copies: [local]
     apt:
       packages:
-        default: [git, build-essential, python-pkgconfig]
-        buster-backports: [npm, node-ssri]
+        default: [git, build-essential, python, pkg-config]
     node:
       requirements: [package.json, package-lock.json]
       env: development
