@@ -89,7 +89,8 @@ export default Vue.extend( {
 	text-transform: none;
 	// Contents are single line.
 	white-space: nowrap;
-	transition: border-color @transition-base, background-color @transition-base, color @transition-base, box-shadow @transition-base;
+	transition-property: border-color, background-color, color, box-shadow;
+	transition-duration: @transition-base;
 
 	// Support Firefox: Normalize by hiding the inner focus `border` and `padding`.
 	&::-moz-focus-inner {

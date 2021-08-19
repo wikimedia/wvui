@@ -526,7 +526,8 @@ export default Vue.extend( {
 		margin: -@border-width-base -@border-width-base -@border-width-base 0;
 		border-top-left-radius: 0;
 		border-bottom-left-radius: 0;
-		transition: opacity @transition-duration-base;
+		transition-property: opacity;
+		transition-duration: @transition-duration-base;
 
 		&:hover {
 			// Make the button be on top of the input border when the button is hovered.

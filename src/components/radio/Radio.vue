@@ -139,7 +139,8 @@ export default defineComponent( {
 	// Custom-styled radio that's visible to the user.
 	&__icon {
 		border-radius: @border-radius-input-radio;
-		transition: background-color @transition-base, border-color @transition-base, border-width @transition-base;
+		transition-property: background-color, border-color, border-width;
+		transition-duration: @transition-base;
 
 		// Add `:focus` state's inner circle.
 		&:before {

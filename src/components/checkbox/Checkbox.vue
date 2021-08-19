@@ -169,7 +169,8 @@ export default defineComponent( {
 		// stylelint-disable-next-line plugin/no-unsupported-browser-features
 		background-size: 0 0;
 		border-radius: @border-radius-base;
-		transition: background-color @transition-base, border-color @transition-base, box-shadow @transition-base;
+		transition-property: background-color, border-color, box-shadow;
+		transition-duration: @transition-base;
 	}
 
 	// HTML `<input type="checkbox">`.

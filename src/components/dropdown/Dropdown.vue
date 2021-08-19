@@ -233,7 +233,8 @@ export default defineComponent( {
 		top: 50%;
 		transform: translateY( -50% );
 		right: @padding-horizontal-base;
-		transition: color @transition-base;
+		transition-property: color;
+		transition-duration: @transition-base;
 
 		svg {
 			width: @size-indicator;
@@ -257,7 +258,8 @@ export default defineComponent( {
 			@padding-vertical-base
 			@padding-horizontal-base;
 		line-height: @line-height-component;
-		transition: background-color @transition-base, color @transition-base, border-color @transition-base, box-shadow @transition-base;
+		transition-property: background-color, color, border-color, box-shadow;
+		transition-duration: @transition-base;
 		cursor: pointer;
 
 		&:hover {

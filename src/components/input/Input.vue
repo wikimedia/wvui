@@ -184,23 +184,26 @@ export default Vue.extend( {
 	}
 
 	&__input {
-		background-color: @background-color-base;
-		color: @color-base--emphasized;
 		display: block;
 		box-sizing: border-box;
 		width: @size-full;
 		height: @size-base;
 		margin: 0;
-		border: @border-width-base @border-style-base @border-color-base;
+		border-width: @border-width-base;
+		border-style: @border-style-base;
 		border-radius: @border-radius-base;
 		padding: @padding-input-text;
-		box-shadow: @box-shadow-base;
 		font-family: inherit;
 		font-size: inherit;
 		line-height: @line-height-component;
 
 		&:not( [ disabled ] ) {
-			transition: border-color @transition-duration-medium, box-shadow @transition-duration-medium;
+			background-color: @background-color-base;
+			color: @color-base--emphasized;
+			border-color: @border-color-base;
+			box-shadow: @box-shadow-base;
+			transition-property: border-color, box-shadow;
+			transition-duration: @transition-duration-medium;
 
 			&:hover {
 				border-color: @border-color-input--hover;

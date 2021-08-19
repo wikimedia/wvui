@@ -254,7 +254,8 @@ export default defineComponent( {
 		line-height: @line-height-component;
 		text-overflow: ellipsis;
 		white-space: nowrap;
-		transition: background-color @transition-base, color @transition-base;
+		transition-property: background-color, color;
+		transition-duration: @transition-base;
 
 		&--enabled {
 			cursor: pointer;
