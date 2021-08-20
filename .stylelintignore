@@ -1,6 +1,8 @@
 /bin/
 /dist/
 /docs/
+/entries/
+/types/
 
 *.json
 *.yaml
@@ -10,4 +12,5 @@
 *.snap.ts
 
 # Ignore non-styles files
+/CHANGELOG.md
 /LICENSE
