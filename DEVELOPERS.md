@@ -13,7 +13,7 @@
 
 - [Quick start](#quick-start)
 - [Docker](#docker)
-  - [Container Configuration](#container-configuration)
+  - [Container configuration for development](#container-configuration-for-development)
   - [I/O performance on macOS](#io-performance-on-macos)
   - [Blubber](#blubber)
 - [NPM scripts](#npm-scripts)
@@ -69,7 +69,7 @@ npm start
 
 ## Docker
 
-WVUI comes with a docker configuration for local development.
+WVUI comes with a Docker configuration for local development.
 
 > Using Docker is not necessary, but strongly suggested. See **[quick start](#quick-start)** for
 > developing without Docker. Containerizing WVUI with Docker makes it easy to have a standard,
@@ -98,20 +98,19 @@ npm install
 docker-compose up node storybook
 ```
 
-### Container Configuration
+### Container configuration for development
 
-WVUI's docker compose configuration produces 3 services. The startup command above produces two
-separate docker containers each with their own service: `node` and `storybook`. The rationale behind
+WVUI's `docker-compose` configuration produces 3 services. The startup command above produces two
+separate Docker containers each with their own service: `node` and `storybook`. The rationale behind
 2 containers is for separation of concerns, so that each container is responsible for one service
-only. A third docker container `release` exists strictly for publishing WVUI
+only. A third Docker container `release` exists strictly for publishing WVUI
 [releases](#rolling-development-release).
 
 `storybook`<br> On container startup, `storybook` will be accessible on localhost:3003. This
 container is intended for local development with [Storybook](#storybook-workflow).
 
-`node`<br> On container startup, `node` is by default stopped. This service is for mounting project
-files. Execute any ad-hoc commands inside the container ( e.g. any [NPM scripts](#npm-scripts) by
-running:
+`node`<br> On container startup, `node` is by default stopped. This service is for executing any
+ad-hoc commands inside the container (e.g. any [NPM scripts](#npm-scripts)) by running:
 
 ```bash
 docker-compose run --rm [node|storybook] npm run [script name]
@@ -125,7 +124,7 @@ package.json), make sure you run `docker-compose up` again for the changes to ta
 Docker containers run via Docker Desktop for Mac interact with the host's filesystem via a Hyperkit
 hypervisor running in a LinuxKit Virtual Machine. The hypervisor and VM are hidden from the user but
 they quickly become visible when performing I/O intensive operations like `npm i`. For example, an
-unscientific benchmark has `docker-compose run --rm node npm install` taking over **19 minutes**.
+unscientific benchmark has `docker-compose run --rm node npm install` taking over _19 minutes_.
 
 Fortunately, Docker Desktop for Mac supports NFS volumes.
 [Jeff Geerling wrote an excellent summary of this issue](https://www.jeffgeerling.com/blog/2020/revisiting-docker-macs-performance-nfs-volumes)
@@ -154,7 +153,7 @@ volumes:
 
 4. Rebuild the `node` container (see [Docker](#Docker))
 
-With the above done, the unscientific benchmark above takes a little over **five minutes**.
+With the above done, the unscientific benchmark above takes a little over _five minutes_.
 
 ### Blubber
 
@@ -601,15 +600,15 @@ can be seen by executing `npx --no-install autoprefixer --info`.
 ### Production release
 
 It is highly recommended to perform all releases from the `release` Docker image. See the
-**[docker](#docker)** section if you have not already built the image.
+**[Docker](#Docker)** section if you have not already built the image.
 
 <details markdown>
 <summary>You will also need to create
-a new ssh key pair specifcially for WVUI deploys. Expand for details...</summary>
+a new SSH key pair specifcially for WVUI deploys. Expand for details...</summary>
 
-1. Execute `ssh-keygen` and save your keys to `~/.ssh/wvui-deploy`. This creates a set of ssh keys
-   specific for WVUI releases.
-2. Add your ssh public key at `~/.ssh/wvui-deploy.pub` to your Gerrit account.
+1. Execute `ssh-keygen` and save your keys with name 'wvui-deploy' to `~/.ssh/`. This creates a set
+   of SSH keys specific for WVUI releases.
+2. Add your SSH public key at `~/.ssh/wvui-deploy.pub` to your Gerrit account.
  </details>
 
 To publish a new release:
@@ -617,7 +616,7 @@ To publish a new release:
 1. Checkout the latest master branch: `git checkout master && git pull`.
 2. Update the [changelog](CHANGELOG.md) with release notes.
 3. Commit the changelog.
-4. Remove existing node modules and re-install through Docker
+4. Remove existing node modules and re-install through Docker.
 5. Execute `docker-compose run --rm release TYPE=<patch|minor|major> bin/release-prod`.
 6. Perform a [rolling development release](#rolling-development-release).
 
@@ -631,14 +630,14 @@ git checkout master && git pull
 # `git log "$(git describe --tags --abbrev=0)..@" --oneline`.
 
 # Document a new feature and a couple bug fixes since the last release. (Emacs can also be used to
-# edit the changelog.)
+# edit the changelog. Or any other editor of your choice.)
 vim CHANGELOG.md
 
 # Stage the changelog.
 git add CHANGELOG.md
 
 # Commit the changelog.
-git commit -m '[docs][changelog] prepare release notes'
+git commit -m '[docs][changelog] Prepare release notes'
 
 # Remove existing node modules and re-install
 rm -rf node_modules
