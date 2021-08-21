@@ -131,8 +131,8 @@ Fortunately, Docker Desktop for Mac supports NFS volumes.
 [Jeff Geerling wrote an excellent summary of this issue](https://www.jeffgeerling.com/blog/2020/revisiting-docker-macs-performance-nfs-volumes)
 along with a guide to sharing folders via NFS for use with Docker Desktop for Mac. Briefly:
 
-1. `echo "nfs.server.mount.require_resv_port = 0" | sudo tee --append /etc/nfs.conf`
-2. `echo "${PWD} -alldirs -mapall=$(id -u):$(id -g) 127.0.0.1" | sudo tee --append /etc/exports`
+1. `echo "nfs.server.mount.require_resv_port = 0" | sudo tee -a /etc/nfs.conf`
+2. `echo "${PWD} -alldirs -mapall=$(id -u):$(id -g) 127.0.0.1" | sudo tee -a /etc/exports`
 3. Create `docker-compose.override.yaml` and add the following:
 
 ```yaml
