@@ -1,12 +1,11 @@
-FROM docker-registry.wikimedia.org/buster-nodejs10-devel:0.0.1
+FROM docker-registry.wikimedia.org/nodejs12-devel:0.0.1
 RUN apt-get update && \
 	apt-get install -y \
 		build-essential \
-		python-pkgconfig \
 		openssh-server \
+		python \
+		pkg-config \
 		git
-
-RUN apt-get -t buster-backports install "npm" "node-ssri" -y
 
 # Create user with same ID as our host machine so Docker generated files are owned by us
 ARG UID=1000
