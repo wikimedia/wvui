@@ -125,7 +125,7 @@ package.json), make sure you run `docker-compose up` again for the changes to ta
 Docker containers run via Docker Desktop for Mac interact with the host's filesystem via a Hyperkit
 hypervisor running in a LinuxKit Virtual Machine. The hypervisor and VM are hidden from the user but
 they quickly become visible when performing I/O intensive operations like `npm i`. For example, an
-unscientific benchmark has `docker run --rm node npm install` taking over **19 minutes**.
+unscientific benchmark has `docker-compose run --rm node npm install` taking over **19 minutes**.
 
 Fortunately, Docker Desktop for Mac supports NFS volumes.
 [Jeff Geerling wrote an excellent summary of this issue](https://www.jeffgeerling.com/blog/2020/revisiting-docker-macs-performance-nfs-volumes)
