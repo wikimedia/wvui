@@ -617,7 +617,7 @@ To publish a new release:
 2. Update the [changelog](CHANGELOG.md) with release notes.
 3. Commit the changelog.
 4. Remove existing node modules and re-install through Docker.
-5. Execute `docker-compose run --rm release TYPE=<patch|minor|major> bin/release-prod`.
+5. Execute `docker-compose run -e TYPE=<patch|minor|major> --rm release bin/release-prod`.
 6. Perform a [rolling development release](#rolling-development-release).
 
 Example commands:
@@ -639,12 +639,12 @@ git add CHANGELOG.md
 # Commit the changelog.
 git commit -m '[docs][changelog] Prepare release notes'
 
-# Remove existing node modules and re-install
+# Remove existing node modules and re-install.
 rm -rf node_modules
 docker-compose run --rm release npm install
 
-# Version, build, and test a release.
-docker-compose run --rm release TYPE=patch bin/release-prod
+# Version, build, and test a patch release.
+docker-compose run -e TYPE=patch--rm release bin/release-prod
 ```
 
 The NPM scripts are configured to help ensure that only tested artifacts are published on Gerrit and
@@ -695,7 +695,7 @@ npmjs.com.
 ### Pre-release (alpha, beta, or release candidate)
 
 To publish a new alpha, beta, or release candidate, execute
-`docker-compose run --rm release TYPE=<prerelease|prepatch|preminor|premajor> PRE_ID=<alpha|beta|rc> bin/release-pre`.
+`docker-compose run -e TYPE=<prerelease|prepatch|preminor|premajor> -e PRE_ID=<alpha|beta|rc> --rm release bin/release-pre`.
 This will create a new version commit on the current branch.
 
 > `prerelease` is the safest choice. It always bumps the metadata number and _only_ bumps the patch
@@ -715,7 +715,7 @@ This will create a new version commit on the current branch.
 To publish the current `master` `HEAD`, execute `docker-compose run --rm release ./bin/release-dev`.
 
 -   You may need to create a project-specific git config, e.g. your username and email address. If
-    executing `docker-compose run --rm release cat /app/.git/.config` returns nothing,
+    executing `docker-compose run --rm release cat /app/.git/config` returns nothing,
     [set config values](https://git-scm.com/docs/git-config) from inside the root `wvui` repo
     directory on your host machine
 
