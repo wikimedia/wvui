@@ -10,6 +10,9 @@
 /.eslintcache
 /.stylelintcache
 
+# Ignore platform specific meta files.
+**/.DS_Store
+
 # Blubber generated Dockerfile during Jenkins run.
 /.pipeline/Dockerfile.*
 
