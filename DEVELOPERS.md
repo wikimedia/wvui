@@ -644,7 +644,7 @@ rm -rf node_modules
 docker-compose run --rm release npm install
 
 # Version, build, and test a patch release.
-docker-compose run -e TYPE=patch--rm release bin/release-prod
+docker-compose run -e TYPE=patch --rm release bin/release-prod
 ```
 
 The NPM scripts are configured to help ensure that only tested artifacts are published on Gerrit and
