@@ -188,6 +188,7 @@ exports[`when there are search results matches the snapshot 1`] = `
         role="listbox"
       >
         <li
+          aria-selected="false"
           role="option"
         >
           <a
@@ -240,6 +241,7 @@ exports[`when there are search results matches the snapshot 1`] = `
           </a>
         </li>
         <li
+          aria-selected="false"
           role="option"
         >
           <a
@@ -278,6 +280,7 @@ exports[`when there are search results matches the snapshot 1`] = `
           </a>
         </li>
         <li
+          aria-selected="false"
           role="option"
         >
           <a
@@ -316,6 +319,7 @@ exports[`when there are search results matches the snapshot 1`] = `
           </a>
         </li>
         <li
+          aria-selected="false"
           role="option"
         >
           <a
@@ -354,6 +358,7 @@ exports[`when there are search results matches the snapshot 1`] = `
           </a>
         </li>
         <li
+          aria-selected="false"
           role="option"
         >
           <a
@@ -392,6 +397,7 @@ exports[`when there are search results matches the snapshot 1`] = `
           </a>
         </li>
         <li
+          aria-selected="false"
           role="option"
         >
           <a
@@ -430,6 +436,7 @@ exports[`when there are search results matches the snapshot 1`] = `
           </a>
         </li>
         <li
+          aria-selected="false"
           role="option"
         >
           <a
@@ -486,6 +493,7 @@ exports[`when there are search results matches the snapshot 1`] = `
           </a>
         </li>
         <li
+          aria-selected="false"
           role="option"
         >
           <a
@@ -524,6 +532,7 @@ exports[`when there are search results matches the snapshot 1`] = `
           </a>
         </li>
         <li
+          aria-selected="false"
           role="option"
         >
           <a
@@ -562,6 +571,7 @@ exports[`when there are search results matches the snapshot 1`] = `
           </a>
         </li>
         <li
+          aria-selected="false"
           role="option"
         >
           <a

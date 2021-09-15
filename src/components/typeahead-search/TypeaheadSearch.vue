@@ -51,6 +51,7 @@
 						v-for="(suggestion, index) in suggestionsList"
 						:key="index"
 						role="option"
+						:aria-selected="isSuggestionSelected(index)"
 					>
 						<wvui-typeahead-suggestion
 							:id="getSuggestionId( suggestion )"
@@ -216,7 +217,7 @@ export default Vue.extend( {
 		footerClasses(): Record<string, boolean> {
 			return {
 				'wvui-typeahead-search__suggestions__footer--active':
-					this.isFooterSelected
+					this.isFooterActive
 			};
 		},
 		footerUrl(): string {
@@ -224,7 +225,7 @@ export default Vue.extend( {
 				title: this.searchPageTitle
 			} );
 		},
-		isFooterSelected(): boolean {
+		isFooterActive(): boolean {
 			return this.suggestionActiveIndex === this.suggestionsList.length;
 		},
 		suggestionsId(): string {
@@ -242,7 +243,7 @@ export default Vue.extend( {
 				return '';
 			}
 
-			if ( this.isFooterSelected ) {
+			if ( this.isFooterActive ) {
 				return this.footerId;
 			}
 
@@ -251,7 +252,6 @@ export default Vue.extend( {
 		footerId(): string {
 			return `${this.suggestionsId}-footer`;
 		},
-
 		isExpandedString(): string {
 			return this.isExpanded ? 'true' : 'false';
 		}
@@ -264,6 +264,28 @@ export default Vue.extend( {
 		}
 	},
 	methods: {
+		/**
+		 * Return value of "aria-selected" for a given suggestion
+		 *
+		 * Suggestion is considered "selected" if input value matches suggestion
+		 * "selected" is distinct from "active", 'suggestionActiveIndex' updates on hover and
+		 * doesn't affect the input value, This definition means a user can enter a value that
+		 * matches a suggestion exactly and that suggestion is considered "selected" even
+		 * though the user doesn't interact with the list via keyboard or mouse.
+		 *
+		 * This behavior is approximately equivalent to
+		 * W3's "List Autocomplete with Automatic Selection" example
+		 * https://www.w3.org/TR/wai-aria-practices-1.1/examples/combobox/aria1.1pattern/listbox-combo.html#ex2_label
+		 *
+		 * @param {number} index
+		 * @return {string} either 'true' or 'false'
+		 */
+		isSuggestionSelected( index: number ): string {
+			const suggestionTitle = this.suggestionsList[ index ].title;
+			const isSelected = this.inputValue.toLowerCase() === suggestionTitle.toLowerCase();
+			return isSelected && !this.isFooterActive ? 'true' : 'false';
+		},
+
 		/**
 		 * A convenience method to update those properties that should be updated when new
 		 * suggestions are available.
@@ -287,12 +309,15 @@ export default Vue.extend( {
 		},
 
 		onInput( value: string ) {
+			this.inputValue = value;
+
 			if ( this.debounceId ) {
 				// Cancel the last setTimeout callback in case it hasn't executed yet.
 				clearTimeout( this.debounceId );
 			}
 
 			this.debounceId = setTimeout( () => {
+				this.inputValue = value;
 				const query = value.trim();
 
 				if ( this.request ) {
