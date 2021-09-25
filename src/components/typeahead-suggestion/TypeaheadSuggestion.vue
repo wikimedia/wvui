@@ -183,7 +183,7 @@ export default Vue.extend( {
 		}
 
 		&-icon {
-			color: @color-accessory;
+			color: @color-typeahead-suggestion-thumbnail-placeholder-icon;
 		}
 	}
 
