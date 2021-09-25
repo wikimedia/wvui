@@ -180,10 +180,11 @@ export default Vue.extend( {
 			display: inline-flex;
 			align-items: center;
 			justify-content: center;
-		}
 
-		&-icon {
-			color: @color-typeahead-suggestion-thumbnail-placeholder-icon;
+			// stylelint-disable-next-line max-nesting-depth
+			&-icon {
+				color: @color-typeahead-suggestion-thumbnail-placeholder-icon;
+			}
 		}
 	}
 

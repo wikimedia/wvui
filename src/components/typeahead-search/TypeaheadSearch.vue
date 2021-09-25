@@ -83,7 +83,7 @@
 							@click="onSuggestionClick()"
 						>
 							<wvui-icon
-								class="wvui-typeahead-search__suggestions-footer-article-icon"
+								class="wvui-typeahead-search__suggestions__footer__icon"
 								:icon="articleIcon"
 							/>
 							<span
@@ -582,49 +582,48 @@ export default Vue.extend( {
 		border-radius: 0 0 @border-radius-base @border-radius-base;
 		padding: 0;
 		box-shadow: @box-shadow-menu;
-
-		&__footer {
-			color: @color-base;
-			// stylelint-disable-next-line plugin/no-unsupported-browser-features
-			display: flex;
-			align-items: center;
-			border-top: @border-width-base @border-style-base @border-color-heading;
-			padding: @padding-vertical-typeahead-suggestion
-				@padding-horizontal-typeahead-suggestion
-				@padding-vertical-typeahead-suggestion
-				@size-input-icon-container;
-			text-decoration: none;
-			cursor: pointer;
-
-			&:visited,
-			&:active {
-				color: @color-base;
-			}
-
-			// stylelint-disable-next-line max-nesting-depth
-			.wvui-icon {
-				color: @color-accessory;
-				// Because the footer icon should line up vertically with the
-				// suggestion text when `showThumbnail` is false, we set its width to
-				// `auto` here instead of using the more intuitive @size-search-figure
-				// variable so that it doesn't have extra horizontal space.
-				width: auto;
-				height: @size-search-figure;
-				margin-right: @padding-horizontal-base;
-			}
-		}
-
-		&__footer--active {
-			background-color: @background-color-base--hover;
-		}
-
-		&__footer__text {
-			font-size: @font-size-typeahead-suggestion-title;
-		}
 	}
 
 	&__suggestion {
 		padding-left: @size-input-icon-container;
+	}
+
+	&__suggestions__footer {
+		color: @color-base;
+		// stylelint-disable-next-line plugin/no-unsupported-browser-features
+		display: flex;
+		align-items: center;
+		border-top: @border-width-base @border-style-base @border-color-heading;
+		padding: @padding-vertical-typeahead-suggestion
+			@padding-horizontal-typeahead-suggestion
+			@padding-vertical-typeahead-suggestion
+			@size-input-icon-container;
+		text-decoration: none;
+		cursor: pointer;
+
+		&:visited,
+		&:active {
+			color: @color-base;
+		}
+
+		&--active {
+			background-color: @background-color-base--hover;
+		}
+
+		&__icon {
+			color: @color-accessory;
+			// Because the footer icon should line up vertically with the
+			// suggestion text when `showThumbnail` is false, we set its width to
+			// `auto` here instead of using the more intuitive @size-search-figure
+			// variable so that it doesn't have extra horizontal space.
+			width: auto;
+			height: @size-search-figure;
+			margin-right: @padding-horizontal-base;
+		}
+
+		&__text {
+			font-size: @font-size-typeahead-suggestion-title;
+		}
 	}
 
 	.wvui-input__input {
@@ -684,19 +683,19 @@ export default Vue.extend( {
 
 		.wvui-input__input {
 			padding-left: @size-search-figure;
+
+			&:focus {
+				position: relative;
+				// Don't let the input grow over the search button.
+				left: -@size-typeahead-search-focus-addition;
+				width: calc( @size-full + @size-typeahead-search-focus-addition );
+				// Keep the cursor in the same place on the screen.
+				padding-left: calc( @spacing-start-typeahead-search-figure + @size-search-figure + @spacing-end-typeahead-search-figure );
+			}
 		}
 
 		.wvui-input__start-icon {
 			width: @size-search-figure;
-		}
-
-		.wvui-input__input:focus {
-			position: relative;
-			// Don't let the input grow over the search button.
-			left: -@size-typeahead-search-focus-addition;
-			width: calc( @size-full + @size-typeahead-search-focus-addition );
-			// Keep the cursor in the same place on the screen.
-			padding-left: calc( @spacing-start-typeahead-search-figure + @size-search-figure + @spacing-end-typeahead-search-figure );
 		}
 
 		.wvui-input__input:focus + .wvui-input__start-icon {
@@ -718,26 +717,28 @@ export default Vue.extend( {
 		.wvui-typeahead-search__suggestions__footer {
 			padding-right: @padding-horizontal-typeahead-suggestion;
 			padding-left: @spacing-start-typeahead-search-figure;
-		}
 
-		.wvui-typeahead-search__suggestions__footer__text,
-		.wvui-typeahead-search__suggestions__footer__text__query {
-			// stylelint-disable-next-line plugin/no-unsupported-browser-features
-			hyphens: auto;
-			// Progressive enhancement. Fine to override unsupported Android 4. See T280982.
-			// stylelint-disable-next-line plugin/no-unsupported-browser-features
-			word-break: break-word;
-			// Legacy `word-wrap`; IE 6-11, Edge 12+, Firefox 3.5+, Chrome 4+, Safari 3.1+,
-			//   Opera 11.5+, iOS 3.2+, Android 2.1+
-			// `overflow-wrap` is W3 standard, but it doesn't seem as if browser vendors
-			//   will abandon `word-wrap` (it has wider support), therefore no duplication.
-			word-wrap: break-word;
-		}
+			// stylelint-disable-next-line max-nesting-depth
+			&__icon {
+				// Prevent the icon container from shrinking when large text is present
+				flex-shrink: 0;
+				width: @size-search-figure;
+			}
 
-		.wvui-typeahead-search__suggestions-footer-article-icon {
-			// Prevent the icon container from shrinking when large text is present
-			flex-shrink: 0;
-			width: @size-search-figure;
+			// stylelint-disable-next-line max-nesting-depth
+			&__text,
+			&__text__query {
+				// stylelint-disable-next-line plugin/no-unsupported-browser-features
+				hyphens: auto;
+				// Progressive enhancement. Fine to override unsupported Android 4. See T280982.
+				// stylelint-disable-next-line plugin/no-unsupported-browser-features
+				word-break: break-word;
+				// Legacy `word-wrap`; IE 6-11, Edge 12+, Firefox 3.5+, Chrome 4+, Safari 3.1+,
+				//   Opera 11.5+, iOS 3.2+, Android 2.1+
+				// `overflow-wrap` is W3 standard, but it doesn't seem as if browser vendors
+				//   will abandon `word-wrap` (it has wider support), therefore no duplication.
+				word-wrap: break-word;
+			}
 		}
 	}
 }

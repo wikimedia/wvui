@@ -77,7 +77,7 @@ exports[`matches the snapshot 1`] = `
             tabindex="-1"
           >
             <span
-              class="wvui-icon wvui-typeahead-search__suggestions-footer-article-icon"
+              class="wvui-icon wvui-typeahead-search__suggestions__footer__icon"
             >
               <svg
                 aria-hidden="true"
@@ -620,7 +620,7 @@ exports[`when there are search results matches the snapshot 1`] = `
             tabindex="-1"
           >
             <span
-              class="wvui-icon wvui-typeahead-search__suggestions-footer-article-icon"
+              class="wvui-icon wvui-typeahead-search__suggestions__footer__icon"
             >
               <svg
                 aria-hidden="true"
