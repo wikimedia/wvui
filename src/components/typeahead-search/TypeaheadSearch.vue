@@ -521,7 +521,7 @@ export default Vue.extend( {
 	background-color: @background-color-base;
 	// Border is styled the same as the input border to visually encapsulate
 	// search submit button.
-	border: @border-width-base @border-style-base @border-color-base;
+	border: @border-base;
 	border-radius: @border-radius-base;
 
 	&__form {
@@ -577,7 +577,7 @@ export default Vue.extend( {
 		left: 0;
 		box-sizing: border-box;
 		margin: 0;
-		border: @border-width-base @border-style-base @border-color-base;
+		border: @border-base;
 		border-top-width: 0;
 		border-radius: 0 0 @border-radius-base @border-radius-base;
 		padding: 0;
