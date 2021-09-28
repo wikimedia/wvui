@@ -3,6 +3,15 @@
 Versions and bullets are arranged contextually chronologically from latest to oldest. Breaking
 changes are listed on top, and marked with "BREAKING CHANGE".
 
+## v0.3.1 / 2021-09-28
+
+-   [docs] Add WVUI deprecation note (Volker E.)
+-   [typeahead-search] Replace vars with more appropriate one for shorthand (Volker E.)
+-   [typeahead-search] Amend to `.wvui-typeahead-search__suggestions__footer__icon` class (Volker
+    E.)
+-   [typeahead-search-suggestion][styles] Lighten thumbnail placeholder icon (Volker E.)
+-   [typeahead-search] Use `aria-selected` in suggestion list (bwang)
+
 ## v0.3.0 / 2021-08-25
 
 -   [docs] Env variable and file path typos (Nikki Nikkhoui)
