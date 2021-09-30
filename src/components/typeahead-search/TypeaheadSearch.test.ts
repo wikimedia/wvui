@@ -11,7 +11,6 @@ const propsData = {
 	placeholder: 'Search Wikipedia',
 	formAction: '/w/index.php',
 	initialInputValue: '',
-	footerSearchText: 'Search for pages containing',
 	suggestionsLabel: 'search suggestions',
 	domain: 'en.wikipedia.org',
 	id: 'foo'
@@ -20,12 +19,21 @@ const propsData = {
 const defaultSlot = [
 	'<input type="hidden" name="title" value="Special:Search">'
 ];
+const searchFooterTextSlot = `
+		Search for pages containing
+		<strong class="wvui-typeahead-search__suggestions__footer__text__query">
+			{{props.searchQuery}}
+		</strong>
+`;
 
 it( 'matches the snapshot', () => {
 	const wrapper = mount( WvuiTypeaheadSearch, {
 		propsData,
 		slots: {
 			default: defaultSlot
+		},
+		scopedSlots: {
+			'search-footer-text': searchFooterTextSlot
 		}
 	} );
 

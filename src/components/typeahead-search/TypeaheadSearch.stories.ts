@@ -14,9 +14,6 @@ export default {
 		formAction: {
 			defaultValue: '/w/index.php'
 		},
-		footerSearchText: {
-			defaultValue: 'Search for pages containing'
-		},
 		suggestionsLabel: {
 			defaultValue: 'search suggestions'
 		},
@@ -60,7 +57,26 @@ export const Configurable = ( args: Args, { argTypes } : StoryContext ) : Vue.Co
 				<wvui-typeahead-search
 					v-bind="filteredProps"
 					v-on="actionListeners"
-				/>
+				>
+					<template v-if="${'default' in args}" #default>
+						${args.default}
+					</template>
+					<!-- eslint-disable-next-line max-len -->
+					<template v-if="${'search-footer' in args}" #search-footer="{ searchQuery }">
+						${args[ 'search-footer' ]}
+					</template>
+				</wvui-typeahead-search>
 			</div>
 		`
 	} );
+
+// Use Vue slots in storybook
+// https://github.com/storybookjs/storybook/discussions/12691#discussioncomment-477239
+Configurable.args = {
+	default: '<input type="hidden" name="title" value="Special:Search">',
+	'search-footer': `Search for pages containing
+		<strong class="wvui-typeahead-search__suggestions__footer__text__query">
+			{{ searchQuery }}
+		</strong>
+	`
+};

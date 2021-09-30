@@ -37,10 +37,10 @@
 					@focus="onInputFocus"
 				/>
 				<!--
-					@slot A slot for passing hidden inputs like
-					<input type="hidden" name="language" value="en">
+					@slot A slot for passing hidden inputs, i.e.
+					`<input type="hidden" name="language" value="en">`
 				-->
-				<slot />
+				<slot :default="searchQuery" />
 				<ol
 					:id="suggestionsId"
 					class="wvui-typeahead-search__suggestions"
@@ -88,9 +88,21 @@
 							/>
 							<span
 								class="wvui-typeahead-search__suggestions__footer__text"
-							>{{ footerSearchText }} <strong
-								class="wvui-typeahead-search__suggestions__footer__text__query"
-							>{{ searchQuery }}</strong></span>
+							>
+
+								<!-- eslint-disable max-len -->
+								<!--
+									@slot A slot for passing in translated search footer text, i.e.
+									`Search for pages containing <strong  class="wvui-typeahead-search__suggestions__footer__text__query">{{searchQuery}}</strong>`
+									@binding {string} searchQuery input text entered by the user
+								-->
+								<slot name="search-footer-text" :searchQuery="searchQuery">
+									<strong class="wvui-typeahead-search__suggestions__footer__text__query">
+										{{ searchQuery }}
+									</strong>
+								</slot>
+								<!-- eslint-enable max-len -->
+							</span>
 						</a>
 					</li>
 				</ol>
@@ -159,10 +171,6 @@ export default Vue.extend( {
 		searchPageTitle: {
 			type: String,
 			default: 'Special:Search'
-		},
-		footerSearchText: {
-			type: String,
-			required: true
 		},
 		suggestionsLabel: {
 			type: String,
