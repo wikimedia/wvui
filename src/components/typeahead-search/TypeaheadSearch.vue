@@ -40,7 +40,7 @@
 					@slot A slot for passing hidden inputs, i.e.
 					`<input type="hidden" name="language" value="en">`
 				-->
-				<slot :default="searchQuery" />
+				<slot name="default" />
 				<ol
 					:id="suggestionsId"
 					class="wvui-typeahead-search__suggestions"
