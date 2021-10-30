@@ -45,7 +45,7 @@ exports[`matches the snapshot 1`] = `
             <!---->
              
             <path
-              d="M8 1a7 7 0 015.6 11.2l5.4 5.4-1.4 1.4-5.4-5.4A7 7 0 118 1zm0 2a5 5 0 100 10A5 5 0 008 3z"
+              d="M12.2 13.6a7 7 0 111.4-1.4l5.4 5.4-1.4 1.4-5.4-5.4zM3 8a5 5 0 1010 0A5 5 0 103 8z"
               fill="currentColor"
             />
           </svg>
@@ -167,7 +167,7 @@ exports[`when there are search results matches the snapshot 1`] = `
             <!---->
              
             <path
-              d="M8 1a7 7 0 015.6 11.2l5.4 5.4-1.4 1.4-5.4-5.4A7 7 0 118 1zm0 2a5 5 0 100 10A5 5 0 008 3z"
+              d="M12.2 13.6a7 7 0 111.4-1.4l5.4 5.4-1.4 1.4-5.4-5.4zM3 8a5 5 0 1010 0A5 5 0 103 8z"
               fill="currentColor"
             />
           </svg>
