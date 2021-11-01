@@ -3,6 +3,14 @@
 Versions and bullets are arranged contextually chronologically from latest to oldest. Breaking
 changes are listed on top, and marked with "BREAKING CHANGE".
 
+## v0.3.2 / 2021-11-01
+
+-   [icons] Optimize 'search' icon path (Volker E.)
+-   [build] Update stylelint-config-wikimedia to 0.11.1 (Alexander Vorwerk)
+-   [typeahead-search] Remove unnecessary slotProp from the default slot (bwang)
+-   [typeahead-search] Replace footerSearchText prop with scoped slot to better support translations
+    (bwang)
+
 ## v0.3.1 / 2021-09-28
 
 -   [docs] Add WVUI deprecation note (Volker E.)
