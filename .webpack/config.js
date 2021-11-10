@@ -51,7 +51,7 @@ function config( argv, name, entry, libraryTarget ) {
 		entry,
 
 		// Omit these external dependencies to be provided by the consumer.
-		externals: [ 'vue' ],
+		externals: [ 'vue', '@vue/composition-api' ],
 
 		performance: {
 			// The default filter excludes map files but we rename ours. See T173491.
