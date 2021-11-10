@@ -25,7 +25,6 @@
 					:value="inputValue"
 					:type="InputType.Search"
 					name="search"
-					dir="auto"
 					autocapitalize="off"
 					v-bind="$attrs"
 					autocomplete="off"

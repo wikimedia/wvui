@@ -6,7 +6,6 @@ exports[`matches the snapshot Case 0 Input Type: text : ({"type": "text"}) => HT
 >
   <input
     class="wvui-input__input"
-    dir="auto"
     type="text"
   />
    
@@ -22,7 +21,6 @@ exports[`matches the snapshot Case 1 Input Type: search : ({"type": "search"}) =
 >
   <input
     class="wvui-input__input"
-    dir="auto"
     type="search"
   />
    
@@ -38,7 +36,6 @@ exports[`should render a clear icon 1`] = `
 >
   <input
     class="wvui-input__input"
-    dir="auto"
     type="text"
   />
    
@@ -71,7 +68,6 @@ exports[`should render end icon 1`] = `
 >
   <input
     class="wvui-input__input"
-    dir="auto"
     type="text"
   />
    
@@ -104,7 +100,6 @@ exports[`should render start icon 1`] = `
 >
   <input
     class="wvui-input__input"
-    dir="auto"
     type="text"
   />
    

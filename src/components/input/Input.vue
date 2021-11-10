@@ -5,7 +5,6 @@
 	>
 		<input
 			ref="input"
-			dir="auto"
 			class="wvui-input__input"
 			v-bind="$attrs"
 			:disabled="disabled"
