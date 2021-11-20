@@ -3,6 +3,12 @@
 Versions and bullets are arranged contextually chronologically from latest to oldest. Breaking
 changes are listed on top, and marked with "BREAKING CHANGE".
 
+## v0.3.3 / 2021-11-19
+
+-   [build] Externalize the Vue composition API plugin (Roan Kattouw)
+-   [typeahead-search][input] Remove "dir=auto" attribute from TypeaheadSearch and Input components
+    (Nicholas Ray)
+
 ## v0.3.2 / 2021-11-01
 
 -   [icons] Optimize 'search' icon path (Volker E.)
