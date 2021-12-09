@@ -65,7 +65,7 @@
 							:show-description="showDescription"
 							:highlight-query="highlightQuery"
 							@mouseover="onSuggestionMouseOver( index )"
-							@mousedown.native="onSuggestionMouseDown"
+							@mousedown="onSuggestionMouseDown"
 							@click="onSuggestionClick( suggestion )"
 						/>
 					</li>

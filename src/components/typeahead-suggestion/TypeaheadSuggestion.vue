@@ -5,6 +5,7 @@
 		:class="rootClasses"
 		class="wvui-typeahead-suggestion"
 		@mouseover="onMouseOver"
+		@mousedown="onMouseDown"
 		@click="onClick"
 	>
 		<span
@@ -116,6 +117,9 @@ export default Vue.extend( {
 	methods: {
 		onMouseOver( event: MouseEvent ) {
 			this.$emit( 'mouseover', event );
+		},
+		onMouseDown( event: MouseEvent ) {
+			this.$emit( 'mousedown', event );
 		},
 		onClick( event: MouseEvent ) {
 			this.$emit( 'click', event );
