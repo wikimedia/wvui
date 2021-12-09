@@ -3,6 +3,10 @@
 Versions and bullets are arranged contextually chronologically from latest to oldest. Breaking
 changes are listed on top, and marked with "BREAKING CHANGE".
 
+## v0.3.4 / 2021-12-09
+
+-   TypeaheadSearch: Avoid use of `.native` event binding (Roan Kattouw)
+
 ## v0.3.3 / 2021-11-19
 
 -   [build] Externalize the Vue composition API plugin (Roan Kattouw)
