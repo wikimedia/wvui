@@ -194,6 +194,10 @@ export default Vue.extend( {
 		highlightQuery: {
 			type: Boolean,
 			default: true
+		},
+		autoExpandWidth: {
+			type: Boolean,
+			default: false
 		}
 	},
 	data() {
@@ -216,9 +220,14 @@ export default Vue.extend( {
 		rootClasses(): Record<string, boolean> {
 			return {
 				'wvui-typeahead-search--active': this.isHovered,
+				'wvui-typeahead-search--focused': this.isFocused,
 				'wvui-typeahead-search--has-value': !!this.searchQuery,
 				'wvui-typeahead-search--expanded': this.isExpanded,
-				'wvui-typeahead-search--show-thumbnail': this.showThumbnail
+				'wvui-typeahead-search--show-thumbnail': this.showThumbnail,
+				'wvui-typeahead-search--auto-expand-width':
+					this.showThumbnail && this.autoExpandWidth,
+				'wvui-typeahead-search--full-width':
+					this.showThumbnail && !this.autoExpandWidth
 			};
 		},
 		footerClasses(): Record<string, boolean> {
@@ -688,32 +697,29 @@ export default Vue.extend( {
 		// should remain in place for the smoothest transition.
 		@size-typeahead-search-focus-addition: @spacing-start-typeahead-search-figure + @spacing-end-typeahead-search-figure;
 
-		.wvui-input__input {
-			padding-left: @size-search-figure;
+		&.wvui-typeahead-search--auto-expand-width:not( .wvui-typeahead-search--focused ) {
+			margin-left: @size-typeahead-search-focus-addition;
+		}
 
-			&:focus {
+		&:not( .wvui-typeahead-search--auto-expand-width ),
+		&.wvui-typeahead-search--auto-expand-width.wvui-typeahead-search--focused {
+			margin-left: 0;
+
+			// stylelint-disable-next-line max-nesting-depth
+			.wvui-input__input {
 				position: relative;
-				// Don't let the input grow over the search button.
-				left: -@size-typeahead-search-focus-addition;
-				width: calc( @size-full + @size-typeahead-search-focus-addition );
 				// Keep the cursor in the same place on the screen.
 				padding-left: calc( @spacing-start-typeahead-search-figure + @size-search-figure + @spacing-end-typeahead-search-figure );
 			}
-		}
 
-		.wvui-input__start-icon {
-			width: @size-search-figure;
-		}
-
-		.wvui-input__input:focus + .wvui-input__start-icon {
-			// We use @border-width-base here since the input's start icon position
-			// is relative to the input's container (which is outside the input's
-			// border) when the input has focus.
-			left: -@size-typeahead-search-focus-addition + @spacing-start-typeahead-search-figure + @border-width-base;
-		}
-
-		.wvui-typeahead-search__suggestions {
-			left: -@size-typeahead-search-focus-addition;
+			// stylelint-disable-next-line max-nesting-depth
+			.wvui-input__start-icon {
+				// We use @border-width-base here since the input's start icon position
+				// is relative to the input's container (which is outside the input's
+				// border) when the input has focus.
+				left: @spacing-start-typeahead-search-figure + @border-width-base;
+				width: @size-search-figure;
+			}
 		}
 
 		.wvui-typeahead-search__suggestion {

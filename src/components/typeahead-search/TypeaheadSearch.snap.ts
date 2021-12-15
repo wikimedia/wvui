@@ -5,7 +5,7 @@ exports[`matches the snapshot 1`] = `
   aria-expanded="false"
   aria-haspopup="listbox"
   aria-owns="foo-suggestions"
-  class="wvui-typeahead-search wvui-typeahead-search--show-thumbnail"
+  class="wvui-typeahead-search wvui-typeahead-search--show-thumbnail wvui-typeahead-search--full-width"
   role="combobox"
 >
   <form
@@ -126,7 +126,7 @@ exports[`when there are search results matches the snapshot 1`] = `
   aria-expanded="true"
   aria-haspopup="listbox"
   aria-owns="foo-suggestions"
-  class="wvui-typeahead-search wvui-typeahead-search--active wvui-typeahead-search--has-value wvui-typeahead-search--expanded wvui-typeahead-search--show-thumbnail"
+  class="wvui-typeahead-search wvui-typeahead-search--active wvui-typeahead-search--focused wvui-typeahead-search--has-value wvui-typeahead-search--expanded wvui-typeahead-search--show-thumbnail wvui-typeahead-search--full-width"
   role="combobox"
 >
   <form
