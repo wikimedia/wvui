@@ -3,9 +3,14 @@
 Versions and bullets are arranged contextually chronologically from latest to oldest. Breaking
 changes are listed on top, and marked with "BREAKING CHANGE".
 
+## v0.3.5 / 2022-01-08
+
+-   [typeahead-search] Refactor expanding width on focus behavior and add `autoExpandWidth` prop
+    (Nicholas Ray)
+
 ## v0.3.4 / 2021-12-09
 
--   TypeaheadSearch: Avoid use of `.native` event binding (Roan Kattouw)
+-   [typeahead-search] Avoid use of `.native` event binding (Roan Kattouw)
 
 ## v0.3.3 / 2021-11-19
 
