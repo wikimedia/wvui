@@ -97,13 +97,18 @@ exports[`matches the snapshot 1`] = `
             <span
               class="wvui-typeahead-search__suggestions__footer__text"
             >
-              <strong
-                class="wvui-typeahead-search__suggestions__footer__text__query"
-              >
+              <div>
                 
+		Search for pages containing
+		
+                <strong
+                  class="wvui-typeahead-search__suggestions__footer__text__query"
+                >
+                  
 			
 		
-              </strong>
+                </strong>
+              </div>
             </span>
           </a>
         </li>

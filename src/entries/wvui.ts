@@ -14,8 +14,6 @@ import WvuiTypeaheadSuggestion from '@/components/typeahead-suggestion/Typeahead
 // passed to the Vue app instance's components directly.
 export const version = VERSION;
 
-export { restSearchClient } from '@/components/typeahead-search/http/restSearchClient';
-
 // Export all components available in the library.
 export default {
 	WvuiButton,

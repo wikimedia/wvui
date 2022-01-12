@@ -1,10 +1,23 @@
 import { mount, Wrapper } from '@vue/test-utils';
 import WvuiTypeaheadSearch from './TypeaheadSearch.vue';
-import * as jestFetchMock from 'jest-fetch-mock';
 import * as restApiSuggestions from './mocks/restApi.suggestions.json';
 import { DEBOUNCE_INTERVAL } from './TypeaheadSearch.constants';
 import Vue from 'vue';
 import { SearchResponse } from './http/SearchClient';
+
+const client = {
+	fetchByTitle: jest.fn( () => {
+		return {
+			fetch: Promise.resolve( {
+				query: 'test',
+				results: {}
+			} ),
+			abort: () => {
+				// No-op
+			}
+		};
+	} )
+};
 
 const propsData = {
 	buttonLabel: 'Search',
@@ -13,17 +26,23 @@ const propsData = {
 	initialInputValue: '',
 	suggestionsLabel: 'search suggestions',
 	domain: 'en.wikipedia.org',
-	id: 'foo'
+	id: 'foo',
+	client
 };
 
 const defaultSlot = [
 	'<input type="hidden" name="title" value="Special:Search">'
 ];
+// This slot normally wouldn't have an enclosing div,
+// a root element is needed due to internal implementation in vue-test-utils
+// https://vue-test-utils.vuejs.org/api/options.html#scopedslots
 const searchFooterTextSlot = `
+	<div>
 		Search for pages containing
 		<strong class="wvui-typeahead-search__suggestions__footer__text__query">
 			{{props.searchQuery}}
 		</strong>
+	</div>
 `;
 
 it( 'matches the snapshot', () => {
@@ -92,18 +111,6 @@ it( 'should set the button label', () => {
 } );
 
 describe( 'when mounted', () => {
-	const client = {
-		fetchByTitle: jest.fn( () => {
-			return {
-				fetch: new Promise( () => {
-					// No-op
-				} ),
-				abort: () => {
-					// No-op
-				}
-			};
-		} )
-	};
 
 	beforeEach( () => {
 		jest.useFakeTimers( 'modern' );
@@ -279,22 +286,28 @@ describe( 'when there are search results', () => {
 	let input: Wrapper<Vue>;
 	let inputElement: HTMLInputElement;
 
-	beforeEach( async () => {
-		jestFetchMock.enableFetchMocks();
-
-		fetchMock.mockIf( /^\/\/en.wikipedia.org\//, async () => {
+	const client = {
+		fetchByTitle: jest.fn( () => {
 			return {
-				body: JSON.stringify( { pages: restApiSuggestions.pages } ),
-				headers: {
-					'Content-Type': 'application/json'
+				fetch: Promise.resolve( {
+					query: 'test',
+					results: restApiSuggestions.pages
+				} ),
+				abort: () => {
+					// No-op
 				}
 			};
-		} );
+		} )
+	};
 
+	beforeEach( async () => {
 		jest.useFakeTimers( 'modern' );
 
 		wrapper = mount( WvuiTypeaheadSearch, {
-			propsData,
+			propsData: {
+				...propsData,
+				client
+			},
 			slots: {
 				default: defaultSlot
 			}
@@ -313,7 +326,6 @@ describe( 'when there are search results', () => {
 
 	afterEach( () => {
 		jest.useRealTimers();
-		jestFetchMock.disableFetchMocks();
 	} );
 
 	it( 'matches the snapshot', () => {

@@ -126,7 +126,6 @@ import {
 	SearchResult
 } from '../typeahead-search/http/SearchClient';
 import { wvuiIconSearch, wvuiIconArticleSearch } from '../../themes/icons';
-import { restSearchClient } from './http/restSearchClient';
 import { createDefaultUrlGenerator, UrlGenerator } from '../typeahead-suggestion/UrlGenerator';
 import { FetchEndEvent, SuggestionClickEvent, SubmitEvent } from './lifecycle-events';
 import { DEBOUNCE_INTERVAL } from './TypeaheadSearch.constants';
@@ -153,7 +152,7 @@ export default Vue.extend( {
 		},
 		client: {
 			type: Object as PropType<SearchClient>,
-			default: () => restSearchClient()
+			required: true
 		},
 		urlGenerator: {
 			type: Object as PropType<UrlGenerator>,
