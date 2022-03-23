@@ -3,6 +3,11 @@
 Versions and bullets are arranged contextually chronologically from latest to oldest. Breaking
 changes are listed on top, and marked with "BREAKING CHANGE".
 
+## v0.4.0 / 2022-03-23
+
+-   [BREAKING CHANGE][typeahead-search] TypeaheadSearch users must define client (Jon Robson)
+-   [typeahead-search] Pass formAction to footerUrl (Jon Robson)
+
 ## v0.3.5 / 2022-01-08
 
 -   [typeahead-search] Refactor expanding width on focus behavior and add `autoExpandWidth` prop
