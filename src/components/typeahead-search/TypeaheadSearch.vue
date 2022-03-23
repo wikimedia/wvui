@@ -238,7 +238,7 @@ export default Vue.extend( {
 		footerUrl(): string {
 			return this.urlGenerator.generateUrl( this.searchQuery, {
 				title: this.searchPageTitle
-			} );
+			}, this.formAction );
 		},
 		isFooterActive(): boolean {
 			return this.suggestionActiveIndex === this.suggestionsList.length;
