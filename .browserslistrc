@@ -1,6 +1,0 @@
-# Browserslist configuration of modern browsers with highest level of support.
-# Please see https://www.mediawiki.org/wiki/Compatibility#Browsers and
-# https://github.com/wikimedia/browserslist-config-wikimedia/
-# Also see the compatibility section of DEVELOPERS.md before revising.
-
-extends browserslist-config-wikimedia/modern

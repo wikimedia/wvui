@@ -1,9 +1,0 @@
-{
-	"root": true,
-	"extends": "wikimedia/language/es5",
-	"parser": "@typescript-eslint/parser",
-	"rules": {
-		"es/no-object-assign": "off"
-	},
-	"plugins": ["@typescript-eslint", "no-jquery"]
-}

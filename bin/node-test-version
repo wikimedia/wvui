@@ -1,7 +1,0 @@
-#!/usr/bin/env bash
-set -euo pipefail
-
-if [ "v$(< .nvmrc)" != "$(node -v)" ]; then
-	echo "Node.js version mismatch. Expected v$(< .nvmrc), \`node -v\` reports $(node -v)."
-	exit 1
-fi
